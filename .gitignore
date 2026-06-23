@@ -1,0 +1,14 @@
+# Besu chain data and private keys
+node1/
+node2/
+node3/
+node4/
+networkFiles/
+
+# Foundry build artifacts
+out/
+cache/
+broadcast/
+
+# Environment variables
+.env
