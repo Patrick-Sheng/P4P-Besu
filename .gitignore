@@ -12,3 +12,9 @@ broadcast/
 
 # Environment variables
 .env
+
+# forge-std library
+voting-contract/lib/
+voting-contract/out/
+voting-contract/cache/
+voting-contract/.gitmodules
