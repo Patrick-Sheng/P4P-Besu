@@ -1,0 +1,17 @@
+export const VOTING_ABI = [
+  "constructor(uint8 _numCandidates)",
+  "function registerVoter(address voter) external",
+  "function openVoting() external",
+  "function closeVoting() external",
+  "function castVote(uint8 candidateId) external",
+  "function getTally(uint8 candidateId) external view returns (uint256)",
+  "function getVoterState(address voter) external view returns (uint8)",
+  "function registeredVoters(address) external view returns (bool)",
+  "function votingOpen() external view returns (bool)",
+  "function numCandidates() external view returns (uint8)",
+  "function admin() external view returns (address)",
+  "event VoterRegistered(address indexed voter)",
+  "event VoteCast(address indexed voter, uint8 candidateId)",
+  "event VotingOpened()",
+  "event VotingClosed()",
+];
