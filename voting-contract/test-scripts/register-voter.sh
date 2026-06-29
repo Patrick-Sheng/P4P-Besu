@@ -9,7 +9,7 @@ fi
 
 CONTRACT=0x3e0fe203b5854985b4baf481b8ba08cf96524494
 RPC=http://127.0.0.1:8545
-ADMIN_KEY=$(cat ../../networkFiles/keys/$(ls ../../networkFiles/keys/ | head -1)/key)
+ADMIN_KEY=$(cat ../../network/networkFiles/keys/$(ls ../../network/networkFiles/keys/ | head -1)/key)
 VOTER_ADDRESS=$1
 
 echo "=== Registering voter: $VOTER_ADDRESS ==="
