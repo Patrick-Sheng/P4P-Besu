@@ -88,6 +88,9 @@ export default function AdminPage() {
   const contractAddrRef = useRef(contractAddress);
   const connectedRef = useRef(connected);
   const lastBlockRef = useRef(0);
+  // Voter event scanning — tracks progress to avoid re-querying the whole chain
+  const lastScannedBlockRef = useRef(0);
+  const knownVoterAddrsRef = useRef<string[]>([]);
 
   useEffect(() => {
     rpcUrlRef.current = rpcUrl;
@@ -147,7 +150,10 @@ export default function AdminPage() {
 
       setAdminAddress(wallet.address);
       setChainId(Number(network.chainId));
-      lastBlockRef.current = 0; // reset so poll fetches fresh block data
+      lastBlockRef.current = 0;
+      lastScannedBlockRef.current = 0;
+      knownVoterAddrsRef.current = [];
+      setVoters([]);
       setConnected(true);
       setConnectionCounter((c) => c + 1);
       setTxStatus(`Connected to chain ID ${network.chainId.toString()}`);
@@ -234,28 +240,37 @@ export default function AdminPage() {
           ]);
         }
 
-        // Refresh voter list from on-chain events
-        const events = await contract.queryFilter(
-          "VoterRegistered",
-          0,
-          "latest"
-        );
-        const addresses = (events as EventLog[])
-          .filter((e) => e.args)
-          .map((e) => e.args[0] as string);
+        // Incremental voter scan: chunk 500 blocks to stay within Besu RPC range limit
+        const CHUNK = 500;
+        const scanFrom = lastScannedBlockRef.current;
+        if (blockNum > scanFrom) {
+          let from = scanFrom;
+          while (from <= blockNum) {
+            const to = Math.min(from + CHUNK - 1, blockNum);
+            const chunk = await contract.queryFilter("VoterRegistered", from, to);
+            const newAddrs = (chunk as EventLog[])
+              .filter((e) => e.args)
+              .map((e) => e.args[0] as string);
+            for (const addr of newAddrs) {
+              if (!knownVoterAddrsRef.current.some((a) => a.toLowerCase() === addr.toLowerCase())) {
+                knownVoterAddrsRef.current = [...knownVoterAddrsRef.current, addr];
+              }
+            }
+            from = to + 1;
+          }
+          lastScannedBlockRef.current = blockNum;
+        }
 
-        if (addresses.length > 0) {
+        if (knownVoterAddrsRef.current.length > 0) {
           const stateResults = await Promise.all(
-            addresses.map((addr) => contract.getVoterState(addr))
+            knownVoterAddrsRef.current.map((addr) => contract.getVoterState(addr))
           );
           setVoters(
-            addresses.map((addr, i) => ({
+            knownVoterAddrsRef.current.map((addr, i) => ({
               address: addr,
               state: Number(stateResults[i]),
             }))
           );
-        } else {
-          setVoters([]);
         }
       }
 
