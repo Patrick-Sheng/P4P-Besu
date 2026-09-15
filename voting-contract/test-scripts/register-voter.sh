@@ -7,7 +7,7 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-CONTRACT=0x3e0fe203b5854985b4baf481b8ba08cf96524494
+CONTRACT=0x6BB0c560dE5922eAd78Ff84d998343A01750f6A2
 RPC=http://127.0.0.1:8545
 ADMIN_KEY=$(cat ../../network/networkFiles/keys/$(ls ../../network/networkFiles/keys/ | head -1)/key)
 VOTER_ADDRESS=$1

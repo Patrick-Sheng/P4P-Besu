@@ -1,5 +1,5 @@
 export const DEFAULT_RPC_URL = "http://127.0.0.1:8545";
-export const DEFAULT_CONTRACT_ADDRESS = "0x6227c4d25cd67543c8fd0cda1f87d022ad902334";
+export const DEFAULT_CONTRACT_ADDRESS = "0x6BB0c560dE5922eAd78Ff84d998343A01750f6A2";
 
 export const RPC_NODES = [
   { label: "Node 1 (Bootnode) — :8545", url: "http://127.0.0.1:8545" },

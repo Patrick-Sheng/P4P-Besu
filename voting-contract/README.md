@@ -74,7 +74,7 @@ $ cast --help
 - Contract deployed (you will see the contract address printed when you first run the deploy script — replace the address below with yours)
 
 ```
-Contract deployed at: 0x3e0fe203b5854985b4baf481b8ba08cf96524494
+Contract deployed at: 0x6BB0c560dE5922eAd78Ff84d998343A01750f6A2
 ```
 
 ### 1. Navigate to scripts folder
