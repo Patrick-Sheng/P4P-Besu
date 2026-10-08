@@ -8,7 +8,9 @@
 //   - block timestamps over the run, fetched from a survivor's RPC
 // Prints a per-bucket timeline and a per-phase summary. Phases are cut at
 // the first "crash", first "restart", and last "caught-up"/"chain-resumed"
-// event: baseline -> degraded -> recovering -> after.
+// event: baseline -> degraded -> recovering -> after. If there are no crash
+// events (e.g. Area 4 spike: events "baseline", "spike", "recovery"), each
+// event instead starts a phase named after it.
 //
 // Usage: node fault-timeline.js <latencyDir> <eventsFile> <rpcUrl> <fromBlock> <toBlock> [bucketSecs=5] [csvOut]
 
@@ -66,10 +68,12 @@ async function main() {
     const rows = [];
     for (let t = startMs; t < endMs; t += bucketMs) {
         const inB = okTx.filter((x) => x.confirmTimeMs >= t && x.confirmTimeMs < t + bucketMs);
+        const sub = txs.filter((x) => x.submitTimeMs >= t && x.submitTimeMs < t + bucketMs).length;
         const blk = blocks.filter((b) => b.ms >= t && b.ms < t + bucketMs);
         const ev = events.filter((e) => e.ms >= t && e.ms < t + bucketMs).map((e) => e.label);
         rows.push({
             t: Math.round((t - startMs) / 1000),
+            subTps: sub / (bucketMs / 1000),
             tps: inB.length / (bucketMs / 1000),
             p50: pct(inB.map((x) => x.latencyMs), 50),
             blocks: blk.length,
@@ -77,13 +81,13 @@ async function main() {
         });
     }
     console.log(`Timeline (${bucketMs / 1000}s buckets, t=0 at first submit/event):`);
-    console.log('  t(s)  confirmed_tps  p50_ms  blocks  events');
+    console.log('  t(s)  submitted_tps  confirmed_tps  p50_ms  blocks  events');
     for (const r of rows) {
-        console.log(`  ${String(r.t).padStart(4)}  ${fmt(r.tps, 1).padStart(13)}  ${fmt(r.p50).padStart(6)}  ${String(r.blocks).padStart(6)}  ${r.events}`);
+        console.log(`  ${String(r.t).padStart(4)}  ${fmt(r.subTps, 1).padStart(13)}  ${fmt(r.tps, 1).padStart(13)}  ${fmt(r.p50).padStart(6)}  ${String(r.blocks).padStart(6)}  ${r.events}`);
     }
     if (csvOut) {
-        fs.writeFileSync(csvOut, 't_s,confirmed_tps,p50_ms,blocks,events\n' +
-            rows.map((r) => [r.t, r.tps.toFixed(1), r.p50 ?? '', r.blocks, JSON.stringify(r.events)].join(',')).join('\n') + '\n');
+        fs.writeFileSync(csvOut, 't_s,submitted_tps,confirmed_tps,p50_ms,blocks,events\n' +
+            rows.map((r) => [r.t, r.subTps.toFixed(1), r.tps.toFixed(1), r.p50 ?? '', r.blocks, JSON.stringify(r.events)].join(',')).join('\n') + '\n');
     }
 
     // --- phases ---
@@ -92,12 +96,12 @@ async function main() {
     const crash = first(/^crash/);
     const restart = first(/^restart/);
     const recovered = last(/^(caught-up|chain-resumed)/);
-    const cuts = [
-        ['baseline', startMs, crash ? crash.ms : endMs],
-        ['degraded (nodes down)', crash ? crash.ms : endMs, restart ? restart.ms : endMs],
+    const cuts = crash ? [
+        ['baseline', startMs, crash.ms],
+        ['degraded (nodes down)', crash.ms, restart ? restart.ms : endMs],
         ['recovering (restart -> caught up)', restart ? restart.ms : endMs, recovered ? recovered.ms : endMs],
         ['after recovery', recovered ? recovered.ms : endMs, endMs]
-    ];
+    ] : events.map((e, i) => [e.label, e.ms, i + 1 < events.length ? events[i + 1].ms : endMs]);
     console.log('\nPer-phase summary (throughput = txs confirmed within the phase / phase length):');
     console.log('  phase                               dur_s  conf_tps  p50_ms  p95_ms  blocks  mean_gap_s  max_gap_s');
     for (const [name, a, b] of cuts) {

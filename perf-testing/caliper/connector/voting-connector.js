@@ -271,11 +271,23 @@ class VotingConnector extends ConnectorBase {
 
         try {
             if (request.readOnly) {
+                // reads are timed too, so the Area 4 volume probes get p50/p95/p99
+                // read latency rather than only Caliper's min/max/avg
+                const startMs = Date.now();
                 const result = await contract[request.verb](...(request.args || []));
+                const endMs = Date.now();
                 status.SetID('read');
                 status.SetResult(result);
                 status.SetVerification(true);
                 status.SetStatusSuccess();
+                this._recordLatency({
+                    verb: request.verb,
+                    readOnly: true,
+                    submitTimeMs: startMs,
+                    confirmTimeMs: endMs,
+                    latencyMs: endMs - startMs,
+                    success: true
+                });
                 return status;
             }
 

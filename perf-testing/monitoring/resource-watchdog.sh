@@ -13,6 +13,9 @@
 #   [VALIDATOR_DOWN]        a p4p-besu unit is no longer active for any other reason
 #   [LOADGEN_OOM_KILLED]    the Caliper/registration unit died with Result=oom-kill
 #   [KERNEL_OOM]            kernel OOM killer fired anywhere on the host since the watchdog started
+#   [NODE_STUCK]            a validator's height lags the highest by >LAG_BLOCKS for 3 samples
+#                           while the chain itself advances (e.g. Besu 24.12.0's SyncState /
+#                           BftProcessor deadlock - the node looks alive but stops importing)
 #   [CONSENSUS_STALL]       chain height unchanged for STALL_SECS (IBFT makes empty blocks every 2s, so this means no quorum)
 #   [RPC_UNRESPONSIVE]      watched RPC failed 5 consecutive samples (after it was first seen up)
 #   [NETWORK_NEVER_CAME_UP] no block height readable within STARTUP_SECS of watchdog start
@@ -28,6 +31,9 @@ ABORT_MEM_MB="${P4P_ABORT_MEM_MB:-600}"
 STALL_SECS="${P4P_STALL_SECS:-30}"
 STARTUP_SECS="${P4P_STARTUP_SECS:-180}"
 RPC_FAIL_SAMPLES="${P4P_RPC_FAIL_SAMPLES:-5}"
+LAG_BLOCKS="${P4P_LAG_BLOCKS:-10}"
+META="$(dirname "${BASH_SOURCE[0]}")/../network/generated/n${N}/network-meta.json"
+mapfile -t ALL_RPC < <(jq -r '.validators[].rpcUrl' "$META" 2>/dev/null)
 FAULT_VICTIMS="${P4P_FAULT_VICTIMS:-}"   # space-separated 1-based validator indices crashed on purpose
 UNIT_PREFIX="p4p-besu-n${N}-v"
 CSV="${RUN_DIR}/resources.csv"
@@ -46,6 +52,13 @@ cg_mem_mb() {  # <unit> -> MiB currently charged to its cgroup, or -1
     fi
 }
 
+height_of() {  # <url> -> decimal height or -1
+    local h
+    h=$(curl -s -m 2 -X POST -H 'Content-Type: application/json' \
+        --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' "$1" | jq -r '.result // empty' 2>/dev/null)
+    [ -n "$h" ] && printf '%d' "$h" || echo -1
+}
+
 block_height() {
     curl -s -m 2 -X POST -H 'Content-Type: application/json' \
         --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' "$RPC_URL" \
@@ -54,6 +67,16 @@ block_height() {
 
 abort() {  # <code> <detail>
     local code="$1" detail="$2"
+    # for hangs (as opposed to deaths) capture every live validator's JVM
+    # threads first - a stalled IBFT processor thread is otherwise invisible
+    if [ "$code" = CONSENSUS_STALL ] || [ "$code" = RPC_UNRESPONSIVE ] || [ "$code" = NODE_STUCK ]; then
+        local i pid
+        for ((i = 1; i <= N; i++)); do
+            pid=$(systemctl --user show -p MainPID --value "${UNIT_PREFIX}${i}" 2>/dev/null)
+            [ -n "$pid" ] && [ "$pid" != 0 ] && timeout 20 jcmd "$pid" Thread.print > "${RUN_DIR}/threaddump-v${i}.txt" 2>&1
+        done
+        detail="${detail}; thread dumps: threaddump-v*.txt"
+    fi
     local line="[$(date '+%H:%M:%S')] CRASH_REASON=${code} :: ${detail}"
     echo "${code} :: ${detail}" > "${RUN_DIR}/ABORT_REASON"
     echo "$line" | tee -a "$SWEEP_LOG" >> "${RUN_DIR}/watchdog.log"
@@ -71,6 +94,7 @@ echo "$header" > "$CSV"
 low_mem_count=0; rpc_fail_count=0; last_height=-1; last_height_change=$(date +%s)
 started_at=$(date +%s); seen_up=0
 declare -A PEAK
+declare -A LAGC
 echo "[$(date '+%H:%M:%S')] watchdog started (n=${N}, abort if MemAvailable<${ABORT_MEM_MB}MB, stall>${STALL_SECS}s)" >> "${RUN_DIR}/watchdog.log"
 
 while true; do
@@ -139,6 +163,28 @@ while true; do
         fi
     else
         low_mem_count=0
+    fi
+
+    # --- per-validator lag (a hung node can stay "active" while the chain moves on) ---
+    if [ "$height" -gt 0 ] && [ "${#ALL_RPC[@]}" -eq "$N" ]; then
+        lag_report=""; max_h=$height
+        declare -A H
+        for ((i = 1; i <= N; i++)); do
+            [[ " ${FAULT_VICTIMS} " == *" ${i} "* ]] && continue
+            H[$i]=$(height_of "${ALL_RPC[$((i - 1))]}")
+            [ "${H[$i]}" -gt "$max_h" ] && max_h=${H[$i]}
+        done
+        for ((i = 1; i <= N; i++)); do
+            [ -z "${H[$i]:-}" ] && continue
+            if [ "${H[$i]}" -ge 0 ] && [ $((max_h - H[$i])) -gt "$LAG_BLOCKS" ]; then
+                LAGC[$i]=$(( ${LAGC[$i]:-0} + 1 ))
+                [ "${LAGC[$i]}" -ge 3 ] && lag_report+="validator${i} at ${H[$i]} vs ${max_h}; "
+            else
+                LAGC[$i]=0
+            fi
+        done
+        unset H
+        [ -n "$lag_report" ] && abort NODE_STUCK "${lag_report}chain still advancing - node alive but not importing blocks"
     fi
 
     # --- RPC + consensus progress ---

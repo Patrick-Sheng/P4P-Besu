@@ -8,8 +8,8 @@ crash-fault tolerance, malicious-node behaviour, and throughput
 **Status (2026-10-08)**: results per area are indexed in
 [`reports/README.md`](reports/README.md). Areas 1-3 have been run on the dev
 box (4 cores / 7.7 GB, no swap) using the native network runners in
-`scripts/` (`run-area1.sh`, `run-area2.sh`, `run-area3.sh`); Area 4 has not
-been run. The Docker-based multi-size network generator is written but not
+`scripts/` (`run-area1.sh` ... `run-area4.sh`); Area 4 only as a scaled n=4
+version (`run-area4.sh`), not the full-size configs below. The Docker-based multi-size network generator is written but not
 yet run through `docker compose up` (no Docker on the dev box). The IBFT
 wire-protocol byzantine fuzzing track (`ibft-fuzzing/`) is a source-verified
 design + two starter patch files, not a built/tested artifact - see that
@@ -211,7 +211,9 @@ build, which is design + starter-patch only this session, not built/tested.
 
 ## Area 4 - throughput
 
-Fixed at n=7. See `caliper/benchmarks/throughput/*.yaml` - each file has its
+Scaled n=4 version that fits a small host (load / spike / staircase stress /
+read probes, rates relative to the measured n=4 ceiling): `scripts/run-area4.sh`,
+results in `reports/throughput-results/`. Full-size design: fixed at n=7. See `caliper/benchmarks/throughput/*.yaml` - each file has its
 own prerequisites (voter pool size) and run command in its header comment.
 Note the endurance and volume tests need very large voter pools (millions of
 records); generating/registering those will take a while and is meant to run
@@ -225,6 +227,6 @@ validators and the load generator share the CPU (load average 8-46), and
 per-validator memory caps (~900 MB at n=4, ~520 MB at n=7, ~380 MB at n=10)
 cause validator OOM kills at n=7 under high TPS / outage backlogs and at n=10
 during setup. Treat those numbers as host-bound. The 300-500 TPS target, any
-n=10/13 result, and all of Area 4 need adequately sized hardware (more
+n=10/13 result, and the full-size Area 4 tests need adequately sized hardware (more
 cores/RAM, or one VM per validator); the harness is parameterized by node
 count and TPS throughout.

@@ -41,6 +41,9 @@ async function main() {
     const voters = JSON.parse(fs.readFileSync(votersPath, 'utf8'));
 
     const provider = new ethers.JsonRpcProvider(networkConfig.rpcUrls[0], undefined, { staticNetwork: true });
+    // ethers' default 4s receipt polling, not the network, was the registration
+    // bottleneck (~40 regs/s with 2s blocks): each batch waited a full poll cycle
+    provider.pollingInterval = 250;
     const admin = new ethers.Wallet(networkConfig.adminPrivateKey, provider);
 
     // abiPath in the network config is relative to the caliper workspace root
