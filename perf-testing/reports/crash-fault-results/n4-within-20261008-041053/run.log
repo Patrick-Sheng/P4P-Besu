@@ -1,0 +1,193 @@
+[04:10:54] === Area 2 n4-within-20261008-041053: n=4, f=1, scenario=within -> crash validator(s) 4 (SIGKILL, 5s stagger), hold 60s ===
+[04:10:54] Background load: 25 TPS castVote for 230s, sent only to the 3 never-crashed validator(s) (1..3)
+[04:10:54] Host: 4 cores, MemTotal 7840MB, MemAvailable 5242MB, no swap
+[04:10:54] Memory budget: slice 4342MB = 4 x validator 910MB (heap 364MB) + loadgen 600MB
+[04:10:54] Step: starting native 4-validator network...
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 364M, MemoryMax 910M each...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): up
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[04:11:03] Watchdog p4p-watchdog-n4 started (fault victims exempt: 4)
+[04:11:03] Step: deploying VotingSystem...
+Running as unit: p4p-load-n4.service; invocation ID: cc497e4ba8474f2c955eb9690632a56b
+Waiting for 4 validator(s) to come up and start producing blocks...
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.Network live. Block heights: 3, 3, 3, 3
+Deploying VotingSystem(numCandidates=3) via 0x52914145D3337c85E3E5da19693635886Ab598B2 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 19.673s
+CPU time consumed: 466ms
+Memory peak: 25.5M
+Memory swap peak: 0B
+[04:11:22] Step: generating + registering 5875 voters...
+Running as unit: p4p-load-n4.service; invocation ID: c56dd843f5e443fd8e07a1d26c6f629e
+Generating 5875 voter accounts -> /home/patrick/P4P/P4P-Besu/perf-testing/caliper/seed/generated/n4-within-20261008-041053-voters.json
+  293/5875
+  586/5875
+  879/5875
+  1172/5875
+  1465/5875
+  1758/5875
+  2051/5875
+  2344/5875
+  2637/5875
+  2930/5875
+  3223/5875
+  3516/5875
+  3809/5875
+  4102/5875
+  4395/5875
+  4688/5875
+  4981/5875
+  5274/5875
+  5567/5875
+  5860/5875
+  5875/5875
+Done. Wrote 5875 voters to /home/patrick/P4P/P4P-Besu/perf-testing/caliper/seed/generated/n4-within-20261008-041053-voters.json
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 2.928s
+CPU time consumed: 2.967s
+Memory peak: 28.9M
+Memory swap peak: 0B
+Running as unit: p4p-load-n4.service
+Voting not open yet - calling openVoting()...
+Voting opened.
+Registering 5875 voters (of 5875 total), admin nonce starts at 2
+  registered 2000/5875
+  registered 4000/5875
+  registered 5875/5875
+All voters registered.
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 2min 35.897s
+CPU time consumed: 30.390s
+Memory peak: 58.3M
+Memory swap peak: 0B
+[04:14:01] Background load started (block 84); baseline 40s before injecting faults
+[04:14:41] Step: fault-injection/crash-fault.sh 4 60 5
+[04:14:42] n=4, f=1. Killing the last 1 validators (staggered 5s apart), leaving validator1..3 as survivors.
+[04:14:42] Baseline height on survivor (p4p-besu-n4-v1): 104
+[04:14:42] === Killing 1 node(s), staggered ===
+[04:14:42] crash p4p-besu-n4-v4 (native)
+[04:14:47] === Holding for 60s with n-f=3 nodes live ===
+[04:15:47] Survivor height: 106 -> 129 (+23 blocks in 60s)
+[04:15:47] PASS: network kept producing blocks with n-f nodes online (liveness maintained).
+[04:15:47] === Rebooting 1 node(s), staggered ===
+[04:15:47] restart p4p-besu-n4-v4 (native)
+[04:15:52] === Waiting for rebooted node(s) to resync to height 130 (chain kept advancing while they were down) ===
+[04:15:52] Waiting on p4p-besu-n4-v4 (http://127.0.0.1:20403)...
+[04:16:01]   p4p-besu-n4-v4 caught up in 9s
+[04:16:01]   State check PASS: block #125 hash matches survivor (0xc6d48077b7c3fb41714b5ee1101d922e27b69e515908a3db8162e509015a6933)
+[04:16:01] === Done. Total reboot-to-full-resync wall time: 14s ===
+[04:16:01] RESULT: PASS
+[04:16:01] Fault script finished: PASS (exit 0)
+[04:16:01] Waiting for background load to finish...
+[04:18:01] n=4 round 0 target 25 TPS: submitted 5752, ok 5752, failed 0, send 25 TPS, observed 24.9 TPS
+[04:18:01] latency ms: min 195 p50 1477 p95 3532 p99 4440 max 5316 avg 1579.9
+Timeline (5s buckets, t=0 at first submit/event):
+  t(s)  confirmed_tps  p50_ms  blocks  events
+     0           13.6    1562       3  
+     5           29.8    1490       2  
+    10           25.2    1339       3  
+    15           24.6    1505       2  
+    20           30.4    1321       3  
+    25           19.8    1412       2  
+    30           30.2    1324       3  
+    35           19.8    1355       2  crash validator4
+    40            9.8    1278       2  
+    45           40.2    1714       2  
+    50           30.2    1838       2  
+    55            9.6    1201       1  
+    60           40.4    1652       3  
+    65           20.4    2490       1  
+    70           18.0    1355       2  
+    75           31.0    1925       2  
+    80            9.8    1444       2  
+    85           40.0    1653       2  
+    90           30.4    1954       2  
+    95           10.4    1312       1  
+   100           40.0    1673       3  restart validator4
+   105           20.6    2808       1  
+   110           19.4    1411       2  
+   115           29.6    2217       2  caught-up validator4
+   120           19.6    1498       3  
+   125           30.8    1389       2  
+   130           30.0    1317       3  
+   135           20.0    1326       2  
+   140           20.0    1419       3  
+   145           29.8    1414       2  
+   150           30.2    1299       3  
+   155           20.0    1307       2  
+   160           20.0    1250       3  
+   165           30.0    1299       2  
+   170           30.0    1384       3  
+   175           20.0    1242       2  
+   180           25.0    1301       3  
+   185           25.0    1361       2  
+   190           30.0    1320       3  
+   195           20.0    1311       2  
+   200           20.0    1414       3  
+   205           30.0    1366       2  
+   210           24.8    1533       3  
+   215           25.2    1321       2  
+   220           25.0    1258       3  
+   225           25.0    1293       2  
+   230            6.8    1522       3  
+
+Per-phase summary (throughput = txs confirmed within the phase / phase length):
+  phase                               dur_s  conf_tps  p50_ms  p95_ms  blocks  mean_gap_s  max_gap_s
+  baseline                             38.8      23.7    1411    2307      20        2.00          2
+  degraded (nodes down)                65.1      25.3    1684    4204      24        2.67          4
+  recovering (restart -> caught up)    13.9      25.8    1973    4550       5        2.80          4
+  after recovery                      113.1      24.9    1340    2257      57        2.00          2
+
+Total: 5752 recorded txs, 5752 succeeded, 0 reverted (send-side failures are in the Caliper log, not here)
+[04:18:14]   validator1 block #199 0xdb5931240b7db98ba554373457f0b995606b44188015a5deaf79e334cedca818
+[04:18:14]   validator2 block #199 0xdb5931240b7db98ba554373457f0b995606b44188015a5deaf79e334cedca818
+[04:18:14]   validator3 block #199 0xdb5931240b7db98ba554373457f0b995606b44188015a5deaf79e334cedca818
+[04:18:14]   validator4 block #199 0xdb5931240b7db98ba554373457f0b995606b44188015a5deaf79e334cedca818
+[04:18:14] All-node state consistency at block #199: PASS
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[04:18:15] RESULT: COMPLETED - fault-test=PASS, state-consistency=PASS
+[04:18:15] Peak cgroup memory (MB): peak_mb v3=492 v2=517 v1=536 v4=419

@@ -1,0 +1,51 @@
+## Area 4 - Stress test. Fixed n=7 validators.
+##
+## Ramp submission rate up linearly until the system degrades, to find the
+## actual ceiling rather than assuming 500 TPS is it. Ramps well past the
+## 500 TPS stretch goal (200 -> 1200 TPS over 20 minutes) - read the Caliper
+## report + compute-percentiles.js output to find where success rate drops
+## or p99 latency blows up, not just where the round ends.
+##
+## Prerequisites:
+##   node deploy-and-configure.js 7
+##   node seed/generate-voters.js 900000 seed/generated/n7-stress.json
+##   node seed/register-voters.js networks/besu-n7.json seed/generated/n7-stress.json --concurrency=200
+##
+## Run with (from perf-testing/caliper/):
+##   npx caliper launch manager --caliper-workspace . \
+##     --caliper-networkconfig networks/besu-n7.json \
+##     --caliper-benchconfig benchmarks/throughput/stress.yaml \
+##     --caliper-flow-skip-install --caliper-flow-skip-start --caliper-flow-skip-end \
+##     --caliper-report-path reports/throughput-stress.html
+
+test:
+  workers:
+    number: 16
+  rounds:
+    - label: stress-ramp-200-to-1200tps
+      description: Linear ramp 200 -> 1200 TPS over 20 minutes to find the real ceiling
+      txDuration: 1200
+      rateControl:
+        type: linear-rate
+        opts:
+          startingTps: 200
+          finishingTps: 1200
+      workload:
+        module: workloads/cast-vote.js
+        arguments:
+          votersFile: seed/generated/n7-stress.json
+          numCandidates: 3
+
+monitors:
+  resource:
+    - module: docker
+      options:
+        interval: 5
+        containers:
+          - besu-n7-validator1
+          - besu-n7-validator2
+          - besu-n7-validator3
+          - besu-n7-validator4
+          - besu-n7-validator5
+          - besu-n7-validator6
+          - besu-n7-validator7

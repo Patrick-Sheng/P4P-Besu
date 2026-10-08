@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Generated networks: chain data, node logs, PID/env files and validator
+# private keys. Regenerate with: node network/generate-network.mjs <n>
+network/generated/
+
+# Caliper network configs embed the admin private key (written by deploy-and-configure.js)
+caliper/networks/
+
+# Generated voter pools (thousands of private keys, tens of MB) and progress files
+caliper/seed/generated/
+
+# Per-tx latency scratch output from the connector
+caliper/reports/latency/
+
+# Benchmark configs generated per run by scripts/area1-sweep.sh and scripts/area2-crash.sh
+# (the hand-written scalability-*.yaml / throughput configs stay tracked)
+caliper/benchmarks/scalability/n*-*.yaml
+caliper/benchmarks/scalability/sweep-n*.yaml
+caliper/benchmarks/crash-fault/n*-*.yaml
+
+# Bulky raw per-run artefacts. Kept: *-RESULTS.md, *-index.log, and per run
+# summary.csv, sweep.log/run.log, timeline.csv, resources.csv, peak-mem.txt,
+# watchdog.log, fault-script.log, fault-events.csv, ABORT_REASON
+reports/**/latency/
+reports/**/latency-raw/
+reports/**/validator*.log
+reports/**/caliper*.log
+reports/**/caliper*.html
+reports/**/caliper-run-log.txt
+reports/**/*-driver.out

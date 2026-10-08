@@ -1,0 +1,1 @@
+VALIDATOR_OOM_KILLED :: validator1 (p4p-besu-n4-v1) exceeded its cgroup MemoryMax=906MB and was OOM-killed; last sample MemAvailable=3309MB
