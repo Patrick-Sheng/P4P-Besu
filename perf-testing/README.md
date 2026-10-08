@@ -5,16 +5,21 @@ network in this repo, covering four areas: scalability (node-count sweep),
 crash-fault tolerance, malicious-node behaviour, and throughput
 (load/stress/spike/endurance/volume).
 
-**Status**: the harness (network generation, Caliper connector/workloads,
-seeding, latency/block-time analysis, application-layer attack scripts) was
-built and validated end-to-end this session against the repo's existing
-native 4-node network - see "What's been validated" below. The Docker-based
-multi-size network generator is written and unit-tested for correctness of
-its output, but not yet run through `docker compose up`, because Docker
-wasn't installed on the dev machine used this session. The IBFT wire-protocol
-byzantine fuzzing track (`ibft-fuzzing/`) is a source-verified design + two
-starter patch files, not a built/tested artifact - see that directory's own
-README for why that one's scoped differently.
+**Status (2026-10-08)**: results per area are indexed in
+[`reports/README.md`](reports/README.md). Areas 1-3 have been run on the dev
+box (4 cores / 7.7 GB, no swap) using the native network runners in
+`scripts/` (`run-area1.sh`, `run-area2.sh`, `run-area3.sh`); Area 4 has not
+been run. The Docker-based multi-size network generator is written but not
+yet run through `docker compose up` (no Docker on the dev box). The IBFT
+wire-protocol byzantine fuzzing track (`ibft-fuzzing/`) is a source-verified
+design + two starter patch files, not a built/tested artifact - see that
+directory's own README.
+
+**Never launch besu/Caliper directly from an editor terminal on a small box**:
+earlier runs were OOM-killed inside VS Code's cgroup and took the editor down.
+The `scripts/run-area*.sh` launchers run everything as detached, memory-capped
+systemd user units, with `monitoring/resource-watchdog.sh` labelling any abort
+(`CRASH_REASON=...`) in the run log and the area's `*-index.log`.
 
 ## Methodology limitation: the 300-500 TPS target
 
@@ -190,7 +195,9 @@ timestamped kill/reboot log lines against that round's latency NDJSON files.
 
 ## Area 3 - malicious nodes
 
-Application-layer attacks (validated this session against a live network):
+Application-layer attacks. Recorded runs at n=4/7/10 (3 attempts each, with a
+cross-validator agreement check): `scripts/run-area3.sh [n ...]`, results in
+`reports/malicious-results/`. To run one attack by hand against a running network:
 ```bash
 cd perf-testing/fault-injection
 node malicious/double-vote.js ../caliper/networks/besu-n7.json
@@ -212,11 +219,12 @@ unattended.
 
 ## Known constraints from the dev machine used this session
 
-Node-count/TPS combinations above roughly n=4 at low TPS were not run live
-here: the dev machine (4 cores / 7.7GB RAM) can't credibly sustain 10-13
-concurrent Besu JVMs plus a Caliper load generator pushing hundreds of TPS -
-numbers from an under-resourced rig would reflect the test rig's limits, not
-IBFT's. The harness is built to be portable (parameterized by node count and
-target TPS throughout); run the nodeCount=10/13 and high-TPS configs on
-adequately sized hardware (more cores/RAM, or one VM per validator) rather
-than trusting numbers produced under resource contention.
+Measured, not assumed (see `reports/README.md`): on 4 cores / 7.7 GB the
+network saturates at ~120-135 TPS at n=4 and ~80 TPS at n=7 because all
+validators and the load generator share the CPU (load average 8-46), and
+per-validator memory caps (~900 MB at n=4, ~520 MB at n=7, ~380 MB at n=10)
+cause validator OOM kills at n=7 under high TPS / outage backlogs and at n=10
+during setup. Treat those numbers as host-bound. The 300-500 TPS target, any
+n=10/13 result, and all of Area 4 need adequately sized hardware (more
+cores/RAM, or one VM per validator); the harness is parameterized by node
+count and TPS throughout.

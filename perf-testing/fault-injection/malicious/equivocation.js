@@ -14,7 +14,7 @@
 // Usage: node equivocation.js <networkConfigFile>
 
 const { ethers } = require('ethers');
-const { loadNetwork, registerFreshVoter, ensureVotingOpen, pass, fail } = require('./lib');
+const { loadNetwork, registerFreshVoter, ensureVotingOpen, assertAllNodesAgree, pass, fail } = require('./lib');
 
 async function main() {
     const networkConfigPath = process.argv[2];
@@ -99,6 +99,8 @@ async function main() {
     } else {
         fail(`expected exactly one conflicting vote to land; got includedCount=${includedCount}, totalTallyDelta=${totalDelta}`);
     }
+
+    await assertAllNodesAgree(config, contract, [candidateA, candidateB]);
 }
 
 main().catch((err) => {

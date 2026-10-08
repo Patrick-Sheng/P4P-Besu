@@ -42,6 +42,40 @@ async function ensureVotingOpen(admin, contract) {
     }
 }
 
+/**
+ * Reads the given candidates' tallies from EVERY validator at one common block
+ * height and checks they all agree - the network-wide "no fork / no divergent
+ * count" half of each attack assertion (reading only validator1 would miss a
+ * node that counted differently). Waits a few blocks first so every node has
+ * imported the attack's transactions. Returns true if all nodes agree.
+ */
+async function assertAllNodesAgree(config, contract, candidateIds) {
+    const providers = config.rpcUrls.map((u) => new ethers.JsonRpcProvider(u, undefined, { staticNetwork: true }));
+    const start = await providers[0].getBlockNumber();
+    while ((await providers[0].getBlockNumber()) < start + 3) {
+        await new Promise((r) => setTimeout(r, 1000));
+    }
+    const heights = await Promise.all(providers.map((p) => p.getBlockNumber()));
+    const blockTag = Math.min(...heights);
+    const rows = await Promise.all(providers.map(async (p, i) => {
+        const c = contract.connect(p);
+        const tallies = await Promise.all(candidateIds.map((id) => c.getTally(id, { blockTag })));
+        const hash = (await p.getBlock(blockTag)).hash;
+        return { node: `validator${i + 1}`, tallies: tallies.map(String).join('/'), hash };
+    }));
+    const agree = rows.every((r) => r.tallies === rows[0].tallies && r.hash === rows[0].hash);
+    console.log(`Cross-node check at block ${blockTag} (tallies for candidates ${candidateIds.join('/')}):`);
+    for (const r of rows) {
+        console.log(`  ${r.node}: ${r.tallies}  ${r.hash}`);
+    }
+    if (agree) {
+        pass(`all ${rows.length} validators report identical tallies and block hash at #${blockTag}`);
+    } else {
+        fail(`validators DISAGREE at block #${blockTag} - divergent state`);
+    }
+    return agree;
+}
+
 function pass(msg) {
     console.log(`PASS: ${msg}`);
 }
@@ -51,4 +85,4 @@ function fail(msg) {
     process.exitCode = 1;
 }
 
-module.exports = { loadNetwork, registerFreshVoter, ensureVotingOpen, pass, fail };
+module.exports = { loadNetwork, registerFreshVoter, ensureVotingOpen, assertAllNodesAgree, pass, fail };

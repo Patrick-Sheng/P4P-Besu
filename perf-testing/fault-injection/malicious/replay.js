@@ -10,7 +10,7 @@
 //
 // Usage: node replay.js <networkConfigFile>
 
-const { loadNetwork, registerFreshVoter, ensureVotingOpen, pass, fail } = require('./lib');
+const { loadNetwork, registerFreshVoter, ensureVotingOpen, assertAllNodesAgree, pass, fail } = require('./lib');
 
 async function main() {
     const networkConfigPath = process.argv[2];
@@ -78,6 +78,8 @@ async function main() {
     } else {
         fail(`replay caused the tally to change again (${tallyAfterOriginal} -> ${tallyAfterReplay}) - replay was NOT correctly rejected.`);
     }
+
+    await assertAllNodesAgree(config, contract, [candidateId]);
 }
 
 main().catch((err) => {

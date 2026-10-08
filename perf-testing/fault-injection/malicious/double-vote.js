@@ -9,7 +9,7 @@
 //
 // Usage: node double-vote.js <networkConfigFile>
 
-const { loadNetwork, registerFreshVoter, ensureVotingOpen, pass, fail } = require('./lib');
+const { loadNetwork, registerFreshVoter, ensureVotingOpen, assertAllNodesAgree, pass, fail } = require('./lib');
 
 async function main() {
     const networkConfigPath = process.argv[2];
@@ -18,7 +18,7 @@ async function main() {
         process.exit(1);
     }
 
-    const { provider, admin, contract } = loadNetwork(networkConfigPath);
+    const { config, provider, admin, contract } = loadNetwork(networkConfigPath);
     await ensureVotingOpen(admin, contract);
 
     const voter = await registerFreshVoter(provider, admin, contract);
@@ -44,7 +44,10 @@ async function main() {
     } catch (err) {
         // ethers v6 throws on a reverted call when it can preflight-detect it,
         // or the node may reject at submission time - either counts as rejected.
+        // Logged so the evidence shows WHY (a revert/nonce rejection, not e.g. a
+        // network error that would make this check vacuous).
         secondVoteRejected = true;
+        console.log(`  second vote rejected: ${err.code || ''} ${(err.shortMessage || err.message).split('\n')[0]}${err.receipt ? ` (mined in block ${err.receipt.blockNumber}, status ${err.receipt.status})` : ''}`);
     }
 
     const tallyAfter = await contract.getTally(candidateId);
@@ -55,6 +58,8 @@ async function main() {
     } else {
         fail(`double-vote was NOT correctly rejected. secondVoteRejected=${secondVoteRejected}, tallyBefore=${tallyBefore}, tallyAfter=${tallyAfter}, voterState=${voterState}`);
     }
+
+    await assertAllNodesAgree(config, contract, [candidateId]);
 }
 
 main().catch((err) => {

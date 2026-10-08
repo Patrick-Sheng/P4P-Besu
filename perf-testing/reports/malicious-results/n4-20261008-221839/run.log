@@ -1,0 +1,290 @@
+[22:18:40] === Area 3 n4-20261008-221839: n=4, attacks double-vote equivocation replay x 3 ===
+[22:18:40] Memory budget: 4 x validator 887MB (heap 354MB), slice 4249MB
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 354M, MemoryMax 887M each...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+Waiting for 4 validator(s) to come up and start producing blocks...
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.Network live. Block heights: 3, 3, 3, 3
+Deploying VotingSystem(numCandidates=3) via 0x52914145D3337c85E3E5da19693635886Ab598B2 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+[22:19:20] --- double-vote attempt 1/3 ---
+    Registered voter 0xA625e9bAaD2A6824d26b6FCa7634e5649C64F2A5
+    PASS: first vote confirmed (tx 0x9ff31764666e5fb50acf6566f7047e9e6de142223de27fd84b877cc2e59b0dac)
+      second vote rejected: CALL_EXCEPTION transaction execution reverted (mined in block 14, status 0)
+    PASS: double-vote was rejected at the application layer; tally incremented exactly once; voter state remains Voted.
+    Cross-node check at block 18 (tallies for candidates 0):
+      validator1: 1  0xa3a5c4ee2ad390448c6f8ef54f71dddc4ec7b599cc357464aaf7e2c3798de4d0
+      validator2: 1  0xa3a5c4ee2ad390448c6f8ef54f71dddc4ec7b599cc357464aaf7e2c3798de4d0
+      validator3: 1  0xa3a5c4ee2ad390448c6f8ef54f71dddc4ec7b599cc357464aaf7e2c3798de4d0
+      validator4: 1  0xa3a5c4ee2ad390448c6f8ef54f71dddc4ec7b599cc357464aaf7e2c3798de4d0
+    PASS: all 4 validators report identical tallies and block hash at #18
+[22:19:45] double-vote attempt 1: PASS
+[22:19:45] --- double-vote attempt 2/3 ---
+    Registered voter 0x4Ecd01AFf996B8A15754B1a3BD05079E655e1D79
+    PASS: first vote confirmed (tx 0x9eef108c2fb1cd18e2de85cdbf562baec9592589ef3d1094e06f8b14c7fb4728)
+      second vote rejected: CALL_EXCEPTION transaction execution reverted (mined in block 24, status 0)
+    PASS: double-vote was rejected at the application layer; tally incremented exactly once; voter state remains Voted.
+    Cross-node check at block 28 (tallies for candidates 0):
+      validator1: 2  0x46a1f2db9723264c28e6346e1ef0cb21e68357906ade39bdc911ee4cd9ed3536
+      validator2: 2  0x46a1f2db9723264c28e6346e1ef0cb21e68357906ade39bdc911ee4cd9ed3536
+      validator3: 2  0x46a1f2db9723264c28e6346e1ef0cb21e68357906ade39bdc911ee4cd9ed3536
+      validator4: 2  0x46a1f2db9723264c28e6346e1ef0cb21e68357906ade39bdc911ee4cd9ed3536
+    PASS: all 4 validators report identical tallies and block hash at #28
+[22:20:05] double-vote attempt 2: PASS
+[22:20:05] --- double-vote attempt 3/3 ---
+    Registered voter 0x56fdE5c0C8e81767C84e4F0e6279cf2f84efaA42
+    PASS: first vote confirmed (tx 0x4890f694f4e9cac39741e1840fce34e3927791e515abe762c26a27f01e584e8c)
+      second vote rejected: CALL_EXCEPTION transaction execution reverted (mined in block 34, status 0)
+    PASS: double-vote was rejected at the application layer; tally incremented exactly once; voter state remains Voted.
+    Cross-node check at block 38 (tallies for candidates 0):
+      validator1: 3  0xd60e8350d7c9135334ee91897d85afbed250f6936b6e8a166a0ccbe3a3085e7e
+      validator2: 3  0xd60e8350d7c9135334ee91897d85afbed250f6936b6e8a166a0ccbe3a3085e7e
+      validator3: 3  0xd60e8350d7c9135334ee91897d85afbed250f6936b6e8a166a0ccbe3a3085e7e
+      validator4: 3  0xd60e8350d7c9135334ee91897d85afbed250f6936b6e8a166a0ccbe3a3085e7e
+    PASS: all 4 validators report identical tallies and block hash at #38
+[22:20:24] double-vote attempt 3: PASS
+[22:20:24] --- equivocation attempt 1/3 ---
+    Registered voter 0xb7FE439ea750840C0c76886FD0109E54eF852209
+    Broadcasting conflicting vote A (candidate 0) and vote B (candidate 1) to different endpoints simultaneously...
+      vote B (candidate 1): included in block 41, status=1
+      vote A (candidate 0): never confirmed (transaction was replaced (cancelled=true, reason="replaced", replacement={ "_type": "TransactionResponse", "accessList": null, "blobVersionedHashes": null, "blockHash": "0x5f11b8db5268727b371bc2de102fc63806303c5f394717e1bf76b845c405f3aa", "blockNumber": 41, "chainId": "1337", "data": "0x94a135410000000000000000000000000000000000000000000000000000000000000001", "from": "0xb7FE439ea750840C0c76886FD0109E54eF852209", "gasLimit": "200000", "gasPrice": "0", "hash": "0x5e76ed304b6e143f1ad636327b7b3d74ac919a44f310c3a47c8ff4d94d65f081", "index": 0, "maxFeePerBlobGas": null, "maxFeePerGas": null, "maxPriorityFeePerGas": null, "nonce": 0, "signature": { "_type": "signature", "networkV": "2710", "r": "0xfc2900612ef1d2447195622b0d0d8e335676eaab2f6913746ac824c7ce449c13", "s": "0x6e7a788bc8c848fc321ac00675775a80018d2bb6ec7d718f7e26eba6c6b35e90", "v": 28 }, "to": "0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8", "type": 0, "value": "0" }, hash="0x5e76ed304b6e143f1ad636327b7b3d74ac919a44f310c3a47c8ff4d94d65f081", receipt={ "_type": "TransactionReceipt", "blobGasPrice": null, "blobGasUsed": null, "blockHash": "0x5f11b8db5268727b371bc2de102fc63806303c5f394717e1bf76b845c405f3aa", "blockNumber": 41, "contractAddress": null, "cumulativeGasUsed": "73250", "from": "0xb7FE439ea750840C0c76886FD0109E54eF852209", "gasPrice": "0", "gasUsed": "73250", "hash": "0x5e76ed304b6e143f1ad636327b7b3d74ac919a44f310c3a47c8ff4d94d65f081", "index": 0, "logs": [ { "_type": "log", "address": "0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8", "blockHash": "0x5f11b8db5268727b371bc2de102fc63806303c5f394717e1bf76b845c405f3aa", "blockNumber": 41, "data": "0x0000000000000000000000000000000000000000000000000000000000000001", "index": 0, "removed": null, "topics": [ "0xefffa0c001f10a86d936643c098510eba656ffab1d0c5165822b79d4c895e88f", "0x000000000000000000000000b7fe439ea750840c0c76886fd0109e54ef852209" ], "transactionHash": "0x5e76ed304b6e143f1ad636327b7b3d74ac919a44f310c3a47c8ff4d94d65f081", "transactionIndex": 0 } ], "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000800080000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000002000008000000000000000000000000", "root": null, "status": 1, "to": "0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8" }, code=TRANSACTION_REPLACED, version=6.17.0)) - correctly dropped as a duplicate nonce
+    Tally deltas: candidate 0 +0, candidate 1 +1
+    PASS: exactly one of the two conflicting votes was included network-wide, and exactly one candidate's tally incremented - no fork, no double count.
+    Cross-node check at block 45 (tallies for candidates 0/1):
+      validator1: 3/1  0xb9a9c260f4a5fe08bbc5fdc9168f94b23c07b5e85c058a12c7cf33f51468b320
+      validator2: 3/1  0xb9a9c260f4a5fe08bbc5fdc9168f94b23c07b5e85c058a12c7cf33f51468b320
+      validator3: 3/1  0xb9a9c260f4a5fe08bbc5fdc9168f94b23c07b5e85c058a12c7cf33f51468b320
+      validator4: 3/1  0xb9a9c260f4a5fe08bbc5fdc9168f94b23c07b5e85c058a12c7cf33f51468b320
+    PASS: all 4 validators report identical tallies and block hash at #45
+[22:20:38] equivocation attempt 1: PASS
+[22:20:38] --- equivocation attempt 2/3 ---
+    Registered voter 0xB75EDd1219619b6E1B4f0c3d1a738526a5407e0e
+    Broadcasting conflicting vote A (candidate 0) and vote B (candidate 1) to different endpoints simultaneously...
+      vote B (candidate 1): included in block 48, status=1
+      vote A (candidate 0): never confirmed (transaction was replaced (cancelled=true, reason="replaced", replacement={ "_type": "TransactionResponse", "accessList": null, "blobVersionedHashes": null, "blockHash": "0x01f67bb440b496f3355a9c293f5b0333203f6a87e4bd7999ce4e7d714beae75e", "blockNumber": 48, "chainId": "1337", "data": "0x94a135410000000000000000000000000000000000000000000000000000000000000001", "from": "0xB75EDd1219619b6E1B4f0c3d1a738526a5407e0e", "gasLimit": "200000", "gasPrice": "0", "hash": "0xeb82f5b5bb4dd2441871b6aa857a5c42cf21a7ae8ebfab2dd4fe8042767b07d5", "index": 0, "maxFeePerBlobGas": null, "maxFeePerGas": null, "maxPriorityFeePerGas": null, "nonce": 0, "signature": { "_type": "signature", "networkV": "2710", "r": "0xa23a70b0fe010b5c3ccb32c99d142de006f7d5f27495da938f0fd2e7ab103e2a", "s": "0x4be5e68d5ff46bc436830435a3886d7db82d21a74fa0ce1eb7a49db9a845dc73", "v": 28 }, "to": "0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8", "type": 0, "value": "0" }, hash="0xeb82f5b5bb4dd2441871b6aa857a5c42cf21a7ae8ebfab2dd4fe8042767b07d5", receipt={ "_type": "TransactionReceipt", "blobGasPrice": null, "blobGasUsed": null, "blockHash": "0x01f67bb440b496f3355a9c293f5b0333203f6a87e4bd7999ce4e7d714beae75e", "blockNumber": 48, "contractAddress": null, "cumulativeGasUsed": "56150", "from": "0xB75EDd1219619b6E1B4f0c3d1a738526a5407e0e", "gasPrice": "0", "gasUsed": "56150", "hash": "0xeb82f5b5bb4dd2441871b6aa857a5c42cf21a7ae8ebfab2dd4fe8042767b07d5", "index": 0, "logs": [ { "_type": "log", "address": "0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8", "blockHash": "0x01f67bb440b496f3355a9c293f5b0333203f6a87e4bd7999ce4e7d714beae75e", "blockNumber": 48, "data": "0x0000000000000000000000000000000000000000000000000000000000000001", "index": 0, "removed": null, "topics": [ "0xefffa0c001f10a86d936643c098510eba656ffab1d0c5165822b79d4c895e88f", "0x000000000000000000000000b75edd1219619b6e1b4f0c3d1a738526a5407e0e" ], "transactionHash": "0xeb82f5b5bb4dd2441871b6aa857a5c42cf21a7ae8ebfab2dd4fe8042767b07d5", "transactionIndex": 0 } ], "logsBloom": "0x00000000000800000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000001000100000000000000000000000000000000000002000008000000000000000000000000", "root": null, "status": 1, "to": "0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8" }, code=TRANSACTION_REPLACED, version=6.17.0)) - correctly dropped as a duplicate nonce
+    Tally deltas: candidate 0 +0, candidate 1 +1
+    PASS: exactly one of the two conflicting votes was included network-wide, and exactly one candidate's tally incremented - no fork, no double count.
+    Cross-node check at block 52 (tallies for candidates 0/1):
+      validator1: 3/2  0x29af59a09baff89aa1cdd7dafd310a1e0d70abb228fd946b9eb4ce9d8d4661fd
+      validator2: 3/2  0x29af59a09baff89aa1cdd7dafd310a1e0d70abb228fd946b9eb4ce9d8d4661fd
+      validator3: 3/2  0x29af59a09baff89aa1cdd7dafd310a1e0d70abb228fd946b9eb4ce9d8d4661fd
+      validator4: 3/2  0x29af59a09baff89aa1cdd7dafd310a1e0d70abb228fd946b9eb4ce9d8d4661fd
+    PASS: all 4 validators report identical tallies and block hash at #52
+[22:20:53] equivocation attempt 2: PASS
+[22:20:53] --- equivocation attempt 3/3 ---
+    Registered voter 0x2fB646a3d4923f150477069F295e7381A5E0a3CA
+    Broadcasting conflicting vote A (candidate 0) and vote B (candidate 1) to different endpoints simultaneously...
+      vote A (candidate 0): never confirmed (transaction was replaced (cancelled=true, reason="replaced", replacement={ "_type": "TransactionResponse", "accessList": null, "blobVersionedHashes": null, "blockHash": "0xc7c41650c2708809d51ad6d7b3fa1440f0d963a95e6aac5ddc4436c66df5eaeb", "blockNumber": 55, "chainId": "1337", "data": "0x94a135410000000000000000000000000000000000000000000000000000000000000001", "from": "0x2fB646a3d4923f150477069F295e7381A5E0a3CA", "gasLimit": "200000", "gasPrice": "0", "hash": "0xc68fdf20df79dd24aa794e1ede04b86e17a5b4aad420a676c9c8a6346be06a3b", "index": 0, "maxFeePerBlobGas": null, "maxFeePerGas": null, "maxPriorityFeePerGas": null, "nonce": 0, "signature": { "_type": "signature", "networkV": "2710", "r": "0xb66595d23674a2425661465b18bbbdb08419d1b336337f08161d8eb6998004e3", "s": "0x456b32d350f21f81275627c2d330882663dcfd7ba10da455cecd5be1ff9c3b6a", "v": 28 }, "to": "0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8", "type": 0, "value": "0" }, hash="0xc68fdf20df79dd24aa794e1ede04b86e17a5b4aad420a676c9c8a6346be06a3b", receipt={ "_type": "TransactionReceipt", "blobGasPrice": null, "blobGasUsed": null, "blockHash": "0xc7c41650c2708809d51ad6d7b3fa1440f0d963a95e6aac5ddc4436c66df5eaeb", "blockNumber": 55, "contractAddress": null, "cumulativeGasUsed": "56150", "from": "0x2fB646a3d4923f150477069F295e7381A5E0a3CA", "gasPrice": "0", "gasUsed": "56150", "hash": "0xc68fdf20df79dd24aa794e1ede04b86e17a5b4aad420a676c9c8a6346be06a3b", "index": 0, "logs": [ { "_type": "log", "address": "0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8", "blockHash": "0xc7c41650c2708809d51ad6d7b3fa1440f0d963a95e6aac5ddc4436c66df5eaeb", "blockNumber": 55, "data": "0x0000000000000000000000000000000000000000000000000000000000000001", "index": 0, "removed": null, "topics": [ "0xefffa0c001f10a86d936643c098510eba656ffab1d0c5165822b79d4c895e88f", "0x0000000000000000000000002fb646a3d4923f150477069f295e7381a5e0a3ca" ], "transactionHash": "0xc68fdf20df79dd24aa794e1ede04b86e17a5b4aad420a676c9c8a6346be06a3b", "transactionIndex": 0 } ], "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000800000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000002000008000000000000000000000000", "root": null, "status": 1, "to": "0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8" }, code=TRANSACTION_REPLACED, version=6.17.0)) - correctly dropped as a duplicate nonce
+      vote B (candidate 1): included in block 55, status=1
+    Tally deltas: candidate 0 +0, candidate 1 +1
+    PASS: exactly one of the two conflicting votes was included network-wide, and exactly one candidate's tally incremented - no fork, no double count.
+    Cross-node check at block 60 (tallies for candidates 0/1):
+      validator1: 3/3  0xd54442d5525bc9498d92004c7b7801894a60d3afd85cf2ccdac0bb94346a97c9
+      validator2: 3/3  0xd54442d5525bc9498d92004c7b7801894a60d3afd85cf2ccdac0bb94346a97c9
+      validator3: 3/3  0xd54442d5525bc9498d92004c7b7801894a60d3afd85cf2ccdac0bb94346a97c9
+      validator4: 3/3  0xd54442d5525bc9498d92004c7b7801894a60d3afd85cf2ccdac0bb94346a97c9
+    PASS: all 4 validators report identical tallies and block hash at #60
+[22:21:08] equivocation attempt 3: PASS
+[22:21:08] --- replay attempt 1/3 ---
+    Registered voter 0x80a46fa363609Fc3EA53f633ce8a66A358fBdbec
+    Broadcasting original vote...
+    Original vote confirmed in block 63 (tally 3 -> 4)
+    Replaying the exact same raw signed transaction...
+      replay rejected at submission: nonce has already been used (transaction="0xf886808083030d409458d7831eacc6f61d92e5fd951d4b11cf8dfde5a880a494a135410000000000000000000000000000000000000000000000000000000000000000820a96a0572f8e442e2dd1e0a8d005f54ca06463d68a825ea64c90a125efc2a518950d8aa06e8b090bf603566df0fb091812892ee6425aaa9b645ce7bd355dd49a19a51cb8", info={ "error": { "code": -32001, "message": "Nonce too low" } }, code=NONCE_EXPIRED, version=6.17.0)
+    Tally after replay attempt: 4 (unchanged expected: 4)
+    Replay rejected outright: true; replay returned identical tx hash: false
+    PASS: replayed transaction had no further effect on chain state - no double count.
+    Cross-node check at block 67 (tallies for candidates 0):
+      validator1: 4  0x4536ec0bc2c6e780113d8c804dda7066fd90775afac32253a5963e0f619120f8
+      validator2: 4  0x4536ec0bc2c6e780113d8c804dda7066fd90775afac32253a5963e0f619120f8
+      validator3: 4  0x4536ec0bc2c6e780113d8c804dda7066fd90775afac32253a5963e0f619120f8
+      validator4: 4  0x4536ec0bc2c6e780113d8c804dda7066fd90775afac32253a5963e0f619120f8
+    PASS: all 4 validators report identical tallies and block hash at #67
+[22:21:22] replay attempt 1: PASS
+[22:21:22] --- replay attempt 2/3 ---
+    Registered voter 0x28952cE7C118B72e6F9fd674f44c738cbF4daFd8
+    Broadcasting original vote...
+    Original vote confirmed in block 70 (tally 4 -> 5)
+    Replaying the exact same raw signed transaction...
+      replay rejected at submission: nonce has already been used (transaction="0xf886808083030d409458d7831eacc6f61d92e5fd951d4b11cf8dfde5a880a494a135410000000000000000000000000000000000000000000000000000000000000000820a96a096e71421503bfc060043f551b8a1f8808187b792ae2456862ea9e3db01e88179a0050e1d903a7190485d2676a535fd6d63594171687007bdd751a17bda437b73cf", info={ "error": { "code": -32001, "message": "Nonce too low" } }, code=NONCE_EXPIRED, version=6.17.0)
+    Tally after replay attempt: 5 (unchanged expected: 5)
+    Replay rejected outright: true; replay returned identical tx hash: false
+    PASS: replayed transaction had no further effect on chain state - no double count.
+    Cross-node check at block 74 (tallies for candidates 0):
+      validator1: 5  0x21484f7a2374601b257df67fe02cf6152a52c23fdb6750a82c33523cbe6035ee
+      validator2: 5  0x21484f7a2374601b257df67fe02cf6152a52c23fdb6750a82c33523cbe6035ee
+      validator3: 5  0x21484f7a2374601b257df67fe02cf6152a52c23fdb6750a82c33523cbe6035ee
+      validator4: 5  0x21484f7a2374601b257df67fe02cf6152a52c23fdb6750a82c33523cbe6035ee
+    PASS: all 4 validators report identical tallies and block hash at #74
+[22:21:37] replay attempt 2: PASS
+[22:21:37] --- replay attempt 3/3 ---
+    Registered voter 0x153e19719Ca46f317028d0b4E57DeA46A1D53ACD
+    Broadcasting original vote...
+    Original vote confirmed in block 77 (tally 5 -> 6)
+    Replaying the exact same raw signed transaction...
+      replay rejected at submission: nonce has already been used (transaction="0xf886808083030d409458d7831eacc6f61d92e5fd951d4b11cf8dfde5a880a494a135410000000000000000000000000000000000000000000000000000000000000000820a96a0d6c32eb476e5aea831b8f99b4dfc9e31f5dfd910735eecc937e3533d2fbeee7da02454de238a612b27402e0bc960815c56400c3eb194d9222d5c8f0595eb80bb0e", info={ "error": { "code": -32001, "message": "Nonce too low" } }, code=NONCE_EXPIRED, version=6.17.0)
+    Tally after replay attempt: 6 (unchanged expected: 6)
+    Replay rejected outright: true; replay returned identical tx hash: false
+    PASS: replayed transaction had no further effect on chain state - no double count.
+    Cross-node check at block 81 (tallies for candidates 0):
+      validator1: 6  0xe708a291fc8e2adf062ff07979ea61b35899212e19de818730a2d1220e49186e
+      validator2: 6  0xe708a291fc8e2adf062ff07979ea61b35899212e19de818730a2d1220e49186e
+      validator3: 6  0xe708a291fc8e2adf062ff07979ea61b35899212e19de818730a2d1220e49186e
+      validator4: 6  0xe708a291fc8e2adf062ff07979ea61b35899212e19de818730a2d1220e49186e
+    PASS: all 4 validators report identical tallies and block hash at #81
+[22:21:51] replay attempt 3: PASS
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[22:21:51] RESULT: COMPLETED - 9 pass, 0 fail
