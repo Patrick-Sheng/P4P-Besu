@@ -1,0 +1,2 @@
+[15:15:32] watchdog started (n=4, abort if MemAvailable<600MB, stall>740s)
+[15:21:52] CRASH_REASON=RPC_UNRESPONSIVE :: http://127.0.0.1:20400 failed eth_blockNumber for 5 consecutive samples (node GC-thrashing or wedged); thread dumps: threaddump-v*.txt

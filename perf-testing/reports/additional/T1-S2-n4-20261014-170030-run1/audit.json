@@ -1,0 +1,157 @@
+{
+  "generatedAt": "2026-10-14T17:10:02.972Z",
+  "contract": "0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8",
+  "deployBlock": 4,
+  "closeBlock": 262,
+  "auditHeight": 264,
+  "headsAtAudit": [
+    264,
+    264,
+    264,
+    264
+  ],
+  "chunk": 5000,
+  "expectedConfirmedVotes": 10000,
+  "verdict": "PASS",
+  "rows": [
+    {
+      "validator": "validator1",
+      "rpcUrl": "http://127.0.0.1:20400",
+      "height": 264,
+      "blockHash": "0x48e077265012892be4b436fbcb08191619a03761c01bf3efc47fa5470f89aff0",
+      "stateRoot": "0x129a9231b091eef92bcbbe2eabbf833d5a06637098f518aac37e66e5bb6fb340",
+      "votingOpen": false,
+      "tally": [
+        "3334",
+        "3334",
+        "3332"
+      ],
+      "recount": [
+        "3334",
+        "3334",
+        "3332"
+      ],
+      "voteEvents": 10000,
+      "uniqueVoters": 10000,
+      "invalidCandidateEvents": 0,
+      "recountMs": 2210.8,
+      "checks": {
+        "tallyEqualsRecount": true,
+        "eventsEqualUniqueVoters": true,
+        "matchesValidator1": true,
+        "matchesCaliperConfirmed": true
+      }
+    },
+    {
+      "validator": "validator2",
+      "rpcUrl": "http://127.0.0.1:20401",
+      "height": 264,
+      "blockHash": "0x48e077265012892be4b436fbcb08191619a03761c01bf3efc47fa5470f89aff0",
+      "stateRoot": "0x129a9231b091eef92bcbbe2eabbf833d5a06637098f518aac37e66e5bb6fb340",
+      "votingOpen": false,
+      "tally": [
+        "3334",
+        "3334",
+        "3332"
+      ],
+      "recount": [
+        "3334",
+        "3334",
+        "3332"
+      ],
+      "voteEvents": 10000,
+      "uniqueVoters": 10000,
+      "invalidCandidateEvents": 0,
+      "recountMs": 1954.9,
+      "checks": {
+        "tallyEqualsRecount": true,
+        "eventsEqualUniqueVoters": true,
+        "matchesValidator1": true,
+        "matchesCaliperConfirmed": true
+      }
+    },
+    {
+      "validator": "validator3",
+      "rpcUrl": "http://127.0.0.1:20402",
+      "height": 264,
+      "blockHash": "0x48e077265012892be4b436fbcb08191619a03761c01bf3efc47fa5470f89aff0",
+      "stateRoot": "0x129a9231b091eef92bcbbe2eabbf833d5a06637098f518aac37e66e5bb6fb340",
+      "votingOpen": false,
+      "tally": [
+        "3334",
+        "3334",
+        "3332"
+      ],
+      "recount": [
+        "3334",
+        "3334",
+        "3332"
+      ],
+      "voteEvents": 10000,
+      "uniqueVoters": 10000,
+      "invalidCandidateEvents": 0,
+      "recountMs": 2016.9,
+      "checks": {
+        "tallyEqualsRecount": true,
+        "eventsEqualUniqueVoters": true,
+        "matchesValidator1": true,
+        "matchesCaliperConfirmed": true
+      }
+    },
+    {
+      "validator": "validator4",
+      "rpcUrl": "http://127.0.0.1:20403",
+      "height": 264,
+      "blockHash": "0x48e077265012892be4b436fbcb08191619a03761c01bf3efc47fa5470f89aff0",
+      "stateRoot": "0x129a9231b091eef92bcbbe2eabbf833d5a06637098f518aac37e66e5bb6fb340",
+      "votingOpen": false,
+      "tally": [
+        "3334",
+        "3334",
+        "3332"
+      ],
+      "recount": [
+        "3334",
+        "3334",
+        "3332"
+      ],
+      "voteEvents": 10000,
+      "uniqueVoters": 10000,
+      "invalidCandidateEvents": 0,
+      "recountMs": 1937.5,
+      "checks": {
+        "tallyEqualsRecount": true,
+        "eventsEqualUniqueVoters": true,
+        "matchesValidator1": true,
+        "matchesCaliperConfirmed": true
+      }
+    }
+  ],
+  "extrapolation": {
+    "msPer10kVotesMean": 2030,
+    "msPer10kVotesMax": 2210.8,
+    "votes": 2900000,
+    "estimatedSecondsMean": 588.7,
+    "assumption": "linear in vote count, same host and chunk size; one validator audited at a time"
+  },
+  "sampleVoteLinks": [
+    {
+      "voter": "0x2c8359B4b5484E6Fb4C78064A56cB62B57d6E98c",
+      "candidateId": 0,
+      "block": 63,
+      "tx": "0xd02cc201afb2af7cf063d8f12ded4e852528c3c4537a81304e857279e7d36bbd"
+    },
+    {
+      "voter": "0x43f0f90506258f129841778A42e526Cfd44A6629",
+      "candidateId": 0,
+      "block": 63,
+      "tx": "0x686603abb88131698270f75ed7fcc03f14e81cd7024ce4c62827338f2846fa75"
+    },
+    {
+      "voter": "0x1ff06351172B700fd9051E845604293540ac10d7",
+      "candidateId": 1,
+      "block": 63,
+      "tx": "0x24cedb0b06f0b24ebe3368446a7595790ffa1eb106ad11f6d52958a270c5aea7"
+    }
+  ]
+}

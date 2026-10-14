@@ -1,0 +1,14 @@
+[19:04:26] n=4, f=1. Killing f+1=2 validators (one over tolerance) - expecting the network to HALT, not fork.
+[19:04:26] Baseline height on survivor (p4p-besu-n4-v1): 69
+[19:04:26] === Killing 2 node(s), staggered ===
+[19:04:26] crash p4p-besu-n4-v3 (native)
+[19:04:31] crash p4p-besu-n4-v4 (native)
+[19:04:36] === Holding for 60s with only 2 nodes live (below 2f+1 quorum) ===
+[19:05:36] Survivor height: 70 -> 70 (+0 blocks in 60s)
+[19:05:36] PASS: network correctly halted (no quorum) instead of producing an inconsistent result.
+[19:05:36] === Rebooting 2 node(s) to restore quorum, staggered ===
+[19:05:36] restart p4p-besu-n4-v3 (native)
+[19:05:42] restart p4p-besu-n4-v4 (native)
+[19:05:47] === Confirming the network resumes block production now that quorum is restored ===
+[19:07:57] PASS: network resumed producing blocks 130s after quorum was restored.
+[19:07:57] RESULT: PASS

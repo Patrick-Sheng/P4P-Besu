@@ -1,0 +1,2 @@
+nodes,round,target_tps,submitted,succeeded,failed,send_tps,observed_tps,min_ms,p50_ms,p95_ms,p99_ms,max_ms,avg_ms,span_s,note
+4,0,25,3002,1056,1946,25,24.9,208,1315,2217,2414,2596,1311.5,42.4,"T2 V0; over; victims 3 4; fault-test PASS"

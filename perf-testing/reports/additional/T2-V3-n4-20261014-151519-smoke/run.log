@@ -1,0 +1,116 @@
+[15:15:19] === T2 V3 T2-V3-n4-20261014-151519-smoke: n=4, f=1, scenario=over -> crash validator(s) 3 4 (SIGKILL, 5s stagger), hold 60s ===
+[15:15:19] Load: 25 TPS castVote for 120s (time-based), sent to validator(s) 1..2; 3125 voters; receipt timeout 300s
+[15:15:19] Change under test: client retry after 15 blocks without receipt, max 3 resends
+[15:15:19] Host: 4 cores, MemTotal 7840MB, MemAvailable 5485MB
+[15:15:19] Memory budget: slice 4359MB = 4 x validator 914MB (heap 365MB) + loadgen 600MB
+[15:15:22] Step: starting native 4-validator network...
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 365M, MemoryMax 914M each...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): up
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[15:15:32] Watchdog p4p-watchdog-n4 started (fault victims exempt: 3 4)
+[15:15:32] Step: deploying VotingSystem...
+Running as unit: p4p-load-n4.service; invocation ID: 52b721765c7349c8b8e4680a8b300231
+Waiting for 4 validator(s) to come up and start producing blocks...
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.Network live. Block heights: 2, 2, 2, 2
+Deploying VotingSystem(numCandidates=3) via 0x52914145D3337c85E3E5da19693635886Ab598B2 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8 (block 4)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 16.713s
+CPU time consumed: 501ms
+Memory peak: 28.6M
+Memory swap peak: 0B
+[15:15:49]   validator1 txpool_besuStatistics: {"maxSize":4096,"localCount":0,"remoteCount":0}
+[15:15:49]   validator2 txpool_besuStatistics: {"maxSize":4096,"localCount":0,"remoteCount":0}
+[15:15:49]   validator3 txpool_besuStatistics: {"maxSize":4096,"localCount":0,"remoteCount":0}
+[15:15:49]   validator4 txpool_besuStatistics: {"maxSize":4096,"localCount":0,"remoteCount":0}
+[15:15:49] Step: generating + registering 3125 voters...
+Running as unit: p4p-load-n4.service; invocation ID: cf58c6b18e594d6b880d0d35df47d16c
+Generating 3125 voter accounts -> /home/patrick/P4P/P4P-Besu/perf-testing/caliper/seed/generated/T2-V3-n4-20261014-151519-smoke-voters.json
+  156/3125
+  312/3125
+  468/3125
+  624/3125
+  780/3125
+  936/3125
+  1092/3125
+  1248/3125
+  1404/3125
+  1560/3125
+  1716/3125
+  1872/3125
+  2028/3125
+  2184/3125
+  2340/3125
+  2496/3125
+  2652/3125
+  2808/3125
+  2964/3125
+  3120/3125
+  3125/3125
+Done. Wrote 3125 voters to /home/patrick/P4P/P4P-Besu/perf-testing/caliper/seed/generated/T2-V3-n4-20261014-151519-smoke-voters.json
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 1.382s
+CPU time consumed: 1.583s
+Memory peak: 1020.0K
+Memory swap peak: 0B
+Running as unit: p4p-load-n4.service
+Voting not open yet - calling openVoting()...
+Voting opened.
+Registering 3125 voters (of 3125 total), admin nonce starts at 2
+  registered 2000/3125
+  registered 3125/3125
+All voters registered.
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 44.895s
+CPU time consumed: 15.195s
+Memory peak: 51.5M
+Memory swap peak: 0B
+[15:16:35] Tx-pool sampler p4p-txpool-n4 started -> txpool.csv
+[15:16:35] Background load started (block 28)
+[15:16:35] Baseline 40s before injecting faults
+[15:17:15] Step: fault-injection/crash-fault-over-tolerance.sh 4 60 5
+[15:17:15] n=4, f=1. Killing f+1=2 validators (one over tolerance) - expecting the network to HALT, not fork.
+[15:17:15] Baseline height on survivor (p4p-besu-n4-v1): 48
+[15:17:15] === Killing 2 node(s), staggered ===
+[15:17:15] crash p4p-besu-n4-v3 (native)
+[15:17:20] crash p4p-besu-n4-v4 (native)
+[15:17:25] === Holding for 60s with only 2 nodes live (below 2f+1 quorum) ===
+[15:18:25] Survivor height: 49 -> 49 (+0 blocks in 60s)
+[15:18:25] PASS: network correctly halted (no quorum) instead of producing an inconsistent result.
+[15:18:25] === Rebooting 2 node(s) to restore quorum, staggered ===
+[15:18:25] restart p4p-besu-n4-v3 (native)
+[15:18:31] restart p4p-besu-n4-v4 (native)
+[15:18:36] === Confirming the network resumes block production now that quorum is restored ===
+[15:20:46] PASS: network resumed producing blocks 130s after quorum was restored.
+[15:20:46] RESULT: PASS
+[15:20:46] Fault script finished: PASS (exit 0)
+[15:20:47] Waiting for background load to finish (Caliper waits up to 300s for each outstanding receipt)...
+[15:21:52] CRASH_REASON=RPC_UNRESPONSIVE :: http://127.0.0.1:20400 failed eth_blockNumber for 5 consecutive samples (node GC-thrashing or wedged); thread dumps: threaddump-v*.txt
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[15:23:23] RESULT: CRASHED/ABORTED during step 'wait-load' - reason: RPC_UNRESPONSIVE :: http://127.0.0.1:20400 failed eth_blockNumber for 5 consecutive samples (node GC-thrashing or wedged); thread dumps: threaddump-v*.txt (fault-test=PASS, state=NOT RUN, T2=NOT RUN)
+[15:23:23] Peak cgroup memory (MB): peak_mb v3=413 v2=696 v1=710 v4=404

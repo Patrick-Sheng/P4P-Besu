@@ -1,0 +1,95 @@
+[17:30:48] === T3 storage growth T3-n4-20261014-173048-run1: n=4, idle 1800s, 10000 registrations + 10000 votes at 25 TPS, settle 60s ===
+[17:30:48] Memory budget: 4 x validator 906MB (heap 362MB), slice 4325MB
+[17:30:48] Disk: /dev/sda2        40G   28G   11G  73% /
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 362M, MemoryMax 906M each...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): up
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+Waiting for 4 validator(s) to come up and start producing blocks...
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.Network live. Block heights: 3, 3, 3, 3
+Deploying VotingSystem(numCandidates=3) via 0x52914145D3337c85E3E5da19693635886Ab598B2 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8 (block 4)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+[17:31:16] Warm-up: 60s idle (as area4-throughput.sh)
+Generating 10000 voter accounts -> /home/patrick/P4P/P4P-Besu/perf-testing/caliper/seed/generated/T3-n4-20261014-173048-run1-voters.json
+  500/10000
+  1000/10000
+  1500/10000
+  2000/10000
+  2500/10000
+  3000/10000
+  3500/10000
+  4000/10000
+  4500/10000
+  5000/10000
+  5500/10000
+  6000/10000
+  6500/10000
+  7000/10000
+  7500/10000
+  8000/10000
+  8500/10000
+  9000/10000
+  9500/10000
+  10000/10000
+Done. Wrote 10000 voters to /home/patrick/P4P/P4P-Besu/perf-testing/caliper/seed/generated/T3-n4-20261014-173048-run1-voters.json
+[17:32:38] [probe-start] getTally n,p50,p95,p99,max | getVoterState n,p50,p95,p99,max (ms) = 250,15,35,66,120,250,15,33,84,167
+[17:32:38] [idle/start] settling 60s before measuring
+[17:33:38] [idle/start] height 76, 0 registered, 0 votes on chain | v1=0MB v2=0MB v3=0MB v4=0MB
+[17:33:38] [idle] 1800s with no transactions (~900 empty blocks)
+[18:03:40] [idle/end] settling 60s before measuring
+[18:04:40] [idle/end] height 1007, 0 registered, 0 votes on chain | v1=2MB v2=2MB v3=2MB v4=2MB
+[18:04:40] [registration/start] settling 60s before measuring
+[18:05:41] [registration/start] height 1037, 0 registered, 0 votes on chain | v1=2MB v2=2MB v3=2MB v4=2MB
+Voting not open yet - calling openVoting()...
+Voting opened.
+Registering 10000 voters (of 10000 total), admin nonce starts at 2
+  registered 2000/10000
+  registered 4000/10000
+  registered 6000/10000
+  registered 8000/10000
+  registered 10000/10000
+All voters registered.
+[18:07:27] [registration] 10000 voters (plus 1 openVoting tx) in 106s
+[18:07:27] [registration/end] settling 60s before measuring
+[18:08:27] [registration/end] height 1121, 10000 registered, 0 votes on chain | v1=14MB v2=14MB v3=14MB v4=14MB
+[18:08:27] [voting/start] settling 60s before measuring
+[18:09:28] [voting/start] height 1151, 10000 registered, 0 votes on chain | v1=14MB v2=14MB v3=14MB v4=14MB
+[18:16:17] [voting] n=4 round voting target 25 TPS: submitted 10000, ok 10000, failed 0, send 25 TPS, observed 24.9 TPS
+[18:16:17] [voting] latency ms: min 126 p50 1240 p95 2136 p99 2270 max 2780 avg 1240.7
+[18:16:17] [voting] finished in 409s
+[18:16:17] [voting/end] settling 60s before measuring
+[18:17:17] [voting/end] height 1386, 10000 registered, 10000 votes on chain | v1=48MB v2=48MB v3=48MB v4=48MB
+[18:17:35] [probe-end] getTally n,p50,p95,p99,max | getVoterState n,p50,p95,p99,max (ms) = 250,8,17,21,24,250,9,15,21,26
+T3 storage per validator (4 validators; idle-corrected unless marked raw):
+  validator    B/empty block  B/registration (raw)  B/vote (raw)     fresh chain GB  estimate GB
+  validator1            1961           1309 (1325)      3480 (3527)            0.00        15.67
+  validator2            1961           1309 (1325)      3480 (3527)            0.00        15.67
+  validator3            1961           1309 (1325)      3480 (3527)            0.00        15.67
+  validator4            1961           1309 (1325)      3480 (3527)            0.00        15.67
+Estimate for 2900000 registrations + 2900000 votes + 21 days of 2s blocks (907200 blocks):
+  mean 15.67 GB per validator (range 15.67-15.67 GB) - linear extrapolation, see assumptions
+  of which empty blocks alone: 1.78 GB
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[18:17:36] RESULT: COMPLETED - idle registration voting
+[18:17:36] Peak cgroup memory (MB): peak_mb v3=609 v2=645 v1=652 v4=606

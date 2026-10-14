@@ -1,0 +1,54 @@
+[16:18:56] === T3 storage growth T3-n4-20261014-161855: n=4, idle 1800s, 10000 registrations + 10000 votes at 25 TPS, settle 60s ===
+[16:18:56] Memory budget: 4 x validator 422MB (heap 168MB), slice 2391MB
+[16:18:56] Disk: /dev/sda2        40G   28G   10G  74% /
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 168M, MemoryMax 422M each...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): up
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+Waiting for 4 validator(s) to come up and start producing blocks...
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.Network live. Block heights: 2, 2, 2, 2
+Deploying VotingSystem(numCandidates=3) via 0x52914145D3337c85E3E5da19693635886Ab598B2 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8 (block 4)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+[16:19:24] Warm-up: 60s idle (as area4-throughput.sh)
+Generating 10000 voter accounts -> /home/patrick/P4P/P4P-Besu/perf-testing/caliper/seed/generated/T3-n4-20261014-161855-voters.json
+  500/10000
+  1000/10000
+  1500/10000
+  2000/10000
+  2500/10000
+  3000/10000
+  3500/10000
+  4000/10000
+  4500/10000
+  5000/10000
+  5500/10000
+  6000/10000
+  6500/10000
+  7000/10000
+  7500/10000
+  8000/10000
+  8500/10000
+  9000/10000
+  9500/10000
+  10000/10000
+Done. Wrote 10000 voters to /home/patrick/P4P/P4P-Besu/perf-testing/caliper/seed/generated/T3-n4-20261014-161855-voters.json
+[16:20:46] [probe-start] getTally n,p50,p95,p99,max | getVoterState n,p50,p95,p99,max (ms) = 250,17,35,109,159,250,16,28,71,191
+[16:20:46] [idle/start] settling 60s before measuring
+[16:21:47] [idle/start] height 76, 0 registered, 0 votes on chain | v1=0MB v2=0MB v3=0MB v4=0MB
+[16:21:47] [idle] 1800s with no transactions (~900 empty blocks)
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[16:29:24] RESULT: COMPLETED - 
+[16:29:24] Peak cgroup memory (MB): peak_mb v3=338 v2=346 v1=356 v4=342

@@ -1,0 +1,13 @@
+run_id=T1-S2-n4-20261014-172042-run3
+started=2026-10-14 17:20:42 +0000
+git_commit=2ab828d6e01a083810d7405d5e7c4dd9ff011db5
+git_branch=feature/additional-tests
+# uncommitted changes outside reports/ (empty = clean):
+ M perf-testing/caliper/connector/voting-connector.js
+ M perf-testing/scripts/additional-fault.sh
+besu_version=besu/v24.12.0/linux-x86_64/openjdk-java-21
+node_version=v22.23.2
+host=linux cores=4 mem_total_mb=7840
+# environment overrides in effect:
+P4P_DRIVER_UNIT=p4p-additional
+P4P_RUN_LABEL=run3

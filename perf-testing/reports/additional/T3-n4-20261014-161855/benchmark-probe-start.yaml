@@ -1,0 +1,10 @@
+test:
+  workers:
+    number: 2
+  rounds:
+    - label: probe-start
+      txNumber: 500
+      rateControl: { type: fixed-rate, opts: { tps: 50 } }
+      workload:
+        module: workloads/read-queries.js
+        arguments: { votersFile: seed/generated/T3-n4-20261014-161855-voters.json, numCandidates: 3 }

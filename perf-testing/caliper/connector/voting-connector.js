@@ -48,6 +48,17 @@ const logger = CaliperUtils.getLogger('voting-connector');
 // millions of transactions.
 const FLUSH_EVERY = 2000;
 
+// Receipt watcher under stress (post-outage blocks of ~2,000 txs): a failed
+// eth_getBlockReceipts is retried for the same block with backoff, and only
+// after BLOCK_RECEIPTS_ATTEMPTS failures is THAT block read per tx - never
+// more than PER_TX_CONCURRENCY receipt calls in flight. Besu decodes a whole
+// block's receipts for each eth_getTransactionReceipt, so an unbounded per-tx
+// fallback (the old behaviour) wedged validator1's RPC.
+const BLOCK_RECEIPTS_ATTEMPTS = 3;
+const PER_TX_CONCURRENCY = 8;
+const WATCH_INTERVAL_MS = 200;
+const WATCH_BACKOFF_MAX_MS = 10000;
+
 class VotingConnector extends ConnectorBase {
     /**
      * @param {number} workerIndex 0-based worker index, -1 for the manager process.
@@ -309,19 +320,56 @@ class VotingConnector extends ConnectorBase {
         }
     }
 
+    /**
+     * Receipts of our pending txs in one block.
+     * @returns {Promise<{receipts: Object[], complete: boolean}>} complete=false: some
+     *          receipts could not be fetched - the caller rescans this block later
+     *          (already-resolved txs are no longer pending, so the rescan is incremental)
+     * @throws on a failed eth_getBlockReceipts that should be retried for this block
+     */
     async _receiptsForBlock(blockNumber) {
         const tag = '0x' + blockNumber.toString(16);
         if (this.blockReceiptsSupported) {
             try {
-                return (await this.provider.send('eth_getBlockReceipts', [tag])) || [];
+                const receipts = (await this.provider.send('eth_getBlockReceipts', [tag])) || [];
+                this.blockReceiptFailures = { block: blockNumber, count: 0 };
+                return { receipts, complete: true };
             } catch (err) {
-                logger.warn(`eth_getBlockReceipts unavailable (${err.message}), falling back to per-tx receipts`);
-                this.blockReceiptsSupported = false;
+                const code = err.error && err.error.code;
+                if (code === -32601 || /method not (found|supported)/i.test(err.message)) {
+                    logger.warn(`eth_getBlockReceipts unsupported (${err.message}), using per-tx receipts from now on`);
+                    this.blockReceiptsSupported = false;
+                } else {
+                    const f = this.blockReceiptFailures && this.blockReceiptFailures.block === blockNumber
+                        ? this.blockReceiptFailures : { block: blockNumber, count: 0 };
+                    f.count++;
+                    this.blockReceiptFailures = f;
+                    if (f.count < BLOCK_RECEIPTS_ATTEMPTS) {
+                        throw new Error(`eth_getBlockReceipts(${blockNumber}) failed (attempt ${f.count}/${BLOCK_RECEIPTS_ATTEMPTS}), retrying after backoff: ${err.message.split('\n')[0]}`);
+                    }
+                    logger.warn(`eth_getBlockReceipts(${blockNumber}) failed ${f.count} times, reading this block per tx (max ${PER_TX_CONCURRENCY} in flight)`);
+                }
             }
         }
         const block = await this.provider.send('eth_getBlockByNumber', [tag, false]);
         const ours = ((block && block.transactions) || []).filter((h) => this.pending.has(h));
-        return Promise.all(ours.map((h) => this.provider.send('eth_getTransactionReceipt', [h])));
+        const receipts = [];
+        let failed = 0;
+        for (let i = 0; i < ours.length; i += PER_TX_CONCURRENCY) {
+            const batch = await Promise.allSettled(ours.slice(i, i + PER_TX_CONCURRENCY)
+                .map((h) => this.provider.send('eth_getTransactionReceipt', [h])));
+            for (const r of batch) {
+                if (r.status === 'fulfilled') {
+                    receipts.push(r.value);
+                } else {
+                    failed++;
+                }
+            }
+        }
+        if (failed > 0) {
+            logger.warn(`per-tx receipts for block ${blockNumber}: ${failed}/${ours.length} calls failed, will rescan`);
+        }
+        return { receipts, complete: failed === 0 };
     }
 
     _ensureWatcher() {
@@ -330,7 +378,9 @@ class VotingConnector extends ConnectorBase {
         }
         this.watcherRunning = true;
         const loop = async () => {
+            let backoffMs = 0;
             while (this.pending.size > 0) {
+                let pollFailed = false;
                 try {
                     const head = parseInt(await this.provider.send('eth_blockNumber', []), 16);
                     this.lastHead = head;
@@ -340,7 +390,7 @@ class VotingConnector extends ConnectorBase {
                         this.lastScannedBlock = head - 2;
                     }
                     for (let b = this.lastScannedBlock + 1; b <= head; b++) {
-                        const receipts = await this._receiptsForBlock(b);
+                        const { receipts, complete } = await this._receiptsForBlock(b);
                         for (const receipt of receipts) {
                             const entry = receipt && this.pending.get(receipt.transactionHash);
                             if (entry) {
@@ -348,14 +398,22 @@ class VotingConnector extends ConnectorBase {
                                 entry.resolve(receipt);
                             }
                         }
+                        if (!complete) {
+                            pollFailed = true;
+                            break;
+                        }
                         this.lastScannedBlock = b;
                     }
                     if (this.retry) {
                         await this._retryPass(head);
                     }
                 } catch (err) {
+                    pollFailed = true;
                     logger.warn(`block watcher poll failed: ${err.message}`);
                 }
+                // back off while the node is struggling (doubling, capped), so the
+                // watcher does not hammer it with the same heavy request
+                backoffMs = pollFailed ? Math.min(WATCH_BACKOFF_MAX_MS, Math.max(1000, backoffMs * 2)) : 0;
                 const now = Date.now();
                 for (const [hash, entry] of this.pending) {
                     if (now > entry.deadline) {
@@ -363,7 +421,7 @@ class VotingConnector extends ConnectorBase {
                         entry.reject(new Error(`no receipt for ${hash} before timeout`));
                     }
                 }
-                await new Promise((r) => setTimeout(r, 200));
+                await new Promise((r) => setTimeout(r, WATCH_INTERVAL_MS + backoffMs));
             }
             this.watcherRunning = false;
         };

@@ -1,0 +1,4 @@
+NOTE (added by the operator, 2026-10-14): this run was STOPPED by the operator during the idle phase
+(systemctl --user stop p4p-additional at 16:29), not completed. The index line "COMPLETED phases=''" is a mislabel.
+Reason: it auto-sized to 4 x 422 MB validators (heap 168 MB) because it launched seconds after the previous
+network stopped (low MemAvailable); re-run later with the normal budget. No storage results from this run.

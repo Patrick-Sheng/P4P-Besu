@@ -133,6 +133,15 @@ finish() {
     # per-run Caliper config embeds the admin key; a key-free copy is in the run dir
     [ -n "${NET_CFG:-}" ] && rm -f "${CALIPER_DIR}/${NET_CFG}"
     cp "${PERF_DIR}"/network/generated/n"${N}"/validator*.log "$RUN_DIR/" 2>/dev/null
+    # an abort before wait-load finished leaves the client logs in caliper/reports,
+    # where the next run's rm -rf would delete them - keep whatever was flushed
+    local k
+    for k in latency txlog; do
+        if compgen -G "${CALIPER_DIR}/reports/${k}/*.ndjson" > /dev/null; then
+            mkdir -p "${RUN_DIR}/${k}"
+            mv "${CALIPER_DIR}"/reports/"${k}"/*.ndjson "${RUN_DIR}/${k}/" 2>/dev/null
+        fi
+    done
     if [ -z "$ABORTED" ] && [ -f "${RUN_DIR}/ABORT_REASON" ]; then
         ABORTED="$(cat "${RUN_DIR}/ABORT_REASON")"
     fi
@@ -401,8 +410,9 @@ if [ "$TEST" = T1 ]; then
     CURRENT_STEP="audit"
     CONFIRMED=$(tail -1 "${RUN_DIR}/summary.csv" | cut -d, -f5)
     log "Step: close voting + audit all ${N} validators (Caliper confirmed votes: ${CONFIRMED:-unknown})"
-    NODE_PATH="${CALIPER_DIR}/node_modules" node monitoring/audit-tally.js "caliper/networks/besu-n${N}.json" \
-        "network/generated/n${N}/network-meta.json" "$RUN_DIR" --close-voting --expected="${CONFIRMED}" 2>&1 | tee -a "$LOG"
+    # in the 600 MB load unit: at 10,000 votes the recount outgrew this driver unit's 256 MB cap
+    run_load env NODE_PATH="${CALIPER_DIR}/node_modules" node "${PERF_DIR}/monitoring/audit-tally.js" "${CALIPER_DIR}/networks/besu-n${N}.json" \
+        "${PERF_DIR}/network/generated/n${N}/network-meta.json" "$RUN_DIR" --close-voting --expected="${CONFIRMED}" 2>&1 | tee -a "$LOG"
     case "${PIPESTATUS[0]}" in
     0) TEST_RESULT="audit PASS" ;;
     1) TEST_RESULT="audit MISMATCH (finding - see audit.csv)" ;;
@@ -414,7 +424,7 @@ if [ "$TEST" = T1 ]; then
     fi
 else
     CURRENT_STEP="eviction-summary"
-    NODE_PATH="${CALIPER_DIR}/node_modules" node monitoring/eviction-summary.js "$RUN_DIR" "caliper/${NET_CFG}" "$VARIANT" 2>&1 | tee -a "$LOG"
+    run_load env NODE_PATH="${CALIPER_DIR}/node_modules" node "${PERF_DIR}/monitoring/eviction-summary.js" "$RUN_DIR" "${CALIPER_DIR}/${NET_CFG}" "$VARIANT" 2>&1 | tee -a "$LOG"
     if [ -f "${RUN_DIR}/eviction-summary.csv" ]; then
         [ -f "${ADDITIONAL_DIR}/T2-summary.csv" ] || head -1 "${RUN_DIR}/eviction-summary.csv" > "${ADDITIONAL_DIR}/T2-summary.csv"
         tail -1 "${RUN_DIR}/eviction-summary.csv" >> "${ADDITIONAL_DIR}/T2-summary.csv"

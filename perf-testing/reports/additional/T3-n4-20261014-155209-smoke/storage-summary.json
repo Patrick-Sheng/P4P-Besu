@@ -1,0 +1,172 @@
+{
+  "source": "/home/patrick/P4P/P4P-Besu/perf-testing/reports/additional/T3-n4-20261014-155209-smoke/storage.csv",
+  "assumptions": {
+    "registrations": 2900000,
+    "votes": 2900000,
+    "days": 21,
+    "blockPeriodSeconds": 2,
+    "blocks": 907200,
+    "model": "linear: fresh-chain size + per-empty-block x blocks + per-registration x registrations + per-vote x votes",
+    "correction": "registration/vote figures subtract the idle per-block growth for the blocks produced during that phase"
+  },
+  "perValidator": [
+    {
+      "validator": "validator1",
+      "baseBytes": 371769,
+      "bytesPerEmptyBlock": 1818.4714285714285,
+      "bytesPerRegistration": 841.1678571428572,
+      "bytesPerRegistrationRaw": 895.722,
+      "bytesPerVote": 2013.8564285714288,
+      "bytesPerVoteRaw": 2104.78,
+      "phases": {
+        "idle": {
+          "bytes": 127293,
+          "blocks": 70,
+          "registered": 0,
+          "votes": 0
+        },
+        "registration": {
+          "bytes": 447861,
+          "blocks": 15,
+          "registered": 500,
+          "votes": 0
+        },
+        "voting": {
+          "bytes": 1052390,
+          "blocks": 25,
+          "registered": 0,
+          "votes": 500
+        }
+      },
+      "estimateBytes": 9929659477.57143
+    },
+    {
+      "validator": "validator2",
+      "baseBytes": 371651,
+      "bytesPerEmptyBlock": 1818.3142857142857,
+      "bytesPerRegistration": 841.1725714285715,
+      "bytesPerRegistrationRaw": 895.722,
+      "bytesPerVote": 2013.8642857142856,
+      "bytesPerVoteRaw": 2104.78,
+      "phases": {
+        "idle": {
+          "bytes": 127282,
+          "blocks": 70,
+          "registered": 0,
+          "votes": 0
+        },
+        "registration": {
+          "bytes": 447861,
+          "blocks": 15,
+          "registered": 500,
+          "votes": 0
+        },
+        "voting": {
+          "bytes": 1052390,
+          "blocks": 25,
+          "registered": 0,
+          "votes": 500
+        }
+      },
+      "estimateBytes": 9929553256.714285
+    },
+    {
+      "validator": "validator3",
+      "baseBytes": 371661,
+      "bytesPerEmptyBlock": 1818.4714285714285,
+      "bytesPerRegistration": 841.1678571428572,
+      "bytesPerRegistrationRaw": 895.722,
+      "bytesPerVote": 2013.8564285714288,
+      "bytesPerVoteRaw": 2104.78,
+      "phases": {
+        "idle": {
+          "bytes": 127293,
+          "blocks": 70,
+          "registered": 0,
+          "votes": 0
+        },
+        "registration": {
+          "bytes": 447861,
+          "blocks": 15,
+          "registered": 500,
+          "votes": 0
+        },
+        "voting": {
+          "bytes": 1052390,
+          "blocks": 25,
+          "registered": 0,
+          "votes": 500
+        }
+      },
+      "estimateBytes": 9929659369.57143
+    },
+    {
+      "validator": "validator4",
+      "baseBytes": 371643,
+      "bytesPerEmptyBlock": 1818.3142857142857,
+      "bytesPerRegistration": 841.1725714285715,
+      "bytesPerRegistrationRaw": 895.722,
+      "bytesPerVote": 2013.8642857142856,
+      "bytesPerVoteRaw": 2104.78,
+      "phases": {
+        "idle": {
+          "bytes": 127282,
+          "blocks": 70,
+          "registered": 0,
+          "votes": 0
+        },
+        "registration": {
+          "bytes": 447861,
+          "blocks": 15,
+          "registered": 500,
+          "votes": 0
+        },
+        "voting": {
+          "bytes": 1052390,
+          "blocks": 25,
+          "registered": 0,
+          "votes": 500
+        }
+      },
+      "estimateBytes": 9929553248.714285
+    }
+  ],
+  "mean": {
+    "baseBytes": {
+      "mean": 371681,
+      "min": 371643,
+      "max": 371769
+    },
+    "bytesPerEmptyBlock": {
+      "mean": 1818.392857142857,
+      "min": 1818.3142857142857,
+      "max": 1818.4714285714285
+    },
+    "bytesPerRegistration": {
+      "mean": 841.1702142857143,
+      "min": 841.1678571428572,
+      "max": 841.1725714285715
+    },
+    "bytesPerRegistrationRaw": {
+      "mean": 895.722,
+      "min": 895.722,
+      "max": 895.722
+    },
+    "bytesPerVote": {
+      "mean": 2013.860357142857,
+      "min": 2013.8564285714288,
+      "max": 2013.8642857142856
+    },
+    "bytesPerVoteRaw": {
+      "mean": 2104.78,
+      "min": 2104.78,
+      "max": 2104.78
+    },
+    "estimateBytes": {
+      "mean": 9929606338.142857,
+      "min": 9929553248.714285,
+      "max": 9929659477.57143
+    }
+  },
+  "warnings": []
+}

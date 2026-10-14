@@ -1,0 +1,6 @@
+validator,baseBytes,bytesPerEmptyBlock,bytesPerRegistration,bytesPerRegistrationRaw,bytesPerVote,bytesPerVoteRaw,estimateBytes
+validator1,371769,1818,841,896,2014,2105,9929659478
+validator2,371651,1818,841,896,2014,2105,9929553257
+validator3,371661,1818,841,896,2014,2105,9929659370
+validator4,371643,1818,841,896,2014,2105,9929553249
+mean,371681,1818,841,896,2014,2105,9929606338

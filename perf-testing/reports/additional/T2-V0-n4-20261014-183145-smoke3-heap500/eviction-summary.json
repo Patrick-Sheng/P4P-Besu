@@ -1,0 +1,56 @@
+{
+  "label": "V0",
+  "runDir": "/home/patrick/P4P/P4P-Besu/perf-testing/reports/additional/T2-V0-n4-20261014-183145-smoke3-heap500",
+  "definitions": {
+    "outage": "first crash event -> chain-resumed event",
+    "latency": "connector submit->receipt; block timestamp - submit where the connector had stopped watching",
+    "lost": "accepted sends minus those with a status-1 receipt on validator1 after the pools drained (votesReverted is a subset)"
+  },
+  "votesSent": 3002,
+  "sendFailed": 0,
+  "duplicateRecords": 0,
+  "votesConfirmed": 3002,
+  "votesReverted": 0,
+  "votesLost": 0,
+  "lossPct": 0,
+  "onchainTallyTotal": "3002",
+  "tallyMatchesConfirmed": true,
+  "outage": {
+    "start": 1792002816002,
+    "end": 1792003149006,
+    "durationS": 333,
+    "lastRestart": 1792002891217,
+    "restartToResumeS": 257.8,
+    "votesSent": 2022,
+    "votesConfirmed": 2022,
+    "votesLost": 0,
+    "p50Ms": 305487,
+    "p95Ms": 324042,
+    "p99Ms": 327251
+  },
+  "allVotesP95Ms": 322692,
+  "latencyFallbackCount": 828,
+  "poolEmptyAfterOutageEndS": 5.5,
+  "poolEmptyAfterLastSubmitS": 257.6,
+  "lastSubmitMs": 1792002896908,
+  "peakPool": {
+    "v1": 1949,
+    "v2": 1949,
+    "v3": 1949,
+    "v4": 1949
+  },
+  "peakValidatorMemMb": {
+    "v3": 394,
+    "v2": 815,
+    "v1": 824,
+    "v4": 404
+  },
+  "retries": {
+    "total": 0,
+    "votesRetried": 0,
+    "confirmedByRetryCount": {
+      "0": 3002
+    },
+    "retryErrors": 0
+  }
+}

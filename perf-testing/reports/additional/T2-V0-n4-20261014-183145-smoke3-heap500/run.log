@@ -1,0 +1,224 @@
+[18:31:46] === T2 V0 T2-V0-n4-20261014-183145-smoke3-heap500: n=4, f=1, scenario=over -> crash validator(s) 3 4 (SIGKILL, 5s stagger), hold 60s ===
+[18:31:46] Load: 25 TPS castVote for 120s (time-based), sent to validator(s) 1..2; 3125 voters; receipt timeout 300s
+[18:31:46] Host: 4 cores, MemTotal 7840MB, MemAvailable 5164MB
+[18:31:46] Memory budget: slice 4359MB = 4 x validator 914MB (heap 500MB) + loadgen 600MB
+[18:31:48] Step: starting native 4-validator network...
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 500M, MemoryMax 914M each...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): up
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[18:31:57] Watchdog p4p-watchdog-n4 started (fault victims exempt: 3 4)
+[18:31:57] Step: deploying VotingSystem...
+Running as unit: p4p-load-n4.service; invocation ID: c3103ca7b1174aa9ba18383d13f0ad07
+Waiting for 4 validator(s) to come up and start producing blocks...
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.Network live. Block heights: 2, 2, 2, 2
+Deploying VotingSystem(numCandidates=3) via 0x52914145D3337c85E3E5da19693635886Ab598B2 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8 (block 4)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 16.286s
+CPU time consumed: 413ms
+Memory peak: 23.4M
+Memory swap peak: 0B
+[18:32:13]   validator1 txpool_besuStatistics: {"maxSize":4096,"localCount":0,"remoteCount":0}
+[18:32:13]   validator2 txpool_besuStatistics: {"maxSize":4096,"localCount":0,"remoteCount":0}
+[18:32:13]   validator3 txpool_besuStatistics: {"maxSize":4096,"localCount":0,"remoteCount":0}
+[18:32:13]   validator4 txpool_besuStatistics: {"maxSize":4096,"localCount":0,"remoteCount":0}
+[18:32:13] Step: generating + registering 3125 voters...
+Running as unit: p4p-load-n4.service; invocation ID: 200418c971a9469bada9f8fbd806b672
+Generating 3125 voter accounts -> /home/patrick/P4P/P4P-Besu/perf-testing/caliper/seed/generated/T2-V0-n4-20261014-183145-smoke3-heap500-voters.json
+  156/3125
+  312/3125
+  468/3125
+  624/3125
+  780/3125
+  936/3125
+  1092/3125
+  1248/3125
+  1404/3125
+  1560/3125
+  1716/3125
+  1872/3125
+  2028/3125
+  2184/3125
+  2340/3125
+  2496/3125
+  2652/3125
+  2808/3125
+  2964/3125
+  3120/3125
+  3125/3125
+Done. Wrote 3125 voters to /home/patrick/P4P/P4P-Besu/perf-testing/caliper/seed/generated/T2-V0-n4-20261014-183145-smoke3-heap500-voters.json
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 1.336s
+CPU time consumed: 1.506s
+Memory peak: 27.7M
+Memory swap peak: 0B
+Running as unit: p4p-load-n4.service; invocation ID: ef9e1aed556a4a64a11f277484b96e67
+Voting not open yet - calling openVoting()...
+Voting opened.
+Registering 3125 voters (of 3125 total), admin nonce starts at 2
+  registered 2000/3125
+  registered 3125/3125
+All voters registered.
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 40.520s
+CPU time consumed: 13.301s
+Memory peak: 52.3M
+Memory swap peak: 0B
+[18:32:55] Tx-pool sampler p4p-txpool-n4 started -> txpool.csv
+[18:32:55] Background load started (block 26)
+[18:32:55] Baseline 40s before injecting faults
+[18:33:35] Step: fault-injection/crash-fault-over-tolerance.sh 4 60 5
+[18:33:35] n=4, f=1. Killing f+1=2 validators (one over tolerance) - expecting the network to HALT, not fork.
+[18:33:35] Baseline height on survivor (p4p-besu-n4-v1): 46
+[18:33:35] === Killing 2 node(s), staggered ===
+[18:33:35] crash p4p-besu-n4-v3 (native)
+[18:33:41] crash p4p-besu-n4-v4 (native)
+[18:33:46] === Holding for 60s with only 2 nodes live (below 2f+1 quorum) ===
+[18:34:46] Survivor height: 48 -> 48 (+0 blocks in 60s)
+[18:34:46] PASS: network correctly halted (no quorum) instead of producing an inconsistent result.
+[18:34:46] === Rebooting 2 node(s) to restore quorum, staggered ===
+[18:34:46] restart p4p-besu-n4-v3 (native)
+[18:34:51] restart p4p-besu-n4-v4 (native)
+[18:34:56] === Confirming the network resumes block production now that quorum is restored ===
+[18:39:09] PASS: network resumed producing blocks 252s after quorum was restored.
+[18:39:09] RESULT: PASS
+[18:39:09] Fault script finished: PASS (exit 0)
+[18:39:09] Waiting for background load to finish (Caliper waits up to 300s for each outstanding receipt)...
+[18:39:48] Tx pools empty on all 4 validators
+[18:39:52] n=4 round 0 target 25 TPS: submitted 3002, ok 2174, failed 828, send 25 TPS, observed 5.5 TPS
+[18:39:52] latency ms: min 153 p50 279857 p95 319009 p99 322496 max 323453 avg 155841.6
+[18:39:52]   send failure: 828 no receipt for <hash> before timeout
+Timeline (5s buckets, t=0 at first submit/event):
+  t(s)  submitted_tps  confirmed_tps  p50_ms  blocks  events
+     0           25.2           20.6    1772       3  
+     5           25.2           20.0    1392       2  
+    10           24.8           30.2    1346       3  
+    15           25.2           20.0    1290       2  
+    20           24.8           30.0    1264       3  
+    25           25.2           20.0    1358       2  
+    30           24.8           30.0    1442       3  
+    35           25.2           20.0    1307       2  crash validator3
+    40           10.2           19.8    1320       3  crash validator4
+    45            0.0            0.0       -       0  
+    50            0.0            0.0       -       0  
+    55            0.0            0.0       -       0  
+    60            0.0            0.0       -       0  
+    65            0.0            0.0       -       0  
+    70            0.0            0.0       -       0  
+    75           24.2            0.0       -       0  
+    80           24.8            0.0       -       0  
+    85           25.2            0.0       -       0  
+    90           24.8            0.0       -       0  
+    95           25.2            0.0       -       0  
+   100           24.8            0.0       -       0  
+   105           25.2            0.0       -       0  restart validator3
+   110           24.8            0.0       -       0  restart validator4
+   115           25.0            0.0       -       0  
+   120            0.2            0.0       -       0  
+   125            0.0            0.0       -       0  
+   130            0.0            0.0       -       0  
+   135            0.0            0.0       -       0  
+   140            0.0            0.0       -       0  
+   145            0.0            0.0       -       0  
+   150            0.0            0.0       -       0  
+   155            0.0            0.0       -       0  
+   160            0.0            0.0       -       0  
+   165            0.0            0.0       -       0  
+   170            0.0            0.0       -       0  
+   175            0.0            0.0       -       0  
+   180            0.0            0.0       -       0  
+   185            0.0            0.0       -       0  
+   190            0.0            0.0       -       0  
+   195            0.0            0.0       -       0  
+   200            0.0            0.0       -       0  
+   205            0.0            0.0       -       0  
+   210            0.0            0.0       -       0  
+   215            0.0            0.0       -       0  
+   220            0.0            0.0       -       0  
+   225            0.0            0.0       -       0  
+   230            0.0            0.0       -       0  
+   235            0.0            0.0       -       0  
+   240            0.0            0.0       -       0  
+   245            0.0            0.0       -       0  
+   250            0.0            0.0       -       0  
+   255            0.0            0.0       -       0  
+   260            0.0            0.0       -       0  
+   265            0.0            0.0       -       0  
+   270            0.0            0.0       -       0  
+   275            0.0            0.0       -       0  
+   280            0.0            0.0       -       0  
+   285            0.0            0.0       -       0  
+   290            0.0            0.0       -       0  
+   295            0.0            0.0       -       0  
+   300            0.0            0.0       -       0  
+   305            0.0            0.0       -       0  
+   310            0.0            0.0       -       0  
+   315            0.0            0.0       -       0  
+   320            0.0            0.0       -       0  
+   325            0.0            0.0       -       0  
+   330            0.0            0.0       -       0  
+   335            0.0            0.0       -       0  
+   340            0.0            0.0       -       0  
+   345            0.0            0.0       -       0  
+   350            0.0            0.0       -       0  
+   355            0.0            0.0       -       0  
+   360            0.0            0.0       -       0  
+   365            0.0            0.0       -       0  
+   370            0.0            0.0       -       1  chain-resumed
+   375            0.0            0.0       -       2  
+   380            0.0            0.0       -       2  
+   385            0.0            0.0       -       3  
+   390            0.0            0.0       -       2  
+   395            0.0          224.2  300919       3  
+
+Per-phase summary (throughput = txs confirmed within the phase / phase length):
+  phase                               dur_s  conf_tps  p50_ms  p95_ms  blocks  mean_gap_s  max_gap_s
+  baseline                             39.1      24.4    1397    2303      20        2.00          2
+  degraded (nodes down)                70.2       1.4    1320    2402       3        2.00          2
+  recovering (restart -> caught up)   262.8       0.0       -       -       1      328.00        328
+  after recovery                       26.4      35.1  302247  321167      11        2.27          5
+
+Total: 2174 recorded txs, 2174 succeeded, 0 reverted (send-side failures are in the Caliper log, not here)
+Running as unit: p4p-load-n4.service; invocation ID: 37ec442a350244558943b32052513f1a
+T2 V0: sent 3002 (send failures 0), confirmed 3002, reverted 0, lost 0 (0%); on-chain tally total 3002
+  outage 333 s (restart -> resume 257.8 s): 2022 votes sent, 0 lost, latency p50/p95/p99 305487/324042/327251 ms (828 from block timestamps)
+  pool empty 5.5 s after outage end (257.6 s after last submit); peak pool {"v1":1949,"v2":1949,"v3":1949,"v4":1949}; peak validator MB {"v3":394,"v2":815,"v1":824,"v4":404}
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 16.363s
+CPU time consumed: 1.546s
+Memory peak: 39.5M
+Memory swap peak: 0B
+[18:40:20]   validator1 block #82 0x563896dfa4ed26ee5683d3c2615c1f1b9e99063e95a86749681e1ee9f2e8cfe5
+[18:40:20]   validator2 block #82 0x563896dfa4ed26ee5683d3c2615c1f1b9e99063e95a86749681e1ee9f2e8cfe5
+[18:40:20]   validator3 block #82 0x563896dfa4ed26ee5683d3c2615c1f1b9e99063e95a86749681e1ee9f2e8cfe5
+[18:40:20]   validator4 block #82 0x563896dfa4ed26ee5683d3c2615c1f1b9e99063e95a86749681e1ee9f2e8cfe5
+[18:40:20] All-node state consistency at block #82: PASS
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[18:40:21] RESULT: COMPLETED - fault-test=PASS, state-consistency=PASS, T2=lost 0/3002 (0%)
+[18:40:21] Peak cgroup memory (MB): peak_mb v3=394 v2=815 v1=824 v4=404

@@ -1,0 +1,175 @@
+diff --git a/perf-testing/caliper/connector/voting-connector.js b/perf-testing/caliper/connector/voting-connector.js
+index 0e33ef2..65fcc0f 100644
+--- a/perf-testing/caliper/connector/voting-connector.js
++++ b/perf-testing/caliper/connector/voting-connector.js
+@@ -48,6 +48,17 @@ const logger = CaliperUtils.getLogger('voting-connector');
+ // millions of transactions.
+ const FLUSH_EVERY = 2000;
+ 
++// Receipt watcher under stress (post-outage blocks of ~2,000 txs): a failed
++// eth_getBlockReceipts is retried for the same block with backoff, and only
++// after BLOCK_RECEIPTS_ATTEMPTS failures is THAT block read per tx - never
++// more than PER_TX_CONCURRENCY receipt calls in flight. Besu decodes a whole
++// block's receipts for each eth_getTransactionReceipt, so an unbounded per-tx
++// fallback (the old behaviour) wedged validator1's RPC.
++const BLOCK_RECEIPTS_ATTEMPTS = 3;
++const PER_TX_CONCURRENCY = 8;
++const WATCH_INTERVAL_MS = 200;
++const WATCH_BACKOFF_MAX_MS = 10000;
++
+ class VotingConnector extends ConnectorBase {
+     /**
+      * @param {number} workerIndex 0-based worker index, -1 for the manager process.
+@@ -309,19 +320,56 @@ class VotingConnector extends ConnectorBase {
+         }
+     }
+ 
++    /**
++     * Receipts of our pending txs in one block.
++     * @returns {Promise<{receipts: Object[], complete: boolean}>} complete=false: some
++     *          receipts could not be fetched - the caller rescans this block later
++     *          (already-resolved txs are no longer pending, so the rescan is incremental)
++     * @throws on a failed eth_getBlockReceipts that should be retried for this block
++     */
+     async _receiptsForBlock(blockNumber) {
+         const tag = '0x' + blockNumber.toString(16);
+         if (this.blockReceiptsSupported) {
+             try {
+-                return (await this.provider.send('eth_getBlockReceipts', [tag])) || [];
++                const receipts = (await this.provider.send('eth_getBlockReceipts', [tag])) || [];
++                this.blockReceiptFailures = { block: blockNumber, count: 0 };
++                return { receipts, complete: true };
+             } catch (err) {
+-                logger.warn(`eth_getBlockReceipts unavailable (${err.message}), falling back to per-tx receipts`);
+-                this.blockReceiptsSupported = false;
++                const code = err.error && err.error.code;
++                if (code === -32601 || /method not (found|supported)/i.test(err.message)) {
++                    logger.warn(`eth_getBlockReceipts unsupported (${err.message}), using per-tx receipts from now on`);
++                    this.blockReceiptsSupported = false;
++                } else {
++                    const f = this.blockReceiptFailures && this.blockReceiptFailures.block === blockNumber
++                        ? this.blockReceiptFailures : { block: blockNumber, count: 0 };
++                    f.count++;
++                    this.blockReceiptFailures = f;
++                    if (f.count < BLOCK_RECEIPTS_ATTEMPTS) {
++                        throw new Error(`eth_getBlockReceipts(${blockNumber}) failed (attempt ${f.count}/${BLOCK_RECEIPTS_ATTEMPTS}), retrying after backoff: ${err.message.split('\n')[0]}`);
++                    }
++                    logger.warn(`eth_getBlockReceipts(${blockNumber}) failed ${f.count} times, reading this block per tx (max ${PER_TX_CONCURRENCY} in flight)`);
++                }
+             }
+         }
+         const block = await this.provider.send('eth_getBlockByNumber', [tag, false]);
+         const ours = ((block && block.transactions) || []).filter((h) => this.pending.has(h));
+-        return Promise.all(ours.map((h) => this.provider.send('eth_getTransactionReceipt', [h])));
++        const receipts = [];
++        let failed = 0;
++        for (let i = 0; i < ours.length; i += PER_TX_CONCURRENCY) {
++            const batch = await Promise.allSettled(ours.slice(i, i + PER_TX_CONCURRENCY)
++                .map((h) => this.provider.send('eth_getTransactionReceipt', [h])));
++            for (const r of batch) {
++                if (r.status === 'fulfilled') {
++                    receipts.push(r.value);
++                } else {
++                    failed++;
++                }
++            }
++        }
++        if (failed > 0) {
++            logger.warn(`per-tx receipts for block ${blockNumber}: ${failed}/${ours.length} calls failed, will rescan`);
++        }
++        return { receipts, complete: failed === 0 };
+     }
+ 
+     _ensureWatcher() {
+@@ -330,7 +378,9 @@ class VotingConnector extends ConnectorBase {
+         }
+         this.watcherRunning = true;
+         const loop = async () => {
++            let backoffMs = 0;
+             while (this.pending.size > 0) {
++                let pollFailed = false;
+                 try {
+                     const head = parseInt(await this.provider.send('eth_blockNumber', []), 16);
+                     this.lastHead = head;
+@@ -340,7 +390,7 @@ class VotingConnector extends ConnectorBase {
+                         this.lastScannedBlock = head - 2;
+                     }
+                     for (let b = this.lastScannedBlock + 1; b <= head; b++) {
+-                        const receipts = await this._receiptsForBlock(b);
++                        const { receipts, complete } = await this._receiptsForBlock(b);
+                         for (const receipt of receipts) {
+                             const entry = receipt && this.pending.get(receipt.transactionHash);
+                             if (entry) {
+@@ -348,14 +398,22 @@ class VotingConnector extends ConnectorBase {
+                                 entry.resolve(receipt);
+                             }
+                         }
++                        if (!complete) {
++                            pollFailed = true;
++                            break;
++                        }
+                         this.lastScannedBlock = b;
+                     }
+                     if (this.retry) {
+                         await this._retryPass(head);
+                     }
+                 } catch (err) {
++                    pollFailed = true;
+                     logger.warn(`block watcher poll failed: ${err.message}`);
+                 }
++                // back off while the node is struggling (doubling, capped), so the
++                // watcher does not hammer it with the same heavy request
++                backoffMs = pollFailed ? Math.min(WATCH_BACKOFF_MAX_MS, Math.max(1000, backoffMs * 2)) : 0;
+                 const now = Date.now();
+                 for (const [hash, entry] of this.pending) {
+                     if (now > entry.deadline) {
+@@ -363,7 +421,7 @@ class VotingConnector extends ConnectorBase {
+                         entry.reject(new Error(`no receipt for ${hash} before timeout`));
+                     }
+                 }
+-                await new Promise((r) => setTimeout(r, 200));
++                await new Promise((r) => setTimeout(r, WATCH_INTERVAL_MS + backoffMs));
+             }
+             this.watcherRunning = false;
+         };
+diff --git a/perf-testing/scripts/additional-fault.sh b/perf-testing/scripts/additional-fault.sh
+index 366577f..4b541ae 100644
+--- a/perf-testing/scripts/additional-fault.sh
++++ b/perf-testing/scripts/additional-fault.sh
+@@ -133,6 +133,15 @@ finish() {
+     # per-run Caliper config embeds the admin key; a key-free copy is in the run dir
+     [ -n "${NET_CFG:-}" ] && rm -f "${CALIPER_DIR}/${NET_CFG}"
+     cp "${PERF_DIR}"/network/generated/n"${N}"/validator*.log "$RUN_DIR/" 2>/dev/null
++    # an abort before wait-load finished leaves the client logs in caliper/reports,
++    # where the next run's rm -rf would delete them - keep whatever was flushed
++    local k
++    for k in latency txlog; do
++        if compgen -G "${CALIPER_DIR}/reports/${k}/*.ndjson" > /dev/null; then
++            mkdir -p "${RUN_DIR}/${k}"
++            mv "${CALIPER_DIR}"/reports/"${k}"/*.ndjson "${RUN_DIR}/${k}/" 2>/dev/null
++        fi
++    done
+     if [ -z "$ABORTED" ] && [ -f "${RUN_DIR}/ABORT_REASON" ]; then
+         ABORTED="$(cat "${RUN_DIR}/ABORT_REASON")"
+     fi
+@@ -401,8 +410,9 @@ if [ "$TEST" = T1 ]; then
+     CURRENT_STEP="audit"
+     CONFIRMED=$(tail -1 "${RUN_DIR}/summary.csv" | cut -d, -f5)
+     log "Step: close voting + audit all ${N} validators (Caliper confirmed votes: ${CONFIRMED:-unknown})"
+-    NODE_PATH="${CALIPER_DIR}/node_modules" node monitoring/audit-tally.js "caliper/networks/besu-n${N}.json" \
+-        "network/generated/n${N}/network-meta.json" "$RUN_DIR" --close-voting --expected="${CONFIRMED}" 2>&1 | tee -a "$LOG"
++    # in the 600 MB load unit: at 10,000 votes the recount outgrew this driver unit's 256 MB cap
++    run_load env NODE_PATH="${CALIPER_DIR}/node_modules" node "${PERF_DIR}/monitoring/audit-tally.js" "${CALIPER_DIR}/networks/besu-n${N}.json" \
++        "${PERF_DIR}/network/generated/n${N}/network-meta.json" "$RUN_DIR" --close-voting --expected="${CONFIRMED}" 2>&1 | tee -a "$LOG"
+     case "${PIPESTATUS[0]}" in
+     0) TEST_RESULT="audit PASS" ;;
+     1) TEST_RESULT="audit MISMATCH (finding - see audit.csv)" ;;
+@@ -414,7 +424,7 @@ if [ "$TEST" = T1 ]; then
+     fi
+ else
+     CURRENT_STEP="eviction-summary"
+-    NODE_PATH="${CALIPER_DIR}/node_modules" node monitoring/eviction-summary.js "$RUN_DIR" "caliper/${NET_CFG}" "$VARIANT" 2>&1 | tee -a "$LOG"
++    run_load env NODE_PATH="${CALIPER_DIR}/node_modules" node "${PERF_DIR}/monitoring/eviction-summary.js" "$RUN_DIR" "${CALIPER_DIR}/${NET_CFG}" "$VARIANT" 2>&1 | tee -a "$LOG"
+     if [ -f "${RUN_DIR}/eviction-summary.csv" ]; then
+         [ -f "${ADDITIONAL_DIR}/T2-summary.csv" ] || head -1 "${RUN_DIR}/eviction-summary.csv" > "${ADDITIONAL_DIR}/T2-summary.csv"
+         tail -1 "${RUN_DIR}/eviction-summary.csv" >> "${ADDITIONAL_DIR}/T2-summary.csv"

@@ -1,0 +1,21 @@
+{
+  "caliper": {
+    "blockchain": "connector/voting-connector.js"
+  },
+  "voting": {
+    "rpcUrls": [
+      "http://127.0.0.1:20400",
+      "http://127.0.0.1:20401",
+      "http://127.0.0.1:20402"
+    ],
+    "chainId": 1337,
+    "contracts": {
+      "VotingSystem": {
+        "address": "0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8",
+        "abiPath": "../../voting-contract/out/VotingSystem.sol/VotingSystem.json"
+      }
+    },
+    "numCandidates": 3,
+    "deployBlock": 4
+  }
+}
