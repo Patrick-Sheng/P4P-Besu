@@ -31,11 +31,14 @@ WORKERS="${P4P_WORKERS:-2}"
 SAT_RATIO="${P4P_SAT_RATIO:-0.8}"
 
 RUN_ID="n${N}-$(date '+%Y%m%d-%H%M%S')"
-RUN_DIR="${PERF_DIR}/reports/scalability-results/${RUN_ID}"
+# P4P_RESULTS_DIR: lets the T4 hardware-sensitivity rerun (scripts/run-additional.sh T4)
+# keep its sweeps apart from the original Area 1 results; default unchanged
+RESULTS_DIR="${P4P_RESULTS_DIR:-${PERF_DIR}/reports/scalability-results}"
+RUN_DIR="${RESULTS_DIR}/${RUN_ID}"
 mkdir -p "$RUN_DIR"
 LOG="${RUN_DIR}/sweep.log"
 CSV="${RUN_DIR}/summary.csv"
-INDEX="${PERF_DIR}/reports/scalability-results/area1-index.log"
+INDEX="${RESULTS_DIR}/area1-index.log"
 CALIPER_DIR="${PERF_DIR}/caliper"
 
 SLICE="p4p-perf.slice"
@@ -60,7 +63,8 @@ SLICE_MEM_MB=$((MEM_TOTAL_MB - DESKTOP_RESERVE_MB))
 SLICE_MEM_MB="${P4P_SLICE_MEM_MB:-$SLICE_MEM_MB}"
 LOAD_MEM_MB="${P4P_LOAD_MEM_MB:-600}"
 NODE_MEM_MB="${P4P_NODE_MEM_MB:-$(( (SLICE_MEM_MB - LOAD_MEM_MB - 100) / N ))}"
-[ "$NODE_MEM_MB" -gt 1200 ] && NODE_MEM_MB=1200
+NODE_MEM_CAP_MB="${P4P_NODE_MEM_CAP_MB:-1200}"   # raise only for T4 (bigger host)
+[ "$NODE_MEM_MB" -gt "$NODE_MEM_CAP_MB" ] && NODE_MEM_MB=$NODE_MEM_CAP_MB
 NODE_HEAP_MB="${P4P_NODE_HEAP_MB:-$(( NODE_MEM_MB * 40 / 100 ))}"
 
 source ~/.nvm/nvm.sh >/dev/null
