@@ -1,0 +1,153 @@
+[23:33:21] === Area 4 (scaled) n4-20261008-233320: n=4, tests: stress ===
+[23:33:21] load 60TPS/600s | spike 30->150->30TPS (120/60/180s) | endurance 40TPS/2700s | stress 20->200TPS in 10 steps/200s
+[23:33:21] Memory budget: 4 x validator 888MB (heap 355MB), slice 4254MB
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 355M, MemoryMax 888M each...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+Waiting for 4 validator(s) to come up and start producing blocks...
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.Network live. Block heights: 2, 2, 2, 2
+Deploying VotingSystem(numCandidates=3) via 0x52914145D3337c85E3E5da19693635886Ab598B2 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+[23:33:54] Warm-up: 60s idle before load
+[23:34:54] [stress] generating + registering 25410 voters...
+Generating 25410 voter accounts -> /home/patrick/P4P/P4P-Besu/perf-testing/caliper/seed/generated/n4-20261008-233320-stress.json
+  1270/25410
+  2540/25410
+  3810/25410
+  5080/25410
+  6350/25410
+  7620/25410
+  8890/25410
+  10160/25410
+  11430/25410
+  12700/25410
+  13970/25410
+  15240/25410
+  16510/25410
+  17780/25410
+  19050/25410
+  20320/25410
+  21590/25410
+  22860/25410
+  24130/25410
+  25400/25410
+  25410/25410
+Done. Wrote 25410 voters to /home/patrick/P4P/P4P-Besu/perf-testing/caliper/seed/generated/n4-20261008-233320-stress.json
+Voting not open yet - calling openVoting()...
+Voting opened.
+Registering 25410 voters (of 25410 total), admin nonce starts at 2
+  registered 4000/25410
+  registered 8000/25410
+  registered 12000/25410
+  registered 16000/25410
+  registered 20000/25410
+  registered 24000/25410
+  registered 25410/25410
+All voters registered.
+[23:38:19] [stress] registered in 205s (123/s)
+[23:38:19] [stress] running (block 136, MemAvailable 3294MB)
+[23:41:52] [stress] n=4 round stress target 200 TPS: submitted 21928, ok 21928, failed 0, send 109.6 TPS, observed 107.1 TPS
+[23:41:52] [stress] latency ms: min 258 p50 3653 p95 7922 p99 10107 max 11494 avg 3998.8
+[23:41:54] [stress] Per-phase summary (throughput = txs confirmed within the phase / phase length):
+[23:41:54] [stress] phase                               dur_s  conf_tps  p50_ms  p95_ms  blocks  mean_gap_s  max_gap_s
+[23:41:54] [stress] step 0 (20 TPS offered)              20.0      17.9    1544    2601      10        2.00          2
+[23:41:54] [stress] step 1 (40 TPS offered)              20.0      38.1    1460    2383      10        2.00          2
+[23:41:54] [stress] step 2 (60 TPS offered)              20.0      58.0    1772    2934      10        2.00          2
+[23:41:54] [stress] step 3 (80 TPS offered)              20.0      78.1    1696    2619      10        2.00          2
+[23:41:54] [stress] step 4 (100 TPS offered)             20.0      98.2    1982    2931      10        2.00          2
+[23:41:54] [stress] step 5 (120 TPS offered)             20.0     117.9    2195    3159      10        2.00          2
+[23:41:54] [stress] step 6 (140 TPS offered)             20.0     138.1    2539    4076      10        2.00          2
+[23:41:54] [stress] step 7 (160 TPS offered)             20.0     130.7    5769    7220      10        2.00          2
+[23:41:54] [stress] step 8 (180 TPS offered)             20.0     187.1    4972    6447      10        2.00          2
+[23:41:54] [stress] step 9 (200 TPS offered)             24.8     186.5    6666   10061      12        2.00          2
+[23:41:54] [stress] 
+[23:41:54] [stress] Total: 21928 recorded txs, 21928 succeeded, 0 reverted (send-side failures are in the Caliper log, not here)
+[23:41:55] [probe0] running (block 244, MemAvailable 2325MB)
+[23:42:13] [probe0] state: height 253, 21928 votes, 25410 voters | reads n,p50,p95,p99,max(ms) = 500,11,26,57,175
+[23:42:13] Disk: 722M chain data across 4 validators
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[23:42:14] RESULT: COMPLETED - stress
+[23:42:14] Peak cgroup memory (MB): peak_mb v3=805 v2=887 v1=887 v4=795

@@ -1,0 +1,9 @@
+{
+  "name": "p4p-besu-fault-injection",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Area 3 application-layer malicious-node scripts (double-vote, equivocation, replay).",
+  "dependencies": {
+    "ethers": "^6.17.0"
+  }
+}

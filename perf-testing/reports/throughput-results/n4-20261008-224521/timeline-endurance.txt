@@ -1,0 +1,15 @@
+Timeline (10s buckets, t=0 at first submit/event):
+  t(s)  submitted_tps  confirmed_tps  p50_ms  blocks  events
+     0           40.2           39.2    1304       5  minute 0
+    10           40.0           32.0    1323       5  
+    20           40.0           40.0    1368       5  
+    30           40.0           40.0    1376       5  
+    40           39.9           40.0    1333       5  
+    50           40.1           44.0    1306       5  
+    60            0.0            5.0    1523       4  
+
+Per-phase summary (throughput = txs confirmed within the phase / phase length):
+  phase                               dur_s  conf_tps  p50_ms  p95_ms  blocks  mean_gap_s  max_gap_s
+  minute 0                             61.9      38.7    1329    2236      31        2.00          2
+
+Total: 2402 recorded txs, 2402 succeeded, 0 reverted (send-side failures are in the Caliper log, not here)

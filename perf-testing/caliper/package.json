@@ -1,0 +1,15 @@
+{
+  "name": "p4p-besu-voting-perf-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hyperledger Caliper performance test suite for the IBFT voting network (scalability, fault tolerance, throughput).",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Run benchmarks via: npx caliper launch manager --caliper-workspace . --caliper-networkconfig <networks/besu-nN.json> --caliper-benchconfig <benchmarks/.../file.yaml> --caliper-flow-skip-install\""
+  },
+  "dependencies": {
+    "@hyperledger/caliper-cli": "0.7.1",
+    "@hyperledger/caliper-core": "0.7.1",
+    "ethers": "^6.17.0"
+  }
+}

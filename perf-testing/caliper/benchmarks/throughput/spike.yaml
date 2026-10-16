@@ -1,0 +1,76 @@
+## Area 4 - Spike test. Fixed n=7 validators.
+##
+## Models an election-day closing-time rush: steady baseline, a sudden jump
+## to 500 TPS for a short window, then straight back to baseline. Modelled as
+## three sequential fixed-rate rounds rather than one round with an embedded
+## ramp, so the Caliper report gives clean separate before/during/after
+## numbers instead of one blended average - what matters here is whether the
+## network recovers cleanly after the spike, which shows up as a difference
+## between the two baseline rounds' latency, not within a single round.
+##
+## Prerequisites:
+##   node deploy-and-configure.js 7
+##   node seed/generate-voters.js 100000 seed/generated/n7-spike.json
+##   node seed/register-voters.js networks/besu-n7.json seed/generated/n7-spike.json --concurrency=200
+##
+## Run with (from perf-testing/caliper/):
+##   npx caliper launch manager --caliper-workspace . \
+##     --caliper-networkconfig networks/besu-n7.json \
+##     --caliper-benchconfig benchmarks/throughput/spike.yaml \
+##     --caliper-flow-skip-install --caliper-flow-skip-start --caliper-flow-skip-end \
+##     --caliper-report-path reports/throughput-spike.html
+
+test:
+  workers:
+    number: 16
+  rounds:
+    - label: spike-baseline-before
+      description: Baseline 300 TPS for 2 minutes before the spike
+      txDuration: 120
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 300
+      workload:
+        module: workloads/cast-vote.js
+        arguments:
+          votersFile: seed/generated/n7-spike.json
+          numCandidates: 3
+    - label: spike-500tps
+      description: Sudden jump to 500 TPS for 30 seconds (closing-time rush)
+      txDuration: 30
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 500
+      workload:
+        module: workloads/cast-vote.js
+        arguments:
+          votersFile: seed/generated/n7-spike.json
+          numCandidates: 3
+    - label: spike-baseline-after
+      description: Back to baseline 300 TPS for 2 minutes - compare against spike-baseline-before for recovery
+      txDuration: 120
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 300
+      workload:
+        module: workloads/cast-vote.js
+        arguments:
+          votersFile: seed/generated/n7-spike.json
+          numCandidates: 3
+
+monitors:
+  resource:
+    - module: docker
+      options:
+        interval: 5
+        containers:
+          - besu-n7-validator1
+          - besu-n7-validator2
+          - besu-n7-validator3
+          - besu-n7-validator4
+          - besu-n7-validator5
+          - besu-n7-validator6
+          - besu-n7-validator7

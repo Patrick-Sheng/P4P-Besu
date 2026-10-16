@@ -1,0 +1,8 @@
+t_s,submitted_tps,confirmed_tps,p50_ms,blocks,events
+0,15.2,9.1,2063,4,"step 0 (20 TPS offered)"
+10,22.6,23.3,2433,4,"step 1 (40 TPS offered)"
+20,30.2,29.3,1644,4,""
+30,45.0,42.1,2266,3,"step 2 (60 TPS offered)"
+40,51.9,37.8,1946,4,"step 3 (80 TPS offered)"
+50,60.7,73.8,2920,4,""
+60,0.0,10.2,1336,4,""

@@ -1,0 +1,20 @@
+## Minimal end-to-end sanity check for the Caliper harness itself: a short,
+## low-rate castVote round. NOT one of the four required test areas - use this
+## whenever wiring changes (new connector, new node count, new workload) to
+## confirm the pipeline works before committing to a full benchmark run.
+test:
+  workers:
+    number: 2
+  rounds:
+    - label: smoke-cast-vote
+      description: Sanity check - cast a small number of votes at a low fixed rate
+      txNumber: 200
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 20
+      workload:
+        module: workloads/cast-vote.js
+        arguments:
+          votersFile: seed/generated/n4-voters-smoke2.json
+          numCandidates: 3

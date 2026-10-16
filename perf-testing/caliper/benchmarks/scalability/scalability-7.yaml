@@ -1,0 +1,82 @@
+## Area 1 - Scalability (node count sweep), n=7 validators (f=2).
+## Run the same 300/400/500 TPS step-load against each of n=4/7/10/13 to build
+## an empirical throughput/latency-vs-n curve and locate where IBFT's O(n^2)
+## message complexity starts eating into headroom.
+##
+## Prerequisites (see perf-testing/README.md):
+##   node deploy-and-configure.js 7
+##   node seed/generate-voters.js 220000 seed/generated/n7-scalability.json
+##   node seed/register-voters.js networks/besu-n7.json seed/generated/n7-scalability.json --concurrency=200
+##
+## After each round, feed the round's block range into
+## perf-testing/monitoring/block-time-drift.js for block-time drift, and the
+## round index into perf-testing/monitoring/compute-percentiles.js for
+## p50/p95/p99 vote confirmation latency (Caliper's own report only has
+## min/max/avg).
+##
+## Run with (from perf-testing/caliper/):
+##   npx caliper launch manager --caliper-workspace . \
+##     --caliper-networkconfig networks/besu-n7.json \
+##     --caliper-benchconfig benchmarks/scalability/scalability-7.yaml \
+##     --caliper-flow-skip-install --caliper-flow-skip-start --caliper-flow-skip-end \
+##     --caliper-report-path reports/scalability-7.html
+
+test:
+  workers:
+    # Concurrency comes from the rate controller firing many in-flight
+    # requests per worker (Caliper's worker loop doesn't await each
+    # submitTransaction before scheduling the next one), not from worker
+    # count alone - but more workers gives more OS-level parallelism for
+    # request signing/serialization. Tune to available cores.
+    number: 10
+  rounds:
+    - label: scalability-n7-300tps
+      description: n=7 validators, target 300 TPS sustained
+      txDuration: 180
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 300
+      workload:
+        module: workloads/cast-vote.js
+        arguments:
+          votersFile: seed/generated/n7-scalability.json
+          numCandidates: 3
+    - label: scalability-n7-400tps
+      description: n=7 validators, target 400 TPS sustained
+      txDuration: 180
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 400
+      workload:
+        module: workloads/cast-vote.js
+        arguments:
+          votersFile: seed/generated/n7-scalability.json
+          numCandidates: 3
+    - label: scalability-n7-500tps
+      description: n=7 validators, stretch-goal 500 TPS burst
+      txDuration: 180
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 500
+      workload:
+        module: workloads/cast-vote.js
+        arguments:
+          votersFile: seed/generated/n7-scalability.json
+          numCandidates: 3
+
+monitors:
+  resource:
+    - module: docker
+      options:
+        interval: 5
+        containers:
+          - besu-n7-validator1
+          - besu-n7-validator2
+          - besu-n7-validator3
+          - besu-n7-validator4
+          - besu-n7-validator5
+          - besu-n7-validator6
+          - besu-n7-validator7

@@ -1,0 +1,10 @@
+nodes,attack,attempt,result,seconds
+7,double-vote,1,PASS,24
+7,double-vote,2,PASS,19
+7,double-vote,3,PASS,19
+7,equivocation,1,PASS,15
+7,equivocation,2,PASS,15
+7,equivocation,3,PASS,13
+7,replay,1,PASS,14
+7,replay,2,PASS,16
+7,replay,3,PASS,15

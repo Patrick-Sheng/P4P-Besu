@@ -1,0 +1,2 @@
+[22:52:39] watchdog started (n=4, abort if MemAvailable<600MB, stall>30s)
+[22:53:51] CRASH_REASON=CONSENSUS_STALL :: block height stuck at 11 for 32s (blockperiod=2s) - IBFT lost liveness

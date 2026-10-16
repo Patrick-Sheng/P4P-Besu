@@ -1,0 +1,2 @@
+[03:46:12] watchdog started (n=7, abort if MemAvailable<600MB, stall>30s)
+[03:59:13] CRASH_REASON=VALIDATOR_OOM_KILLED :: validator6 (p4p-besu-n7-v6) exceeded its cgroup MemoryMax=528MB and was OOM-killed; last sample MemAvailable=2202MB

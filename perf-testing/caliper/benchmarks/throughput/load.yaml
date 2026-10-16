@@ -1,0 +1,61 @@
+## Area 4 - Load test. Fixed n=7 validators (realistic middle point - this
+## characterises throughput behaviour, not scaling, so the full node-count
+## sweep isn't needed here).
+##
+## Steady 300-400 TPS sustained over an extended run (10 min at each of the
+## two target rates back to back).
+##
+## Prerequisites:
+##   node deploy-and-configure.js 7
+##   node seed/generate-voters.js 420000 seed/generated/n7-load.json
+##   node seed/register-voters.js networks/besu-n7.json seed/generated/n7-load.json --concurrency=200
+##
+## Run with (from perf-testing/caliper/):
+##   npx caliper launch manager --caliper-workspace . \
+##     --caliper-networkconfig networks/besu-n7.json \
+##     --caliper-benchconfig benchmarks/throughput/load.yaml \
+##     --caliper-flow-skip-install --caliper-flow-skip-start --caliper-flow-skip-end \
+##     --caliper-report-path reports/throughput-load.html
+
+test:
+  workers:
+    number: 10
+  rounds:
+    - label: load-300tps
+      description: Steady 300 TPS for 10 minutes
+      txDuration: 600
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 300
+      workload:
+        module: workloads/cast-vote.js
+        arguments:
+          votersFile: seed/generated/n7-load.json
+          numCandidates: 3
+    - label: load-400tps
+      description: Steady 400 TPS for 10 minutes
+      txDuration: 600
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 400
+      workload:
+        module: workloads/cast-vote.js
+        arguments:
+          votersFile: seed/generated/n7-load.json
+          numCandidates: 3
+
+monitors:
+  resource:
+    - module: docker
+      options:
+        interval: 5
+        containers:
+          - besu-n7-validator1
+          - besu-n7-validator2
+          - besu-n7-validator3
+          - besu-n7-validator4
+          - besu-n7-validator5
+          - besu-n7-validator6
+          - besu-n7-validator7

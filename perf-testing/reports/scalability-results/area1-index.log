@@ -1,0 +1,4 @@
+2026-10-08 03:28:22 n4-20261008-032448 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/n4-20261008-032448
+2026-10-08 03:45:42 n4-20261008-032842 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/n4-20261008-032842
+2026-10-08 03:59:17 n7-20261008-034602 CRASHED step='round 5 (200 TPS): caliper' reason='VALIDATOR_OOM_KILLED :: validator6 (p4p-besu-n7-v6) exceeded its cgroup MemoryMax=528MB and was OOM-killed; last sample MemAvailable=2202MB' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/n7-20261008-034602
+2026-10-08 04:05:22 n10-20261008-035937 CRASHED step='round 2 (50 TPS): register voters' reason='VALIDATOR_OOM_KILLED :: validator6 (p4p-besu-n10-v6) exceeded its cgroup MemoryMax=381MB and was OOM-killed; last sample MemAvailable=2130MB' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/n10-20261008-035937

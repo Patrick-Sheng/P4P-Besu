@@ -1,0 +1,60 @@
+## Area 4 - Endurance test. Fixed n=7 validators.
+##
+## 300 TPS sustained over a long window, modelling a full advance-voting day.
+## Default below is 4 hours (14400s) as a practical validation run - watch
+## memory growth, disk growth (BONSAI trie under each validator's data dir),
+## and latency creep over that window via:
+##   perf-testing/monitoring/compute-percentiles.js  (compare latency in the
+##     first vs last 30 minutes of the round - percentiles are computed per
+##     round file, so split the NDJSON by submitTimeMs if you want sub-round
+##     trends)
+##   du -sh perf-testing/network/generated/n7/data/validator*   (disk growth)
+##   the docker resource monitor below (memory/CPU over time, in the report)
+##
+## To run a literal full day, change txDuration to 86400 and scale
+## votersFile/generate-voters.js count to 300*86400 = 25,920,000 accordingly
+## (see the Volume test for notes on generating/registering pools at that
+## scale - it will take a while and is a genuinely long-running test).
+##
+## Prerequisites:
+##   node deploy-and-configure.js 7
+##   node seed/generate-voters.js 4500000 seed/generated/n7-endurance.json
+##   node seed/register-voters.js networks/besu-n7.json seed/generated/n7-endurance.json --concurrency=200
+##
+## Run with (from perf-testing/caliper/):
+##   npx caliper launch manager --caliper-workspace . \
+##     --caliper-networkconfig networks/besu-n7.json \
+##     --caliper-benchconfig benchmarks/throughput/endurance.yaml \
+##     --caliper-flow-skip-install --caliper-flow-skip-start --caliper-flow-skip-end \
+##     --caliper-report-path reports/throughput-endurance.html
+
+test:
+  workers:
+    number: 10
+  rounds:
+    - label: endurance-300tps-4h
+      description: 300 TPS sustained for 4 hours (stand-in for a full advance-voting day)
+      txDuration: 14400
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 300
+      workload:
+        module: workloads/cast-vote.js
+        arguments:
+          votersFile: seed/generated/n7-endurance.json
+          numCandidates: 3
+
+monitors:
+  resource:
+    - module: docker
+      options:
+        interval: 30
+        containers:
+          - besu-n7-validator1
+          - besu-n7-validator2
+          - besu-n7-validator3
+          - besu-n7-validator4
+          - besu-n7-validator5
+          - besu-n7-validator6
+          - besu-n7-validator7
