@@ -1,0 +1,27 @@
+[2026-10-16 06:54:24] === Round 2 phase 'double' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/double-20261016-065424) ===
+[2026-10-16 06:54:28] CPU probe: 1.02s (normal ~1.15s)
+{
+  "sample": 1000,
+  "range": [
+    0,
+    1000000
+  ],
+  "counts": {
+    "reverted": 1000
+  },
+  "sendErrors": 0,
+  "talliesBefore": [
+    "389920",
+    "389904",
+    "389898"
+  ],
+  "talliesAfter": [
+    "389920",
+    "389904",
+    "389898"
+  ],
+  "talliesUnchanged": true,
+  "allBlocked": true
+}
+[2026-10-16 06:55:05] Mass double vote: {"counts":{"reverted":1000},"talliesUnchanged":true,"allBlocked":true}
+[2026-10-16 06:55:05] RESULT: COMPLETED 1000/1000 double votes reverted, tallies unchanged

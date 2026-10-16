@@ -35,6 +35,13 @@ LAG_BLOCKS="${P4P_LAG_BLOCKS:-10}"
 META="$(dirname "${BASH_SOURCE[0]}")/../network/generated/n${N}/network-meta.json"
 mapfile -t ALL_RPC < <(jq -r '.validators[].rpcUrl' "$META" 2>/dev/null)
 FAULT_VICTIMS="${P4P_FAULT_VICTIMS:-}"   # space-separated 1-based validator indices crashed on purpose
+# 1 = on NODE_STUCK, restart the wedged validator instead of aborting (round 2
+# seeding only - unmeasured registration, where Besu 24.12.0's SyncState /
+# BftProcessor / MainnetBlockImporter deadlock would otherwise throw away hours
+# of work). Each restart is logged to watchdog.log and restarts.csv.
+RESTART_STUCK="${P4P_RESTART_STUCK:-}"
+# restarts take the restarted validator's RPC down for ~1 min; tolerate that
+[ "$RESTART_STUCK" = 1 ] && RPC_FAIL_SAMPLES="${P4P_RPC_FAIL_SAMPLES:-60}"
 UNIT_PREFIX="p4p-besu-n${N}-v"
 CSV="${RUN_DIR}/resources.csv"
 START_ISO="$(date '+%Y-%m-%d %H:%M:%S')"
@@ -139,6 +146,32 @@ while true; do
         fi
     done
 
+    # --- seeding only: rolling graceful restart of a validator whose process
+    # memory (cgroup anon) passes RESTART_ANON_MB, one at a time and only while
+    # all others are up (3 of 4 keep quorum). Off-heap memory (RocksDB index/
+    # filter data) grows with DB size and is not bounded by -Xmx; a restart
+    # releases it. Restarts are logged to restarts.csv.
+    if [ "$RESTART_STUCK" = 1 ] && [ $((now - ${last_mem_restart:-0})) -ge 300 ]; then
+        down=0
+        for ((i = 1; i <= N; i++)); do [ "$(systemctl --user show -p ActiveState --value "${UNIT_PREFIX}${i}")" = active ] || down=1; done
+        if [ "$down" -eq 0 ]; then
+            for ((i = 1; i <= N; i++)); do
+                cg=$(systemctl --user show -p ControlGroup --value "${UNIT_PREFIX}${i}" 2>/dev/null)
+                anon=$(awk '/^anon / {print int($2 / 1048576)}' "/sys/fs/cgroup${cg}/memory.stat" 2>/dev/null)
+                if [ "${anon:-0}" -gt "${P4P_RESTART_ANON_MB:-3000}" ]; then
+                    echo "[$(date '+%H:%M:%S')] MEMORY validator${i} anon ${anon}MB > ${P4P_RESTART_ANON_MB:-3000}MB - graceful restart (P4P_RESTART_STUCK=1)" | tee -a "$SWEEP_LOG" >> "${RUN_DIR}/watchdog.log"
+                    echo "$(date '+%F %T'),validator${i},memory,${anon}MB" >> "${RUN_DIR}/restarts.csv"
+                    bash "$(dirname "${BASH_SOURCE[0]}")/../network/node-ctl.sh" "$N" "$i" stop >/dev/null 2>&1
+                    sleep 3
+                    bash "$(dirname "${BASH_SOURCE[0]}")/../network/node-ctl.sh" "$N" "$i" start >/dev/null 2>&1
+                    LAGC[$i]=-40
+                    last_mem_restart=$now
+                    break
+                fi
+            done
+        fi
+    fi
+
     # --- sweep driver gone (killed/crashed without stopping us) ---
     if [ -n "$DRIVER_UNIT" ] && [ "$(systemctl --user show -p ActiveState --value "$DRIVER_UNIT" 2>/dev/null)" != "active" ]; then
         abort DRIVER_DIED "${DRIVER_UNIT} is no longer active (result=$(systemctl --user show -p Result --value "$DRIVER_UNIT" 2>/dev/null))"
@@ -179,10 +212,28 @@ while true; do
             if [ "${H[$i]}" -ge 0 ] && [ $((max_h - H[$i])) -gt "$LAG_BLOCKS" ]; then
                 LAGC[$i]=$(( ${LAGC[$i]:-0} + 1 ))
                 [ "${LAGC[$i]}" -ge 3 ] && lag_report+="validator${i} at ${H[$i]} vs ${max_h}; "
+            elif [ "${LAGC[$i]:-0}" -lt 0 ]; then
+                # post-restart grace (negative count) keeps running down while the
+                # node boots (RPC down) or is still behind
+                LAGC[$i]=$(( LAGC[$i] + 1 ))
             else
                 LAGC[$i]=0
             fi
         done
+        if [ -n "$lag_report" ] && [ "$RESTART_STUCK" = 1 ]; then
+            for ((i = 1; i <= N; i++)); do
+                [ "${LAGC[$i]:-0}" -ge 3 ] || continue
+                pid=$(systemctl --user show -p MainPID --value "${UNIT_PREFIX}${i}" 2>/dev/null)
+                [ -n "$pid" ] && [ "$pid" != 0 ] && timeout 20 jcmd "$pid" Thread.print > "${RUN_DIR}/threaddump-stuck-v${i}-$(date +%H%M%S).txt" 2>&1
+                echo "[$(date '+%H:%M:%S')] NODE_STUCK validator${i} (${lag_report}) - restarting it (P4P_RESTART_STUCK=1)" | tee -a "$SWEEP_LOG" >> "${RUN_DIR}/watchdog.log"
+                echo "$(date '+%F %T'),validator${i},${H[$i]:-?},${max_h}" >> "${RUN_DIR}/restarts.csv"
+                bash "$(dirname "${BASH_SOURCE[0]}")/../network/node-ctl.sh" "$N" "$i" crash >/dev/null 2>&1
+                sleep 3
+                bash "$(dirname "${BASH_SOURCE[0]}")/../network/node-ctl.sh" "$N" "$i" start >/dev/null 2>&1
+                LAGC[$i]=-20   # grace period while it restarts and catches up
+            done
+            lag_report=""
+        fi
         unset H
         [ -n "$lag_report" ] && abort NODE_STUCK "${lag_report}chain still advancing - node alive but not importing blocks"
     fi

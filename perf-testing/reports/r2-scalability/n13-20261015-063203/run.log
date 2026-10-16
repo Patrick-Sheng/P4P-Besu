@@ -1,0 +1,67 @@
+[06:32:03] === Round 2 Area 1 n13-20261015-063203: n=13, idle 300s, steps  votes/s x 300s ===
+[06:32:03] Fixed per node: heap 1024MB, MemoryMax 1800MB, --tx-pool-max-size=16384; slice 13488MB; loadgen 1536MB
+[06:32:03] Host: 6 vCPU, MemTotal 15988MB, MemAvailable 13495MB, disk free 157GB
+[06:32:03] Generating n=13 genesis + keys...
+Generating 13 validator keys + genesis...
+2026-10-15 06:32:07.357+00:00 | main | INFO  | GenerateBlockchainConfig | Generating 13 nodes keys.
+2026-10-15 06:32:07.363+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 0.
+2026-10-15 06:32:07.465+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 1.
+2026-10-15 06:32:07.470+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 2.
+2026-10-15 06:32:07.475+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 3.
+2026-10-15 06:32:07.477+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 4.
+2026-10-15 06:32:07.488+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 5.
+2026-10-15 06:32:07.493+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 6.
+2026-10-15 06:32:07.502+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 7.
+2026-10-15 06:32:07.504+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 8.
+2026-10-15 06:32:07.507+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 9.
+2026-10-15 06:32:07.509+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 10.
+2026-10-15 06:32:07.511+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 11.
+2026-10-15 06:32:07.514+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 12.
+2026-10-15 06:32:07.517+00:00 | main | INFO  | GenerateBlockchainConfig | Generating IBFT extra data.
+2026-10-15 06:32:07.523+00:00 | main | INFO  | GenerateBlockchainConfig | Writing genesis file.
+
+Generated 13-validator network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n13
+  f (max tolerable simultaneous faults) = 4
+  RPC ports: http://127.0.0.1:21300, http://127.0.0.1:21301, http://127.0.0.1:21302, http://127.0.0.1:21303, http://127.0.0.1:21304, http://127.0.0.1:21305, http://127.0.0.1:21306, http://127.0.0.1:21307, http://127.0.0.1:21308, http://127.0.0.1:21309, http://127.0.0.1:21310, http://127.0.0.1:21311, http://127.0.0.1:21312
+
+Next: docker compose -f /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n13/docker-compose.yml up -d
+[06:32:11] CPU probe: 1.34s (normal ~1.15s)
+[06:32:11] Starting fresh 13-validator chain...
+Starting 13 native besu validators (RPC ports 21300..21312) as systemd units p4p-besu-n13-v1..13, heap 1024M, MemoryMax 1800M each, --tx-pool-max-size=16384...
+PIDs written to generated/n13/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 21300): NOT RESPONDING YET
+  validator2 (port 21301): NOT RESPONDING YET
+  validator3 (port 21302): NOT RESPONDING YET
+  validator4 (port 21303): NOT RESPONDING YET
+  validator5 (port 21304): NOT RESPONDING YET
+  validator6 (port 21305): NOT RESPONDING YET
+  validator7 (port 21306): NOT RESPONDING YET
+  validator8 (port 21307): NOT RESPONDING YET
+  validator9 (port 21308): NOT RESPONDING YET
+  validator10 (port 21309): NOT RESPONDING YET
+  validator11 (port 21310): NOT RESPONDING YET
+  validator12 (port 21311): NOT RESPONDING YET
+  validator13 (port 21312): NOT RESPONDING YET
+network-meta written to generated/n13/network-meta.json
+[06:32:23] Waiting for every validator to report 12 peers...
+[06:33:54] All 13 validators report 12 peers; height 17
+[06:33:54] txpool_besuStatistics maxSize=16384
+[06:33:54] Deploying VotingSystem...
+Waiting for 13 validator(s) to come up and start producing blocks...
+Network live. Block heights: 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18
+Deploying VotingSystem(numCandidates=3) via 0x0488cC3dbE102453f888B5aDC41650AaD1b6d2DB on http://127.0.0.1:21300...
+Deployed VotingSystem at 0x1Fb0C2770b650502C689acA2034c633684C66556 (block 20)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n13.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n13-voters.json
+  node seed/register-voters.js networks/besu-n13.json seed/generated/n13-voters.json
+[06:34:03] Contract: 0x1Fb0C2770b650502C689acA2034c633684C66556
+[06:34:03] Idle baseline: 300s, no load...
+[06:39:25] Idle: blocks 29..179, mean block time 2.000s, round expiries 0; samples=56 cpu_busy=29.2 iowait=0.0 besu_cpu=153.9 rss_end=5838 rss_max=5956 mem_avail_min=7997 swap_max=0 pool_start=0 pool_end=0 pool_max=0 pool_slope=0.000
+[06:39:25] Idle RSS 5838MB total = 449MB/node -> projected at n=19: 8531MB (plan budget ~12288MB)
+[06:39:25] CRASH_REASON=DRIVER_ERROR :: step 'verdict' exited with code 1; MemAvailable 8091MB, load 1.58
+[06:39:25] Round expiries (all validators, whole run): 3
+Stopped units: p4p-besu-n13-v1.service p4p-besu-n13-v10.service p4p-besu-n13-v11.service p4p-besu-n13-v12.service p4p-besu-n13-v13.service p4p-besu-n13-v2.service p4p-besu-n13-v3.service p4p-besu-n13-v4.service p4p-besu-n13-v5.service p4p-besu-n13-v6.service p4p-besu-n13-v7.service p4p-besu-n13-v8.service p4p-besu-n13-v9.service
+n=13 native network stopped.
+[06:39:28] RESULT: ERROR during 'verdict' - DRIVER_ERROR :: step 'verdict' exited with code 1; MemAvailable 8091MB, load 1.58

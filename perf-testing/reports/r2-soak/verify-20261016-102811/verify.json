@@ -1,0 +1,93 @@
+{
+  "heads": [
+    {
+      "url": "http://127.0.0.1:20400",
+      "number": 18251,
+      "hash": "0xf25f837097e8b5bba6b1a8950e1160b13c463ee006456ec8f84a1acede05bc6b"
+    },
+    {
+      "url": "http://127.0.0.1:20401",
+      "number": 18251,
+      "hash": "0xf25f837097e8b5bba6b1a8950e1160b13c463ee006456ec8f84a1acede05bc6b"
+    },
+    {
+      "url": "http://127.0.0.1:20402",
+      "number": 18251,
+      "hash": "0xf25f837097e8b5bba6b1a8950e1160b13c463ee006456ec8f84a1acede05bc6b"
+    },
+    {
+      "url": "http://127.0.0.1:20403",
+      "number": 18251,
+      "hash": "0xf25f837097e8b5bba6b1a8950e1160b13c463ee006456ec8f84a1acede05bc6b"
+    }
+  ],
+  "commonBlock": 18251,
+  "headsAgree": true,
+  "csvFiles": 18,
+  "generatorOk": 1155705,
+  "attackVotes": {
+    "doubleVote": 10,
+    "replay": 9,
+    "equivocationA": 3,
+    "equivocationB": 6,
+    "logs": 55
+  },
+  "expectedTallies": [
+    "385254",
+    "385238",
+    "385241"
+  ],
+  "onchainTallies": [
+    "401920",
+    "401904",
+    "401898"
+  ],
+  "talliesMatch": false,
+  "tallySum": "1205722",
+  "sumEqualsSuccessful": false,
+  "talliesAtEnd": [
+    "401920",
+    "401904",
+    "401898"
+  ],
+  "stateStableDuringScan": true,
+  "votedInGeneratorRange": 1205694,
+  "votedButNoOkRow": {
+    "count": 49989,
+    "sample": [
+      218490,
+      218491,
+      218492,
+      218493,
+      218494,
+      218495,
+      218496,
+      218497,
+      218498,
+      218499,
+      218500,
+      218501,
+      218502,
+      218503,
+      218504,
+      218505,
+      218506,
+      218507,
+      218538,
+      218549
+    ]
+  },
+  "okRowButNotVoted": {
+    "count": 0,
+    "sample": []
+  },
+  "votedCountMatches": false,
+  "talliesFromVotedSet": [
+    "401920",
+    "401904",
+    "401898"
+  ],
+  "talliesMatchVotedSet": true,
+  "noConfirmedVoteLost": true,
+  "pass": true
+}

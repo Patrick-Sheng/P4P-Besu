@@ -1,0 +1,55 @@
+{
+  "block": 243,
+  "heights": [
+    243,
+    243,
+    243,
+    243
+  ],
+  "agree": true,
+  "nodes": [
+    {
+      "url": "http://127.0.0.1:20400",
+      "tallies": [
+        "3334",
+        "3333",
+        "3333"
+      ],
+      "hash": "0xfaaf54ae2e064ca79f3432e8834b521f29ae0f81275bf4de3ed7311aad80ec2e"
+    },
+    {
+      "url": "http://127.0.0.1:20401",
+      "tallies": [
+        "3334",
+        "3333",
+        "3333"
+      ],
+      "hash": "0xfaaf54ae2e064ca79f3432e8834b521f29ae0f81275bf4de3ed7311aad80ec2e"
+    },
+    {
+      "url": "http://127.0.0.1:20402",
+      "tallies": [
+        "3334",
+        "3333",
+        "3333"
+      ],
+      "hash": "0xfaaf54ae2e064ca79f3432e8834b521f29ae0f81275bf4de3ed7311aad80ec2e"
+    },
+    {
+      "url": "http://127.0.0.1:20403",
+      "tallies": [
+        "3334",
+        "3333",
+        "3333"
+      ],
+      "hash": "0xfaaf54ae2e064ca79f3432e8834b521f29ae0f81275bf4de3ed7311aad80ec2e"
+    }
+  ],
+  "expected": [
+    "3334",
+    "3333",
+    "3333"
+  ],
+  "match": true,
+  "sum": "10000"
+}

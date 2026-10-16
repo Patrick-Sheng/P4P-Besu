@@ -1,0 +1,86 @@
+[2026-10-16 05:32:08] === Round 2 phase 'soak' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-053204) ===
+[2026-10-16 05:32:14] CPU probe: 2.00s (normal ~1.15s)
+[2026-10-16 05:32:40] CPU probe: 1.55s (normal ~1.15s)
+[2026-10-16 05:33:01] CPU probe: 1.13s (normal ~1.15s)
+[2026-10-16 05:33:06] Starting 4-validator chain (keep): heap 1024MB, MemoryMax 2600MB, --tx-pool-max-size=65536, metrics on, slice 14488MB
+P4P_KEEP_DATA=1: reusing existing generated/n4/data-native (logs appended)
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 1024M, MemoryMax 2600M each, --tx-pool-max-size=65536...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[2026-10-16 05:34:05] Chain up: all validators have 3 peers, height 14312, pool maxSize 65536
+monitoring started for n=4: Prometheus :9090, Grafana :3000, node_exporter :9100
+[2026-10-16 05:34:45] Prometheus targets UP: 5/5; Grafana health: {"database":"ok","version":"11.2.0","commit":"c57667e4481563f5e6cf945b03bc0626caa4dbeb"}
+voted-scan [600000, 800000): 171377 already voted -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-053204/skip-r4.txt
+[2026-10-16 05:39:00] Resume: 171377 voters of round 4 already Voted - they will be skipped
+[2026-10-16 05:39:00] Warm-up: 30 votes/s for 3 min (voters 3116200..3121600)
+[warmup-30] castVote voters [3116200, 3121600) at 30 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-053204/soak-r00.csv
+[warmup-30] t=60s sent 1800 (30.0/s) ok 1687 reverted 0 send_err 0 pending 113 head 14479
+[warmup-30] t=120s sent 3600 (30.0/s) ok 3585 reverted 0 send_err 0 pending 15 head 14510
+[warmup-30] DONE {"label":"warmup-30","from":3116200,"count":5400,"skippedAlreadyVoted":0,"targetRate":30,"sent":5400,"ok":5400,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":29.99,"throughput":29.68,"latencyMs":{"p50":2452,"p95":8425,"p99":11225,"max":13318,"mean":3218},"sendLagMs":{"p50":42.333251953125,"p99":260,"max":660.666748046875},"startMs":1792129140484,"sendEndMs":1792129320543,"endMs":1792129322731,"blocksWatched":82}
+[2026-10-16 05:42:02] Warm-up 30/s: {"ok":5400,"dropped":0,"successPct":100,"p95":8425}
+[2026-10-16 05:42:02] Warm-up: 60 votes/s for 3 min (voters 3121600..3132400)
+[warmup-60] castVote voters [3121600, 3132400) at 60 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-053204/soak-r00.csv
+[warmup-60] t=60s sent 3602 (60.0/s) ok 3184 reverted 0 send_err 0 pending 418 head 14567
+[warmup-60] t=120s sent 7203 (60.0/s) ok 7027 reverted 0 send_err 0 pending 176 head 14595
+[warmup-60] DONE {"label":"warmup-60","from":3121600,"count":10800,"skippedAlreadyVoted":0,"targetRate":60,"sent":10800,"ok":10800,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":59.98,"throughput":59.16,"latencyMs":{"p50":2863,"p95":5710,"p99":6747,"max":7906,"mean":3041},"sendLagMs":{"p50":28,"p99":184.666748046875,"max":386.666748046875},"startMs":1792129323804,"sendEndMs":1792129503853,"endMs":1792129506637,"blocksWatched":86}
+[2026-10-16 05:45:06] Warm-up 60/s: {"ok":10800,"dropped":0,"successPct":100,"p95":5710}
+[2026-10-16 05:45:06] Round 4/5: voters 600000..800000 at 90/s (~37 min)
+[soak-r4] castVote voters [600000, 800000) at 90 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-053204/soak-r04.csv
+[soak-r4] skipping 171377 voters already Voted (resumed round)
+[soak-r4] t=60s sent 5400 (90.0/s) ok 4883 reverted 0 send_err 0 pending 517 head 14649
+[soak-r4] t=120s sent 10795 (89.9/s) ok 10227 reverted 0 send_err 0 pending 568 head 14676
+[soak-r4] t=180s sent 16209 (90.0/s) ok 16088 reverted 0 send_err 0 pending 121 head 14706
+[soak-r4] t=240s sent 21610 (90.0/s) ok 21382 reverted 0 send_err 0 pending 228 head 14735
+[soak-r4] t=300s sent 27014 (90.0/s) ok 26789 reverted 0 send_err 0 pending 225 head 14763
+[soak-r4] DONE {"label":"soak-r4","from":600000,"count":200000,"skippedAlreadyVoted":171377,"targetRate":90,"sent":28623,"ok":28623,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":89.98,"throughput":89.39,"latencyMs":{"p50":3058,"p95":6787,"p99":8390,"max":10208,"mean":3409},"sendLagMs":{"p50":25.333251953125,"p99":297.888916015625,"max":807.4443359375},"startMs":1792129507319,"sendEndMs":1792129825436,"endMs":1792129827837,"blocksWatched":146}
+[2026-10-16 05:51:09] Round 4 done: {"ok":28623,"dropped":0,"sendErrors":0,"successPct":100,"sendRate":89.98,"throughput":89.39,"p95":6787} block 2.174s heap 344MB disk free 137GB
+[2026-10-16 05:51:09] Round 5/5: voters 800000..1000000 at 90/s (~37 min)
+[soak-r5] castVote voters [800000, 1000000) at 90 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-053204/soak-r05.csv
+[soak-r5] t=60s sent 5400 (90.0/s) ok 5239 reverted 0 send_err 0 pending 161 head 14822
+[soak-r5] t=120s sent 10800 (90.0/s) ok 10533 reverted 0 send_err 0 pending 267 head 14850
+[soak-r5] t=180s sent 16201 (90.0/s) ok 15853 reverted 0 send_err 0 pending 348 head 14880
+[soak-r5] t=240s sent 21600 (90.0/s) ok 21317 reverted 0 send_err 0 pending 283 head 14908
+[soak-r5] t=300s sent 27011 (90.0/s) ok 26653 reverted 0 send_err 0 pending 358 head 14936
+[soak-r5] t=360s sent 32419 (90.0/s) ok 32329 reverted 0 send_err 0 pending 90 head 14966
+[soak-r5] t=420s sent 37824 (90.0/s) ok 37638 reverted 0 send_err 0 pending 186 head 14995
+[soak-r5] t=480s sent 43225 (90.0/s) ok 42783 reverted 0 send_err 0 pending 442 head 15020
+[soak-r5] t=540s sent 48626 (90.0/s) ok 48347 reverted 0 send_err 0 pending 279 head 15050
+[soak-r5] t=600s sent 54028 (90.0/s) ok 53929 reverted 0 send_err 0 pending 99 head 15081
+[soak-r5] t=660s sent 59429 (90.0/s) ok 59236 reverted 0 send_err 0 pending 193 head 15110
+[soak-r5] t=720s sent 64830 (90.0/s) ok 64634 reverted 0 send_err 0 pending 196 head 15140
+[soak-r5] t=780s sent 70232 (90.0/s) ok 69858 reverted 0 send_err 0 pending 374 head 15169
+[soak-r5] t=840s sent 75632 (90.0/s) ok 75439 reverted 0 send_err 0 pending 193 head 15200
+[soak-r5] t=900s sent 81033 (90.0/s) ok 80279 reverted 0 send_err 0 pending 754 head 15224
+[soak-r5] t=960s sent 86433 (90.0/s) ok 86147 reverted 0 send_err 0 pending 286 head 15247
+[soak-r5] t=1020s sent 91841 (90.0/s) ok 91282 reverted 0 send_err 0 pending 559 head 15269
+[soak-r5] t=1081s sent 97245 (90.0/s) ok 97127 reverted 0 send_err 0 pending 118 head 15293
+[soak-r5] t=1141s sent 102646 (90.0/s) ok 102344 reverted 0 send_err 0 pending 302 head 15316
+[soak-r5] t=1201s sent 108050 (90.0/s) ok 107748 reverted 0 send_err 0 pending 302 head 15343
+[soak-r5] t=1261s sent 113453 (90.0/s) ok 112969 reverted 0 send_err 0 pending 484 head 15373
+[soak-r5] t=1321s sent 118863 (90.0/s) ok 118547 reverted 0 send_err 0 pending 316 head 15402
+[2026-10-16 06:13:16] Area 3 checkpoint 1M: replaying 27 attacks alongside soak traffic
+[soak-r5] t=1381s sent 124269 (90.0/s) ok 124037 reverted 0 send_err 0 pending 232 head 15432
+[soak-r5] t=1441s sent 129672 (90.0/s) ok 129166 reverted 0 send_err 0 pending 506 head 15461
+[soak-r5] t=1501s sent 135078 (90.0/s) ok 134928 reverted 0 send_err 0 pending 150 head 15488
+[soak-r5] t=1561s sent 140480 (90.0/s) ok 139965 reverted 0 send_err 0 pending 515 head 15516
+[soak-r5] t=1621s sent 145879 (90.0/s) ok 145480 reverted 0 send_err 0 pending 399 head 15546
+[soak-r5] t=1681s sent 151289 (90.0/s) ok 150946 reverted 0 send_err 0 pending 343 head 15575
+[soak-r5] t=1741s sent 156684 (90.0/s) ok 156153 reverted 0 send_err 0 pending 531 head 15604
+[soak-r5] t=1801s sent 162100 (90.0/s) ok 161928 reverted 0 send_err 0 pending 172 head 15634
+[soak-r5] t=1861s sent 167496 (90.0/s) ok 166789 reverted 0 send_err 0 pending 707 head 15660
+[soak-r5] t=1921s sent 172910 (90.0/s) ok 172632 reverted 0 send_err 0 pending 278 head 15689
+[watcher] block 15711: "missing"
+[soak-r5] t=1981s sent 178301 (90.0/s) ok 177443 reverted 0 send_err 0 pending 858 head 15715
+[soak-r5] t=2041s sent 183714 (90.0/s) ok 183619 reverted 0 send_err 0 pending 95 head 15734
+[soak-r5] t=2101s sent 189115 (90.0/s) ok 188838 reverted 0 send_err 0 pending 277 head 15753
+[soak-r5] t=2161s sent 194513 (90.0/s) ok 193201 reverted 0 send_err 0 pending 1312 head 15770
+[soak-r5] t=2221s sent 199918 (90.0/s) ok 196043 reverted 0 send_err 0 pending 3875 head 15774
+[soak-r5] DONE {"label":"soak-r5","from":800000,"count":200000,"skippedAlreadyVoted":0,"targetRate":90,"sent":200000,"ok":200000,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":90,"throughput":89.24,"latencyMs":{"p50":3141,"p95":9282,"p99":28542,"max":46758,"mean":4215},"sendLagMs":{"p50":24.111083984375,"p99":281.111083984375,"max":909.666748046875},"startMs":1792129869775,"sendEndMs":1792132092017,"endMs":1792132111609,"blocksWatched":984}
+[2026-10-16 06:29:24] Area 3 checkpoint 1M: 0/27 attacks blocked; legit p95 7341 ms (5 min before) -> 4932 ms (during replay)
+[2026-10-16 06:29:24] Round 5 done: {"ok":200000,"dropped":0,"sendErrors":0,"successPct":100,"sendRate":90,"throughput":89.24,"p95":9282} block 2.271s heap 441MB disk free 133GB
+[2026-10-16 06:29:24] RESULT: COMPLETED soak 5 rounds at 90/s complete
+[06:29:29] CRASH_REASON=DRIVER_DIED :: p4p-r2 is no longer active (result=success)

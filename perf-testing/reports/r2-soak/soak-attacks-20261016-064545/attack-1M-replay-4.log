@@ -1,0 +1,14 @@
+Registered voter 0xf90CD277c614BB5224Ae19294B740b4247aa3860
+Broadcasting original vote...
+Original vote confirmed in block 16168 (tally 389914 -> 389915)
+Replaying the exact same raw signed transaction...
+  replay rejected at submission: nonce has already been used (transaction="0xf886808083030d409458d7831eacc6f61d92e5fd951d4b11cf8dfde5a880a494a135410000000000000000000000000000000000000000000000000000000000000000820a96a016fadb3af217cd37a728e2da53758dfcdd20f0c7ced5e358e7144d39dc463a15a033219165da0f2bb16a5c9f7e43b9cf9ccc7bf849a6a30edd42b6f1b4ac4a6c05", info={ "error": { "code": -32001, "message": "Nonce too low" } }, code=NONCE_EXPIRED, version=6.17.0)
+Tally after replay attempt: 389915 (attacker-attributable change 0, expected 0)
+Replay rejected outright: true; replay returned identical tx hash: false
+PASS: replayed transaction had no further effect on chain state - no double count.
+Cross-node check at block 16172 (tallies for candidates 0):
+  validator1: 389915  0x1925eaf6a34f3fcc7720a89242ad7d223b09b79932cdb36b7961f62a373e43dc
+  validator2: 389915  0x1925eaf6a34f3fcc7720a89242ad7d223b09b79932cdb36b7961f62a373e43dc
+  validator3: 389915  0x1925eaf6a34f3fcc7720a89242ad7d223b09b79932cdb36b7961f62a373e43dc
+  validator4: 389915  0x1925eaf6a34f3fcc7720a89242ad7d223b09b79932cdb36b7961f62a373e43dc
+PASS: all 4 validators report identical tallies and block hash at #16172

@@ -16,3 +16,14 @@ resource samples). Every run's outcome — including crashes and their labelled 
 `throughput-results/area4-index.log`.
 
 Not yet covered anywhere: the 300–500 TPS target, n=13, the full-size Area 4 tests (n=7, 0.1–4.3M voters, 4 h endurance), and IBFT wire-protocol fuzzing.
+
+## Round 2: election-scale plan (2026-10-15/16)
+
+Upgraded VM: 6 vCPU, 15.6 GiB RAM, 200 GB disk. Full write-up: [R2-ELECTION-SCALE-RESULTS.md](r2-soak/R2-ELECTION-SCALE-RESULTS.md).
+
+| Area | Status | Summary | Headline |
+|---|---|---|---|
+| 1 — Scalability | Run: n=4, 7 loaded; n=10, 13, 16 idle | [R2-AREA1-RESULTS.md](r2-scalability/R2-AREA1-RESULTS.md) | Breaking point n=7 (CPU); n=4 sustains 150 votes/s; idle consensus CPU ≈ 0.88·n² |
+| 4 — Throughput soak | Run to **1M votes** on a 3.3M-voter chain (plan: 5M) | [R2 results §6](r2-soak/R2-ELECTION-SCALE-RESULTS.md) | 0 lost votes, 100 % success every round, heap flat; latency/block-time criteria missed in 4 of 5 rounds (host CPU starvation, two Besu 24.12 stalls) |
+| 3 — Malicious voters | Run at 1M (plan: 1M/3M/5M) | [R2 results §7](r2-soak/R2-ELECTION-SCALE-RESULTS.md) | 27/27 attacks blocked; 1,000/1,000 mass double votes reverted, tallies unchanged |
+| 2 — Fault tolerance | Run on the 1M-vote chain (30 votes/s, shortened holds) | [R2 results §8](r2-soak/R2-ELECTION-SCALE-RESULTS.md) | f down: live, 0 failed, rejoin 48 s; quorum loss: safe halt, no fork, 0 of 5,406 votes lost (round 1 lost 31 %); recovery 286 s |

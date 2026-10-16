@@ -1,0 +1,23 @@
+{
+  "sample": 1000,
+  "range": [
+    0,
+    1000000
+  ],
+  "counts": {
+    "reverted": 1000
+  },
+  "sendErrors": 0,
+  "talliesBefore": [
+    "389920",
+    "389904",
+    "389898"
+  ],
+  "talliesAfter": [
+    "389920",
+    "389904",
+    "389898"
+  ],
+  "talliesUnchanged": true,
+  "allBlocked": true
+}

@@ -1,0 +1,2 @@
+[06:30:52] watchdog started (n=4, abort if MemAvailable<1024MB, stall>180s)
+[06:42:01] CRASH_REASON=CONSENSUS_STALL :: block height stuck at 15991 for 180s (blockperiod=2s) - IBFT lost liveness; thread dumps: threaddump-v*.txt

@@ -1,0 +1,53 @@
+[02:53:10] === Round 2 Area 1 n4-20261015-025309: n=4, idle 300s, steps 50 100 150 200 votes/s x 300s ===
+[02:53:10] Fixed per node: heap 384MB, MemoryMax 1024MB, --tx-pool-max-size=16384; slice 13488MB; loadgen 1536MB
+[02:53:10] Host: 6 vCPU, MemTotal 15988MB, MemAvailable 13654MB, disk free 162GB
+[02:53:10] Starting fresh 4-validator chain...
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 384M, MemoryMax 1024M each, --tx-pool-max-size=16384...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[02:53:19] Waiting for every validator to report 3 peers...
+[02:54:02] All 4 validators report 3 peers; height 15
+[02:54:02] txpool_besuStatistics maxSize=16384
+[02:54:02] Deploying VotingSystem...
+Waiting for 4 validator(s) to come up and start producing blocks...
+Network live. Block heights: 16, 16, 16, 16
+Deploying VotingSystem(numCandidates=3) via 0x52914145D3337c85E3E5da19693635886Ab598B2 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8 (block 17)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+[02:54:09] Contract: 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8
+[02:54:09] Idle baseline: 300s, no load...
+[02:59:31] Idle: blocks 26..176, mean block time 2.000s, round expiries 0; samples=59 cpu_busy=14.1 iowait=0.1 besu_cpu=27.9 rss_end=1419 rss_max=1419 mem_avail_min=12083 swap_max=0 pool_start=0 pool_end=0 pool_max=0 pool_slope=0.000
+[02:59:31] Idle RSS 1419MB total = 354MB/node -> projected at n=19: 6726MB (plan budget ~12288MB)
+[02:59:31] --- Step 0: 50 votes/s --- generating + registering 15500 voters
+Voting not open yet - calling openVoting()...
+Voting opened.
+Registering 15500 voters (of 15500 total), admin nonce starts at 2
+  registered 5000/15500
+  registered 10000/15500
+  registered 15000/15500
+  registered 15500/15500
+All voters registered.
+[03:01:59] Registered 15500 voters in 148s (104 regs/s)
+[03:07:14] n=4 round 0 target 50 TPS: submitted 15002, ok 15002, failed 0, send 50 TPS, observed 49.8 TPS
+[03:07:14] latency ms: min 239 p50 1516 p95 2473 p99 3296 max 6460 avg 1538.1
+[03:07:14] Step 50 votes/s: SUSTAINABLE  | success 100.000% p95 2473ms block 2.000s round-expiries 0 | samples=61 cpu_busy=35.5 iowait=0.0 besu_cpu=162.5 rss_end=2433 rss_max=2433 mem_avail_min=11065 swap_max=0 pool_start=0 pool_end=0 pool_max=116 pool_slope=-0.014 | drain 0s
+[03:07:14] --- Step 1: 100 votes/s --- generating + registering 31000 voters
+Registering 31000 voters (of 31000 total), admin nonce starts at 15502
+  registered 5000/31000
+  registered 10000/31000
+  registered 15000/31000
+  registered 20000/31000
+  registered 25000/31000
+  registered 30000/31000
+  registered 31000/31000
+All voters registered.
+[03:10:43] Registered 31000 voters in 209s (147 regs/s)
+[03:13:44] CRASH_REASON=CONSENSUS_STALL :: block height stuck at 562 for 43s (blockperiod=2s) - IBFT lost liveness; thread dumps: threaddump-v*.txt

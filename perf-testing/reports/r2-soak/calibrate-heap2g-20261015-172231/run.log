@@ -1,0 +1,40 @@
+[2026-10-15 17:22:32] === Round 2 phase 'calibrate' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/calibrate-20261015-172231) ===
+[2026-10-15 17:22:35] CPU probe: 1.03s (normal ~1.15s)
+[2026-10-15 17:22:35] Starting 4-validator chain (keep): heap 2048MB, MemoryMax 3300MB, --tx-pool-max-size=65536, metrics on, slice 14488MB
+P4P_KEEP_DATA=1: reusing existing generated/n4/data-native (logs appended)
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 2048M, MemoryMax 3300M each, --tx-pool-max-size=65536...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[2026-10-15 17:23:37] Chain up: all validators have 3 peers, height 10395, pool maxSize 65536
+monitoring started for n=4: Prometheus :9090, Grafana :3000, node_exporter :9100
+[2026-10-15 17:24:18] Prometheus targets UP: 5/5; Grafana health: {"database":"ok","version":"11.2.0","commit":"c57667e4481563f5e6cf945b03bc0626caa4dbeb"}
+[cal-50] castVote voters [2800000, 2815000) at 50 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/calibrate-20261015-172231/cal-50.csv
+[cal-50] t=60s sent 3000 (50.0/s) ok 2891 reverted 0 send_err 0 pending 109 head 10441
+[cal-50] t=120s sent 6001 (50.0/s) ok 5889 reverted 0 send_err 0 pending 112 head 10471
+[cal-50] t=180s sent 9002 (50.0/s) ok 8890 reverted 0 send_err 0 pending 112 head 10501
+[cal-50] t=240s sent 12002 (50.0/s) ok 11891 reverted 0 send_err 0 pending 111 head 10532
+[cal-50] DONE {"label":"cal-50","from":2800000,"count":15000,"targetRate":50,"sent":15000,"ok":15000,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":50,"throughput":49.66,"latencyMs":{"p50":2039,"p95":5239,"p99":8264,"max":9835,"mean":2297},"sendLagMs":{"p50":28,"p99":158,"max":472},"startMs":1792085062159,"sendEndMs":1792085362182,"endMs":1792085364802,"blocksWatched":146}
+[2026-10-15 17:29:25] Calibration 50 votes/s: SUSTAINABLE  | {"successPct":100,"sendRate":50,"throughput":49.66,"p95":5239} block 2.074s pool slope -0.243
+[cal-75] castVote voters [2815000, 2837500) at 75 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/calibrate-20261015-172231/cal-75.csv
+[cal-75] t=60s sent 4499 (75.0/s) ok 4310 reverted 0 send_err 0 pending 189 head 10593
+[cal-75] t=120s sent 9001 (75.0/s) ok 8961 reverted 0 send_err 0 pending 40 head 10624
+[cal-75] t=180s sent 13498 (75.0/s) ok 13302 reverted 0 send_err 0 pending 196 head 10653
+[cal-75] t=240s sent 18005 (75.0/s) ok 17811 reverted 0 send_err 0 pending 194 head 10683
+[cal-75] DONE {"label":"cal-75","from":2815000,"count":22500,"targetRate":75,"sent":22500,"ok":22500,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":75,"throughput":74.57,"latencyMs":{"p50":2213,"p95":3682,"p99":4191,"max":5085,"mean":2231},"sendLagMs":{"p50":22.666748046875,"p99":110.666748046875,"max":254.666748046875},"startMs":1792085366501,"sendEndMs":1792085666513,"endMs":1792085668790,"blocksWatched":152}
+[2026-10-15 17:34:28] Calibration 75 votes/s: SUSTAINABLE  | {"successPct":100,"sendRate":75,"throughput":74.57,"p95":3682} block 2.000s pool slope 0.199
+[cal-100] castVote voters [2837500, 2867500) at 100 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/calibrate-20261015-172231/cal-100.csv
+[cal-100] t=60s sent 5999 (100.0/s) ok 5619 reverted 0 send_err 0 pending 380 head 10745
+[cal-100] t=120s sent 11981 (99.8/s) ok 11738 reverted 0 send_err 0 pending 243 head 10774
+[cal-100] t=180s sent 18003 (100.0/s) ok 17741 reverted 0 send_err 0 pending 262 head 10804
+[cal-100] t=240s sent 24003 (100.0/s) ok 23938 reverted 0 send_err 0 pending 65 head 10834
+[cal-100] DONE {"label":"cal-100","from":2837500,"count":30000,"targetRate":100,"sent":30000,"ok":30000,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":99.97,"throughput":99.56,"latencyMs":{"p50":2729,"p95":7318,"p99":11772,"max":14445,"mean":3169},"sendLagMs":{"p50":22,"p99":435,"max":806},"startMs":1792085669571,"sendEndMs":1792085969652,"endMs":1792085971451,"blocksWatched":144}
+[2026-10-15 17:39:31] Calibration 100 votes/s: UNSUSTAINABLE p95_7318ms; | {"successPct":100,"sendRate":99.97,"throughput":99.56,"p95":7318} block 2.097s pool slope 0.395
+[2026-10-15 17:39:31] Max sustainable 75 votes/s -> soak rate 60 votes/s (rule: 150 if sustainable, 100 if >= 125, else 80% of max)
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[2026-10-15 17:41:39] Restored snapshot 'seeded' in 121s; disk free 138GB
+[2026-10-15 17:41:39] RESULT: COMPLETED max sustainable 75/s, soak rate 60/s; seeded snapshot restored

@@ -1,0 +1,17 @@
+[2026-10-16 06:30:48] === Round 2 phase 'soak-attacks' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-attacks-20261016-063048) ===
+[2026-10-16 06:30:52] CPU probe: 1.07s (normal ~1.15s)
+[2026-10-16 06:30:56] Checkpoint 1M: live traffic 90/s from voter 1000000; 27 attacks start after 2 min
+[checkpoint-1M] castVote voters [1000000, 1135000) at 90 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-attacks-20261016-063048/soak-r90.csv
+[checkpoint-1M] t=60s sent 5400 (90.0/s) ok 5027 reverted 0 send_err 0 pending 373 head 15873
+[2026-10-16 06:32:56] Area 3 checkpoint 1M: replaying 27 attacks alongside live traffic
+[checkpoint-1M] t=120s sent 10797 (89.8/s) ok 10371 reverted 0 send_err 0 pending 426 head 15894
+[checkpoint-1M] t=180s sent 16223 (90.0/s) ok 15833 reverted 0 send_err 0 pending 390 head 15918
+[checkpoint-1M] t=240s sent 21627 (90.0/s) ok 21170 reverted 0 send_err 0 pending 457 head 15941
+[checkpoint-1M] t=300s sent 27010 (89.9/s) ok 25984 reverted 0 send_err 0 pending 1026 head 15961
+[checkpoint-1M] t=360s sent 32429 (90.0/s) ok 31915 reverted 0 send_err 0 pending 514 head 15980
+[checkpoint-1M] t=420s sent 37834 (90.0/s) ok 35000 reverted 0 send_err 0 pending 2834 head 15986
+[checkpoint-1M] t=480s sent 43236 (90.0/s) ok 40094 reverted 0 send_err 0 pending 3142 head 15991
+[checkpoint-1M] t=540s sent 48636 (90.0/s) ok 40094 reverted 0 send_err 0 pending 8542 head 15991
+[checkpoint-1M] t=600s sent 54036 (90.0/s) ok 40094 reverted 0 send_err 0 pending 13942 head 15991
+[checkpoint-1M] t=660s sent 59443 (90.0/s) ok 40094 reverted 0 send_err 0 pending 19349 head 15991
+[06:42:01] CRASH_REASON=CONSENSUS_STALL :: block height stuck at 15991 for 180s (blockperiod=2s) - IBFT lost liveness; thread dumps: threaddump-v*.txt

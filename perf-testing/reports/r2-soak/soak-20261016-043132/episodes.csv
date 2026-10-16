@@ -1,0 +1,12 @@
+time,round,kind,detail,pool,last_cpu_probe_ms
+2026-10-16 05:19:16,4,slow_blocks,"20 blocks in 305s",18644,746
+2026-10-16 05:22:18,4,pool_growing_10min,"pool 135 -> 28520",28520,1428
+2026-10-16 05:23:18,4,pool_growing_10min,"pool 1306 -> 31425",31425,1428
+2026-10-16 05:24:19,4,slow_blocks,"15 blocks in 303s",35266,1428
+2026-10-16 05:24:19,4,pool_growing_10min,"pool 2910 -> 35266",35266,1428
+2026-10-16 05:25:21,4,pool_growing_10min,"pool 7318 -> 38199",38199,960
+2026-10-16 05:26:21,4,pool_growing_10min,"pool 11242 -> 41030",41030,960
+2026-10-16 05:27:22,4,pool_growing_10min,"pool 13808 -> 43775",43775,960
+2026-10-16 05:28:23,4,pool_growing_10min,"pool 17463 -> 46298",46298,837
+2026-10-16 05:29:24,4,slow_blocks,"20 blocks in 305s",48429,837
+2026-10-16 05:29:24,4,pool_growing_10min,"pool 18644 -> 48429",48429,837

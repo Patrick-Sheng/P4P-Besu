@@ -1,0 +1,3 @@
+round,cumulative_votes,start,end,sent,ok,reverted,dropped,send_errors,success_pct,send_rate,throughput,p50_ms,p95_ms,p99_ms,mean_block_s,pool_end,heap_after_gc_mb,node1_db_gb,disk_free_gb,swap_mb,heads_agree
+"4","800000","2026-10-16T05:45:07Z","2026-10-16T05:50:27Z",28623,28623,0,0,0,100,89.98,89.39,3058,6787,8390,"2.174","0","344","2.50","137","0","true"
+"5","1000000","2026-10-16T05:51:09Z","2026-10-16T06:28:31Z",200000,200000,0,0,0,100,90,89.24,3141,9282,28542,"2.271","0","441","3.38","133","0","true"

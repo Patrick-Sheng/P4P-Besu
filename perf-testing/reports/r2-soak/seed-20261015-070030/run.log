@@ -1,0 +1,36 @@
+[2026-10-15 07:00:31] === Round 2 phase 'seed' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/seed-20261015-070030) ===
+[2026-10-15 07:00:34] CPU probe: 1.09s (normal ~1.15s)
+[2026-10-15 07:00:34] Starting 4-validator chain (fresh): heap 2048MB, MemoryMax 2900MB, --tx-pool-max-size=65536, metrics on, slice 14488MB
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 2048M, MemoryMax 2900M each, --tx-pool-max-size=65536...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[2026-10-15 07:01:34] Chain up: all validators have 3 peers, height 17, pool maxSize 65536
+Waiting for 4 validator(s) to come up and start producing blocks...
+Network live. Block heights: 19, 18, 19, 19
+Deploying VotingSystem(numCandidates=3) via 0x52914145D3337c85E3E5da19693635886Ab598B2 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8 (block 20)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+[2026-10-15 07:01:42] Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8 (config /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/state/besu-n4.json)
+monitoring started for n=4: Prometheus :9090, Grafana :3000, node_exporter :9100
+[2026-10-15 07:02:22] Prometheus targets UP: 5/5; Grafana health: {"database":"ok","version":"11.2.0","commit":"c57667e4481563f5e6cf945b03bc0626caa4dbeb"}
+[2026-10-15 07:02:26] Registering voters 0..5500000 (window 500)
+Voting not open - sending openVoting()
+Registering voters [0, 5500000) = 5500000; admin 0x52914145D3337c85E3E5da19693635886Ab598B2 nonce 2; window 500
+[2026-10-15T07:03:06.275Z] confirmed 1439 (39.6 regs/s), inflight 500, reverted 0, resent 28, next 1939, head 56
+[2026-10-15T07:03:36.411Z] confirmed 4916 (73.9 regs/s), inflight 500, reverted 0, resent 28, next 5416, head 71
+[2026-10-15T07:04:13.659Z] confirmed 10289 (99.2 regs/s), inflight 500, reverted 0, resent 28, next 10789, head 91
+[2026-10-15T07:04:44.534Z] confirmed 15471 (114.9 regs/s), inflight 500, reverted 0, resent 28, next 15971, head 106
+[2026-10-15T07:05:14.634Z] confirmed 20033 (121.6 regs/s), inflight 500, reverted 0, resent 28, next 20533, head 121
+[2026-10-15T07:05:44.682Z] confirmed 24579 (126.2 regs/s), inflight 500, reverted 0, resent 28, next 25079, head 136
+[2026-10-15T07:06:14.779Z] confirmed 29770 (132.4 regs/s), inflight 500, reverted 0, resent 28, next 30270, head 151
+[2026-10-15T07:06:47.968Z] confirmed 33893 (131.3 regs/s), inflight 500, reverted 0, resent 28, next 34393, head 168
+[2026-10-15T07:07:18.437Z] confirmed 37945 (131.5 regs/s), inflight 500, reverted 0, resent 28, next 38445, head 183
+[2026-10-15T07:07:51.144Z] confirmed 43036 (134.0 regs/s), inflight 500, reverted 0, resent 28, next 43536, head 198

@@ -1,0 +1,4 @@
+rate,sent,ok,reverted,dropped,send_errors,success_pct,send_rate,throughput,p50_ms,p95_ms,p99_ms,mean_block_s,pool_slope,verdict,reasons
+50,15000,15000,0,0,0,100,50,49.66,2039,5239,8264,"2.074","-0.243","SUSTAINABLE",""
+75,22500,22500,0,0,0,100,75,74.57,2213,3682,4191,"2.000","0.199","SUSTAINABLE",""
+100,30000,30000,0,0,0,100,99.97,99.56,2729,7318,11772,"2.097","0.395","UNSUSTAINABLE","p95_7318ms;"
