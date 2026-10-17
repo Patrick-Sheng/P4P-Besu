@@ -1,0 +1,4 @@
+[agree-n7] castVote voters [0, 4200) at 10 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n7-r10-20261017-064329/votes.csv
+[agree-n7] t=60s sent 600 (10.0/s) ok 597 reverted 0 send_err 0 pending 3 head 536
+[agree-n7] t=120s sent 1200 (10.0/s) ok 1196 reverted 0 send_err 0 pending 4 head 865
+[agree-n7] t=353s sent 1788 (5.1/s) ok 1736 reverted 0 send_err 0 pending 52 head 1164

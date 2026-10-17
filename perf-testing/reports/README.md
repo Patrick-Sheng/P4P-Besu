@@ -27,3 +27,15 @@ Upgraded VM: 6 vCPU, 15.6 GiB RAM, 200 GB disk. Full write-up: [R2-ELECTION-SCAL
 | 4 — Throughput soak | Run to **1M votes** on a 3.3M-voter chain (plan: 5M) | [R2 results §6](r2-soak/R2-ELECTION-SCALE-RESULTS.md) | 0 lost votes, 100 % success every round, heap flat; latency/block-time criteria missed in 4 of 5 rounds (host CPU starvation, two Besu 24.12 stalls) |
 | 3 — Malicious voters | Run at 1M (plan: 1M/3M/5M) | [R2 results §7](r2-soak/R2-ELECTION-SCALE-RESULTS.md) | 27/27 attacks blocked; 1,000/1,000 mass double votes reverted, tallies unchanged |
 | 2 — Fault tolerance | Run on the 1M-vote chain (30 votes/s, shortened holds) | [R2 results §8](r2-soak/R2-ELECTION-SCALE-RESULTS.md) | f down: live, 0 failed, rejoin 48 s; quorum loss: safe halt, no fork, 0 of 5,406 votes lost (round 1 lost 31 %); recovery 286 s |
+
+## Round 3: validator count gaps (2026-10-17)
+
+Same VM as round 2. Results added to the Area write-ups above (sections "Round 3"); every launch in
+[round3-index.log](round3-index.log).
+
+| Test | Result |
+|---|---|
+| 1. Latency ladder, n = 4–13 at 10/25/50 votes/s | Max sustainable: n=4 and 7 ≥ 50, n=10 25, n=13 10 votes/s (memory ran out at 25) — [AREA1 §Round 3](scalability-results/AREA1-RESULTS.md) |
+| 2. Agreement time, 100 ms blocks, n = 4–16 | Median ≈ 16, 77, 122, 223, 558 ms (projected 0.2–3.1 s) — [AREA1 §Round 3](scalability-results/AREA1-RESULTS.md) |
+| 3. f validators offline, n = 4–13 | Live, 0 votes lost, catch-up 1–9 s; worst gap 4/12/28 s for f = 1/2/3, 180 s at n=13 f=4 — [AREA2 §Round 3](crash-fault-results/AREA2-RESULTS.md) |
+| 4. Voter attacks, n = 13 | 27/27 (and 9/9) blocked, all 13 validators agree — [AREA3 §Round 3](malicious-results/AREA3-RESULTS.md) |

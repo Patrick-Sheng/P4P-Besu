@@ -21,6 +21,10 @@ const nodeCount = parseInt(args[0], 10);
 const light = args.includes('--light');
 const blockPeriodArg = args.find((a) => a.startsWith('--block-period='));
 const blockPeriodSeconds = blockPeriodArg ? parseInt(blockPeriodArg.split('=')[1], 10) : 2;
+// --block-period-ms=N: Besu's test-only sub-second block period (genesis
+// ibft2.xblockperiodmilliseconds); round 3 agreement-time test only
+const blockPeriodMsArg = args.find((a) => a.startsWith('--block-period-ms='));
+const blockPeriodMs = blockPeriodMsArg ? parseInt(blockPeriodMsArg.split('=')[1], 10) : null;
 
 if (!Number.isInteger(nodeCount) || nodeCount < 4) {
     console.error('Usage: node generate-network.mjs <nodeCount:int>=4> [--light] [--block-period=2]');
@@ -51,7 +55,8 @@ const ibftConfigFile = {
             ibft2: {
                 blockperiodseconds: blockPeriodSeconds,
                 epochlength: 30000,
-                requesttimeoutseconds: 4
+                requesttimeoutseconds: 4,
+                ...(blockPeriodMs ? { xblockperiodmilliseconds: blockPeriodMs } : {})
             }
         },
         nonce: '0x0',

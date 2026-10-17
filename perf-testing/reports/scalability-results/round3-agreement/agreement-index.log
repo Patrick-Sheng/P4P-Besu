@@ -1,0 +1,10 @@
+2026-10-17 05:55:57 n4-r0-20261017-054848 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n4-r0-20261017-054848
+2026-10-17 06:03:40 n7-r0-20261017-055624 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n7-r0-20261017-055624
+2026-10-17 06:11:57 n10-r0-20261017-060406 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n10-r0-20261017-060406
+2026-10-17 06:25:43 n13-r0-20261017-061224 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n13-r0-20261017-061224
+2026-10-17 06:34:40 n16-r0-20261017-062609 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n16-r0-20261017-062609
+2026-10-17 06:43:02 n4-r10-20261017-063508 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n4-r10-20261017-063508
+2026-10-17 06:52:05 n7-r10-20261017-064329 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n7-r10-20261017-064329
+2026-10-17 06:57:47 n10-r10-20261017-065231 ABORTED step='settle' reason='NODE_STUCK :: validator3 at 60 vs 74; chain still advancing - node alive but not importing blocks; thread dumps: threaddump-v*.txt' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n10-r10-20261017-065231
+2026-10-17 07:08:44 n10-r10-20261017-065814 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n10-r10-20261017-065814
+2026-10-17 07:22:10 n13-r10-20261017-070911 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n13-r10-20261017-070911

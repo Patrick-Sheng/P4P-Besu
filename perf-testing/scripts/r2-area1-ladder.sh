@@ -36,7 +36,7 @@ LOAD_MEM_MB="${P4P_LOAD_MEM_MB:-1536}"
 POOL_SLOPE_MAX="${P4P_POOL_SLOPE_MAX:-1.0}"
 REG_WINDOW="${P4P_REG_WINDOW:-500}"
 
-RESULTS_DIR="${PERF_DIR}/reports/r2-scalability"
+RESULTS_DIR="${P4P_RESULTS_DIR:-${PERF_DIR}/reports/r2-scalability}"   # round 3: reports/scalability-results/round3
 RUN_ID="n${N}-$(date '+%Y%m%d-%H%M%S')"
 RUN_DIR="${RESULTS_DIR}/${RUN_ID}"
 mkdir -p "$RUN_DIR"

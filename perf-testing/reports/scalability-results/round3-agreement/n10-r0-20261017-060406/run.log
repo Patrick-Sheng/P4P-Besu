@@ -1,0 +1,44 @@
+[06:04:07] === Round 3 agreement time n10-r0-20261017-060406: n=10, 100 ms block period, load 0 votes/s, measure 300s ===
+[06:04:11] Per node: heap 1024MB, MemoryMax 1800MB, pool 65536; slice 12488MB; CPU probe 1.22s
+Removing previous generated network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n10
+Generating 10 validator keys + genesis...
+2026-10-17 06:04:15.882+00:00 | main | INFO  | GenerateBlockchainConfig | Generating 10 nodes keys.
+2026-10-17 06:04:15.889+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 0.
+2026-10-17 06:04:15.995+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 1.
+2026-10-17 06:04:16.004+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 2.
+2026-10-17 06:04:16.009+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 3.
+2026-10-17 06:04:16.013+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 4.
+2026-10-17 06:04:16.018+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 5.
+2026-10-17 06:04:16.023+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 6.
+2026-10-17 06:04:16.026+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 7.
+2026-10-17 06:04:16.030+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 8.
+2026-10-17 06:04:16.035+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 9.
+2026-10-17 06:04:16.040+00:00 | main | INFO  | GenerateBlockchainConfig | Generating IBFT extra data.
+2026-10-17 06:04:16.049+00:00 | main | INFO  | GenerateBlockchainConfig | Writing genesis file.
+
+Generated 10-validator network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n10
+  f (max tolerable simultaneous faults) = 3
+  RPC ports: http://127.0.0.1:21000, http://127.0.0.1:21001, http://127.0.0.1:21002, http://127.0.0.1:21003, http://127.0.0.1:21004, http://127.0.0.1:21005, http://127.0.0.1:21006, http://127.0.0.1:21007, http://127.0.0.1:21008, http://127.0.0.1:21009
+
+Next: docker compose -f /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n10/docker-compose.yml up -d
+[06:04:16] Genesis ibft2: {"blockperiodseconds":2,"epochlength":30000,"requesttimeoutseconds":4,"xblockperiodmilliseconds":100}
+Starting 10 native besu validators (RPC ports 21000..21009) as systemd units p4p-besu-n10-v1..10, heap 1024M, MemoryMax 1800M each, --tx-pool-max-size=65536...
+PIDs written to generated/n10/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 21000): NOT RESPONDING YET
+  validator2 (port 21001): NOT RESPONDING YET
+  validator3 (port 21002): NOT RESPONDING YET
+  validator4 (port 21003): NOT RESPONDING YET
+  validator5 (port 21004): NOT RESPONDING YET
+  validator6 (port 21005): NOT RESPONDING YET
+  validator7 (port 21006): NOT RESPONDING YET
+  validator8 (port 21007): NOT RESPONDING YET
+  validator9 (port 21008): NOT RESPONDING YET
+  validator10 (port 21009): NOT RESPONDING YET
+network-meta written to generated/n10/network-meta.json
+[06:05:48] All 10 validators report 9 peers
+[06:05:48] Settling 60s (JIT warm-up, steady state) before measuring
+[06:06:49] Measuring 300s from 2026-10-17 06:06:49.053 (height 172)
+AGREEMENT run=n10-r0-20261017-060406 n=10 load_votes_per_s=0 block_period_ms=100 blocks=929 intervals=436 mean_ms=423.2 median_ms=221.5 p95_ms=374.0 max_ms=55662.0 round_expiries=0 host_cpu_pct=64.8 besu_cpu_pct=360.3 besu_rss_mb=4513
+Stopped units: p4p-besu-n10-v1.service p4p-besu-n10-v10.service p4p-besu-n10-v2.service p4p-besu-n10-v3.service p4p-besu-n10-v4.service p4p-besu-n10-v5.service p4p-besu-n10-v6.service p4p-besu-n10-v7.service p4p-besu-n10-v8.service p4p-besu-n10-v9.service
+n=10 native network stopped.
+[06:11:57] RESULT: COMPLETED

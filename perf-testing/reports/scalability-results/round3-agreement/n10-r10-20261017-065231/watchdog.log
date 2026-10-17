@@ -1,0 +1,2 @@
+[06:52:50] watchdog started (n=10, abort if MemAvailable<1024MB, stall>30s)
+[06:55:16] CRASH_REASON=NODE_STUCK :: validator3 at 60 vs 74; chain still advancing - node alive but not importing blocks; thread dumps: threaddump-v*.txt

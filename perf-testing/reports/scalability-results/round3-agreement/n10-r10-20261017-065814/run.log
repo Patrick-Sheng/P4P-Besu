@@ -1,0 +1,58 @@
+[06:58:14] === Round 3 agreement time n10-r10-20261017-065814: n=10, 100 ms block period, load 10 votes/s, measure 300s ===
+[06:58:18] Per node: heap 1024MB, MemoryMax 1800MB, pool 65536; slice 12488MB; CPU probe 1.19s
+Removing previous generated network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n10
+Generating 10 validator keys + genesis...
+2026-10-17 06:58:22.334+00:00 | main | INFO  | GenerateBlockchainConfig | Generating 10 nodes keys.
+2026-10-17 06:58:22.343+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 0.
+2026-10-17 06:58:22.417+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 1.
+2026-10-17 06:58:22.423+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 2.
+2026-10-17 06:58:22.427+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 3.
+2026-10-17 06:58:22.431+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 4.
+2026-10-17 06:58:22.434+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 5.
+2026-10-17 06:58:22.435+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 6.
+2026-10-17 06:58:22.436+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 7.
+2026-10-17 06:58:22.438+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 8.
+2026-10-17 06:58:22.440+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 9.
+2026-10-17 06:58:22.444+00:00 | main | INFO  | GenerateBlockchainConfig | Generating IBFT extra data.
+2026-10-17 06:58:22.448+00:00 | main | INFO  | GenerateBlockchainConfig | Writing genesis file.
+
+Generated 10-validator network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n10
+  f (max tolerable simultaneous faults) = 3
+  RPC ports: http://127.0.0.1:21000, http://127.0.0.1:21001, http://127.0.0.1:21002, http://127.0.0.1:21003, http://127.0.0.1:21004, http://127.0.0.1:21005, http://127.0.0.1:21006, http://127.0.0.1:21007, http://127.0.0.1:21008, http://127.0.0.1:21009
+
+Next: docker compose -f /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n10/docker-compose.yml up -d
+[06:58:22] Genesis ibft2: {"blockperiodseconds":2,"epochlength":30000,"requesttimeoutseconds":4,"xblockperiodmilliseconds":100}
+Starting 10 native besu validators (RPC ports 21000..21009) as systemd units p4p-besu-n10-v1..10, heap 1024M, MemoryMax 1800M each, --tx-pool-max-size=65536...
+PIDs written to generated/n10/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 21000): NOT RESPONDING YET
+  validator2 (port 21001): NOT RESPONDING YET
+  validator3 (port 21002): NOT RESPONDING YET
+  validator4 (port 21003): NOT RESPONDING YET
+  validator5 (port 21004): NOT RESPONDING YET
+  validator6 (port 21005): NOT RESPONDING YET
+  validator7 (port 21006): NOT RESPONDING YET
+  validator8 (port 21007): NOT RESPONDING YET
+  validator9 (port 21008): NOT RESPONDING YET
+  validator10 (port 21009): NOT RESPONDING YET
+network-meta written to generated/n10/network-meta.json
+[06:59:47] All 10 validators report 9 peers
+Waiting for 10 validator(s) to come up and start producing blocks...
+Network live. Block heights: 65, 65, 65, 65, 65, 65, 65, 65, 65, 65
+Deploying VotingSystem(numCandidates=3) via 0x126De66Fb5873884e8D2db4124c10748A68f2D0C on http://127.0.0.1:21000...
+Deployed VotingSystem at 0x0CdF40501c18B54498D5D052e45E694899a38B0c (block 73)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n10.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n10-voters.json
+  node seed/register-voters.js networks/besu-n10.json seed/generated/n10-voters.json
+Voting not open - sending openVoting()
+Registering voters [0, 4200) = 4200; admin 0x126De66Fb5873884e8D2db4124c10748A68f2D0C nonce 2; window 500
+[2026-10-17T07:02:33.165Z] confirmed 4056 (28.2 regs/s), inflight 144, reverted 0, resent 0, next 4200, head 177
+DONE register [0, 4200): confirmed 4200, reverted 0, resent 0, 145s, 28.9 regs/s
+[07:02:34] Registered 4200 voters; starting 10 votes/s
+[07:02:34] Settling 60s (JIT warm-up, steady state) before measuring
+[07:03:35] Measuring 300s from 2026-10-17 07:03:34.876 (height 257)
+AGREEMENT run=n10-r10-20261017-065814 n=10 load_votes_per_s=10 block_period_ms=100 blocks=816 intervals=663 mean_ms=370.1 median_ms=326.0 p95_ms=688.0 max_ms=1456.0 round_expiries=0 host_cpu_pct=89.8 besu_cpu_pct=481.9 besu_rss_mb=6163
+Stopped units: p4p-besu-n10-v1.service p4p-besu-n10-v10.service p4p-besu-n10-v2.service p4p-besu-n10-v3.service p4p-besu-n10-v4.service p4p-besu-n10-v5.service p4p-besu-n10-v6.service p4p-besu-n10-v7.service p4p-besu-n10-v8.service p4p-besu-n10-v9.service
+n=10 native network stopped.
+[07:08:44] RESULT: COMPLETED
