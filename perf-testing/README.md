@@ -219,6 +219,37 @@ Note the endurance and volume tests need very large voter pools (millions of
 records); generating/registering those will take a while and is meant to run
 unattended.
 
+## Additional infrastructure-evaluation tests (T0-T4)
+
+Plan: `docs/Additional Test Plan Infrastructure Evaluation.md`. Same containment as the areas above
+(detached `p4p-additional` unit, memory-capped validators, watchdog). Every run gets
+`reports/additional/<test>-<variant>-n<N>-<timestamp>[-runK]/` with `run.log`, `run-meta.txt`
+(git commit, settings), `env.txt`, the benchmark YAML, Caliper output, latency NDJSON and watchdog
+files; outcomes are appended to `reports/additional/additional-index.log`.
+
+```bash
+cd perf-testing
+bash scripts/record-env.sh                    # T0 -> reports/additional/env.txt (then fill in the by-hand section)
+bash scripts/run-additional.sh T1 S1          # tally audit, n=4, no fault        -> audit.csv / audit.json
+bash scripts/run-additional.sh T1 S2          # tally audit, n=4, crash 1 + resync
+bash scripts/run-additional.sh T1 S3          # optional, n=7, 2 staggered crashes
+bash scripts/run-additional.sh T2 V0          # pool eviction baseline (repeats n4-over-20261008-042837)
+bash scripts/run-additional.sh T2 V1          # --tx-pool-max-size=16384   (V2: 65536)
+bash scripts/run-additional.sh T2 V3          # default pool + client resend after 15 blocks, max 3
+bash scripts/run-additional.sh T3             # storage growth: idle / registration / voting
+bash scripts/run-additional.sh T4 4 7         # Area 1 sweep again, after raising the VM's resources
+REPEATS=3 bash scripts/run-additional.sh T2 V0   # 3 back-to-back runs (run1..run3)
+```
+
+Only one `p4p-additional` unit runs at a time; wait for its index line before launching the next.
+Tunables are environment variables documented in the header of `scripts/additional-fault.sh`
+(T1, T2) and `scripts/t3-storage.sh` (T3); `run-additional.sh` forwards every `P4P_*`, `T1_*`..`T4_*`
+and `RECOVERY_TIMEOUT` variable into the unit. T2 pins validator memory to the original run's
+914 MB / 365 MB heap unless overridden. Analysis scripts: `monitoring/audit-tally.js` (T1),
+`monitoring/txpool-sampler.sh` + `monitoring/eviction-summary.js` (T2),
+`monitoring/storage-extrapolate.js` (T3), `monitoring/compare-sweeps.js` (T4, e.g.
+`node monitoring/compare-sweeps.js reports/scalability-results/n4-20261008-032842/summary.csv reports/additional/T4-*/n4-*/summary.csv`).
+
 ## Known constraints from the dev machine used this session
 
 Measured, not assumed (see `reports/README.md`): on 4 cores / 7.7 GB the

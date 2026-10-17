@@ -1,0 +1,5 @@
+phase,point,ts_ms,height,registered,votes,validator,total_bytes,database_bytes
+idle,start,1791994906902,76,0,0,validator1,413595,393374
+idle,start,1791994906902,76,0,0,validator2,413490,393269
+idle,start,1791994906902,76,0,0,validator3,413494,393273
+idle,start,1791994906902,76,0,0,validator4,413480,393259

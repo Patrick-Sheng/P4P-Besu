@@ -1,0 +1,237 @@
+[17:20:42] === T1 S2 T1-S2-n4-20261014-172042-run3: n=4, f=1, scenario=within -> crash validator(s) 4 (SIGKILL, 5s stagger), hold 60s ===
+[17:20:42] Load: 25 TPS castVote for 400s (exactly 10000 votes), sent to validator(s) 1..3; 10010 voters; receipt timeout 120s
+[17:20:42] Host: 4 cores, MemTotal 7840MB, MemAvailable 5219MB
+[17:20:42] Memory budget: slice 4319MB = 4 x validator 904MB (heap 361MB) + loadgen 600MB
+[17:20:44] Step: starting native 4-validator network...
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 361M, MemoryMax 904M each...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): up
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[17:20:54] Watchdog p4p-watchdog-n4 started (fault victims exempt: 4)
+[17:20:54] Step: deploying VotingSystem...
+Running as unit: p4p-load-n4.service; invocation ID: f7fb9440436c48d6950ca61dbee594dc
+Waiting for 4 validator(s) to come up and start producing blocks...
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+JsonRpcProvider failed to detect network and cannot start up; retry in 1s (perhaps the URL is wrong or the node is not started)
+.Network live. Block heights: 2, 2, 2, 2
+Deploying VotingSystem(numCandidates=3) via 0x52914145D3337c85E3E5da19693635886Ab598B2 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8 (block 4)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 16.160s
+CPU time consumed: 414ms
+Memory peak: 23.1M
+Memory swap peak: 0B
+[17:21:10]   validator1 txpool_besuStatistics: {"maxSize":4096,"localCount":0,"remoteCount":0}
+[17:21:10]   validator2 txpool_besuStatistics: {"maxSize":4096,"localCount":0,"remoteCount":0}
+[17:21:10]   validator3 txpool_besuStatistics: {"maxSize":4096,"localCount":0,"remoteCount":0}
+[17:21:10]   validator4 txpool_besuStatistics: {"maxSize":4096,"localCount":0,"remoteCount":0}
+[17:21:10] Step: generating + registering 10010 voters...
+Running as unit: p4p-load-n4.service; invocation ID: 710f03e338114368a6beb4c81af44627
+Generating 10010 voter accounts -> /home/patrick/P4P/P4P-Besu/perf-testing/caliper/seed/generated/T1-S2-n4-20261014-172042-run3-voters.json
+  500/10010
+  1000/10010
+  1500/10010
+  2000/10010
+  2500/10010
+  3000/10010
+  3500/10010
+  4000/10010
+  4500/10010
+  5000/10010
+  5500/10010
+  6000/10010
+  6500/10010
+  7000/10010
+  7500/10010
+  8000/10010
+  8500/10010
+  9000/10010
+  9500/10010
+  10000/10010
+  10010/10010
+Done. Wrote 10010 voters to /home/patrick/P4P/P4P-Besu/perf-testing/caliper/seed/generated/T1-S2-n4-20261014-172042-run3-voters.json
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 4.276s
+CPU time consumed: 4.345s
+Memory peak: 29.7M
+Memory swap peak: 0B
+Running as unit: p4p-load-n4.service; invocation ID: e0d1ca61104040489cb704dd104c3b11
+Voting not open yet - calling openVoting()...
+Voting opened.
+Registering 10010 voters (of 10010 total), admin nonce starts at 2
+  registered 2000/10010
+  registered 4000/10010
+  registered 6000/10010
+  registered 8000/10010
+  registered 10000/10010
+  registered 10010/10010
+All voters registered.
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 1min 51.556s
+CPU time consumed: 40.998s
+Memory peak: 61.9M
+Memory swap peak: 0B
+[17:23:06] Background load started (block 63)
+[17:23:06] Baseline 40s before injecting faults
+[17:23:46] Step: fault-injection/crash-fault.sh 4 60 5
+[17:23:46] n=4, f=1. Killing the last 1 validators (staggered 5s apart), leaving validator1..3 as survivors.
+[17:23:46] Baseline height on survivor (p4p-besu-n4-v1): 83
+[17:23:46] === Killing 1 node(s), staggered ===
+[17:23:46] crash p4p-besu-n4-v4 (native)
+[17:23:51] === Holding for 60s with n-f=3 nodes live ===
+[17:24:51] Survivor height: 85 -> 107 (+22 blocks in 60s)
+[17:24:51] PASS: network kept producing blocks with n-f nodes online (liveness maintained).
+[17:24:51] === Rebooting 1 node(s), staggered ===
+[17:24:51] restart p4p-besu-n4-v4 (native)
+[17:24:56] === Waiting for rebooted node(s) to resync to height 110 (chain kept advancing while they were down) ===
+[17:24:56] Waiting on p4p-besu-n4-v4 (http://127.0.0.1:20403)...
+[17:25:00]   p4p-besu-n4-v4 caught up in 4s
+[17:25:00]   State check PASS: block #105 hash matches survivor (0x5d260102034d16b2bff2ea008d37663b26343c9a017edacc2740b814b828a92d)
+[17:25:00] === Done. Total reboot-to-full-resync wall time: 9s ===
+[17:25:00] RESULT: PASS
+[17:25:01] Fault script finished: PASS (exit 0)
+[17:25:01] Waiting for background load to finish (Caliper waits up to 120s for each outstanding receipt)...
+[17:30:00] Tx pools empty on all 4 validators
+[17:30:00] n=4 round 0 target 25 TPS: submitted 10000, ok 10000, failed 0, send 25 TPS, observed 24.9 TPS
+[17:30:00] latency ms: min 142 p50 1348 p95 2483 p99 4050 max 4720 avg 1402.9
+Timeline (5s buckets, t=0 at first submit/event):
+  t(s)  submitted_tps  confirmed_tps  p50_ms  blocks  events
+     0           25.2           18.8    1943       2  
+     5           25.2           20.4    1574       3  
+    10           24.8           30.0    1337       2  
+    15           25.2           20.0    1363       3  
+    20           24.8           29.8    1315       2  
+    25           25.2           25.2    1303       3  
+    30           24.8           25.0    1316       2  
+    35           25.2           30.0    1234       3  crash validator4
+    40           24.8           20.0    1336       2  
+    45           25.2           30.0    1709       2  
+    50           24.8           10.0    1246       1  
+    55           25.2           35.0    1742       3  
+    60           24.8           25.4    2027       1  
+    65           25.2           19.6    1271       2  
+    70           24.8           29.8    1765       2  
+    75           25.2           10.2    1327       2  
+    80           24.8           39.6    1569       2  
+    85           25.2           25.6    1974       2  
+    90           24.8           14.6    1314       1  
+    95           25.2           39.8    1656       3  
+   100           24.8           20.2    2599       1  restart validator4
+   105           25.2           20.2    1431       2  
+   110           24.8           29.8    1843       2  caught-up validator4
+   115           25.2           20.6    1422       3  
+   120           24.8           29.4    1237       2  
+   125           25.2           30.2    1297       3  
+   130           24.8           19.8    1315       2  
+   135           25.2           20.2    1349       3  
+   140           24.8           30.0    1293       2  
+   145           25.2           20.0    1299       3  
+   150           24.8           30.0    1274       2  
+   155           25.2           20.0    1267       3  
+   160           24.8           30.0    1313       2  
+   165           25.2           20.0    1242       3  
+   170           24.8           30.0    1264       2  
+   175           25.2           20.0    1215       3  
+   180           24.8           30.0    1301       2  
+   185           25.2           20.0    1295       3  
+   190           24.8           30.0    1302       2  
+   195           25.2           30.0    1215       3  
+   200           24.8           19.6    1350       2  
+   205           25.2           20.4    1276       3  
+   210           24.8           30.0    1297       2  
+   215           25.2           20.0    1276       3  
+   220           24.8           30.0    1276       2  
+   225           25.2           20.0    1218       3  
+   230           24.8           30.0    1303       2  
+   235           25.2           20.0    1304       3  
+   240           24.8           30.0    1236       2  
+   245           25.2           20.0    1249       3  
+   250           24.8           29.8    1315       2  
+   255           25.2           20.2    1288       3  
+   260           24.8           30.0    1194       2  
+   265           25.2           20.0    1210       3  
+   270           24.8           30.0    1255       2  
+   275           25.2           24.8    1240       3  
+   280           24.8           25.2    1253       2  
+   285           25.2           20.2    1245       3  
+   290           24.8           29.8    1283       2  
+   295           25.2           20.0    1346       3  
+   300           24.8           30.0    1282       2  
+   305           25.2           30.0    1246       3  
+   310           24.8           20.0    1250       2  
+   315           25.2           20.0    1291       3  
+   320           24.8           29.6    1326       2  
+   325           25.2           25.4    1274       3  
+   330           24.8           25.0    1279       2  
+   335           25.2           20.0    1314       3  
+   340           24.8           30.0    1297       2  
+   345           25.2           20.0    1262       3  
+   350           24.8           30.0    1234       2  
+   355           25.2           20.0    1234       3  
+   360           24.8           30.0    1268       2  
+   365           25.2           20.0    1428       3  
+   370           24.8           29.8    1338       2  
+   375           25.2           25.4    1230       3  
+   380           24.8           24.8    1391       2  
+   385           25.2           20.0    1192       3  
+   390           24.8           30.0    1252       2  
+   395           24.8           25.0    1208       3  
+   400            0.0            5.8    1530       2  
+
+Per-phase summary (throughput = txs confirmed within the phase / phase length):
+  phase                               dur_s  conf_tps  p50_ms  p95_ms  blocks  mean_gap_s  max_gap_s
+  baseline                             38.6      24.5    1416    2345      19        2.00          2
+  degraded (nodes down)                65.1      23.8    1575    4059      24        2.58          4
+  recovering (restart -> caught up)     8.5      23.6    1818    4200       4        3.00          4
+  after recovery                      289.8      25.2    1296    2201     145        2.00          2
+
+Total: 10000 recorded txs, 10000 succeeded, 0 reverted (send-side failures are in the Caliper log, not here)
+[17:30:04] Step: close voting + audit all 4 validators (Caliper confirmed votes: 10000)
+Running as unit: p4p-load-n4.service; invocation ID: 5cb505bc9cf54e0f8585dde0b0a4d31a
+[audit] closeVoting() mined in block 264 (tx 0x646164e5e973c8924a73404cba625c64f94aba59e01da60e663fdca7ffdfda7b)
+[audit] heads 266, 266, 266, 266 -> audit height H=266; recount range 4..266 in chunks of 5000
+[audit] validator1: hash 0xe0df3a3ba5a41c294f2c916c7d9e8ed8a9a9ae544cedbd78642ba6a87c0018dd tally 3334/3334/3332 recount 3334/3334/3332 events 10000 unique 10000 recount 2143 ms
+[audit] validator2: hash 0xe0df3a3ba5a41c294f2c916c7d9e8ed8a9a9ae544cedbd78642ba6a87c0018dd tally 3334/3334/3332 recount 3334/3334/3332 events 10000 unique 10000 recount 1761 ms
+[audit] validator3: hash 0xe0df3a3ba5a41c294f2c916c7d9e8ed8a9a9ae544cedbd78642ba6a87c0018dd tally 3334/3334/3332 recount 3334/3334/3332 events 10000 unique 10000 recount 1724 ms
+[audit] validator4: hash 0xe0df3a3ba5a41c294f2c916c7d9e8ed8a9a9ae544cedbd78642ba6a87c0018dd tally 3334/3334/3332 recount 3334/3334/3332 events 10000 unique 10000 recount 1839 ms
+[audit] validator1: all checks pass
+[audit] validator2: all checks pass
+[audit] validator3: all checks pass
+[audit] validator4: all checks pass
+[audit] recount time ~1866.8 ms per 10,000 votes -> ~541.4 s for 2900000 votes (linear estimate)
+[audit] Caliper confirmed votes: 10000; contract total on validator1: 10000
+AUDIT_RESULT=PASS height=266 events=10000 unique=10000
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 14.667s
+CPU time consumed: 6.911s
+Memory peak: 356.5M
+Memory swap peak: 0B
+[17:30:29]   validator1 block #273 0x557c1c18b4bc775a26868eee5dacb46c2bfdc10ab205fa6ab16f730415df809d
+[17:30:29]   validator2 block #273 0x557c1c18b4bc775a26868eee5dacb46c2bfdc10ab205fa6ab16f730415df809d
+[17:30:29]   validator3 block #273 0x557c1c18b4bc775a26868eee5dacb46c2bfdc10ab205fa6ab16f730415df809d
+[17:30:29]   validator4 block #273 0x557c1c18b4bc775a26868eee5dacb46c2bfdc10ab205fa6ab16f730415df809d
+[17:30:29] All-node state consistency at block #273: PASS
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[17:30:30] RESULT: COMPLETED - fault-test=PASS, state-consistency=PASS, T1=audit PASS
+[17:30:30] Peak cgroup memory (MB): peak_mb v3=597 v2=606 v1=606 v4=523

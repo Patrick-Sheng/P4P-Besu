@@ -19,12 +19,15 @@ caliper/reports/latency/
 caliper/benchmarks/scalability/n*-*.yaml
 caliper/benchmarks/scalability/sweep-n*.yaml
 caliper/benchmarks/crash-fault/n*-*.yaml
+caliper/benchmarks/additional/
 
 # Bulky raw per-run artefacts. Kept: *-RESULTS.md, *-index.log, and per run
 # summary.csv, sweep.log/run.log, timeline.csv, resources.csv, peak-mem.txt,
 # watchdog.log, fault-script.log, fault-events.csv, ABORT_REASON
 reports/**/latency/
 reports/**/latency-raw/
+reports/**/txlog/
+caliper/reports/txlog/
 reports/**/validator*.log
 reports/**/caliper*.log
 reports/**/caliper*.html

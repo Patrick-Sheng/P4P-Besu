@@ -1,0 +1,5 @@
+NOTE (added by the operator, 2026-10-14): this run is INVALID for T1 results.
+The driver unit p4p-additional (MemoryMax=256M) was OOM-killed by systemd during the audit step
+(journal: "p4p-additional.service: Failed with result oom-kill"), so audit-tally.js never finished.
+The index line / RESULT line saying COMPLETED with T1=NOT RUN is a mislabel by the exit handler.
+Fix: the audit now runs in the 600 MB load unit (scripts/additional-fault.sh). The load + resync data in this folder is still valid.

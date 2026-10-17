@@ -1,0 +1,2 @@
+[16:09:32] watchdog started (n=4, abort if MemAvailable<600MB, stall>60s)
+[16:18:50] CRASH_REASON=DRIVER_DIED :: p4p-additional is no longer active (result=oom-kill)

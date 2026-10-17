@@ -1,0 +1,5 @@
+validator,rpc_url,audit_height,block_hash,voting_open,tally,recount,vote_events,unique_voters,recount_ms,tally_eq_recount,events_eq_unique,matches_validator1,matches_caliper_confirmed
+validator1,http://127.0.0.1:20400,31,0x8462c3beafbdcffb582997b942dfc60775379e69e2b363f36f221786c686022f,false,168/166/166,168/166/166,500,500,225.7,true,true,true,true
+validator2,http://127.0.0.1:20401,31,0x8462c3beafbdcffb582997b942dfc60775379e69e2b363f36f221786c686022f,false,168/166/166,168/166/166,500,500,218.5,true,true,true,true
+validator3,http://127.0.0.1:20402,31,0x8462c3beafbdcffb582997b942dfc60775379e69e2b363f36f221786c686022f,false,168/166/166,168/166/166,500,500,198.5,true,true,true,true
+validator4,http://127.0.0.1:20403,31,0x8462c3beafbdcffb582997b942dfc60775379e69e2b363f36f221786c686022f,false,168/166/166,168/166/166,500,500,176,true,true,true,true

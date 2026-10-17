@@ -42,7 +42,7 @@ start) ;;
 esac
 
 # shellcheck source=/dev/null
-source "${GEN_DIR}/node-env"   # HEAP_MB, NODE_MEM_MB
+source "${GEN_DIR}/node-env"   # HEAP_MB, NODE_MEM_MB, TX_POOL_MAX_SIZE (may be empty)
 
 if systemctl --user is-active --quiet "$UNIT"; then
     echo "${UNIT} is already running" >&2
@@ -63,6 +63,14 @@ bootnode_flag=()
 if [ "$i" -ne 0 ]; then
     BOOTNODE_PUBKEY=$(sed 's/^0x//' "${CONFIG_DIR}/keys/${ADDRS[0]}/key.pub")
     bootnode_flag=(--bootnodes="enode://${BOOTNODE_PUBKEY}@127.0.0.1:${P2P_BASE}")
+fi
+
+# Only set when a test asks for it (T2 pool-size variants); otherwise Besu's
+# default applies, exactly as in the Area 1-4 runs. Only honoured by the
+# sequenced/legacy tx pool - check `besu --help | grep -i tx-pool` on the host.
+txpool_flag=()
+if [ -n "${TX_POOL_MAX_SIZE:-}" ]; then
+    txpool_flag=(--tx-pool-max-size="$TX_POOL_MAX_SIZE")
 fi
 
 # Bounded off-heap: metaspace, JIT code cache and Netty direct buffers otherwise
@@ -93,6 +101,7 @@ systemd-run --user --quiet \
     --p2p-host=127.0.0.1 \
     --p2p-port="$((P2P_BASE + i))" \
     "${bootnode_flag[@]}" \
+    "${txpool_flag[@]}" \
     --profile=ENTERPRISE \
     --Xplugin-rocksdb-cache-capacity=33554432 \
     --Xplugin-rocksdb-background-thread-count=1 \

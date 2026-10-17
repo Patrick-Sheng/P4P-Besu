@@ -19,6 +19,8 @@
 # Tunables (env): P4P_NODE_MEM_MB  cgroup MemoryMax per validator
 #                 P4P_NODE_HEAP_MB JVM -Xmx per validator
 #                 P4P_SLICE_MEM_MB MemoryMax for the whole p4p-perf.slice
+#                 P4P_TX_POOL_MAX_SIZE  optional --tx-pool-max-size for every
+#                                  validator (unset = Besu default, as in Areas 1-4)
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
@@ -59,12 +61,17 @@ fi
 
 RPC_BASE=$((20000 + N * 100))
 
-printf 'HEAP_MB=%s\nNODE_MEM_MB=%s\n' "$HEAP_MB" "$NODE_MEM_MB" > "${GEN_DIR}/node-env"
+TX_POOL_MAX_SIZE="${P4P_TX_POOL_MAX_SIZE:-}"
+if [ -n "$TX_POOL_MAX_SIZE" ] && ! [[ "$TX_POOL_MAX_SIZE" =~ ^[0-9]+$ ]]; then
+    echo "P4P_TX_POOL_MAX_SIZE must be a positive integer, got '${TX_POOL_MAX_SIZE}'" >&2
+    exit 1
+fi
+printf 'HEAP_MB=%s\nNODE_MEM_MB=%s\nTX_POOL_MAX_SIZE=%s\n' "$HEAP_MB" "$NODE_MEM_MB" "$TX_POOL_MAX_SIZE" > "${GEN_DIR}/node-env"
 
 PID_FILE="${GEN_DIR}/native-pids.txt"
 : > "$PID_FILE"
 
-echo "Starting ${N} native besu validators (RPC ports ${RPC_BASE}..$((RPC_BASE + N - 1))) as systemd units ${UNIT_PREFIX}1..${N}, heap ${HEAP_MB}M, MemoryMax ${NODE_MEM_MB}M each..."
+echo "Starting ${N} native besu validators (RPC ports ${RPC_BASE}..$((RPC_BASE + N - 1))) as systemd units ${UNIT_PREFIX}1..${N}, heap ${HEAP_MB}M, MemoryMax ${NODE_MEM_MB}M each${TX_POOL_MAX_SIZE:+, --tx-pool-max-size=${TX_POOL_MAX_SIZE}}..."
 for ((i = 1; i <= N; i++)); do
     bash node-ctl.sh "$N" "$i" start
     if [ "$i" -eq 1 ]; then

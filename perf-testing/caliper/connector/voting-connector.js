@@ -23,7 +23,11 @@
 //     "chainId": 1337,
 //     "contracts": {
 //       "VotingSystem": { "address": "0x...", "abiPath": "../../voting-contract/out/VotingSystem.sol/VotingSystem.json" }
-//     }
+//     },
+//     // optional, used by the additional T2 test (scripts/additional-fault.sh); absent = old behaviour
+//     "receiptTimeoutMs": 120000,              // how long a sent tx is watched for a receipt
+//     "txLogDir": "reports/txlog",             // one NDJSON line per castVote send: hash, outcome, retries
+//     "retry": { "afterBlocks": 15, "maxRetries": 3 }  // resend the identical signed tx if no receipt
 //   }
 // }
 
@@ -43,6 +47,17 @@ const logger = CaliperUtils.getLogger('voting-connector');
 // batches rather than one fs call per tx, since Volume-test rounds can be
 // millions of transactions.
 const FLUSH_EVERY = 2000;
+
+// Receipt watcher under stress (post-outage blocks of ~2,000 txs): a failed
+// eth_getBlockReceipts is retried for the same block with backoff, and only
+// after BLOCK_RECEIPTS_ATTEMPTS failures is THAT block read per tx - never
+// more than PER_TX_CONCURRENCY receipt calls in flight. Besu decodes a whole
+// block's receipts for each eth_getTransactionReceipt, so an unbounded per-tx
+// fallback (the old behaviour) wedged validator1's RPC.
+const BLOCK_RECEIPTS_ATTEMPTS = 3;
+const PER_TX_CONCURRENCY = 8;
+const WATCH_INTERVAL_MS = 200;
+const WATCH_BACKOFF_MAX_MS = 10000;
 
 class VotingConnector extends ConnectorBase {
     /**
@@ -89,7 +104,22 @@ class VotingConnector extends ConnectorBase {
         this.pending = new Map();
         this.watcherRunning = false;
         this.lastScannedBlock = undefined;
+        this.lastHead = undefined;
         this.blockReceiptsSupported = true;
+        this.receiptTimeoutMs = Number(votingConfig.receiptTimeoutMs) || 120000;
+
+        // Client-side retry (T2 variant V3): a vote with no receipt after
+        // `afterBlocks` NEW blocks is resent as the identical signed tx (same
+        // hash, same nonce - it can only ever be included once). Counted in
+        // blocks, not seconds, so the timer does not run while the chain is
+        // halted: retries start only once blocks are being produced again.
+        const retry = votingConfig.retry;
+        this.retry = retry && Number(retry.maxRetries) > 0
+            ? { afterBlocks: Number(retry.afterBlocks) || 15, maxRetries: Number(retry.maxRetries) }
+            : null;
+        if (this.retry) {
+            logger.info(`client retry enabled: resend after ${this.retry.afterBlocks} blocks without receipt, up to ${this.retry.maxRetries} times`);
+        }
 
         this.contracts = {};
         for (const [name, cfg] of Object.entries(votingConfig.contracts || {})) {
@@ -107,6 +137,16 @@ class VotingConnector extends ConnectorBase {
         this.latencyBuffer = [];
         this.latencyStream = null;
         this.currentRoundIndex = -1;
+
+        // Per-send log (opt-in): unlike the latency NDJSON, which only holds
+        // txs that got a receipt, this records every castVote send including
+        // send errors and receipt timeouts, so lost votes can be counted.
+        this.txLogDir = votingConfig.txLogDir ? CaliperUtils.resolvePath(votingConfig.txLogDir) : null;
+        if (this.txLogDir) {
+            fs.mkdirSync(this.txLogDir, { recursive: true });
+        }
+        this.txLogBuffer = [];
+        this.txLogStream = null;
     }
 
     _openLatencyStreamForRound(roundIndex) {
@@ -117,6 +157,33 @@ class VotingConnector extends ConnectorBase {
         const idx = this.workerIndex < 0 ? 'manager' : this.workerIndex;
         const filePath = path.join(this.latencyLogDir, `round${roundIndex}-worker${idx}.ndjson`);
         this.latencyStream = fs.createWriteStream(filePath, { flags: 'w' });
+        if (this.txLogDir) {
+            this._openTxLogStream('w');
+        }
+    }
+
+    _openTxLogStream(flags) {
+        if (this.txLogStream) {
+            this.txLogStream.end();
+        }
+        const idx = this.workerIndex < 0 ? 'manager' : this.workerIndex;
+        const filePath = path.join(this.txLogDir, `round${this.currentRoundIndex}-worker${idx}.ndjson`);
+        this.txLogStream = fs.createWriteStream(filePath, { flags });
+    }
+
+    _recordTx(record) {
+        if (!this.txLogDir) {
+            return;
+        }
+        if (!this.txLogStream) {
+            // late record after releaseContext(): append, never truncate
+            this._openTxLogStream('a');
+        }
+        this.txLogBuffer.push(JSON.stringify(record));
+        if (this.txLogBuffer.length >= FLUSH_EVERY) {
+            this.txLogStream.write(this.txLogBuffer.join('\n') + '\n');
+            this.txLogBuffer = [];
+        }
     }
 
     _recordLatency(record) {
@@ -130,6 +197,10 @@ class VotingConnector extends ConnectorBase {
     }
 
     _flushLatencyBuffer() {
+        if (this.txLogStream && this.txLogBuffer.length > 0) {
+            this.txLogStream.write(this.txLogBuffer.join('\n') + '\n');
+            this.txLogBuffer = [];
+        }
         if (this.latencyBuffer.length === 0) {
             return;
         }
@@ -166,6 +237,10 @@ class VotingConnector extends ConnectorBase {
             this.latencyStream.end();
             this.latencyStream = null;
         }
+        if (this.txLogStream) {
+            this.txLogStream.end();
+            this.txLogStream = null;
+        }
         // wallets/provider otherwise live for the worker process lifetime
     }
 
@@ -185,27 +260,116 @@ class VotingConnector extends ConnectorBase {
         return entry;
     }
 
-    async _waitForReceipt(hash, timeoutMs = 120000) {
+    /**
+     * @param {string} hash tx hash
+     * @param {string} [signedTx] raw signed tx, kept only when client retry is enabled
+     * @param {Object} [txRecord] tx-log record; its `retries`/`retryErrors` are updated in place
+     */
+    async _waitForReceipt(hash, signedTx, txRecord) {
         const promise = new Promise((resolve, reject) => {
-            this.pending.set(hash, { resolve, reject, deadline: Date.now() + timeoutMs });
+            this.pending.set(hash, {
+                resolve,
+                reject,
+                deadline: Date.now() + this.receiptTimeoutMs,
+                signedTx: this.retry ? signedTx : undefined,
+                // only trust lastHead while the watcher is live; a stale head
+                // would make the first retry fire early
+                lastSendBlock: this.watcherRunning ? this.lastHead : undefined,
+                txRecord
+            });
         });
         this._ensureWatcher();
         return promise;
     }
 
+    /** Resends still-unconfirmed txs whose retry interval (in blocks) has elapsed. */
+    async _retryPass(head) {
+        const due = [];
+        for (const [hash, entry] of this.pending) {
+            if (!entry.signedTx) {
+                continue;
+            }
+            if (entry.lastSendBlock === undefined) {
+                entry.lastSendBlock = head;
+            }
+            const retries = entry.txRecord ? entry.txRecord.retries : 0;
+            if (head - entry.lastSendBlock >= this.retry.afterBlocks && retries < this.retry.maxRetries) {
+                due.push([hash, entry]);
+            }
+        }
+        // bounded batches: after a halt thousands of votes can be due at once
+        for (let i = 0; i < due.length; i += 100) {
+            await Promise.all(due.slice(i, i + 100).map(async ([hash, entry]) => {
+                entry.lastSendBlock = head;
+                if (entry.txRecord) {
+                    entry.txRecord.retries += 1;
+                }
+                const sendProvider = this.sendProviders[this.sendCursor++ % this.sendProviders.length];
+                try {
+                    await sendProvider.send('eth_sendRawTransaction', [entry.signedTx]);
+                } catch (err) {
+                    // "already known" (still pooled) / "nonce too low" (already
+                    // mined) are expected and harmless; counted, not fatal
+                    if (entry.txRecord) {
+                        entry.txRecord.retryErrors = (entry.txRecord.retryErrors || 0) + 1;
+                        entry.txRecord.lastRetryError = err.message.split('\n')[0].slice(0, 160);
+                    }
+                    logger.debug(`retry of ${hash} rejected: ${err.message}`);
+                }
+            }));
+        }
+    }
+
+    /**
+     * Receipts of our pending txs in one block.
+     * @returns {Promise<{receipts: Object[], complete: boolean}>} complete=false: some
+     *          receipts could not be fetched - the caller rescans this block later
+     *          (already-resolved txs are no longer pending, so the rescan is incremental)
+     * @throws on a failed eth_getBlockReceipts that should be retried for this block
+     */
     async _receiptsForBlock(blockNumber) {
         const tag = '0x' + blockNumber.toString(16);
         if (this.blockReceiptsSupported) {
             try {
-                return (await this.provider.send('eth_getBlockReceipts', [tag])) || [];
+                const receipts = (await this.provider.send('eth_getBlockReceipts', [tag])) || [];
+                this.blockReceiptFailures = { block: blockNumber, count: 0 };
+                return { receipts, complete: true };
             } catch (err) {
-                logger.warn(`eth_getBlockReceipts unavailable (${err.message}), falling back to per-tx receipts`);
-                this.blockReceiptsSupported = false;
+                const code = err.error && err.error.code;
+                if (code === -32601 || /method not (found|supported)/i.test(err.message)) {
+                    logger.warn(`eth_getBlockReceipts unsupported (${err.message}), using per-tx receipts from now on`);
+                    this.blockReceiptsSupported = false;
+                } else {
+                    const f = this.blockReceiptFailures && this.blockReceiptFailures.block === blockNumber
+                        ? this.blockReceiptFailures : { block: blockNumber, count: 0 };
+                    f.count++;
+                    this.blockReceiptFailures = f;
+                    if (f.count < BLOCK_RECEIPTS_ATTEMPTS) {
+                        throw new Error(`eth_getBlockReceipts(${blockNumber}) failed (attempt ${f.count}/${BLOCK_RECEIPTS_ATTEMPTS}), retrying after backoff: ${err.message.split('\n')[0]}`);
+                    }
+                    logger.warn(`eth_getBlockReceipts(${blockNumber}) failed ${f.count} times, reading this block per tx (max ${PER_TX_CONCURRENCY} in flight)`);
+                }
             }
         }
         const block = await this.provider.send('eth_getBlockByNumber', [tag, false]);
         const ours = ((block && block.transactions) || []).filter((h) => this.pending.has(h));
-        return Promise.all(ours.map((h) => this.provider.send('eth_getTransactionReceipt', [h])));
+        const receipts = [];
+        let failed = 0;
+        for (let i = 0; i < ours.length; i += PER_TX_CONCURRENCY) {
+            const batch = await Promise.allSettled(ours.slice(i, i + PER_TX_CONCURRENCY)
+                .map((h) => this.provider.send('eth_getTransactionReceipt', [h])));
+            for (const r of batch) {
+                if (r.status === 'fulfilled') {
+                    receipts.push(r.value);
+                } else {
+                    failed++;
+                }
+            }
+        }
+        if (failed > 0) {
+            logger.warn(`per-tx receipts for block ${blockNumber}: ${failed}/${ours.length} calls failed, will rescan`);
+        }
+        return { receipts, complete: failed === 0 };
     }
 
     _ensureWatcher() {
@@ -214,16 +378,19 @@ class VotingConnector extends ConnectorBase {
         }
         this.watcherRunning = true;
         const loop = async () => {
+            let backoffMs = 0;
             while (this.pending.size > 0) {
+                let pollFailed = false;
                 try {
                     const head = parseInt(await this.provider.send('eth_blockNumber', []), 16);
+                    this.lastHead = head;
                     // re-scan one block back on (re)start: a tx can land in the
                     // head block before the watcher's first poll
                     if (this.lastScannedBlock === undefined || head - this.lastScannedBlock > 50) {
                         this.lastScannedBlock = head - 2;
                     }
                     for (let b = this.lastScannedBlock + 1; b <= head; b++) {
-                        const receipts = await this._receiptsForBlock(b);
+                        const { receipts, complete } = await this._receiptsForBlock(b);
                         for (const receipt of receipts) {
                             const entry = receipt && this.pending.get(receipt.transactionHash);
                             if (entry) {
@@ -231,11 +398,22 @@ class VotingConnector extends ConnectorBase {
                                 entry.resolve(receipt);
                             }
                         }
+                        if (!complete) {
+                            pollFailed = true;
+                            break;
+                        }
                         this.lastScannedBlock = b;
                     }
+                    if (this.retry) {
+                        await this._retryPass(head);
+                    }
                 } catch (err) {
+                    pollFailed = true;
                     logger.warn(`block watcher poll failed: ${err.message}`);
                 }
+                // back off while the node is struggling (doubling, capped), so the
+                // watcher does not hammer it with the same heavy request
+                backoffMs = pollFailed ? Math.min(WATCH_BACKOFF_MAX_MS, Math.max(1000, backoffMs * 2)) : 0;
                 const now = Date.now();
                 for (const [hash, entry] of this.pending) {
                     if (now > entry.deadline) {
@@ -243,7 +421,7 @@ class VotingConnector extends ConnectorBase {
                         entry.reject(new Error(`no receipt for ${hash} before timeout`));
                     }
                 }
-                await new Promise((r) => setTimeout(r, 200));
+                await new Promise((r) => setTimeout(r, WATCH_INTERVAL_MS + backoffMs));
             }
             this.watcherRunning = false;
         };
@@ -269,6 +447,7 @@ class VotingConnector extends ConnectorBase {
             return status;
         }
 
+        let txRecord = null;
         try {
             if (request.readOnly) {
                 // reads are timed too, so the Area 4 volume probes get p50/p95/p99
@@ -319,8 +498,10 @@ class VotingConnector extends ConnectorBase {
 
             const sendProvider = this.sendProviders[this.sendCursor++ % this.sendProviders.length];
             const submitTimeMs = Date.now();
+            txRecord = { verb: request.verb, hash, submitTimeMs, sendOk: false, retries: 0 };
             await sendProvider.send('eth_sendRawTransaction', [signedTx]);
-            const receipt = await this._waitForReceipt(hash);
+            txRecord.sendOk = true;
+            const receipt = await this._waitForReceipt(hash, signedTx, txRecord);
             const confirmTimeMs = Date.now();
 
             status.SetResult(receipt);
@@ -340,7 +521,20 @@ class VotingConnector extends ConnectorBase {
                 blockNumber: parseInt(receipt.blockNumber, 16),
                 success
             });
+            this._recordTx({
+                ...txRecord,
+                outcome: success ? 'confirmed' : 'reverted',
+                confirmTimeMs,
+                blockNumber: parseInt(receipt.blockNumber, 16)
+            });
         } catch (err) {
+            if (txRecord) {
+                this._recordTx({
+                    ...txRecord,
+                    outcome: txRecord.sendOk ? 'no-receipt' : 'send-failed',
+                    error: err.message.split('\n')[0].slice(0, 200)
+                });
+            }
             status.SetStatusFail();
             logger.error(`Failed tx ${request.contract}.${request.verb}(${JSON.stringify(request.args)}): ${err.message}`);
         }

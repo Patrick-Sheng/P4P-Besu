@@ -81,7 +81,9 @@ async function main() {
     const contract = await factory.deploy(numCandidates, { gasPrice: 0n, gasLimit: 3000000n, type: 0 });
     await contract.waitForDeployment();
     const address = await contract.getAddress();
-    console.log(`Deployed VotingSystem at ${address}`);
+    // first block that can hold this contract's events (monitoring/audit-tally.js scans from here)
+    const deployBlock = (await contract.deploymentTransaction().wait()).blockNumber;
+    console.log(`Deployed VotingSystem at ${address} (block ${deployBlock})`);
 
     const abiPathAbs = ARTIFACT_PATH;
     const networksDir = path.join(__dirname, 'networks');
@@ -103,7 +105,8 @@ async function main() {
                 }
             },
             adminPrivateKey: adminKey,
-            numCandidates
+            numCandidates,
+            deployBlock
         }
     };
     fs.writeFileSync(networkConfigPath, JSON.stringify(networkConfig, null, 2));
