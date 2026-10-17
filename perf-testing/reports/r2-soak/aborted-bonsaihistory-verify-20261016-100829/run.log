@@ -1,0 +1,17 @@
+[2026-10-16 10:08:30] === Round 2 phase 'verify' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/verify-20261016-100829) ===
+[2026-10-16 10:08:33] CPU probe: 0.96s (normal ~1.15s)
+[2026-10-16 10:08:33] Pools empty after 0s
+scan 0/3300000 voted 500 (0s)
+scan 500000/3300000 voted 500500 (327s)
+scan 1000000/3300000 voted 1000500 (705s)
+Error: voter batch at 1301500 failed after 10 attempts
+    at main (/home/patrick/P4P/P4P-Besu/perf-testing/loadgen/verify.js:129:38)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-10-16 10:27:17] Verify: 
+[2026-10-16 10:27:17]   validator1 final DB 2608 MB
+[2026-10-16 10:27:17]   validator2 final DB 2646 MB
+[2026-10-16 10:27:17]   validator3 final DB 2572 MB
+[2026-10-16 10:27:17]   validator4 final DB 2575 MB
+[2026-10-16 10:27:18] Prometheus snapshot: 
+[2026-10-16 10:27:18] CRASH_REASON=VERIFICATION_FAILED :: see verify.json
+[2026-10-16 10:27:18] RESULT: ABORTED during 'archive' - VERIFICATION_FAILED :: see verify.json

@@ -1,0 +1,35 @@
+[2026-10-16 06:55:05] === Round 2 phase 'area2' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/area2-20261016-065505) ===
+[2026-10-16 06:55:11] CPU probe: 1.09s (normal ~1.15s)
+[2026-10-16 06:55:14] 9.1: 18000 reserve votes at 30/s to validators 1-3; crash validator 4 at +120s for 300s
+[a2-crash] castVote voters [2800000, 2818000) at 30 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/area2-20261016-065505/a2-crash.csv
+[a2-crash] t=60s sent 1800 (30.0/s) ok 1770 reverted 0 send_err 0 pending 30 head 16278
+[2026-10-16 06:57:14] 9.1: validator 4 crashed (SIGKILL) at block 16307
+[a2-crash] t=120s sent 3600 (30.0/s) ok 3570 reverted 0 send_err 0 pending 30 head 16308
+[a2-crash] t=180s sent 5401 (30.0/s) ok 5339 reverted 0 send_err 0 pending 62 head 16330
+[a2-crash] t=240s sent 7201 (30.0/s) ok 7167 reverted 0 send_err 0 pending 34 head 16352
+[a2-crash] t=300s sent 9001 (30.0/s) ok 8850 reverted 0 send_err 0 pending 151 head 16373
+[a2-crash] t=360s sent 10801 (30.0/s) ok 10770 reverted 0 send_err 0 pending 31 head 16397
+[a2-crash] t=420s sent 12601 (30.0/s) ok 12508 reverted 0 send_err 0 pending 93 head 16418
+[2026-10-16 07:03:02] 9.1: chain advanced 16307 -> 16418 while validator 4 was down (111 blocks in 300 s); validator 4 reached head 48s after restart
+[a2-crash] t=480s sent 14402 (30.0/s) ok 14339 reverted 0 send_err 0 pending 63 head 16440
+[a2-crash] t=540s sent 16202 (30.0/s) ok 16140 reverted 0 send_err 0 pending 62 head 16470
+[a2-crash] DONE {"label":"a2-crash","from":2800000,"count":18000,"skippedAlreadyVoted":0,"targetRate":30,"sent":18000,"ok":18000,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":30,"throughput":29.98,"latencyMs":{"p50":2094,"p95":5063,"p99":6072,"max":8059,"mean":2365},"sendLagMs":{"p50":40,"p99":106.666748046875,"max":803.333251953125},"startMs":1792133714982,"sendEndMs":1792134314998,"endMs":1792134315646,"blocksWatched":252}
+[2026-10-16 07:05:15] 9.1 result: {"sent":18000,"ok":18000,"reverted":0,"dropped":0,"sendErrors":0,"successPct":100}; p95 before/during/after crash 3989/5220/5086 ms; rejoin 48s
+[2026-10-16 07:06:15] 9.2: 18000 reserve votes at 30/s to validators 1-2; crash validators 3+4 at +120s for 180s
+[a2-quorum] castVote voters [2818000, 2836000) at 30 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/area2-20261016-065505/a2-quorum.csv
+[a2-quorum] t=60s sent 1800 (30.0/s) ok 1755 reverted 0 send_err 0 pending 45 head 16561
+[2026-10-16 07:08:15] 9.2: validators 3 and 4 crashed at block 16591; holding 180s
+[a2-quorum] t=120s sent 3600 (30.0/s) ok 3555 reverted 0 send_err 0 pending 45 head 16591
+[a2-quorum] t=180s sent 5400 (30.0/s) ok 3555 reverted 0 send_err 0 pending 1845 head 16591
+[a2-quorum] t=240s sent 7201 (30.0/s) ok 3555 reverted 0 send_err 0 pending 3646 head 16591
+[2026-10-16 07:11:16] 9.2: during hold heights 16591 -> 16591 (halted: yes); v1/v2 at 16591/16591, same hash: yes; pool on v1 5431
+[a2-quorum] t=300s sent 9001 (30.0/s) ok 3555 reverted 0 send_err 0 pending 5446 head 16591
+[a2-quorum] t=360s sent 10801 (30.0/s) ok 3555 reverted 0 send_err 0 pending 7246 head 16591
+[a2-quorum] t=420s sent 12602 (30.0/s) ok 3555 reverted 0 send_err 0 pending 9047 head 16591
+[a2-quorum] t=480s sent 14402 (30.0/s) ok 3555 reverted 0 send_err 0 pending 10847 head 16591
+[a2-quorum] t=542s sent 16166 (29.8/s) ok 3555 reverted 0 send_err 0 pending 12611 head 16591
+[2026-10-16 07:16:02] 9.2: first new block 286s after restarting validators 3 and 4
+[2026-10-16 07:23:37] 9.2: pool backlog (peak 5431) cleared 454s after restart
+[a2-quorum] DONE {"label":"a2-quorum","from":2818000,"count":18000,"skippedAlreadyVoted":0,"targetRate":30,"sent":18000,"ok":18000,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":29.94,"throughput":17.3,"latencyMs":{"p50":564552,"p95":732482,"p99":763170,"max":779908,"mean":478541},"sendLagMs":{"p50":40,"p99":6762,"max":9828.666748046875},"startMs":1792134376464,"sendEndMs":1792134977665,"endMs":1792135417913,"blocksWatched":86}
+[2026-10-16 07:23:44] 9.2 result: {"sent":18000,"ok":18000,"reverted":0,"dropped":0,"sendErrors":0,"successPct":100}; 5406 votes sent during the halt, 0 not confirmed
+[2026-10-16 07:23:44] RESULT: COMPLETED crash-f1 + quorum-loss done

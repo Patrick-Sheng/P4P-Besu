@@ -1,0 +1,7 @@
+2026-10-15 05:44:16 n4-20261015-050506 PASS max_sustainable=150 dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-scalability/n4-20261015-050506
+2026-10-15 05:59:10 n7-20261015-054436 BREAK max_sustainable=0 reason='MAX_SUSTAINABLE_BELOW_50 :: no load step passed (lowest 50 votes/s)' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-scalability/n7-20261015-054436
+- 2026-10-15 06:21:18 extension launched: n=10,13,16 idle + 25 votes/s only (user decision: beyond plan stop rule, for curve fit)
+2026-10-15 06:31:56 n10-20261015-062118 BREAK step='step 25 votes/s: register 7500 voters' max_sustainable=0 reason='NODE_STUCK :: validator8 at 199 vs 220; chain still advancing - node alive but not importing blocks; thread dumps: threaddump-v*.txt' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-scalability/n10-20261015-062118
+- 2026-10-15 06:32:03 idle-only baselines n=13,16 (curve-fit points; no load steps)
+2026-10-15 06:39:28 n13-20261015-063203 ERROR step='verdict' reason='DRIVER_ERROR :: step 'verdict' exited with code 1; MemAvailable 8091MB, load 1.58' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-scalability/n13-20261015-063203
+2026-10-15 06:50:30 n16-20261015-063948 BREAK max_sustainable=0 reason='MAX_SUSTAINABLE_BELOW_50 :: no load step passed (lowest none votes/s)' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-scalability/n16-20261015-063948

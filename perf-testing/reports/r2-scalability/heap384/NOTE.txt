@@ -1,0 +1,6 @@
+Reference only - superseded by the 1 GiB-heap ladder (user decision 2026-10-15).
+Fixed 384 MiB heap per node. n=4: 50 votes/s sustainable; 100 votes/s failed after ~2.5 min
+when heap-after-GC (rising ~15-20 MB/min under load, 53 MB -> 371 MB cap) hit the heap ceiling,
+causing 1.2-1.6 s full GCs on every validator -> block time 3.7 s, pool backlog 7,800, p95 101 s.
+Same symptom as round 1's "steady memory growth to the per-node cap after ~70k transactions".
+n=7 was stopped during startup.

@@ -1,0 +1,9 @@
+INVALID - load-generator artefact, not a network breaking point.
+At 100 votes/s the chain stalled at block 562 (watchdog CONSENSUS_STALL, 03:13:44).
+Thread dumps: validators 1 and 2 (the two endpoints the 2 Caliper workers watch) had
+vert.x RPC threads blocked 76-90 s inside EthGetBlockReceipts, which in Besu 24.12.0
+re-decodes the block's whole receipt list once per transaction (O(n^2): ~350k receipt
+decodes for the 595-tx block #561), and their BftProcessor threads were starved while
+validating #562. Without v1+v2 there is no 3-of-4 quorum, so the chain stopped.
+Fix: confirmation tracking switched to eth_getBlockByNumber + eth_getLogs (O(n)).
+The idle baseline and 50 votes/s step of this run were valid but are rerun for consistency.

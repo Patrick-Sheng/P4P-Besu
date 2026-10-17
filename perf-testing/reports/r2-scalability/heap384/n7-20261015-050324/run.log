@@ -1,0 +1,31 @@
+[05:03:24] === Round 2 Area 1 n7-20261015-050324: n=7, idle 300s, steps 50 100 150 200 votes/s x 300s ===
+[05:03:24] Fixed per node: heap 384MB, MemoryMax 1024MB, --tx-pool-max-size=16384; slice 13488MB; loadgen 1536MB
+[05:03:24] Host: 6 vCPU, MemTotal 15988MB, MemAvailable 13572MB, disk free 160GB
+[05:03:30] CPU probe: 1.58s (normal ~1.15s)
+[05:03:30] Starting fresh 7-validator chain...
+Starting 7 native besu validators (RPC ports 20700..20706) as systemd units p4p-besu-n7-v1..7, heap 384M, MemoryMax 1024M each, --tx-pool-max-size=16384...
+PIDs written to generated/n7/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20700): NOT RESPONDING YET
+  validator2 (port 20701): NOT RESPONDING YET
+  validator3 (port 20702): NOT RESPONDING YET
+  validator4 (port 20703): NOT RESPONDING YET
+  validator5 (port 20704): NOT RESPONDING YET
+  validator6 (port 20705): NOT RESPONDING YET
+  validator7 (port 20706): NOT RESPONDING YET
+network-meta written to generated/n7/network-meta.json
+[05:03:40] Waiting for every validator to report 6 peers...
+[05:04:41] All 7 validators report 6 peers; height 16
+[05:04:41] txpool_besuStatistics maxSize=16384
+[05:04:41] Deploying VotingSystem...
+Waiting for 7 validator(s) to come up and start producing blocks...
+Network live. Block heights: 17, 17, 17, 17, 17, 17, 17
+Deploying VotingSystem(numCandidates=3) via 0x018605c432063a9F021E47e009198Ae49221Af84 on http://127.0.0.1:20700...
+Deployed VotingSystem at 0xCb7B156ADc540623607Ff8C286aD7e351F915CD8 (block 19)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n7.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n7-voters.json
+  node seed/register-voters.js networks/besu-n7.json seed/generated/n7-voters.json
+[05:04:49] Contract: 0xCb7B156ADc540623607Ff8C286aD7e351F915CD8
+[05:04:49] Idle baseline: 300s, no load...
+[05:04:53] CRASH_REASON=DRIVER_DIED :: p4p-r2-area1 is no longer active (result=success)

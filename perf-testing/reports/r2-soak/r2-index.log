@@ -1,0 +1,48 @@
+2026-10-15 07:00:30 smoke COMPLETED smoke passed; projection chain 0 GB + snapshot 0 GB fits in 159 GB dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/smoke-20261015-065131
+2026-10-15 07:08:24 seed PAUSED by user request (offline break) at register.progress=46370, head 0xd7; chain stopped gracefully, data kept - resume with: scripts/run-r2.sh seed calibrate
+2026-10-15 11:35:33 seed restarted with scaled targets (user decision: 2.8M soak votes, 3.3M voters, soak 150/s if sustainable)
+2026-10-15 12:08:22 seeding: validator MemoryMax raised 2900->3300 MB at runtime (off-heap ~0.85 GB, not the 0.3-0.5 GB the plan budgeted; 2 GiB heap + off-heap would exceed 2.9 GB)
+2026-10-15 12:39:57 seed ABORTED step='seed: register 3300000' reason='DRIVER_ERROR :: step 'seed: register 3300000' exited 1' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/seed-20261015-113534
+2026-10-15 12:39:59 seed restarted at progress 899888: watchdog now does rolling graceful restarts above 3000 MB anon (seeding only); generator retries sends through validator restarts
+2026-10-15 15:03:41 seed: watchdog restarted with P4P_RESTART_ANON_MB=2500 (all 4 validators ~2.5 GB anon, 3.2 GB RAM free)
+2026-10-15 17:22:31 seed COMPLETED seeded 3300000 voters in 16708s; snapshot saved dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/seed-20261015-124000
+2026-10-15 17:41:39 calibrate COMPLETED max sustainable 75/s, soak rate 60/s; seeded snapshot restored dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/calibrate-20261015-172231
+2026-10-15 21:37:37 calibrate (2 GiB heap) kept as reference: max 75/s; rerunning calibration with 1 GiB heap / 2.6 GB cap (user decision) for soak config
+2026-10-15 22:11:27 calibrate COMPLETED max sustainable 150/s, soak rate 150/s; seeded snapshot restored dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/calibrate-20261015-213738
+2026-10-15 22:11:39 PAUSED by user request after calibration (1 GiB heap: max 150/s -> soak 150/s). Data = restored 'seeded' snapshot. Resume with: scripts/run-r2.sh soak double area2 verify
+2026-10-15 23:52:44 soak ABORTED step='init' reason='HOST_SLOW :: CPU probe 1.53s > 1.5s - host throttled or power-limited (check Windows power mode / VirtualBox efficiency mode)' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261015-235237
+2026-10-16 00:31:28 soak ABORTED step='soak round 2' reason='POOL_GROWING_10MIN :: pool 151 -> 31290 over 10 min at 150/s (round 2) - throughput finding: restore snapshot and rerun at 80% of this rate' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261015-235323
+2026-10-16 00:44:54 soak at 150/s ABORTED in round 2 (POOL_GROWING_10MIN: state outgrew page cache + 32 MB RocksDB cache -> disk/CPU bound, blocks 10-20 s). Kept as aborted-pool-soak150-*. Per plan rule: snapshot restored, rerunning at 120/s (user decision)
+2026-10-16 00:45:53 soak ABORTED step='init' reason='HOST_SLOW :: CPU probe 2.05s > 1.5s - host throttled or power-limited (check Windows power mode / VirtualBox efficiency mode)' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-004505
+2026-10-16 00:46:39 CORRECTION: the 150/s soak abort coincides with a host slowdown (in-run CPU probe 100 ms -> 523 ms at 00:23:12, before the pool grew, VM CPU 72%). Treat as CONFOUNDED by host throttling, not a clean state-size finding. Rerun at 120/s blocked by HOST_SLOW guard (probes 1.88/1.56/2.05 s). Waiting for host fix.
+2026-10-16 00:59:22 soak 120/s stopped manually in round 1: VM CPU-starved (CPU pressure 72%, IO 5-7%, 16 s blocks, 19 round expiries) right after a 0.94 s pre-check - host CPU unstable. Snapshot restored; waiting for host fix.
+2026-10-16 01:59:54 host stable (2 clean loaded checks) - launching soak at 120/s
+2026-10-16 02:06:45 soak ABORTED step='soak round 1' reason='BLOCK_TIME_ABOVE_6S :: 23 blocks in 303s (round 1)' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-015955
+2026-10-16 02:10:04 soak 120/s ABORTED in round 1 (BLOCK_TIME_ABOVE_6S: 23 blocks in 303 s): cold-start JVMs need ~2x CPU for the first minutes and the host was ~2x slower than during calibration (in-run probe 245-267 ms vs 75-130) - backlog spiral. Snapshot restored.
+2026-10-16 02:18:29 launching soak at 120/s with warm-up ramp 30/60/90 (user decision)
+2026-10-16 03:03:34 soak ABORTED step='soak round 2' reason='BLOCK_TIME_ABOVE_6S :: 40 blocks in 304s (round 2)' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-021830
+2026-10-16 03:05:26 soak 120/s ABORTED in round 2 (BLOCK_TIME_ABOVE_6S: 40 blocks in 304 s) during a host slowdown that began ~02:54 and did not recover. Round 1 COMPLETE (200,000 ok). Chain stopped gracefully WITHOUT restore - resumable from round 2 (P4P_SOAK_FROM_ROUND=2; partially-cast round 2 voters will revert as Already voted).
+2026-10-16 03:09:41 resuming soak from round 2 at 120/s; slow-block / pool-growth periods now recorded as host episodes (episodes.csv), abort only at pool > 50,000, lost votes, hash mismatch, crash (user decision)
+2026-10-16 04:02:26 soak ABORTED step='soak round 3' reason='CONSENSUS_STALL :: block height stuck at 12500 for 187s (blockperiod=2s) - IBFT lost liveness; thread dumps: threaddump-v*.txt' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-030942
+2026-10-16 04:02:28 soak stalled in round 3 at block 12500: validator2 BftProcessor deadlocked on MainnetBlockImporter (Besu 24.12.0 sync/import deadlock, same as Area 1 n=10) after v1 synced a 5,407-tx block during a slow-block episode; v3/v4 escalated to round 5. CONSENSUS_STALL abort. Rounds 1-2 complete, no lost votes, no fork. Thread dumps in soak-20261016-030942/deadlock-0402/
+2026-10-16 04:02:39 resuming soak from round 3 at 120/s
+2026-10-16 04:31:26 soak rate lowered 120 -> 90/s from round 3 (resume) - host sluggish, VM pinned 85-95% at 120/s (user decision). Warm-up now 30/60 from reserve 3,100,000.
+2026-10-16 05:30:25 soak ABORTED step='soak round 4' reason='POOL_NEAR_CAP :: pool 50201 of 65536 - votes would start being evicted (round 4)' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-043132
+2026-10-16 05:31:57 user: continue soak to 1M (rounds 4-5, incl. Area 3 1M checkpoint) then simplify. Resuming round 4 at 90/s, P4P_SOAK_ROUNDS=5, soak phase only.
+2026-10-16 06:29:24 soak COMPLETED soak 5 rounds at 90/s complete dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-053204
+2026-10-16 06:30:47 soak reached 1M (rounds 1-5, zero lost). 1M attack checkpoint INVALID (tooling: ABI path) - rerunning via soak-attacks with live 90/s traffic
+2026-10-16 06:43:07 1M checkpoint rerun halted after 8/8 attacks blocked: chain stalled at 15991 - v1+v4 imported via sync path (1,767-tx block) and stopped participating in IBFT (Besu 24.12 sync-status stops BFT coordinator); v2+v3 escalated to round 5; no quorum. Not host (probe 1.04 s). Thread dumps in reports/r2-soak/soak-attacks-20261016-063048/
+2026-10-16 06:45:42 simplified finish (user decision): remaining 19 attacks at 30/s traffic; double-vote; Area 2 at 30/s (pre 120 s, crash 300 s, post 180 s; quorum pre 120 s, hold 180 s, post 300 s); verify. 2M/2.8M checkpoints dropped.
+2026-10-16 06:53:37 soak-attacks COMPLETED checkpoint 1M: 27/27 attacks blocked; 12056 live votes recorded dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-attacks-20261016-064545
+2026-10-16 06:53:54 double ABORTED step='mass double vote' reason='DOUBLE_VOTE_CHECK_FAILED :: see double-vote.csv.summary.json' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/double-20261016-065337
+2026-10-16 06:54:23 Area 3 1M checkpoint: 27/27 blocked. Mass double-vote range restricted to 0:1000000 (soak cut at 1M); continuing double, area2, verify
+2026-10-16 06:55:05 double COMPLETED 1000/1000 double votes reverted, tallies unchanged dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/double-20261016-065424
+2026-10-16 07:23:44 area2 COMPLETED crash-f1 + quorum-loss done dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/area2-20261016-065505
+                                                    2026-10-16 09:48:26 verify interrupted by VM power-off (07:2x); rerunning after reboot
+2026-10-16 10:06:41 verify ABORTED step='archive' reason='VERIFICATION_FAILED :: see verify.json' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/verify-20261016-094827
+2026-10-16 10:07:20 verify scan crashed at 1.5M (batch item error, no retry in verify.js); fixed with retries, rerunning
+2026-10-16 10:08:29 verify restarted with voted-set tally check (expected-from-ok-rows misses ~50k votes that landed after aborted generators stopped)
+2026-10-16 10:27:18 verify ABORTED step='archive' reason='VERIFICATION_FAILED :: see verify.json' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/verify-20261016-100829
+2026-10-16 10:28:10 verify scan failed again at 1.3M: reads pinned to the start height exceed BONSAI's ~512-block state history (~17 min). Scan now uses latest state (chain idle) + end-of-scan tally stability check
+2026-10-16 11:25:12 verify COMPLETED verification passed dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/verify-20261016-102811
+2026-10-16 11:26:25 ALL TESTS COMPLETE. Verification passed. Chain and monitoring stopped cleanly. Report: reports/r2-soak/R2-ELECTION-SCALE-RESULTS.md

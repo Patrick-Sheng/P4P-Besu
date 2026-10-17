@@ -1,0 +1,1 @@
+CONSENSUS_STALL :: block height stuck at 15991 for 180s (blockperiod=2s) - IBFT lost liveness; thread dumps: threaddump-v*.txt

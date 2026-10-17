@@ -1,0 +1,53 @@
+[2026-10-16 04:02:41] === Round 2 phase 'soak' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-040240) ===
+[2026-10-16 04:02:45] CPU probe: 1.05s (normal ~1.15s)
+[2026-10-16 04:04:17] Starting 4-validator chain (keep): heap 1024MB, MemoryMax 2600MB, --tx-pool-max-size=65536, metrics on, slice 14488MB
+P4P_KEEP_DATA=1: reusing existing generated/n4/data-native (logs appended)
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 1024M, MemoryMax 2600M each, --tx-pool-max-size=65536...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[2026-10-16 04:05:16] Chain up: all validators have 3 peers, height 12518, pool maxSize 65536
+monitoring started for n=4: Prometheus :9090, Grafana :3000, node_exporter :9100
+[2026-10-16 04:05:57] Prometheus targets UP: 5/5; Grafana health: {"database":"ok","version":"11.2.0","commit":"c57667e4481563f5e6cf945b03bc0626caa4dbeb"}
+voted-scan [400000, 600000): 52523 already voted -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-040240/skip-r3.txt
+[2026-10-16 04:09:13] Resume: 52523 voters of round 3 already Voted - they will be skipped
+[2026-10-16 04:09:13] Warm-up: 30 votes/s for 3 min (voters 3264800..3270200)
+[warmup-30] castVote voters [3264800, 3270200) at 30 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-040240/soak-r00.csv
+[warmup-30] t=60s sent 1800 (30.0/s) ok 1731 reverted 0 send_err 0 pending 69 head 12662
+[warmup-30] t=120s sent 3600 (30.0/s) ok 3531 reverted 0 send_err 0 pending 69 head 12692
+[warmup-30] DONE {"label":"warmup-30","from":3264800,"count":5400,"skippedAlreadyVoted":0,"targetRate":30,"sent":5400,"ok":5400,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":30,"throughput":29.65,"latencyMs":{"p50":2201,"p95":6284,"p99":9369,"max":11189,"mean":2588},"sendLagMs":{"p50":42,"p99":255.666748046875,"max":632.333251953125},"startMs":1792123754256,"sendEndMs":1792123934267,"endMs":1792123936941,"blocksWatched":87}
+[2026-10-16 04:12:16] Warm-up 30/s: {"ok":5400,"dropped":0,"successPct":100,"p95":6284}
+[2026-10-16 04:12:16] Warm-up: 60 votes/s for 3 min (voters 3270200..3281000)
+[warmup-60] castVote voters [3270200, 3281000) at 60 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-040240/soak-r00.csv
+[warmup-60] t=60s sent 3599 (60.0/s) ok 3391 reverted 0 send_err 0 pending 208 head 12754
+[warmup-60] t=120s sent 7199 (60.0/s) ok 6995 reverted 0 send_err 0 pending 204 head 12782
+[warmup-60] DONE {"label":"warmup-60","from":3270200,"count":10800,"skippedAlreadyVoted":0,"targetRate":60,"sent":10800,"ok":10800,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":59.99,"throughput":59.61,"latencyMs":{"p50":2481,"p95":4702,"p99":5656,"max":6775,"mean":2603},"sendLagMs":{"p50":27.333251953125,"p99":204,"max":392},"startMs":1792123937403,"sendEndMs":1792124117439,"endMs":1792124119143,"blocksWatched":90}
+[2026-10-16 04:15:19] Warm-up 60/s: {"ok":10800,"dropped":0,"successPct":100,"p95":4702}
+[2026-10-16 04:15:19] Warm-up: 90 votes/s for 3 min (voters 3281000..3297200)
+[warmup-90] castVote voters [3281000, 3297200) at 90 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-040240/soak-r00.csv
+[warmup-90] t=60s sent 5400 (90.0/s) ok 5168 reverted 0 send_err 0 pending 232 head 12844
+[warmup-90] t=120s sent 10800 (90.0/s) ok 10518 reverted 0 send_err 0 pending 282 head 12872
+[warmup-90] t=180s sent 16200 (90.0/s) ok 15699 reverted 0 send_err 0 pending 501 head 12898
+[warmup-90] DONE {"label":"warmup-90","from":3281000,"count":16200,"skippedAlreadyVoted":0,"targetRate":90,"sent":16200,"ok":16200,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":89.94,"throughput":88.42,"latencyMs":{"p50":2832,"p95":6314,"p99":8719,"max":10630,"mean":3159},"sendLagMs":{"p50":24.333251953125,"p99":268.5556640625,"max":824.111083984375},"startMs":1792124120541,"sendEndMs":1792124300655,"endMs":1792124304135,"blocksWatched":85}
+[2026-10-16 04:18:24] Warm-up 90/s: {"ok":16200,"dropped":0,"successPct":100,"p95":6314}
+[2026-10-16 04:18:24] Round 3/14: voters 400000..600000 at 120/s (~27 min)
+[soak-r3] castVote voters [400000, 600000) at 120 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-040240/soak-r03.csv
+[soak-r3] skipping 52523 voters already Voted (resumed round)
+[soak-r3] t=60s sent 7204 (119.8/s) ok 6794 reverted 0 send_err 0 pending 410 head 12921
+[soak-r3] t=120s sent 14303 (118.7/s) ok 10644 reverted 0 send_err 0 pending 3659 head 12929
+[watcher] block 12945: "missing"
+[soak-r3] t=181s sent 21644 (119.9/s) ok 21197 reverted 0 send_err 0 pending 447 head 12947
+[soak-r3] t=241s sent 28863 (119.9/s) ok 27557 reverted 0 send_err 0 pending 1306 head 12966
+[soak-r3] t=301s sent 36073 (120.0/s) ok 35281 reverted 0 send_err 0 pending 792 head 12983
+[soak-r3] t=361s sent 43290 (120.0/s) ok 41779 reverted 0 send_err 0 pending 1511 head 12989
+[soak-r3] t=421s sent 50485 (119.9/s) ok 49141 reverted 0 send_err 0 pending 1344 head 13007
+[soak-r3] t=481s sent 57620 (119.8/s) ok 53802 reverted 0 send_err 0 pending 3818 head 13017
+[soak-r3] t=541s sent 64931 (120.0/s) ok 59327 reverted 0 send_err 0 pending 5604 head 13024
+[soak-r3] t=601s sent 72134 (120.0/s) ok 61555 reverted 0 send_err 0 pending 10579 head 13027
+[2026-10-16 04:28:29] EPISODE slow_blocks (round 3): 43 blocks in 302s; pool 10874; last CPU probe 130 ms - recorded, not aborting
+[soak-r3] t=661s sent 79340 (120.0/s) ok 64452 reverted 0 send_err 0 pending 14888 head 13030
+[soak-r3] t=721s sent 86358 (119.7/s) ok 67492 reverted 0 send_err 0 pending 18866 head 13034
+[soak-r3] t=781s sent 93760 (120.0/s) ok 71821 reverted 0 send_err 0 pending 21939 head 13039

@@ -1,0 +1,20 @@
+[2026-10-16 00:52:08] === Round 2 phase 'soak' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-005208) ===
+[2026-10-16 00:52:11] CPU probe: 0.94s (normal ~1.15s)
+[2026-10-16 00:52:11] Starting 4-validator chain (keep): heap 1024MB, MemoryMax 2600MB, --tx-pool-max-size=65536, metrics on, slice 14488MB
+P4P_KEEP_DATA=1: reusing existing generated/n4/data-native (logs appended)
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 1024M, MemoryMax 2600M each, --tx-pool-max-size=65536...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[2026-10-16 00:53:09] Chain up: all validators have 3 peers, height 10401, pool maxSize 65536
+monitoring started for n=4: Prometheus :9090, Grafana :3000, node_exporter :9100
+[2026-10-16 00:53:49] Prometheus targets UP: 5/5; Grafana health: {"database":"ok","version":"11.2.0","commit":"c57667e4481563f5e6cf945b03bc0626caa4dbeb"}
+[2026-10-16 00:53:53] Round 1/14: voters 0..200000 at 120/s (~27 min)
+[soak-r1] castVote voters [0, 200000) at 120 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-005208/soak-r01.csv
+[soak-r1] t=61s sent 6563 (107.0/s) ok 320 reverted 0 send_err 0 pending 6243 head 10426
+[soak-r1] t=121s sent 14563 (120.0/s) ok 7342 reverted 0 send_err 0 pending 7221 head 10431
+[soak-r1] t=181s sent 21765 (120.0/s) ok 11903 reverted 0 send_err 0 pending 9862 head 10435
+[soak-r1] t=241s sent 28966 (120.0/s) ok 14461 reverted 0 send_err 0 pending 14505 head 10438
