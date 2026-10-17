@@ -1,0 +1,6 @@
+[2026-10-16 06:53:39] === Round 2 phase 'double' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/double-20261016-065337) ===
+[2026-10-16 06:53:42] CPU probe: 0.92s (normal ~1.15s)
+Precondition failed: 616 picked voters are not in Voted state, e.g. 1040477,1049144,1051124,1053625,1054557
+[2026-10-16 06:53:54] Mass double vote: 
+[2026-10-16 06:53:54] CRASH_REASON=DOUBLE_VOTE_CHECK_FAILED :: see double-vote.csv.summary.json
+[2026-10-16 06:53:54] RESULT: ABORTED during 'mass double vote' - DOUBLE_VOTE_CHECK_FAILED :: see double-vote.csv.summary.json

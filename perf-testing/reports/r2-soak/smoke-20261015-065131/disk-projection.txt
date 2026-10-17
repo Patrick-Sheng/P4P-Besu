@@ -1,0 +1,1 @@
+reg_bytes=0,vote_bytes=0,chain_gb=0,snapshot_gb=0,free_gb=159

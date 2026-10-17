@@ -1,0 +1,23 @@
+Registered voter 0x4097cE528A1b8393de6871081264BeA3C206462d
+Broadcasting original vote...
+Original vote confirmed in block 172 (tally 14 -> 15)
+Replaying the exact same raw signed transaction...
+  replay rejected at submission: nonce has already been used (transaction="0xf886808083030d4094611566e24072decc92dd9c19f5a5bbc2fb68148280a494a135410000000000000000000000000000000000000000000000000000000000000000820a95a069a8ab07e798b7811735c854e98e02537988bd11cb09e180ebeddfd1b682ea8da025b4be858548b8ec4011e567e4e030bb3000b5aa387a086327db6d2e20ab627d", info={ "error": { "code": -32001, "message": "Nonce too low" } }, code=NONCE_EXPIRED, version=6.17.0)
+Tally after replay attempt: 15 (attacker-attributable change 0, expected 0)
+Replay rejected outright: true; replay returned identical tx hash: false
+PASS: replayed transaction had no further effect on chain state - no double count.
+Cross-node check at block 176 (tallies for candidates 0):
+  validator1: 15  0x3fba57d3aa83c41b2fdf6ffb98370d383749c6d6d121abc8e69f3e33536c7f9a
+  validator2: 15  0x3fba57d3aa83c41b2fdf6ffb98370d383749c6d6d121abc8e69f3e33536c7f9a
+  validator3: 15  0x3fba57d3aa83c41b2fdf6ffb98370d383749c6d6d121abc8e69f3e33536c7f9a
+  validator4: 15  0x3fba57d3aa83c41b2fdf6ffb98370d383749c6d6d121abc8e69f3e33536c7f9a
+  validator5: 15  0x3fba57d3aa83c41b2fdf6ffb98370d383749c6d6d121abc8e69f3e33536c7f9a
+  validator6: 15  0x3fba57d3aa83c41b2fdf6ffb98370d383749c6d6d121abc8e69f3e33536c7f9a
+  validator7: 15  0x3fba57d3aa83c41b2fdf6ffb98370d383749c6d6d121abc8e69f3e33536c7f9a
+  validator8: 15  0x3fba57d3aa83c41b2fdf6ffb98370d383749c6d6d121abc8e69f3e33536c7f9a
+  validator9: 15  0x3fba57d3aa83c41b2fdf6ffb98370d383749c6d6d121abc8e69f3e33536c7f9a
+  validator10: 15  0x3fba57d3aa83c41b2fdf6ffb98370d383749c6d6d121abc8e69f3e33536c7f9a
+  validator11: 15  0x3fba57d3aa83c41b2fdf6ffb98370d383749c6d6d121abc8e69f3e33536c7f9a
+  validator12: 15  0x3fba57d3aa83c41b2fdf6ffb98370d383749c6d6d121abc8e69f3e33536c7f9a
+  validator13: 15  0x3fba57d3aa83c41b2fdf6ffb98370d383749c6d6d121abc8e69f3e33536c7f9a
+PASS: all 13 validators report identical tallies and block hash at #176

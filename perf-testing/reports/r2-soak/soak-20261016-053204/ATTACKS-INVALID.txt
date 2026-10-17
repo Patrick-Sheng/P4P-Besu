@@ -1,0 +1,1 @@
+Attack scripts failed to start (ENOENT on VotingSystem.json: ABI resolved relative to the r2 state dir). No attack transactions were sent. Not a security result. Rerun as phase soak-attacks.

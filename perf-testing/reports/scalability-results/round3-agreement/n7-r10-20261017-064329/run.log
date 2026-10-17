@@ -1,0 +1,52 @@
+[06:43:30] === Round 3 agreement time n7-r10-20261017-064329: n=7, 100 ms block period, load 10 votes/s, measure 300s ===
+[06:43:33] Per node: heap 1024MB, MemoryMax 1800MB, pool 65536; slice 12488MB; CPU probe 1.01s
+Removing previous generated network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n7
+Generating 7 validator keys + genesis...
+2026-10-17 06:43:35.753+00:00 | main | INFO  | GenerateBlockchainConfig | Generating 7 nodes keys.
+2026-10-17 06:43:35.757+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 0.
+2026-10-17 06:43:35.815+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 1.
+2026-10-17 06:43:35.820+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 2.
+2026-10-17 06:43:35.823+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 3.
+2026-10-17 06:43:35.824+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 4.
+2026-10-17 06:43:35.826+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 5.
+2026-10-17 06:43:35.828+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 6.
+2026-10-17 06:43:35.831+00:00 | main | INFO  | GenerateBlockchainConfig | Generating IBFT extra data.
+2026-10-17 06:43:35.835+00:00 | main | INFO  | GenerateBlockchainConfig | Writing genesis file.
+
+Generated 7-validator network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n7
+  f (max tolerable simultaneous faults) = 2
+  RPC ports: http://127.0.0.1:20700, http://127.0.0.1:20701, http://127.0.0.1:20702, http://127.0.0.1:20703, http://127.0.0.1:20704, http://127.0.0.1:20705, http://127.0.0.1:20706
+
+Next: docker compose -f /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n7/docker-compose.yml up -d
+[06:43:35] Genesis ibft2: {"blockperiodseconds":2,"epochlength":30000,"requesttimeoutseconds":4,"xblockperiodmilliseconds":100}
+Starting 7 native besu validators (RPC ports 20700..20706) as systemd units p4p-besu-n7-v1..7, heap 1024M, MemoryMax 1800M each, --tx-pool-max-size=65536...
+PIDs written to generated/n7/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20700): NOT RESPONDING YET
+  validator2 (port 20701): NOT RESPONDING YET
+  validator3 (port 20702): NOT RESPONDING YET
+  validator4 (port 20703): NOT RESPONDING YET
+  validator5 (port 20704): NOT RESPONDING YET
+  validator6 (port 20705): NOT RESPONDING YET
+  validator7 (port 20706): NOT RESPONDING YET
+network-meta written to generated/n7/network-meta.json
+[06:44:39] All 7 validators report 6 peers
+Waiting for 7 validator(s) to come up and start producing blocks...
+Network live. Block heights: 155, 155, 155, 155, 155, 155, 155
+Deploying VotingSystem(numCandidates=3) via 0x3626D2d7bfcE91Ff07bA047621F67D20250Bc547 on http://127.0.0.1:20700...
+Deployed VotingSystem at 0xCE508F1c4b450844494b725Bfac25A4C8E465F5b (block 161)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n7.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n7-voters.json
+  node seed/register-voters.js networks/besu-n7.json seed/generated/n7-voters.json
+Voting not open - sending openVoting()
+Registering voters [0, 4200) = 4200; admin 0x3626D2d7bfcE91Ff07bA047621F67D20250Bc547 nonce 2; window 500
+[2026-10-17T06:45:55.884Z] confirmed 4029 (62.0 regs/s), inflight 171, reverted 0, resent 0, next 4200, head 267
+DONE register [0, 4200): confirmed 4200, reverted 0, resent 0, 66s, 63.4 regs/s
+[06:45:57] Registered 4200 voters; starting 10 votes/s
+[06:45:57] Settling 60s (JIT warm-up, steady state) before measuring
+[06:46:57] Measuring 300s from 2026-10-17 06:46:57.227 (height 533)
+AGREEMENT run=n7-r10-20261017-064329 n=7 load_votes_per_s=10 block_period_ms=100 blocks=640 intervals=534 mean_ms=187.4 median_ms=175.0 p95_ms=256.0 max_ms=1495.0 round_expiries=0 host_cpu_pct=58.2 besu_cpu_pct=371.1 besu_rss_mb=3784
+Stopped units: p4p-besu-n7-v1.service p4p-besu-n7-v2.service p4p-besu-n7-v3.service p4p-besu-n7-v4.service p4p-besu-n7-v5.service p4p-besu-n7-v6.service p4p-besu-n7-v7.service
+n=7 native network stopped.
+[06:52:05] RESULT: COMPLETED

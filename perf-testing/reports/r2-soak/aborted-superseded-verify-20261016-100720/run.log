@@ -1,0 +1,4 @@
+[2026-10-16 10:07:21] === Round 2 phase 'verify' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/verify-20261016-100720) ===
+[2026-10-16 10:07:24] CPU probe: 0.99s (normal ~1.15s)
+[2026-10-16 10:07:24] Pools empty after 0s
+scan 0/3300000 voted 500 (1s)

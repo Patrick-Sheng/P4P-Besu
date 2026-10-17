@@ -1,0 +1,56 @@
+[06:26:10] === Round 3 agreement time n16-r0-20261017-062609: n=16, 100 ms block period, load 0 votes/s, measure 300s ===
+[06:26:14] Per node: heap 1024MB, MemoryMax 1800MB, pool 65536; slice 12488MB; CPU probe 1.14s
+Removing previous generated network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n16
+Generating 16 validator keys + genesis...
+2026-10-17 06:26:16.786+00:00 | main | INFO  | GenerateBlockchainConfig | Generating 16 nodes keys.
+2026-10-17 06:26:16.791+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 0.
+2026-10-17 06:26:16.847+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 1.
+2026-10-17 06:26:16.851+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 2.
+2026-10-17 06:26:16.853+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 3.
+2026-10-17 06:26:16.857+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 4.
+2026-10-17 06:26:16.859+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 5.
+2026-10-17 06:26:16.860+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 6.
+2026-10-17 06:26:16.861+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 7.
+2026-10-17 06:26:16.863+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 8.
+2026-10-17 06:26:16.865+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 9.
+2026-10-17 06:26:16.866+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 10.
+2026-10-17 06:26:16.868+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 11.
+2026-10-17 06:26:16.869+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 12.
+2026-10-17 06:26:16.870+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 13.
+2026-10-17 06:26:16.871+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 14.
+2026-10-17 06:26:16.872+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 15.
+2026-10-17 06:26:16.874+00:00 | main | INFO  | GenerateBlockchainConfig | Generating IBFT extra data.
+2026-10-17 06:26:16.878+00:00 | main | INFO  | GenerateBlockchainConfig | Writing genesis file.
+
+Generated 16-validator network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n16
+  f (max tolerable simultaneous faults) = 5
+  RPC ports: http://127.0.0.1:21600, http://127.0.0.1:21601, http://127.0.0.1:21602, http://127.0.0.1:21603, http://127.0.0.1:21604, http://127.0.0.1:21605, http://127.0.0.1:21606, http://127.0.0.1:21607, http://127.0.0.1:21608, http://127.0.0.1:21609, http://127.0.0.1:21610, http://127.0.0.1:21611, http://127.0.0.1:21612, http://127.0.0.1:21613, http://127.0.0.1:21614, http://127.0.0.1:21615
+
+Next: docker compose -f /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n16/docker-compose.yml up -d
+[06:26:16] Genesis ibft2: {"blockperiodseconds":2,"epochlength":30000,"requesttimeoutseconds":4,"xblockperiodmilliseconds":100}
+Starting 16 native besu validators (RPC ports 21600..21615) as systemd units p4p-besu-n16-v1..16, heap 1024M, MemoryMax 1800M each, --tx-pool-max-size=65536...
+PIDs written to generated/n16/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 21600): NOT RESPONDING YET
+  validator2 (port 21601): NOT RESPONDING YET
+  validator3 (port 21602): NOT RESPONDING YET
+  validator4 (port 21603): NOT RESPONDING YET
+  validator5 (port 21604): NOT RESPONDING YET
+  validator6 (port 21605): NOT RESPONDING YET
+  validator7 (port 21606): NOT RESPONDING YET
+  validator8 (port 21607): NOT RESPONDING YET
+  validator9 (port 21608): NOT RESPONDING YET
+  validator10 (port 21609): NOT RESPONDING YET
+  validator11 (port 21610): NOT RESPONDING YET
+  validator12 (port 21611): NOT RESPONDING YET
+  validator13 (port 21612): NOT RESPONDING YET
+  validator14 (port 21613): NOT RESPONDING YET
+  validator15 (port 21614): NOT RESPONDING YET
+  validator16 (port 21615): NOT RESPONDING YET
+network-meta written to generated/n16/network-meta.json
+[06:28:13] All 16 validators report 15 peers
+[06:28:13] Settling 60s (JIT warm-up, steady state) before measuring
+[06:29:13] Measuring 300s from 2026-10-17 06:29:13.535 (height 125)
+AGREEMENT run=n16-r0-20261017-062609 n=16 load_votes_per_s=0 block_period_ms=100 blocks=257 intervals=75 mean_ms=672.3 median_ms=663.0 p95_ms=957.0 max_ms=1153.0 round_expiries=0 host_cpu_pct=96.1 besu_cpu_pct=534.3 besu_rss_mb=9131
+Stopped units: p4p-besu-n16-v1.service p4p-besu-n16-v10.service p4p-besu-n16-v11.service p4p-besu-n16-v12.service p4p-besu-n16-v13.service p4p-besu-n16-v14.service p4p-besu-n16-v15.service p4p-besu-n16-v16.service p4p-besu-n16-v2.service p4p-besu-n16-v3.service p4p-besu-n16-v4.service p4p-besu-n16-v5.service p4p-besu-n16-v6.service p4p-besu-n16-v7.service p4p-besu-n16-v8.service p4p-besu-n16-v9.service
+n=16 native network stopped.
+[06:34:40] RESULT: COMPLETED

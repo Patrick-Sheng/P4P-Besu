@@ -1,0 +1,7 @@
+Registered voter 0x4d32c33e8Aeff21Ee6749fe5a3Ecb971732F8472
+PASS: first vote confirmed (tx 0x5bfa56c8e7fb19ce1b0615f33bce6893171c1ef54f6c0bb7484079d019dc64f2)
+  second vote rejected: CALL_EXCEPTION transaction execution reverted (mined in block 15990, status 0)
+  candidate 0: raw tally delta 1426, of which 1425 from concurrent legitimate voters -> attacker delta 1
+PASS: double-vote was rejected at the application layer; tally incremented exactly once; voter state remains Voted.
+Terminated
+cat: write error: Broken pipe

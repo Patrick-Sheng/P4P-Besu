@@ -1,0 +1,58 @@
+[03:16:18] === Round 2 Area 1 n4-20261015-031616: n=4, idle 30s, steps 50 100 150 votes/s x 60s ===
+[03:16:18] Fixed per node: heap 384MB, MemoryMax 1024MB, --tx-pool-max-size=16384; slice 13488MB; loadgen 1536MB
+[03:16:18] Host: 6 vCPU, MemTotal 15988MB, MemAvailable 13554MB, disk free 161GB
+[03:16:18] Starting fresh 4-validator chain...
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 384M, MemoryMax 1024M each, --tx-pool-max-size=16384...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[03:16:29] Waiting for every validator to report 3 peers...
+[03:17:32] All 4 validators report 3 peers; height 17
+[03:17:32] txpool_besuStatistics maxSize=16384
+[03:17:32] Deploying VotingSystem...
+Waiting for 4 validator(s) to come up and start producing blocks...
+Network live. Block heights: 19, 19, 19, 19
+Deploying VotingSystem(numCandidates=3) via 0x52914145D3337c85E3E5da19693635886Ab598B2 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8 (block 20)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+[03:17:41] Contract: 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8
+[03:17:41] Idle baseline: 30s, no load...
+[03:18:33] Idle: blocks 29..45, mean block time 2.000s, round expiries 0; samples=6 cpu_busy=34.0 iowait=0.1 besu_cpu=120.5 rss_end=1353 rss_max=1353 mem_avail_min=12372 swap_max=0 pool_start=0 pool_end=0 pool_max=0 pool_slope=0.000
+[03:18:34] Idle RSS 1353MB total = 338MB/node -> projected at n=19: 6422MB (plan budget ~12288MB)
+[03:18:34] --- Step 0: 50 votes/s --- registering voters 0..3000
+Voting not open - sending openVoting()
+Registering voters [0, 3000) = 3000; admin 0x52914145D3337c85E3E5da19693635886Ab598B2 nonce 2; window 2000
+[2026-10-15T03:20:24.914Z] confirmed 2800 (26.5 regs/s), inflight 200, reverted 0, resent 0, next 3000, head 76
+DONE register [0, 3000): confirmed 3000, reverted 0, resent 0, 108s, 27.9 regs/s
+[03:20:27] Registered 3000 voters in 113s (26 regs/s)
+Error: ENOENT: no such file or directory, stat '/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-scalability/n4-20261015-031616/step-50.csv'
+    at Object.statSync (node:fs:1746:25)
+    at Object.vote (/home/patrick/P4P/P4P-Besu/perf-testing/loadgen/p4p-gen.js:279:12)
+    at Object.<anonymous> (/home/patrick/P4P/P4P-Besu/perf-testing/loadgen/p4p-gen.js:493:12)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-scalability/n4-20261015-031616/step-50.csv'
+}
+[03:20:34] n=4 50 votes/s: 
+[03:20:34] Step 50 votes/s: UNSUSTAINABLE generator_exit_1;success_nonepct;p95_nonems;block_time_0s; | success % p95 ms block 0s round-expiries 0 | samples=1 cpu_busy=38.3 iowait=0.0 besu_cpu=0.0 rss_end=1656 rss_max=1656 mem_avail_min=12062 swap_max=0 pool_start=0 pool_end=0 pool_max=0 pool_slope=0.000 | drain 0s
+[03:20:34] Stopping load steps at first unsustainable step (50 votes/s)
+[03:20:34] Run min MemAvailable 11998MB, swap peak 0MB
+[03:20:34] Round expiries (all validators, whole run): 0
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[03:20:36] RESULT: BREAKING POINT at n=4 - MAX_SUSTAINABLE_BELOW_50 :: no load step passed (lowest 50 votes/s); max sustainable 0 votes/s

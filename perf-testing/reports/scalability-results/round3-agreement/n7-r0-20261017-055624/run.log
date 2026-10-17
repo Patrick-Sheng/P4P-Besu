@@ -1,0 +1,38 @@
+[05:56:25] === Round 3 agreement time n7-r0-20261017-055624: n=7, 100 ms block period, load 0 votes/s, measure 300s ===
+[05:56:28] Per node: heap 1024MB, MemoryMax 1800MB, pool 65536; slice 12488MB; CPU probe 1.08s
+Removing previous generated network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n7
+Generating 7 validator keys + genesis...
+2026-10-17 05:56:31.459+00:00 | main | INFO  | GenerateBlockchainConfig | Generating 7 nodes keys.
+2026-10-17 05:56:31.464+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 0.
+2026-10-17 05:56:31.515+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 1.
+2026-10-17 05:56:31.520+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 2.
+2026-10-17 05:56:31.522+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 3.
+2026-10-17 05:56:31.524+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 4.
+2026-10-17 05:56:31.527+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 5.
+2026-10-17 05:56:31.529+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 6.
+2026-10-17 05:56:31.532+00:00 | main | INFO  | GenerateBlockchainConfig | Generating IBFT extra data.
+2026-10-17 05:56:31.536+00:00 | main | INFO  | GenerateBlockchainConfig | Writing genesis file.
+
+Generated 7-validator network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n7
+  f (max tolerable simultaneous faults) = 2
+  RPC ports: http://127.0.0.1:20700, http://127.0.0.1:20701, http://127.0.0.1:20702, http://127.0.0.1:20703, http://127.0.0.1:20704, http://127.0.0.1:20705, http://127.0.0.1:20706
+
+Next: docker compose -f /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n7/docker-compose.yml up -d
+[05:56:31] Genesis ibft2: {"blockperiodseconds":2,"epochlength":30000,"requesttimeoutseconds":4,"xblockperiodmilliseconds":100}
+Starting 7 native besu validators (RPC ports 20700..20706) as systemd units p4p-besu-n7-v1..7, heap 1024M, MemoryMax 1800M each, --tx-pool-max-size=65536...
+PIDs written to generated/n7/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20700): NOT RESPONDING YET
+  validator2 (port 20701): NOT RESPONDING YET
+  validator3 (port 20702): NOT RESPONDING YET
+  validator4 (port 20703): NOT RESPONDING YET
+  validator5 (port 20704): NOT RESPONDING YET
+  validator6 (port 20705): NOT RESPONDING YET
+  validator7 (port 20706): NOT RESPONDING YET
+network-meta written to generated/n7/network-meta.json
+[05:57:31] All 7 validators report 6 peers
+[05:57:31] Settling 60s (JIT warm-up, steady state) before measuring
+[05:58:31] Measuring 300s from 2026-10-17 05:58:31.739 (height 369)
+AGREEMENT run=n7-r0-20261017-055624 n=7 load_votes_per_s=0 block_period_ms=100 blocks=1645 intervals=1122 mean_ms=182.8 median_ms=177.0 p95_ms=246.0 max_ms=392.0 round_expiries=0 host_cpu_pct=51.8 besu_cpu_pct=279.2 besu_rss_mb=3107
+Stopped units: p4p-besu-n7-v1.service p4p-besu-n7-v2.service p4p-besu-n7-v3.service p4p-besu-n7-v4.service p4p-besu-n7-v5.service p4p-besu-n7-v6.service p4p-besu-n7-v7.service
+n=7 native network stopped.
+[06:03:40] RESULT: COMPLETED

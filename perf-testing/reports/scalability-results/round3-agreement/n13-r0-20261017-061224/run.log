@@ -1,0 +1,50 @@
+[06:12:25] === Round 3 agreement time n13-r0-20261017-061224: n=13, 100 ms block period, load 0 votes/s, measure 300s ===
+[06:12:28] Per node: heap 1024MB, MemoryMax 1800MB, pool 65536; slice 12488MB; CPU probe 1.06s
+Removing previous generated network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n13
+Generating 13 validator keys + genesis...
+2026-10-17 06:12:31.635+00:00 | main | INFO  | GenerateBlockchainConfig | Generating 13 nodes keys.
+2026-10-17 06:12:31.638+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 0.
+2026-10-17 06:12:31.685+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 1.
+2026-10-17 06:12:31.688+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 2.
+2026-10-17 06:12:31.691+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 3.
+2026-10-17 06:12:31.692+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 4.
+2026-10-17 06:12:31.694+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 5.
+2026-10-17 06:12:31.695+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 6.
+2026-10-17 06:12:31.696+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 7.
+2026-10-17 06:12:31.697+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 8.
+2026-10-17 06:12:31.698+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 9.
+2026-10-17 06:12:31.699+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 10.
+2026-10-17 06:12:31.702+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 11.
+2026-10-17 06:12:31.704+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 12.
+2026-10-17 06:12:31.713+00:00 | main | INFO  | GenerateBlockchainConfig | Generating IBFT extra data.
+2026-10-17 06:12:31.717+00:00 | main | INFO  | GenerateBlockchainConfig | Writing genesis file.
+
+Generated 13-validator network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n13
+  f (max tolerable simultaneous faults) = 4
+  RPC ports: http://127.0.0.1:21300, http://127.0.0.1:21301, http://127.0.0.1:21302, http://127.0.0.1:21303, http://127.0.0.1:21304, http://127.0.0.1:21305, http://127.0.0.1:21306, http://127.0.0.1:21307, http://127.0.0.1:21308, http://127.0.0.1:21309, http://127.0.0.1:21310, http://127.0.0.1:21311, http://127.0.0.1:21312
+
+Next: docker compose -f /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n13/docker-compose.yml up -d
+[06:12:31] Genesis ibft2: {"blockperiodseconds":2,"epochlength":30000,"requesttimeoutseconds":4,"xblockperiodmilliseconds":100}
+Starting 13 native besu validators (RPC ports 21300..21312) as systemd units p4p-besu-n13-v1..13, heap 1024M, MemoryMax 1800M each, --tx-pool-max-size=65536...
+PIDs written to generated/n13/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 21300): NOT RESPONDING YET
+  validator2 (port 21301): NOT RESPONDING YET
+  validator3 (port 21302): NOT RESPONDING YET
+  validator4 (port 21303): NOT RESPONDING YET
+  validator5 (port 21304): NOT RESPONDING YET
+  validator6 (port 21305): NOT RESPONDING YET
+  validator7 (port 21306): NOT RESPONDING YET
+  validator8 (port 21307): NOT RESPONDING YET
+  validator9 (port 21308): NOT RESPONDING YET
+  validator10 (port 21309): NOT RESPONDING YET
+  validator11 (port 21310): NOT RESPONDING YET
+  validator12 (port 21311): NOT RESPONDING YET
+  validator13 (port 21312): NOT RESPONDING YET
+network-meta written to generated/n13/network-meta.json
+[06:14:15] All 13 validators report 12 peers
+[06:14:15] Settling 60s (JIT warm-up, steady state) before measuring
+[06:15:15] Measuring 300s from 2026-10-17 06:15:15.499 (height 156)
+AGREEMENT run=n13-r0-20261017-061224 n=13 load_votes_per_s=0 block_period_ms=100 blocks=715 intervals=373 mean_ms=408.2 median_ms=323.0 p95_ms=463.0 max_ms=28003.0 round_expiries=0 host_cpu_pct=83.7 besu_cpu_pct=432.5 besu_rss_mb=6178
+Stopped units: p4p-besu-n13-v1.service p4p-besu-n13-v10.service p4p-besu-n13-v11.service p4p-besu-n13-v12.service p4p-besu-n13-v13.service p4p-besu-n13-v2.service p4p-besu-n13-v3.service p4p-besu-n13-v4.service p4p-besu-n13-v5.service p4p-besu-n13-v6.service p4p-besu-n13-v7.service p4p-besu-n13-v8.service p4p-besu-n13-v9.service
+n=13 native network stopped.
+[06:25:43] RESULT: COMPLETED

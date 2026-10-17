@@ -1,0 +1,30 @@
+{
+  "label": "cal-200",
+  "from": 2950000,
+  "count": 60000,
+  "targetRate": 200,
+  "sent": 60000,
+  "ok": 60000,
+  "reverted": 0,
+  "sendErrors": 0,
+  "dropped": 0,
+  "successPct": 100,
+  "sendRate": 199.99,
+  "throughput": 198.68,
+  "latencyMs": {
+    "p50": 2508,
+    "p95": 6170,
+    "p99": 12903,
+    "max": 14480,
+    "mean": 2871
+  },
+  "sendLagMs": {
+    "p50": 15,
+    "p99": 193,
+    "max": 600
+  },
+  "startMs": 1792101874212,
+  "sendEndMs": 1792102174227,
+  "endMs": 1792102176496,
+  "blocksWatched": 148
+}

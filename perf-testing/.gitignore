@@ -33,3 +33,20 @@ reports/**/caliper*.log
 reports/**/caliper*.html
 reports/**/caliper-run-log.txt
 reports/**/*-driver.out
+
+# Round 2: per-vote CSVs (one row per transaction, ~23 MB per 200k votes). Their
+# summaries stay tracked: *.summary.json, checkpoints.csv, calibration.csv,
+# a2-*-result.csv, attacks-*.csv, steps.csv
+reports/r2-*/**/soak-r*.csv
+reports/r2-*/**/step-*.csv
+reports/r2-*/**/cal-*.csv
+reports/r2-*/**/a2-crash.csv
+reports/r2-*/**/a2-quorum.csv
+reports/r2-*/**/double-vote.csv
+reports/r2-*/**/smoke-votes.csv
+reports/**/driver.out
+# Round 2 chain state: besu-n4.json embeds the admin private key
+reports/r2-soak/state/
+# JVM crash logs and core dumps
+**/hs_err_pid*.log
+**/core.[0-9]*

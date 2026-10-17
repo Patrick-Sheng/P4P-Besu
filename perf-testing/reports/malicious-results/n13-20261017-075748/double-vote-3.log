@@ -1,0 +1,19 @@
+Registered voter 0xcBDF12A96eFa77dd29592Dc35F2b360626418913
+PASS: first vote confirmed (tx 0x8ab22d809520c6215b3ffdbc83a482379fa5771cb196a2c165aebd3797472a82)
+  second vote rejected: CALL_EXCEPTION transaction execution reverted (mined in block 32, status 0)
+PASS: double-vote was rejected at the application layer; tally incremented exactly once; voter state remains Voted.
+Cross-node check at block 36 (tallies for candidates 0):
+  validator1: 3  0xee29ed0ec204b801f590b49d68c177691f425247fb82dd80441fa78bccfb5ba2
+  validator2: 3  0xee29ed0ec204b801f590b49d68c177691f425247fb82dd80441fa78bccfb5ba2
+  validator3: 3  0xee29ed0ec204b801f590b49d68c177691f425247fb82dd80441fa78bccfb5ba2
+  validator4: 3  0xee29ed0ec204b801f590b49d68c177691f425247fb82dd80441fa78bccfb5ba2
+  validator5: 3  0xee29ed0ec204b801f590b49d68c177691f425247fb82dd80441fa78bccfb5ba2
+  validator6: 3  0xee29ed0ec204b801f590b49d68c177691f425247fb82dd80441fa78bccfb5ba2
+  validator7: 3  0xee29ed0ec204b801f590b49d68c177691f425247fb82dd80441fa78bccfb5ba2
+  validator8: 3  0xee29ed0ec204b801f590b49d68c177691f425247fb82dd80441fa78bccfb5ba2
+  validator9: 3  0xee29ed0ec204b801f590b49d68c177691f425247fb82dd80441fa78bccfb5ba2
+  validator10: 3  0xee29ed0ec204b801f590b49d68c177691f425247fb82dd80441fa78bccfb5ba2
+  validator11: 3  0xee29ed0ec204b801f590b49d68c177691f425247fb82dd80441fa78bccfb5ba2
+  validator12: 3  0xee29ed0ec204b801f590b49d68c177691f425247fb82dd80441fa78bccfb5ba2
+  validator13: 3  0xee29ed0ec204b801f590b49d68c177691f425247fb82dd80441fa78bccfb5ba2
+PASS: all 13 validators report identical tallies and block hash at #36

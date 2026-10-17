@@ -1,0 +1,31 @@
+{
+  "label": "n10-50",
+  "from": 10500,
+  "count": 15000,
+  "skippedAlreadyVoted": 0,
+  "targetRate": 50,
+  "sent": 15000,
+  "ok": 15000,
+  "reverted": 0,
+  "sendErrors": 0,
+  "dropped": 0,
+  "successPct": 100,
+  "sendRate": 49.99,
+  "throughput": 49.57,
+  "latencyMs": {
+    "p50": 5125,
+    "p95": 11412,
+    "p99": 13251,
+    "max": 15718,
+    "mean": 5827
+  },
+  "sendLagMs": {
+    "p50": 62,
+    "p99": 435,
+    "max": 909
+  },
+  "startMs": 1792213787811,
+  "sendEndMs": 1792214087877,
+  "endMs": 1792214090706,
+  "blocksWatched": 142
+}

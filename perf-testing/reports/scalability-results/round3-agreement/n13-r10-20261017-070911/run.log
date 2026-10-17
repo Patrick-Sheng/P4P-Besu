@@ -1,0 +1,65 @@
+[07:09:12] === Round 3 agreement time n13-r10-20261017-070911: n=13, 100 ms block period, load 10 votes/s, measure 300s ===
+[07:09:16] Per node: heap 1024MB, MemoryMax 1800MB, pool 65536; slice 12488MB; CPU probe 1.24s
+Removing previous generated network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n13
+Generating 13 validator keys + genesis...
+2026-10-17 07:09:19.795+00:00 | main | INFO  | GenerateBlockchainConfig | Generating 13 nodes keys.
+2026-10-17 07:09:19.800+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 0.
+2026-10-17 07:09:19.869+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 1.
+2026-10-17 07:09:19.873+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 2.
+2026-10-17 07:09:19.877+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 3.
+2026-10-17 07:09:19.880+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 4.
+2026-10-17 07:09:19.889+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 5.
+2026-10-17 07:09:19.893+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 6.
+2026-10-17 07:09:19.894+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 7.
+2026-10-17 07:09:19.897+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 8.
+2026-10-17 07:09:19.899+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 9.
+2026-10-17 07:09:19.900+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 10.
+2026-10-17 07:09:19.901+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 11.
+2026-10-17 07:09:19.902+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 12.
+2026-10-17 07:09:19.907+00:00 | main | INFO  | GenerateBlockchainConfig | Generating IBFT extra data.
+2026-10-17 07:09:19.913+00:00 | main | INFO  | GenerateBlockchainConfig | Writing genesis file.
+
+Generated 13-validator network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n13
+  f (max tolerable simultaneous faults) = 4
+  RPC ports: http://127.0.0.1:21300, http://127.0.0.1:21301, http://127.0.0.1:21302, http://127.0.0.1:21303, http://127.0.0.1:21304, http://127.0.0.1:21305, http://127.0.0.1:21306, http://127.0.0.1:21307, http://127.0.0.1:21308, http://127.0.0.1:21309, http://127.0.0.1:21310, http://127.0.0.1:21311, http://127.0.0.1:21312
+
+Next: docker compose -f /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n13/docker-compose.yml up -d
+[07:09:20] Genesis ibft2: {"blockperiodseconds":2,"epochlength":30000,"requesttimeoutseconds":4,"xblockperiodmilliseconds":100}
+Starting 13 native besu validators (RPC ports 21300..21312) as systemd units p4p-besu-n13-v1..13, heap 1024M, MemoryMax 1800M each, --tx-pool-max-size=65536...
+PIDs written to generated/n13/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 21300): NOT RESPONDING YET
+  validator2 (port 21301): NOT RESPONDING YET
+  validator3 (port 21302): NOT RESPONDING YET
+  validator4 (port 21303): NOT RESPONDING YET
+  validator5 (port 21304): NOT RESPONDING YET
+  validator6 (port 21305): NOT RESPONDING YET
+  validator7 (port 21306): NOT RESPONDING YET
+  validator8 (port 21307): NOT RESPONDING YET
+  validator9 (port 21308): NOT RESPONDING YET
+  validator10 (port 21309): NOT RESPONDING YET
+  validator11 (port 21310): NOT RESPONDING YET
+  validator12 (port 21311): NOT RESPONDING YET
+  validator13 (port 21312): NOT RESPONDING YET
+network-meta written to generated/n13/network-meta.json
+[07:12:13] All 13 validators report 12 peers
+Waiting for 13 validator(s) to come up and start producing blocks...
+Network live. Block heights: 48, 47, 47, 47, 47, 47, 47, 47, 47, 47, 48, 48, 48
+Deploying VotingSystem(numCandidates=3) via 0x16bD23d48327c9F7F62e7201A6BAEa8e4da22504 on http://127.0.0.1:21300...
+Deployed VotingSystem at 0x080838a56d1fE4a6Ef52Ef0733Fc5f70d547F6ED (block 59)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n13.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n13-voters.json
+  node seed/register-voters.js networks/besu-n13.json seed/generated/n13-voters.json
+Voting not open - sending openVoting()
+Registering voters [0, 4200) = 4200; admin 0x16bD23d48327c9F7F62e7201A6BAEa8e4da22504 nonce 2; window 500
+[2026-10-17T07:13:28.111Z] confirmed 147 (3.4 regs/s), inflight 430, reverted 0, resent 54, next 577, head 85
+[2026-10-17T07:15:54.178Z] confirmed 4047 (21.3 regs/s), inflight 153, reverted 0, resent 54, next 4200, head 161
+DONE register [0, 4200): confirmed 4200, reverted 0, resent 54, 192s, 21.8 regs/s
+[07:15:57] Registered 4200 voters; starting 10 votes/s
+[07:15:57] Settling 60s (JIT warm-up, steady state) before measuring
+[07:16:58] Measuring 300s from 2026-10-17 07:16:57.794 (height 212)
+AGREEMENT run=n13-r10-20261017-070911 n=13 load_votes_per_s=10 block_period_ms=100 blocks=266 intervals=215 mean_ms=1160.9 median_ms=1118.0 p95_ms=1929.0 max_ms=6383.0 round_expiries=0 host_cpu_pct=98.8 besu_cpu_pct=543.2 besu_rss_mb=10009
+Stopped units: p4p-besu-n13-v1.service p4p-besu-n13-v10.service p4p-besu-n13-v11.service p4p-besu-n13-v12.service p4p-besu-n13-v13.service p4p-besu-n13-v2.service p4p-besu-n13-v3.service p4p-besu-n13-v4.service p4p-besu-n13-v5.service p4p-besu-n13-v6.service p4p-besu-n13-v7.service p4p-besu-n13-v8.service p4p-besu-n13-v9.service
+n=13 native network stopped.
+[07:22:10] RESULT: COMPLETED

@@ -1,0 +1,50 @@
+2026-10-17 03:51:55 === Round 3 start: CPU probe 1.16s, MemAvailable 13587MB, disk free 137GB ===
+2026-10-17 03:52:06 host slow (CPU probe 2.15s) - waiting
+2026-10-17 03:53:13 T1 ladder n=4: start (attempt 1)
+2026-10-17 04:17:22 T1 ladder n=4: exit 0 :: 2026-10-17 04:17:22 n4-20261017-035313 PASS max_sustainable=50 dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3/n4-20261017-035313
+2026-10-17 04:17:48 T1 ladder n=7: start (attempt 1)
+2026-10-17 04:42:14 T1 ladder n=7: exit 0 :: 2026-10-17 04:42:14 n7-20261017-041748 PASS max_sustainable=50 dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3/n7-20261017-041748
+2026-10-17 04:42:42 T1 ladder n=10: start (attempt 1)
+2026-10-17 05:14:59 T1 ladder n=10: exit 10 :: 2026-10-17 05:14:59 n10-20261017-044242 BREAK max_sustainable=25 reason='MAX_SUSTAINABLE_BELOW_50 :: no load step passed (lowest 10 votes/s)' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3/n10-20261017-044242
+2026-10-17 05:15:27 T1 ladder n=13: start (attempt 1)
+2026-10-17 05:48:20 T1 ladder n=13: exit 10 :: 2026-10-17 05:48:20 n13-20261017-051527 BREAK max_sustainable=10 reason='MAX_SUSTAINABLE_BELOW_50 :: no load step passed (lowest 10 votes/s); LOW_MEMORY :: MemAvailable fell to 223MB' dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scal
+2026-10-17 05:48:48 T2 agreement n=4 idle: start (attempt 1)
+2026-10-17 05:49:23 NOTE T1 n=13: 25 votes/s step exhausted VM memory (Besu ~13 GB); 3 validators OOM-killed (v9 systemd-oomd 05:38, v2 05:39, v3 05:48 kernel), VM/editor unaffected; watchdog did not fire (too slow at n=13). T2 slice reserve raised to 3.5 GB.
+2026-10-17 05:55:57 T2 agreement n=4 idle: exit 0 :: 2026-10-17 05:55:57 n4-r0-20261017-054848 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n4-r0-20261017-054848
+2026-10-17 05:56:24 T2 agreement n=7 idle: start (attempt 1)
+2026-10-17 06:03:40 T2 agreement n=7 idle: exit 0 :: 2026-10-17 06:03:40 n7-r0-20261017-055624 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n7-r0-20261017-055624
+2026-10-17 06:04:06 T2 agreement n=10 idle: start (attempt 1)
+2026-10-17 06:11:57 T2 agreement n=10 idle: exit 0 :: 2026-10-17 06:11:57 n10-r0-20261017-060406 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n10-r0-20261017-060406
+2026-10-17 06:12:24 T2 agreement n=13 idle: start (attempt 1)
+2026-10-17 06:25:43 T2 agreement n=13 idle: exit 0 :: 2026-10-17 06:25:43 n13-r0-20261017-061224 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n13-r0-20261017-061224
+2026-10-17 06:26:09 T2 agreement n=16 idle: start (attempt 1)
+2026-10-17 06:34:40 T2 agreement n=16 idle: exit 0 :: 2026-10-17 06:34:40 n16-r0-20261017-062609 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n16-r0-20261017-062609
+2026-10-17 06:35:08 T2 agreement n=4 10/s: start (attempt 1)
+2026-10-17 06:43:02 T2 agreement n=4 10/s: exit 0 :: 2026-10-17 06:43:02 n4-r10-20261017-063508 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n4-r10-20261017-063508
+2026-10-17 06:43:29 T2 agreement n=7 10/s: start (attempt 1)
+2026-10-17 06:52:05 T2 agreement n=7 10/s: exit 0 :: 2026-10-17 06:52:05 n7-r10-20261017-064329 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n7-r10-20261017-064329
+2026-10-17 06:52:31 T2 agreement n=10 10/s: start (attempt 1)
+2026-10-17 06:57:47 T2 agreement n=10 10/s: exit 2 :: 2026-10-17 06:57:47 n10-r10-20261017-065231 ABORTED step='settle' reason='NODE_STUCK :: validator3 at 60 vs 74; chain still advancing - node alive but not importing blocks; thread dumps: threaddump-v*.txt' dir=/home/patrick/P4P/P4P-Besu/per
+2026-10-17 06:57:47 T2 agreement n=10 10/s: Besu lock-up - rerunning once
+2026-10-17 06:58:14 T2 agreement n=10 10/s: start (attempt 2)
+2026-10-17 07:08:44 T2 agreement n=10 10/s: exit 0 :: 2026-10-17 07:08:44 n10-r10-20261017-065814 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n10-r10-20261017-065814
+2026-10-17 07:09:11 T2 agreement n=13 10/s: start (attempt 1)
+2026-10-17 07:22:11 T2 agreement n=13 10/s: exit 0 :: 2026-10-17 07:22:10 n13-r10-20261017-070911 COMPLETED dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3-agreement/n13-r10-20261017-070911
+2026-10-17 07:22:50 T3: regenerated 2 s genesis for n=4,7,10,13
+2026-10-17 07:22:57 T3 crash-f n=4: start (attempt 1)
+2026-10-17 07:28:43 T3 crash-f n=4: exit 0 :: 2026-10-17 07:28:43 n4-within-20261017-072257 COMPLETED fault-test=PASS state=PASS dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/crash-fault-results/n4-within-20261017-072257
+2026-10-17 07:29:10 T3 crash-f n=7: start (attempt 1)
+2026-10-17 07:35:16 T3 crash-f n=7: exit 0 :: 2026-10-17 07:35:16 n7-within-20261017-072910 COMPLETED fault-test=PASS state=PASS dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/crash-fault-results/n7-within-20261017-072910
+2026-10-17 07:35:43 T3 crash-f n=10: start (attempt 1)
+2026-10-17 07:42:44 T3 crash-f n=10: exit 0 :: 2026-10-17 07:42:44 n10-within-20261017-073543 COMPLETED fault-test=PASS state=PASS dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/crash-fault-results/n10-within-20261017-073543
+2026-10-17 07:43:11 T3 crash-f n=13: start (attempt 1)
+2026-10-17 07:47:04 T3 crash-f n=13: exit 2 :: 2026-10-17 07:47:04 n13-within-20261017-074311 CRASHED step='voters' reason='NODE_STUCK :: validator4 at 9 vs 25; validator9 at 9 vs 25; chain still advancing - node alive but not importing blocks; thread dumps: threaddump-v*.txt' fault-tes
+2026-10-17 07:47:04 T3 crash-f n=13: Besu lock-up - rerunning once
+2026-10-17 07:47:31 T3 crash-f n=13: start (attempt 2)
+2026-10-17 07:57:21 T3 crash-f n=13: exit 0 :: 2026-10-17 07:57:21 n13-within-20261017-074731 COMPLETED fault-test=PASS state=PASS dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/crash-fault-results/n13-within-20261017-074731
+2026-10-17 07:57:48 T4 attacks n=13: start (attempt 1)
+2026-10-17 08:01:32 T4 attacks n=13: exit 0 :: 2026-10-17 08:01:32 n13-20261017-075748 COMPLETED pass=9 fail=0 dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/malicious-results/n13-20261017-075748
+2026-10-17 08:01:52 === Round 3 complete ===
+2026-10-17 08:02:00 T4b attacks n=13 x9 reps (27 total): start
+2026-10-17 08:10:27 T4b attacks n=13: exit 0 :: 2026-10-17 08:10:27 n13-20261017-080200 COMPLETED pass=27 fail=0 dir=/home/patrick/P4P/P4P-Besu/perf-testing/reports/malicious-results/n13-20261017-080200
+2026-10-17 08:10:59 write-ups updated: AREA1/2/3-RESULTS.md, README.md

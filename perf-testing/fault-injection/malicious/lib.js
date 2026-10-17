@@ -76,6 +76,40 @@ async function assertAllNodesAgree(config, contract, candidateIds) {
     return agree;
 }
 
+/**
+ * Reads a candidate's tally pinned to the current head, so a later read can be
+ * netted against legitimate votes cast in between (see attackerDelta).
+ */
+async function tallyAt(provider, contract, candidateId) {
+    const block = await provider.getBlockNumber();
+    return { block, tally: await contract.getTally(candidateId, { blockTag: block }) };
+}
+
+/**
+ * Tally change between two tallyAt() reads that is NOT explained by other
+ * voters: (after - before) minus VoteCast events for this candidate from any
+ * address other than `attacker` in blocks (before.block, after.block]. Round 2
+ * replays the attacks alongside soak traffic, where thousands of legitimate
+ * votes land during one attack; with no concurrent traffic this is exactly the
+ * raw delta round 1 checked.
+ */
+async function attackerDelta(contract, before, after, candidateId, attacker) {
+    let others = 0n;
+    if (after.block > before.block) {
+        const logs = await contract.queryFilter(contract.filters.VoteCast(), before.block + 1, after.block);
+        for (const l of logs) {
+            if (Number(l.args.candidateId) === Number(candidateId) && l.args.voter.toLowerCase() !== attacker.toLowerCase()) {
+                others += 1n;
+            }
+        }
+    }
+    const raw = after.tally - before.tally;
+    if (others > 0n) {
+        console.log(`  candidate ${candidateId}: raw tally delta ${raw}, of which ${others} from concurrent legitimate voters -> attacker delta ${raw - others}`);
+    }
+    return raw - others;
+}
+
 function pass(msg) {
     console.log(`PASS: ${msg}`);
 }
@@ -85,4 +119,4 @@ function fail(msg) {
     process.exitCode = 1;
 }
 
-module.exports = { loadNetwork, registerFreshVoter, ensureVotingOpen, assertAllNodesAgree, pass, fail };
+module.exports = { loadNetwork, registerFreshVoter, ensureVotingOpen, assertAllNodesAgree, tallyAt, attackerDelta, pass, fail };

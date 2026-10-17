@@ -1,0 +1,30 @@
+{
+  "label": "soak-r1",
+  "from": 0,
+  "count": 200000,
+  "targetRate": 120,
+  "sent": 200000,
+  "ok": 200000,
+  "reverted": 0,
+  "sendErrors": 0,
+  "dropped": 0,
+  "successPct": 100,
+  "sendRate": 120,
+  "throughput": 117.98,
+  "latencyMs": {
+    "p50": 3835,
+    "p95": 35026,
+    "p99": 42866,
+    "max": 48904,
+    "mean": 7968
+  },
+  "sendLagMs": {
+    "p50": 25.333251953125,
+    "p99": 961,
+    "max": 2911.666748046875
+  },
+  "startMs": 1792117762760,
+  "sendEndMs": 1792119429446,
+  "endMs": 1792119458877,
+  "blocksWatched": 652
+}

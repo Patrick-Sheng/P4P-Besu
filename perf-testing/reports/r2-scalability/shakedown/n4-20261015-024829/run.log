@@ -1,0 +1,51 @@
+[02:48:30] === Round 2 Area 1 n4-20261015-024829: n=4, idle 30s, steps 50 100 votes/s x 30s ===
+[02:48:30] Fixed per node: heap 384MB, MemoryMax 1024MB, --tx-pool-max-size=16384; slice 13488MB; loadgen 1536MB
+[02:48:30] Host: 6 vCPU, MemTotal 15988MB, MemAvailable 13607MB, disk free 162GB
+[02:48:30] Starting fresh 4-validator chain...
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 384M, MemoryMax 1024M each, --tx-pool-max-size=16384...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[02:48:39] Waiting for every validator to report 3 peers...
+[02:49:21] All 4 validators report 3 peers; height 15
+[02:49:21] txpool_besuStatistics maxSize=16384
+[02:49:21] Deploying VotingSystem...
+Waiting for 4 validator(s) to come up and start producing blocks...
+Network live. Block heights: 17, 17, 17, 17
+Deploying VotingSystem(numCandidates=3) via 0x52914145D3337c85E3E5da19693635886Ab598B2 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8 (block 18)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+[02:49:28] Contract: 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8
+[02:49:28] Idle baseline: 30s, no load...
+[02:50:20] Idle: blocks 26..41, mean block time 2.000s, round expiries 0; samples=7 cpu_busy=10.5 iowait=0.0 besu_cpu=29.9 rss_end=1371 rss_max=1374 mem_avail_min=12441 swap_max=0 pool_start=0 pool_end=0 pool_max=0 pool_slope=0.000
+[02:50:20] Idle RSS 1371MB total = 342MB/node -> projected at n=19: 6498MB (plan budget ~12288MB)
+[02:50:20] --- Step 0: 50 votes/s --- generating + registering 2000 voters
+Voting not open yet - calling openVoting()...
+Voting opened.
+Registering 2000 voters (of 2000 total), admin nonce starts at 2
+  registered 2000/2000
+All voters registered.
+[02:50:47] Registered 2000 voters in 27s (71 regs/s)
+[02:51:33] n=4 round 0 target 50 TPS: submitted 1502, ok 1502, failed 0, send 50.1 TPS, observed 48.4 TPS
+[02:51:33] latency ms: min 563 p50 2000 p95 3551 p99 4039 max 4498 avg 2054.6
+[02:51:33] Step 50 votes/s: SUSTAINABLE  | success 100.000% p95 3551ms block 2.000s round-expiries 0 | samples=9 cpu_busy=48.7 iowait=0.2 besu_cpu=249.9 rss_end=1695 rss_max=1695 mem_avail_min=11928 swap_max=0 pool_start=0 pool_end=0 pool_max=85 pool_slope=-0.866 | drain 0s
+[02:51:33] --- Step 1: 100 votes/s --- generating + registering 4000 voters
+Registering 4000 voters (of 4000 total), admin nonce starts at 2002
+  registered 4000/4000
+All voters registered.
+[02:52:08] Registered 4000 voters in 35s (111 regs/s)
+[02:52:53] n=4 round 1 target 100 TPS: submitted 3002, ok 3002, failed 0, send 100 TPS, observed 96.4 TPS
+[02:52:53] latency ms: min 823 p50 2780 p95 5179 p99 6174 max 6725 avg 2976.0
+[02:52:54] Step 100 votes/s: SUSTAINABLE  | success 100.000% p95 5179ms block 2.000s round-expiries 0 | samples=8 cpu_busy=60.0 iowait=0.0 besu_cpu=281.6 rss_end=1961 rss_max=1961 mem_avail_min=11672 swap_max=0 pool_start=109 pool_end=0 pool_max=331 pool_slope=-6.251 | drain 0s
+[02:52:54] Run min MemAvailable 11672MB, swap peak 0MB
+[02:52:54] Round expiries (all validators, whole run): 0
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[02:52:54] RESULT: PASSED - max sustainable 100 votes/s

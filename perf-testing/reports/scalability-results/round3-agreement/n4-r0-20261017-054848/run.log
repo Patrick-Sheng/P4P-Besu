@@ -1,0 +1,32 @@
+[05:48:48] === Round 3 agreement time n4-r0-20261017-054848: n=4, 100 ms block period, load 0 votes/s, measure 300s ===
+[05:48:52] Per node: heap 1024MB, MemoryMax 1800MB, pool 65536; slice 13488MB; CPU probe 1.16s
+Removing previous generated network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n4
+Generating 4 validator keys + genesis...
+2026-10-17 05:48:57.702+00:00 | main | INFO  | GenerateBlockchainConfig | Generating 4 nodes keys.
+2026-10-17 05:48:57.712+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 0.
+2026-10-17 05:48:57.828+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 1.
+2026-10-17 05:48:57.831+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 2.
+2026-10-17 05:48:57.833+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 3.
+2026-10-17 05:48:57.836+00:00 | main | INFO  | GenerateBlockchainConfig | Generating IBFT extra data.
+2026-10-17 05:48:57.846+00:00 | main | INFO  | GenerateBlockchainConfig | Writing genesis file.
+
+Generated 4-validator network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n4
+  f (max tolerable simultaneous faults) = 1
+  RPC ports: http://127.0.0.1:20400, http://127.0.0.1:20401, http://127.0.0.1:20402, http://127.0.0.1:20403
+
+Next: docker compose -f /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n4/docker-compose.yml up -d
+[05:48:58] Genesis ibft2: {"blockperiodseconds":2,"epochlength":30000,"requesttimeoutseconds":4,"xblockperiodmilliseconds":100}
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 1024M, MemoryMax 1800M each, --tx-pool-max-size=65536...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[05:49:50] All 4 validators report 3 peers
+[05:49:50] Settling 60s (JIT warm-up, steady state) before measuring
+[05:50:50] Measuring 300s from 2026-10-17 05:50:50.681 (height 655)
+AGREEMENT run=n4-r0-20261017-054848 n=4 load_votes_per_s=0 block_period_ms=100 blocks=2250 intervals=2197 mean_ms=120.3 median_ms=116.0 p95_ms=141.0 max_ms=526.0 round_expiries=0 host_cpu_pct=16.6 besu_cpu_pct=86.1 besu_rss_mb=1790
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[05:55:57] RESULT: COMPLETED

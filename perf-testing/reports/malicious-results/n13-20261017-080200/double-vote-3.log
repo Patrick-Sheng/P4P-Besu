@@ -1,0 +1,19 @@
+Registered voter 0xc2020f46F1098F55b715E6db99aaBc0dEEcd4978
+PASS: first vote confirmed (tx 0x50479aa2c8caf11b45ce2bf76198dfe496259a52261cc12e114defe479f7bae4)
+  second vote rejected: CALL_EXCEPTION transaction execution reverted (mined in block 33, status 0)
+PASS: double-vote was rejected at the application layer; tally incremented exactly once; voter state remains Voted.
+Cross-node check at block 37 (tallies for candidates 0):
+  validator1: 3  0xcfff20b1e415637b4d9f0b4858d5d3f33b519f243be0a5f6fbb1885bbe20bb51
+  validator2: 3  0xcfff20b1e415637b4d9f0b4858d5d3f33b519f243be0a5f6fbb1885bbe20bb51
+  validator3: 3  0xcfff20b1e415637b4d9f0b4858d5d3f33b519f243be0a5f6fbb1885bbe20bb51
+  validator4: 3  0xcfff20b1e415637b4d9f0b4858d5d3f33b519f243be0a5f6fbb1885bbe20bb51
+  validator5: 3  0xcfff20b1e415637b4d9f0b4858d5d3f33b519f243be0a5f6fbb1885bbe20bb51
+  validator6: 3  0xcfff20b1e415637b4d9f0b4858d5d3f33b519f243be0a5f6fbb1885bbe20bb51
+  validator7: 3  0xcfff20b1e415637b4d9f0b4858d5d3f33b519f243be0a5f6fbb1885bbe20bb51
+  validator8: 3  0xcfff20b1e415637b4d9f0b4858d5d3f33b519f243be0a5f6fbb1885bbe20bb51
+  validator9: 3  0xcfff20b1e415637b4d9f0b4858d5d3f33b519f243be0a5f6fbb1885bbe20bb51
+  validator10: 3  0xcfff20b1e415637b4d9f0b4858d5d3f33b519f243be0a5f6fbb1885bbe20bb51
+  validator11: 3  0xcfff20b1e415637b4d9f0b4858d5d3f33b519f243be0a5f6fbb1885bbe20bb51
+  validator12: 3  0xcfff20b1e415637b4d9f0b4858d5d3f33b519f243be0a5f6fbb1885bbe20bb51
+  validator13: 3  0xcfff20b1e415637b4d9f0b4858d5d3f33b519f243be0a5f6fbb1885bbe20bb51
+PASS: all 13 validators report identical tallies and block hash at #37

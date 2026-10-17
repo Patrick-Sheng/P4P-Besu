@@ -1,0 +1,31 @@
+[2026-10-16 09:48:27] === Round 2 phase 'verify' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/verify-20261016-094827) ===
+[2026-10-16 09:48:30] CPU probe: 0.98s (normal ~1.15s)
+[2026-10-16 09:48:30] Starting 4-validator chain (keep): heap 1024MB, MemoryMax 2600MB, --tx-pool-max-size=65536, metrics on, slice 14488MB
+P4P_KEEP_DATA=1: reusing existing generated/n4/data-native (logs appended)
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 1024M, MemoryMax 2600M each, --tx-pool-max-size=65536...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[2026-10-16 09:49:30] Chain up: all validators have 3 peers, height 17087, pool maxSize 65536
+[2026-10-16 09:49:30] Pools empty after 0s
+scan 0/3300000 voted 500 (2s)
+scan 500000/3300000 voted 500500 (354s)
+scan 1000000/3300000 voted 1000500 (689s)
+scan 1500000/3300000 voted 1040094 (995s)
+TypeError: Cannot convert undefined to a BigInt
+    at BigInt (<anonymous>)
+    at /home/patrick/P4P/P4P-Besu/perf-testing/loadgen/verify.js:121:36
+    at Array.forEach (<anonymous>)
+    at main (/home/patrick/P4P/P4P-Besu/perf-testing/loadgen/verify.js:120:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-10-16 10:06:41] Verify: 
+[2026-10-16 10:06:41]   validator1 final DB 2608 MB
+[2026-10-16 10:06:41]   validator2 final DB 2646 MB
+[2026-10-16 10:06:41]   validator3 final DB 2571 MB
+[2026-10-16 10:06:41]   validator4 final DB 2575 MB
+[2026-10-16 10:06:41] Prometheus snapshot: 
+[2026-10-16 10:06:41] CRASH_REASON=VERIFICATION_FAILED :: see verify.json
+[2026-10-16 10:06:41] RESULT: ABORTED during 'archive' - VERIFICATION_FAILED :: see verify.json

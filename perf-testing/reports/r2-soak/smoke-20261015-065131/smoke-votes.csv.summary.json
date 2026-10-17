@@ -1,0 +1,30 @@
+{
+  "label": "smoke",
+  "from": 0,
+  "count": 10000,
+  "targetRate": 50,
+  "sent": 10000,
+  "ok": 10000,
+  "reverted": 0,
+  "sendErrors": 0,
+  "dropped": 0,
+  "successPct": 100,
+  "sendRate": 49.99,
+  "throughput": 49.43,
+  "latencyMs": {
+    "p50": 3011,
+    "p95": 7324,
+    "p99": 8716,
+    "max": 9692,
+    "mean": 3410
+  },
+  "sendLagMs": {
+    "p50": 40,
+    "p99": 342,
+    "max": 1043
+  },
+  "startMs": 1792047392997,
+  "sendEndMs": 1792047593036,
+  "endMs": 1792047595592,
+  "blocksWatched": 99
+}

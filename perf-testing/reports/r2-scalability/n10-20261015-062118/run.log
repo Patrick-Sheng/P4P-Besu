@@ -1,0 +1,45 @@
+[06:21:19] === Round 2 Area 1 n10-20261015-062118: n=10, idle 300s, steps 25 votes/s x 300s ===
+[06:21:19] Fixed per node: heap 1024MB, MemoryMax 1800MB, --tx-pool-max-size=16384; slice 13488MB; loadgen 1536MB
+[06:21:19] Host: 6 vCPU, MemTotal 15988MB, MemAvailable 13514MB, disk free 157GB
+[06:21:22] CPU probe: 1.14s (normal ~1.15s)
+[06:21:22] Starting fresh 10-validator chain...
+Starting 10 native besu validators (RPC ports 21000..21009) as systemd units p4p-besu-n10-v1..10, heap 1024M, MemoryMax 1800M each, --tx-pool-max-size=16384...
+PIDs written to generated/n10/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 21000): NOT RESPONDING YET
+  validator2 (port 21001): NOT RESPONDING YET
+  validator3 (port 21002): NOT RESPONDING YET
+  validator4 (port 21003): NOT RESPONDING YET
+  validator5 (port 21004): NOT RESPONDING YET
+  validator6 (port 21005): NOT RESPONDING YET
+  validator7 (port 21006): NOT RESPONDING YET
+  validator8 (port 21007): NOT RESPONDING YET
+  validator9 (port 21008): NOT RESPONDING YET
+  validator10 (port 21009): NOT RESPONDING YET
+network-meta written to generated/n10/network-meta.json
+[06:21:33] Waiting for every validator to report 9 peers...
+[06:22:32] All 10 validators report 9 peers; height 16
+[06:22:32] txpool_besuStatistics maxSize=16384
+[06:22:32] Deploying VotingSystem...
+Waiting for 10 validator(s) to come up and start producing blocks...
+Network live. Block heights: 17, 17, 17, 17, 17, 17, 17, 17, 17, 17
+Deploying VotingSystem(numCandidates=3) via 0x1d9e5AC9AfD89c90d39706fE10e2B4aEF2F67618 on http://127.0.0.1:21000...
+Deployed VotingSystem at 0xEcd9252d5020ea20a90675a2FF9F5ddbf13e34f1 (block 18)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n10.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n10-voters.json
+  node seed/register-voters.js networks/besu-n10.json seed/generated/n10-voters.json
+[06:22:40] Contract: 0xEcd9252d5020ea20a90675a2FF9F5ddbf13e34f1
+[06:22:40] Idle baseline: 300s, no load...
+[06:28:01] Idle: blocks 27..177, mean block time 2.000s, round expiries 0; samples=58 cpu_busy=17.2 iowait=0.0 besu_cpu=88.5 rss_end=4430 rss_max=4432 mem_avail_min=9499 swap_max=0 pool_start=0 pool_end=0 pool_max=0 pool_slope=0.000
+[06:28:01] Idle RSS 4430MB total = 443MB/node -> projected at n=19: 8417MB (plan budget ~12288MB)
+[06:28:01] --- Step 0: 25 votes/s --- registering voters 0..7500
+Voting not open - sending openVoting()
+Registering voters [0, 7500) = 7500; admin 0x1d9e5AC9AfD89c90d39706fE10e2B4aEF2F67618 nonce 2; window 500
+[2026-10-15T06:28:35.931Z] confirmed 462 (14.7 regs/s), inflight 500, reverted 0, resent 0, next 962, head 186
+[2026-10-15T06:29:47.234Z] confirmed 3469 (33.7 regs/s), inflight 500, reverted 0, resent 0, next 3969, head 215
+[06:30:25] CRASH_REASON=NODE_STUCK :: validator8 at 199 vs 220; chain still advancing - node alive but not importing blocks; thread dumps: threaddump-v*.txt
+[06:30:26] Round expiries (all validators, whole run): 1
+Stopped units: p4p-besu-n10-v1.service p4p-besu-n10-v10.service p4p-besu-n10-v2.service p4p-besu-n10-v3.service p4p-besu-n10-v4.service p4p-besu-n10-v5.service p4p-besu-n10-v6.service p4p-besu-n10-v7.service p4p-besu-n10-v8.service p4p-besu-n10-v9.service
+n=10 native network stopped.
+[06:31:56] RESULT: BREAKING POINT at n=10 during 'step 25 votes/s: register 7500 voters' - NODE_STUCK :: validator8 at 199 vs 220; chain still advancing - node alive but not importing blocks; thread dumps: threaddump-v*.txt; max sustainable 0 votes/s
