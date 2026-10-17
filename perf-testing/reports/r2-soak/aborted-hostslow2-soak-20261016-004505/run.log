@@ -1,0 +1,6 @@
+[2026-10-16 00:45:06] === Round 2 phase 'soak' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-004505) ===
+[2026-10-16 00:45:12] CPU probe: 1.88s (normal ~1.15s)
+[2026-10-16 00:45:32] CPU probe: 1.56s (normal ~1.15s)
+[2026-10-16 00:45:53] CPU probe: 2.05s (normal ~1.15s)
+[2026-10-16 00:45:53] CRASH_REASON=HOST_SLOW :: CPU probe 2.05s > 1.5s - host throttled or power-limited (check Windows power mode / VirtualBox efficiency mode)
+[2026-10-16 00:45:53] RESULT: ABORTED during 'init' - HOST_SLOW :: CPU probe 2.05s > 1.5s - host throttled or power-limited (check Windows power mode / VirtualBox efficiency mode)

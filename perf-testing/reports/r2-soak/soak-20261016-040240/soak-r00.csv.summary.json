@@ -1,0 +1,31 @@
+{
+  "label": "warmup-90",
+  "from": 3281000,
+  "count": 16200,
+  "skippedAlreadyVoted": 0,
+  "targetRate": 90,
+  "sent": 16200,
+  "ok": 16200,
+  "reverted": 0,
+  "sendErrors": 0,
+  "dropped": 0,
+  "successPct": 100,
+  "sendRate": 89.94,
+  "throughput": 88.42,
+  "latencyMs": {
+    "p50": 2832,
+    "p95": 6314,
+    "p99": 8719,
+    "max": 10630,
+    "mean": 3159
+  },
+  "sendLagMs": {
+    "p50": 24.333251953125,
+    "p99": 268.5556640625,
+    "max": 824.111083984375
+  },
+  "startMs": 1792124120541,
+  "sendEndMs": 1792124300655,
+  "endMs": 1792124304135,
+  "blocksWatched": 85
+}

@@ -10,7 +10,7 @@
 //
 // Usage: node replay.js <networkConfigFile>
 
-const { loadNetwork, registerFreshVoter, ensureVotingOpen, assertAllNodesAgree, pass, fail } = require('./lib');
+const { loadNetwork, registerFreshVoter, ensureVotingOpen, assertAllNodesAgree, tallyAt, attackerDelta, pass, fail } = require('./lib');
 
 async function main() {
     const networkConfigPath = process.argv[2];
@@ -26,7 +26,7 @@ async function main() {
     console.log(`Registered voter ${voter.address}`);
 
     const candidateId = 0;
-    const tallyBeforeOriginal = await contract.getTally(candidateId);
+    const tallyBeforeOriginal = await tallyAt(provider, contract, candidateId);
 
     const iface = contract.interface;
     const nonce = await provider.getTransactionCount(voter.address);
@@ -48,8 +48,8 @@ async function main() {
         fail(`original vote reverted unexpectedly: ${originalResponse.hash}`);
         return;
     }
-    const tallyAfterOriginal = await contract.getTally(candidateId);
-    console.log(`Original vote confirmed in block ${originalReceipt.blockNumber} (tally ${tallyBeforeOriginal} -> ${tallyAfterOriginal})`);
+    const tallyAfterOriginal = await tallyAt(provider, contract, candidateId);
+    console.log(`Original vote confirmed in block ${originalReceipt.blockNumber} (tally ${tallyBeforeOriginal.tally} -> ${tallyAfterOriginal.tally})`);
 
     console.log('Replaying the exact same raw signed transaction...');
     let replayRejected = false;
@@ -67,16 +67,17 @@ async function main() {
         console.log(`  replay rejected at submission: ${err.message.split('\n')[0]}`);
     }
 
-    const tallyAfterReplay = await contract.getTally(candidateId);
-    const replayHadNoEffect = tallyAfterReplay === tallyAfterOriginal;
+    const tallyAfterReplay = await tallyAt(provider, contract, candidateId);
+    const replayDelta = await attackerDelta(contract, tallyAfterOriginal, tallyAfterReplay, candidateId, voter.address);
+    const replayHadNoEffect = replayDelta === 0n;
 
-    console.log(`Tally after replay attempt: ${tallyAfterReplay} (unchanged expected: ${tallyAfterOriginal})`);
+    console.log(`Tally after replay attempt: ${tallyAfterReplay.tally} (attacker-attributable change ${replayDelta}, expected 0)`);
     console.log(`Replay rejected outright: ${replayRejected}; replay returned identical tx hash: ${replaySameHash}`);
 
     if (replayHadNoEffect) {
         pass('replayed transaction had no further effect on chain state - no double count.');
     } else {
-        fail(`replay caused the tally to change again (${tallyAfterOriginal} -> ${tallyAfterReplay}) - replay was NOT correctly rejected.`);
+        fail(`replay caused the tally to change again (attacker delta ${replayDelta}) - replay was NOT correctly rejected.`);
     }
 
     await assertAllNodesAgree(config, contract, [candidateId]);

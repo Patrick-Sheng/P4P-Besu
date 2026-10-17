@@ -14,7 +14,7 @@
 // Usage: node equivocation.js <networkConfigFile>
 
 const { ethers } = require('ethers');
-const { loadNetwork, registerFreshVoter, ensureVotingOpen, assertAllNodesAgree, pass, fail } = require('./lib');
+const { loadNetwork, registerFreshVoter, ensureVotingOpen, assertAllNodesAgree, tallyAt, attackerDelta, pass, fail } = require('./lib');
 
 async function main() {
     const networkConfigPath = process.argv[2];
@@ -38,8 +38,8 @@ async function main() {
 
     const candidateA = 0;
     const candidateB = 1;
-    const tallyBeforeA = await contract.getTally(candidateA);
-    const tallyBeforeB = await contract.getTally(candidateB);
+    const tallyBeforeA = await tallyAt(provider, contract, candidateA);
+    const tallyBeforeB = await tallyAt(provider, contract, candidateB);
 
     const iface = contract.interface;
     const nonce = await provider.getTransactionCount(voter.address);
@@ -86,10 +86,10 @@ async function main() {
 
     const includedCount = [receiptA, receiptB].filter((r) => r && r.status === 1).length;
 
-    const tallyAfterA = await contract.getTally(candidateA);
-    const tallyAfterB = await contract.getTally(candidateB);
-    const deltaA = tallyAfterA - tallyBeforeA;
-    const deltaB = tallyAfterB - tallyBeforeB;
+    const tallyAfterA = await tallyAt(provider, contract, candidateA);
+    const tallyAfterB = await tallyAt(provider, contract, candidateB);
+    const deltaA = await attackerDelta(contract, tallyBeforeA, tallyAfterA, candidateA, voter.address);
+    const deltaB = await attackerDelta(contract, tallyBeforeB, tallyAfterB, candidateB, voter.address);
     const totalDelta = deltaA + deltaB;
 
     console.log(`Tally deltas: candidate 0 +${deltaA}, candidate 1 +${deltaB}`);

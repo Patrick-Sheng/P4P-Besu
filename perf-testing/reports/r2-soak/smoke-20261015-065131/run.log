@@ -1,0 +1,41 @@
+[2026-10-15 06:51:32] === Round 2 phase 'smoke' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/smoke-20261015-065131) ===
+[2026-10-15 06:51:36] CPU probe: 1.21s (normal ~1.15s)
+[2026-10-15 06:51:36] Starting 4-validator chain (fresh): heap 2048MB, MemoryMax 2900MB, --tx-pool-max-size=65536, metrics on, slice 14488MB
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 2048M, MemoryMax 2900M each, --tx-pool-max-size=65536...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[2026-10-15 06:52:41] Chain up: all validators have 3 peers, height 18, pool maxSize 65536
+Waiting for 4 validator(s) to come up and start producing blocks...
+Network live. Block heights: 20, 20, 20, 20
+Deploying VotingSystem(numCandidates=3) via 0x52914145D3337c85E3E5da19693635886Ab598B2 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8 (block 22)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+[2026-10-15 06:52:50] Deployed VotingSystem at 0x58D7831eAcC6F61d92E5Fd951D4B11cF8DfDE5a8 (config /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/state/besu-n4.json)
+monitoring started for n=4: Prometheus :9090, Grafana :3000, node_exporter :9100
+[2026-10-15 06:53:30] Prometheus targets UP: 5/5; Grafana health: {"database":"ok","version":"11.2.0","commit":"c57667e4481563f5e6cf945b03bc0626caa4dbeb"}
+Voting not open - sending openVoting()
+Registering voters [0, 10000) = 10000; admin 0x52914145D3337c85E3E5da19693635886Ab598B2 nonce 2; window 500
+[2026-10-15T06:54:35.139Z] confirmed 1698 (40.2 regs/s), inflight 500, reverted 0, resent 0, next 2198, head 69
+[2026-10-15T06:55:20.893Z] confirmed 5263 (59.8 regs/s), inflight 500, reverted 0, resent 0, next 5763, head 92
+[2026-10-15T06:56:01.111Z] confirmed 9741 (76.0 regs/s), inflight 259, reverted 0, resent 0, next 10000, head 111
+DONE register [0, 10000): confirmed 10000, reverted 0, resent 0, 130s, 77.2 regs/s
+[smoke] castVote voters [0, 10000) at 50 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/smoke-20261015-065131/smoke-votes.csv
+[smoke] t=60s sent 2997 (49.9/s) ok 2896 reverted 0 send_err 0 pending 101 head 157
+[smoke] t=120s sent 6002 (50.0/s) ok 5898 reverted 0 send_err 0 pending 104 head 186
+[smoke] t=180s sent 9003 (50.0/s) ok 8795 reverted 0 send_err 0 pending 208 head 215
+[smoke] DONE {"label":"smoke","from":0,"count":10000,"targetRate":50,"sent":10000,"ok":10000,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":49.99,"throughput":49.43,"latencyMs":{"p50":3011,"p95":7324,"p99":8716,"max":9692,"mean":3410},"sendLagMs":{"p50":40,"p99":342,"max":1043},"startMs":1792047392997,"sendEndMs":1792047593036,"endMs":1792047595592,"blocksWatched":99}
+[2026-10-15 07:00:26] Smoke votes: {"ok":10000,"reverted":0,"dropped":0,"sendErrors":0,"successPct":100,"sendRate":49.99,"throughput":49.43,"latencyMs":{"p50":3011,"p95":7324,"p99":8716,"max":9692,"mean":3410}}
+[2026-10-15 07:00:29] Tallies ["3334","3333","3333"] expected ["3334","3333","3333"], all nodes agree + match: true
+[2026-10-15 07:00:29] Collector rows: 7; Prometheus besu tx metric samples: 4
+[2026-10-15 07:00:29] Disk: per validator 0 B/registration, 0 B/vote (blocks 53->128->242); projection: chain 0 GB (4 validators) + snapshot 0 GB = 0 GB vs 159 GB free (need +15 GB margin)
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[2026-10-15 07:00:30] RESULT: COMPLETED smoke passed; projection chain 0 GB + snapshot 0 GB fits in 159 GB

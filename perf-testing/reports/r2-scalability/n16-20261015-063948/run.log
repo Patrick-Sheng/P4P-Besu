@@ -1,0 +1,73 @@
+[06:39:48] === Round 2 Area 1 n16-20261015-063948: n=16, idle 300s, steps  votes/s x 300s ===
+[06:39:48] Fixed per node: heap 1024MB, MemoryMax 1800MB, --tx-pool-max-size=16384; slice 13488MB; loadgen 1536MB
+[06:39:48] Host: 6 vCPU, MemTotal 15988MB, MemAvailable 13510MB, disk free 156GB
+[06:39:48] Generating n=16 genesis + keys...
+Generating 16 validator keys + genesis...
+2026-10-15 06:39:51.720+00:00 | main | INFO  | GenerateBlockchainConfig | Generating 16 nodes keys.
+2026-10-15 06:39:51.724+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 0.
+2026-10-15 06:39:51.808+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 1.
+2026-10-15 06:39:51.817+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 2.
+2026-10-15 06:39:51.820+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 3.
+2026-10-15 06:39:51.823+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 4.
+2026-10-15 06:39:51.825+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 5.
+2026-10-15 06:39:51.829+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 6.
+2026-10-15 06:39:51.831+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 7.
+2026-10-15 06:39:51.836+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 8.
+2026-10-15 06:39:51.839+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 9.
+2026-10-15 06:39:51.841+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 10.
+2026-10-15 06:39:51.843+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 11.
+2026-10-15 06:39:51.847+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 12.
+2026-10-15 06:39:51.850+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 13.
+2026-10-15 06:39:51.853+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 14.
+2026-10-15 06:39:51.856+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 15.
+2026-10-15 06:39:51.860+00:00 | main | INFO  | GenerateBlockchainConfig | Generating IBFT extra data.
+2026-10-15 06:39:51.870+00:00 | main | INFO  | GenerateBlockchainConfig | Writing genesis file.
+
+Generated 16-validator network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n16
+  f (max tolerable simultaneous faults) = 5
+  RPC ports: http://127.0.0.1:21600, http://127.0.0.1:21601, http://127.0.0.1:21602, http://127.0.0.1:21603, http://127.0.0.1:21604, http://127.0.0.1:21605, http://127.0.0.1:21606, http://127.0.0.1:21607, http://127.0.0.1:21608, http://127.0.0.1:21609, http://127.0.0.1:21610, http://127.0.0.1:21611, http://127.0.0.1:21612, http://127.0.0.1:21613, http://127.0.0.1:21614, http://127.0.0.1:21615
+
+Next: docker compose -f /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n16/docker-compose.yml up -d
+[06:39:55] CPU probe: 1.22s (normal ~1.15s)
+[06:39:55] Starting fresh 16-validator chain...
+Starting 16 native besu validators (RPC ports 21600..21615) as systemd units p4p-besu-n16-v1..16, heap 1024M, MemoryMax 1800M each, --tx-pool-max-size=16384...
+PIDs written to generated/n16/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 21600): NOT RESPONDING YET
+  validator2 (port 21601): NOT RESPONDING YET
+  validator3 (port 21602): NOT RESPONDING YET
+  validator4 (port 21603): NOT RESPONDING YET
+  validator5 (port 21604): NOT RESPONDING YET
+  validator6 (port 21605): NOT RESPONDING YET
+  validator7 (port 21606): NOT RESPONDING YET
+  validator8 (port 21607): NOT RESPONDING YET
+  validator9 (port 21608): NOT RESPONDING YET
+  validator10 (port 21609): NOT RESPONDING YET
+  validator11 (port 21610): NOT RESPONDING YET
+  validator12 (port 21611): NOT RESPONDING YET
+  validator13 (port 21612): NOT RESPONDING YET
+  validator14 (port 21613): NOT RESPONDING YET
+  validator15 (port 21614): NOT RESPONDING YET
+  validator16 (port 21615): NOT RESPONDING YET
+network-meta written to generated/n16/network-meta.json
+[06:40:11] Waiting for every validator to report 15 peers...
+[06:42:24] All 16 validators report 15 peers; height 20
+[06:42:25] txpool_besuStatistics maxSize=16384
+[06:42:25] Deploying VotingSystem...
+Waiting for 16 validator(s) to come up and start producing blocks...
+Network live. Block heights: 31, 31, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32
+Deploying VotingSystem(numCandidates=3) via 0x3A25e77989697BC403dEC8c7594F5F56ee0122Ef on http://127.0.0.1:21600...
+Deployed VotingSystem at 0xD5c8c60b208e775A0D9163Eb2B0887997aD8C4BE (block 40)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n16.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n16-voters.json
+  node seed/register-voters.js networks/besu-n16.json seed/generated/n16-voters.json
+[06:43:27] Contract: 0xD5c8c60b208e775A0D9163Eb2B0887997aD8C4BE
+[06:43:27] Idle baseline: 300s, no load...
+[06:48:55] Idle: blocks 47..182, mean block time 2.244s, round expiries 0; samples=31 cpu_busy=88.7 iowait=0.7 besu_cpu=373.1 rss_end=12013 rss_max=12090 mem_avail_min=1948 swap_max=0 pool_start=0 pool_end=0 pool_max=0 pool_slope=0.000
+[06:48:56] Idle RSS 12013MB total = 750MB/node -> projected at n=19: 14250MB (plan budget ~12288MB)
+[06:48:57] Run min MemAvailable 1948MB, swap peak 0MB
+[06:48:59] Round expiries (all validators, whole run): 30
+Stopped units: p4p-besu-n16-v1.service p4p-besu-n16-v10.service p4p-besu-n16-v11.service p4p-besu-n16-v12.service p4p-besu-n16-v13.service p4p-besu-n16-v14.service p4p-besu-n16-v15.service p4p-besu-n16-v16.service p4p-besu-n16-v2.service p4p-besu-n16-v3.service p4p-besu-n16-v4.service p4p-besu-n16-v5.service p4p-besu-n16-v6.service p4p-besu-n16-v7.service p4p-besu-n16-v8.service p4p-besu-n16-v9.service
+n=16 native network stopped.
+[06:50:30] RESULT: BREAKING POINT at n=16 - MAX_SUSTAINABLE_BELOW_50 :: no load step passed (lowest none votes/s); max sustainable 0 votes/s

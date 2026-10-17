@@ -73,6 +73,12 @@ if [ -n "${TX_POOL_MAX_SIZE:-}" ]; then
     txpool_flag=(--tx-pool-max-size="$TX_POOL_MAX_SIZE")
 fi
 
+# Round 2: Prometheus metrics endpoint, only when start-native.sh was run with P4P_METRICS=1
+metrics_flag=()
+if [ "${METRICS_ENABLED:-}" = 1 ]; then
+    metrics_flag=(--metrics-enabled --metrics-host=127.0.0.1 --metrics-port="$((9000 + N * 100 + i))")
+fi
+
 # Bounded off-heap: metaspace, JIT code cache and Netty direct buffers otherwise
 # grow unbounded on top of -Xmx, and glibc's per-thread malloc arenas inflate
 # RocksDB's native footprint - together these made a -Xmx512m node reach ~1.2G RSS.
@@ -102,6 +108,7 @@ systemd-run --user --quiet \
     --p2p-port="$((P2P_BASE + i))" \
     "${bootnode_flag[@]}" \
     "${txpool_flag[@]}" \
+    "${metrics_flag[@]}" \
     --profile=ENTERPRISE \
     --Xplugin-rocksdb-cache-capacity=33554432 \
     --Xplugin-rocksdb-background-thread-count=1 \

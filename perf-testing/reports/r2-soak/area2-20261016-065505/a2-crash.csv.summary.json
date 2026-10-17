@@ -1,0 +1,31 @@
+{
+  "label": "a2-crash",
+  "from": 2800000,
+  "count": 18000,
+  "skippedAlreadyVoted": 0,
+  "targetRate": 30,
+  "sent": 18000,
+  "ok": 18000,
+  "reverted": 0,
+  "sendErrors": 0,
+  "dropped": 0,
+  "successPct": 100,
+  "sendRate": 30,
+  "throughput": 29.98,
+  "latencyMs": {
+    "p50": 2094,
+    "p95": 5063,
+    "p99": 6072,
+    "max": 8059,
+    "mean": 2365
+  },
+  "sendLagMs": {
+    "p50": 40,
+    "p99": 106.666748046875,
+    "max": 803.333251953125
+  },
+  "startMs": 1792133714982,
+  "sendEndMs": 1792134314998,
+  "endMs": 1792134315646,
+  "blocksWatched": 252
+}

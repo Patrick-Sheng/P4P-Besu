@@ -1,0 +1,96 @@
+[2026-10-16 04:31:34] === Round 2 phase 'soak' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-043132) ===
+[2026-10-16 04:31:41] CPU probe: 1.85s (normal ~1.15s)
+[2026-10-16 04:32:01] CPU probe: 1.52s (normal ~1.15s)
+[2026-10-16 04:32:20] CPU probe: 1.02s (normal ~1.15s)
+[2026-10-16 04:32:24] Starting 4-validator chain (keep): heap 1024MB, MemoryMax 2600MB, --tx-pool-max-size=65536, metrics on, slice 14488MB
+P4P_KEEP_DATA=1: reusing existing generated/n4/data-native (logs appended)
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 1024M, MemoryMax 2600M each, --tx-pool-max-size=65536...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[2026-10-16 04:33:21] Chain up: all validators have 3 peers, height 13059, pool maxSize 65536
+monitoring started for n=4: Prometheus :9090, Grafana :3000, node_exporter :9100
+[2026-10-16 04:34:02] Prometheus targets UP: 5/5; Grafana health: {"database":"ok","version":"11.2.0","commit":"c57667e4481563f5e6cf945b03bc0626caa4dbeb"}
+voted-scan [400000, 600000): 141747 already voted -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-043132/skip-r3.txt
+[2026-10-16 04:36:57] Resume: 141747 voters of round 3 already Voted - they will be skipped
+[2026-10-16 04:36:57] Warm-up: 30 votes/s for 3 min (voters 3100000..3105400)
+[warmup-30] castVote voters [3100000, 3105400) at 30 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-043132/soak-r00.csv
+[warmup-30] t=60s sent 1800 (30.0/s) ok 1727 reverted 0 send_err 0 pending 73 head 13196
+[warmup-30] t=120s sent 3600 (30.0/s) ok 3586 reverted 0 send_err 0 pending 14 head 13227
+[warmup-30] DONE {"label":"warmup-30","from":3100000,"count":5400,"skippedAlreadyVoted":0,"targetRate":30,"sent":5400,"ok":5400,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":30,"throughput":29.69,"latencyMs":{"p50":1925,"p95":3717,"p99":5523,"max":6814,"mean":2018},"sendLagMs":{"p50":40.333251953125,"p99":123.333251953125,"max":281.666748046875},"startMs":1792125418420,"sendEndMs":1792125598442,"endMs":1792125600579,"blocksWatched":90}
+[2026-10-16 04:40:00] Warm-up 30/s: {"ok":5400,"dropped":0,"successPct":100,"p95":3717}
+[2026-10-16 04:40:00] Warm-up: 60 votes/s for 3 min (voters 3105400..3116200)
+[warmup-60] castVote voters [3105400, 3116200) at 60 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-043132/soak-r00.csv
+[warmup-60] t=60s sent 3600 (60.0/s) ok 3415 reverted 0 send_err 0 pending 185 head 13287
+[warmup-60] t=120s sent 7200 (60.0/s) ok 7016 reverted 0 send_err 0 pending 184 head 13317
+[warmup-60] DONE {"label":"warmup-60","from":3105400,"count":10800,"skippedAlreadyVoted":0,"targetRate":60,"sent":10800,"ok":10800,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":60,"throughput":59.49,"latencyMs":{"p50":2051,"p95":3394,"p99":3933,"max":5334,"mean":2067},"sendLagMs":{"p50":25,"p99":121.333251953125,"max":884.333251953125},"startMs":1792125601012,"sendEndMs":1792125781027,"endMs":1792125782849,"blocksWatched":91}
+[2026-10-16 04:43:03] Warm-up 60/s: {"ok":10800,"dropped":0,"successPct":100,"p95":3394}
+[2026-10-16 04:43:03] Round 3/14: voters 400000..600000 at 90/s (~37 min)
+[soak-r3] castVote voters [400000, 600000) at 90 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-043132/soak-r03.csv
+[soak-r3] skipping 141747 voters already Voted (resumed round)
+[soak-r3] t=60s sent 5400 (90.0/s) ok 5246 reverted 0 send_err 0 pending 154 head 13379
+[soak-r3] t=120s sent 10801 (90.0/s) ok 10646 reverted 0 send_err 0 pending 155 head 13409
+[soak-r3] t=180s sent 16201 (90.0/s) ok 16047 reverted 0 send_err 0 pending 154 head 13439
+[soak-r3] t=240s sent 21602 (90.0/s) ok 21446 reverted 0 send_err 0 pending 156 head 13469
+[soak-r3] t=300s sent 27002 (90.0/s) ok 26844 reverted 0 send_err 0 pending 158 head 13499
+[soak-r3] t=360s sent 32403 (90.0/s) ok 32244 reverted 0 send_err 0 pending 159 head 13529
+[soak-r3] t=420s sent 37805 (90.0/s) ok 37643 reverted 0 send_err 0 pending 162 head 13559
+[soak-r3] t=480s sent 43207 (90.0/s) ok 43046 reverted 0 send_err 0 pending 161 head 13589
+[soak-r3] t=540s sent 48607 (90.0/s) ok 48447 reverted 0 send_err 0 pending 160 head 13619
+[soak-r3] t=600s sent 54008 (90.0/s) ok 53844 reverted 0 send_err 0 pending 164 head 13649
+[soak-r3] DONE {"label":"soak-r3","from":400000,"count":200000,"skippedAlreadyVoted":141747,"targetRate":90,"sent":58253,"ok":58253,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":89.99,"throughput":89.72,"latencyMs":{"p50":2159,"p95":3577,"p99":4158,"max":5801,"mean":2178},"sendLagMs":{"p50":20.111083984375,"p99":104.111083984375,"max":410.111083984375},"startMs":1792125783689,"sendEndMs":1792126430981,"endMs":1792126433281,"blocksWatched":325}
+[2026-10-16 04:54:05] Round 3 done: {"ok":58253,"dropped":0,"sendErrors":0,"successPct":100,"sendRate":89.99,"throughput":89.72,"p95":3577} block 2.000s heap 352MB disk free 137GB
+[2026-10-16 04:54:05] Round 4/14: voters 600000..800000 at 90/s (~37 min)
+[soak-r4] castVote voters [600000, 800000) at 90 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-043132/soak-r04.csv
+[soak-r4] t=60s sent 5400 (90.0/s) ok 5319 reverted 0 send_err 0 pending 81 head 13711
+[soak-r4] t=120s sent 10801 (90.0/s) ok 10537 reverted 0 send_err 0 pending 264 head 13740
+[soak-r4] t=180s sent 16204 (90.0/s) ok 15939 reverted 0 send_err 0 pending 265 head 13771
+[soak-r4] t=240s sent 21607 (90.0/s) ok 21339 reverted 0 send_err 0 pending 268 head 13800
+[soak-r4] t=300s sent 27013 (90.0/s) ok 26739 reverted 0 send_err 0 pending 274 head 13830
+[soak-r4] t=360s sent 32413 (90.0/s) ok 32138 reverted 0 send_err 0 pending 275 head 13860
+[soak-r4] t=420s sent 37815 (90.0/s) ok 37359 reverted 0 send_err 0 pending 456 head 13890
+[soak-r4] t=480s sent 43218 (90.0/s) ok 43119 reverted 0 send_err 0 pending 99 head 13921
+[soak-r4] t=540s sent 48619 (90.0/s) ok 48339 reverted 0 send_err 0 pending 280 head 13950
+[soak-r4] t=600s sent 54019 (90.0/s) ok 53739 reverted 0 send_err 0 pending 280 head 13980
+[soak-r4] t=660s sent 59429 (90.0/s) ok 59328 reverted 0 send_err 0 pending 101 head 14011
+[soak-r4] t=720s sent 64831 (90.0/s) ok 64537 reverted 0 send_err 0 pending 294 head 14040
+[soak-r4] t=780s sent 70233 (90.0/s) ok 69935 reverted 0 send_err 0 pending 298 head 14070
+[soak-r4] t=840s sent 75633 (90.0/s) ok 75339 reverted 0 send_err 0 pending 294 head 14100
+[soak-r4] t=900s sent 81037 (90.0/s) ok 80910 reverted 0 send_err 0 pending 127 head 14131
+[soak-r4] t=960s sent 86437 (90.0/s) ok 86319 reverted 0 send_err 0 pending 118 head 14161
+[soak-r4] t=1020s sent 91837 (90.0/s) ok 91538 reverted 0 send_err 0 pending 299 head 14190
+[soak-r4] t=1080s sent 97243 (90.0/s) ok 97119 reverted 0 send_err 0 pending 124 head 14221
+[soak-r4] t=1141s sent 102632 (90.0/s) ok 101538 reverted 0 send_err 0 pending 1094 head 14235
+[soak-r4] t=1202s sent 107912 (89.7/s) ok 104547 reverted 0 send_err 0 pending 3365 head 14238
+[soak-r4] t=1262s sent 113567 (90.0/s) ok 104827 reverted 0 send_err 0 pending 8740 head 14241
+[soak-r4] t=1322s sent 119016 (90.0/s) ok 107824 reverted 0 send_err 0 pending 11192 head 14246
+[soak-r4] t=1383s sent 124422 (90.0/s) ok 110982 reverted 0 send_err 0 pending 13440 head 14251
+[soak-r4] t=1443s sent 129723 (89.9/s) ok 112801 reverted 0 send_err 0 pending 16922 head 14255
+[soak-r4] t=1503s sent 135283 (90.0/s) ok 114296 reverted 0 send_err 0 pending 20987 head 14258
+[2026-10-16 05:19:16] EPISODE slow_blocks (round 4): 20 blocks in 305s; pool 18644; last CPU probe 746 ms - recorded, not aborting
+[soak-r4] t=1563s sent 140683 (90.0/s) ok 117849 reverted 0 send_err 0 pending 22834 head 14261
+[soak-r4] t=1623s sent 146101 (90.0/s) ok 120225 reverted 0 send_err 0 pending 25876 head 14264
+[soak-r4] t=1684s sent 151491 (90.0/s) ok 123599 reverted 0 send_err 0 pending 27892 head 14270
+[2026-10-16 05:22:18] EPISODE pool_growing_10min (round 4): pool 135 -> 28520; pool 28520; last CPU probe 1428 ms - recorded, not aborting
+[soak-r4] t=1744s sent 156967 (90.0/s) ok 125404 reverted 0 send_err 0 pending 31563 head 14271
+[2026-10-16 05:23:18] EPISODE pool_growing_10min (round 4): pool 1306 -> 31425; pool 31425; last CPU probe 1428 ms - recorded, not aborting
+[soak-r4] t=1804s sent 162373 (90.0/s) ok 127721 reverted 0 send_err 0 pending 34652 head 14274
+[2026-10-16 05:24:19] EPISODE slow_blocks (round 4): 15 blocks in 303s; pool 35266; last CPU probe 1428 ms - recorded, not aborting
+[2026-10-16 05:24:19] EPISODE pool_growing_10min (round 4): pool 2910 -> 35266; pool 35266; last CPU probe 1428 ms - recorded, not aborting
+[soak-r4] t=1864s sent 167760 (90.0/s) ok 130296 reverted 0 send_err 0 pending 37464 head 14276
+[2026-10-16 05:25:21] EPISODE pool_growing_10min (round 4): pool 7318 -> 38199; pool 38199; last CPU probe 960 ms - recorded, not aborting
+[soak-r4] t=1924s sent 173181 (90.0/s) ok 131131 reverted 0 send_err 0 pending 42050 head 14279
+[2026-10-16 05:26:21] EPISODE pool_growing_10min (round 4): pool 11242 -> 41030; pool 41030; last CPU probe 960 ms - recorded, not aborting
+[soak-r4] t=1984s sent 178561 (90.0/s) ok 134184 reverted 0 send_err 0 pending 44377 head 14283
+[2026-10-16 05:27:22] EPISODE pool_growing_10min (round 4): pool 13808 -> 43775; pool 43775; last CPU probe 960 ms - recorded, not aborting
+[soak-r4] t=2046s sent 183967 (89.9/s) ok 137658 reverted 0 send_err 0 pending 46309 head 14287
+[2026-10-16 05:28:23] EPISODE pool_growing_10min (round 4): pool 17463 -> 46298; pool 46298; last CPU probe 837 ms - recorded, not aborting
+[soak-r4] t=2106s sent 189508 (90.0/s) ok 141541 reverted 0 send_err 0 pending 47967 head 14293
+[2026-10-16 05:29:24] EPISODE slow_blocks (round 4): 20 blocks in 305s; pool 48429; last CPU probe 837 ms - recorded, not aborting
+[2026-10-16 05:29:24] EPISODE pool_growing_10min (round 4): pool 18644 -> 48429; pool 48429; last CPU probe 837 ms - recorded, not aborting
+[soak-r4] t=2166s sent 194910 (90.0/s) ok 143763 reverted 0 send_err 0 pending 51147 head 14296
+[2026-10-16 05:30:24] CRASH_REASON=POOL_NEAR_CAP :: pool 50201 of 65536 - votes would start being evicted (round 4)
+[2026-10-16 05:30:25] RESULT: ABORTED during 'soak round 4' - POOL_NEAR_CAP :: pool 50201 of 65536 - votes would start being evicted (round 4)

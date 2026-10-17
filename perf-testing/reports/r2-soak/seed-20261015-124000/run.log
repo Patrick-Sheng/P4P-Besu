@@ -1,0 +1,639 @@
+[2026-10-15 12:40:01] === Round 2 phase 'seed' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/seed-20261015-124000) ===
+[2026-10-15 12:40:06] CPU probe: 1.74s (normal ~1.15s)
+[2026-10-15 12:40:06] Resuming seeding on the existing chain (progress 899888)
+[2026-10-15 12:40:09] Starting 4-validator chain (keep): heap 2048MB, MemoryMax 3300MB, --tx-pool-max-size=65536, metrics on, slice 14488MB
+P4P_KEEP_DATA=1: reusing existing generated/n4/data-native (logs appended)
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 2048M, MemoryMax 3300M each, --tx-pool-max-size=65536...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[2026-10-15 12:41:19] Chain up: all validators have 3 peers, height 2269, pool maxSize 65536
+monitoring started for n=4: Prometheus :9090, Grafana :3000, node_exporter :9100
+[2026-10-15 12:41:59] Prometheus targets UP: 5/5; Grafana health: {"database":"ok","version":"11.2.0","commit":"c57667e4481563f5e6cf945b03bc0626caa4dbeb"}
+[2026-10-15 12:42:03] Registering voters 0..3300000 (window 500)
+Resuming at voter 899888 (from /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/state/register.progress)
+Skipped 966 already-registered voters; starting at 900854
+Registering voters [900854, 3300000) = 2399146; admin 0x52914145D3337c85E3E5da19693635886Ab598B2 nonce 900856; window 500
+[2026-10-15T12:42:56.946Z] confirmed 2205 (59.6 regs/s), inflight 500, reverted 0, resent 0, next 903559, head 2313
+[2026-10-15T12:43:27.737Z] confirmed 6501 (95.9 regs/s), inflight 500, reverted 0, resent 0, next 907855, head 2329
+[2026-10-15T12:43:58.814Z] confirmed 11612 (117.5 regs/s), inflight 500, reverted 0, resent 0, next 912966, head 2345
+[2026-10-15T12:44:29.968Z] confirmed 17317 (133.2 regs/s), inflight 500, reverted 0, resent 0, next 918671, head 2360
+[2026-10-15T12:45:00.116Z] confirmed 23111 (144.3 regs/s), inflight 500, reverted 0, resent 0, next 924465, head 2375
+[2026-10-15T12:45:30.307Z] confirmed 29197 (153.4 regs/s), inflight 500, reverted 0, resent 0, next 930551, head 2390
+[2026-10-15T12:46:00.409Z] confirmed 34738 (157.6 regs/s), inflight 500, reverted 0, resent 0, next 936092, head 2405
+[2026-10-15T12:46:30.485Z] confirmed 40712 (162.5 regs/s), inflight 500, reverted 0, resent 0, next 942066, head 2420
+[2026-10-15T12:47:00.524Z] confirmed 46342 (165.2 regs/s), inflight 500, reverted 0, resent 0, next 947696, head 2435
+[2026-10-15T12:47:30.591Z] confirmed 51772 (166.7 regs/s), inflight 500, reverted 0, resent 0, next 953126, head 2450
+[2026-10-15T12:48:00.619Z] confirmed 56677 (166.4 regs/s), inflight 500, reverted 0, resent 0, next 958031, head 2465
+[2026-10-15T12:48:31.170Z] confirmed 62449 (168.2 regs/s), inflight 500, reverted 0, resent 0, next 963803, head 2481
+[2026-10-15T12:49:01.261Z] confirmed 67959 (169.4 regs/s), inflight 500, reverted 0, resent 0, next 969313, head 2495
+[2026-10-15T12:49:32.760Z] confirmed 73935 (170.8 regs/s), inflight 500, reverted 0, resent 0, next 975289, head 2511
+[2026-10-15T12:50:04.204Z] confirmed 79630 (171.5 regs/s), inflight 500, reverted 0, resent 0, next 980984, head 2527
+[2026-10-15T12:50:35.110Z] confirmed 85419 (172.5 regs/s), inflight 500, reverted 0, resent 0, next 986773, head 2543
+[2026-10-15T12:51:05.179Z] confirmed 90836 (173.0 regs/s), inflight 500, reverted 0, resent 0, next 992190, head 2558
+[2026-10-15T12:51:35.274Z] confirmed 96481 (173.7 regs/s), inflight 500, reverted 0, resent 0, next 997835, head 2573
+[2026-10-15T12:52:06.720Z] confirmed 102151 (174.1 regs/s), inflight 500, reverted 0, resent 0, next 1003505, head 2588
+[2026-10-15T12:52:36.729Z] confirmed 107611 (174.5 regs/s), inflight 500, reverted 0, resent 0, next 1008965, head 2603
+[2026-10-15T12:53:08.064Z] confirmed 112417 (173.5 regs/s), inflight 500, reverted 0, resent 0, next 1013771, head 2619
+[2026-10-15T12:53:38.127Z] confirmed 117518 (173.3 regs/s), inflight 500, reverted 0, resent 0, next 1018872, head 2634
+[2026-10-15T12:54:08.244Z] confirmed 122934 (173.6 regs/s), inflight 500, reverted 0, resent 0, next 1024288, head 2649
+[watcher] block 2659: "missing"
+[2026-10-15T12:54:38.981Z] confirmed 128454 (173.8 regs/s), inflight 500, reverted 0, resent 0, next 1029808, head 2664
+[2026-10-15T12:55:09.068Z] confirmed 134074 (174.3 regs/s), inflight 500, reverted 0, resent 0, next 1035428, head 2679
+[2026-10-15T12:55:39.072Z] confirmed 140000 (175.2 regs/s), inflight 500, reverted 0, resent 0, next 1041354, head 2694
+[2026-10-15T12:56:09.088Z] confirmed 146066 (176.2 regs/s), inflight 500, reverted 0, resent 0, next 1047420, head 2709
+[2026-10-15T12:56:39.187Z] confirmed 151902 (176.8 regs/s), inflight 500, reverted 0, resent 0, next 1053256, head 2724
+[2026-10-15T12:57:09.194Z] confirmed 157436 (177.0 regs/s), inflight 500, reverted 0, resent 0, next 1058790, head 2739
+[2026-10-15T12:57:39.619Z] confirmed 163155 (177.4 regs/s), inflight 500, reverted 0, resent 0, next 1064509, head 2754
+[2026-10-15T12:58:09.649Z] confirmed 168519 (177.4 regs/s), inflight 500, reverted 0, resent 0, next 1069873, head 2769
+[2026-10-15T12:58:40.301Z] confirmed 174791 (178.3 regs/s), inflight 500, reverted 0, resent 0, next 1076145, head 2785
+[2026-10-15T12:59:11.206Z] confirmed 180325 (178.3 regs/s), inflight 500, reverted 0, resent 0, next 1081679, head 2800
+[2026-10-15T12:59:41.258Z] confirmed 185610 (178.3 regs/s), inflight 500, reverted 0, resent 0, next 1086964, head 2815
+[2026-10-15T13:00:11.994Z] confirmed 191485 (178.6 regs/s), inflight 500, reverted 0, resent 0, next 1092839, head 2831
+[2026-10-15T13:00:42.082Z] confirmed 196570 (178.4 regs/s), inflight 500, reverted 0, resent 0, next 1097924, head 2846
+[2026-10-15T13:01:12.612Z] confirmed 202385 (178.7 regs/s), inflight 500, reverted 0, resent 0, next 1103739, head 2861
+[2026-10-15T13:01:43.802Z] confirmed 208197 (178.9 regs/s), inflight 500, reverted 0, resent 0, next 1109551, head 2877
+[2026-10-15T13:02:14.980Z] confirmed 214033 (179.1 regs/s), inflight 500, reverted 0, resent 0, next 1115387, head 2892
+[2026-10-15T13:02:45.082Z] confirmed 219675 (179.3 regs/s), inflight 500, reverted 0, resent 0, next 1121029, head 2907
+[2026-10-15T13:03:15.290Z] confirmed 225709 (179.8 regs/s), inflight 500, reverted 0, resent 0, next 1127063, head 2922
+[2026-10-15T13:03:45.312Z] confirmed 231196 (179.9 regs/s), inflight 500, reverted 0, resent 0, next 1132550, head 2937
+[2026-10-15T13:04:15.375Z] confirmed 236820 (180.0 regs/s), inflight 500, reverted 0, resent 0, next 1138174, head 2952
+[2026-10-15T13:04:45.475Z] confirmed 242642 (180.3 regs/s), inflight 500, reverted 0, resent 0, next 1143996, head 2967
+[2026-10-15T13:05:15.532Z] confirmed 248686 (180.8 regs/s), inflight 500, reverted 0, resent 0, next 1150040, head 2982
+[2026-10-15T13:05:45.633Z] confirmed 253972 (180.7 regs/s), inflight 500, reverted 0, resent 0, next 1155326, head 2997
+[2026-10-15T13:06:15.663Z] confirmed 260085 (181.2 regs/s), inflight 500, reverted 0, resent 0, next 1161439, head 3012
+[2026-10-15T13:06:45.742Z] confirmed 265587 (181.2 regs/s), inflight 500, reverted 0, resent 0, next 1166941, head 3027
+[2026-10-15T13:07:16.020Z] confirmed 271118 (181.2 regs/s), inflight 500, reverted 0, resent 0, next 1172472, head 3043
+[2026-10-15T13:07:47.694Z] confirmed 277051 (181.3 regs/s), inflight 500, reverted 0, resent 0, next 1178405, head 3058
+[2026-10-15T13:08:17.758Z] confirmed 282757 (181.5 regs/s), inflight 500, reverted 0, resent 0, next 1184111, head 3073
+[2026-10-15T13:08:47.808Z] confirmed 287907 (181.3 regs/s), inflight 500, reverted 0, resent 0, next 1189261, head 3088
+[2026-10-15T13:09:17.907Z] confirmed 293466 (181.4 regs/s), inflight 500, reverted 0, resent 0, next 1194820, head 3103
+[2026-10-15T13:09:48.283Z] confirmed 298919 (181.3 regs/s), inflight 500, reverted 0, resent 0, next 1200273, head 3119
+[2026-10-15T13:10:18.676Z] confirmed 304899 (181.6 regs/s), inflight 500, reverted 0, resent 0, next 1206253, head 3134
+[2026-10-15T13:10:48.721Z] confirmed 310810 (181.9 regs/s), inflight 500, reverted 0, resent 0, next 1212164, head 3149
+[2026-10-15T13:11:19.022Z] confirmed 316789 (182.2 regs/s), inflight 500, reverted 0, resent 0, next 1218143, head 3164
+[2026-10-15T13:11:49.691Z] confirmed 322715 (182.4 regs/s), inflight 500, reverted 0, resent 0, next 1224069, head 3179
+[2026-10-15T13:12:19.745Z] confirmed 328634 (182.6 regs/s), inflight 500, reverted 0, resent 0, next 1229988, head 3194
+[2026-10-15T13:12:49.758Z] confirmed 334273 (182.7 regs/s), inflight 500, reverted 0, resent 0, next 1235627, head 3209
+[2026-10-15T13:13:20.577Z] confirmed 339938 (182.7 regs/s), inflight 500, reverted 0, resent 0, next 1241292, head 3225
+[2026-10-15T13:13:52.113Z] confirmed 345911 (182.8 regs/s), inflight 500, reverted 0, resent 0, next 1247265, head 3241
+[2026-10-15T13:14:23.815Z] confirmed 351662 (182.8 regs/s), inflight 500, reverted 0, resent 0, next 1253016, head 3257
+[2026-10-15T13:14:53.930Z] confirmed 356885 (182.6 regs/s), inflight 500, reverted 0, resent 0, next 1258239, head 3271
+[2026-10-15T13:15:24.459Z] confirmed 363088 (183.0 regs/s), inflight 500, reverted 0, resent 0, next 1264442, head 3287
+[2026-10-15T13:15:55.595Z] confirmed 369161 (183.1 regs/s), inflight 500, reverted 0, resent 0, next 1270515, head 3302
+[2026-10-15T13:16:25.694Z] confirmed 375277 (183.4 regs/s), inflight 500, reverted 0, resent 0, next 1276631, head 3317
+[2026-10-15T13:16:55.738Z] confirmed 381200 (183.6 regs/s), inflight 500, reverted 0, resent 0, next 1282554, head 3332
+[2026-10-15T13:17:28.073Z] confirmed 386706 (183.4 regs/s), inflight 500, reverted 0, resent 0, next 1288060, head 3348
+[2026-10-15T13:17:58.111Z] confirmed 390554 (182.7 regs/s), inflight 500, reverted 0, resent 0, next 1291908, head 3364
+[2026-10-15T13:18:28.366Z] confirmed 396168 (182.7 regs/s), inflight 500, reverted 0, resent 0, next 1297522, head 3379
+[2026-10-15T13:18:59.467Z] confirmed 401240 (182.4 regs/s), inflight 500, reverted 0, resent 0, next 1302594, head 3394
+[2026-10-15T13:19:29.474Z] confirmed 407114 (182.6 regs/s), inflight 500, reverted 0, resent 0, next 1308468, head 3409
+[2026-10-15T13:19:59.911Z] confirmed 412780 (182.7 regs/s), inflight 500, reverted 0, resent 0, next 1314134, head 3425
+[2026-10-15T13:20:30.924Z] confirmed 418665 (182.7 regs/s), inflight 500, reverted 0, resent 0, next 1320019, head 3440
+[2026-10-15T13:21:00.995Z] confirmed 423736 (182.6 regs/s), inflight 500, reverted 0, resent 0, next 1325090, head 3455
+[2026-10-15T13:21:31.025Z] confirmed 429400 (182.6 regs/s), inflight 500, reverted 0, resent 0, next 1330754, head 3470
+[2026-10-15T13:22:01.065Z] confirmed 435341 (182.8 regs/s), inflight 500, reverted 0, resent 0, next 1336695, head 3485
+[2026-10-15T13:22:31.176Z] confirmed 441311 (183.0 regs/s), inflight 500, reverted 0, resent 0, next 1342665, head 3500
+[2026-10-15T13:23:01.209Z] confirmed 446972 (183.1 regs/s), inflight 500, reverted 0, resent 0, next 1348326, head 3515
+[2026-10-15T13:23:32.052Z] confirmed 452278 (183.0 regs/s), inflight 500, reverted 0, resent 0, next 1353632, head 3531
+[2026-10-15T13:24:03.003Z] confirmed 458272 (183.1 regs/s), inflight 500, reverted 0, resent 0, next 1359626, head 3546
+[2026-10-15T13:24:33.051Z] confirmed 463763 (183.1 regs/s), inflight 500, reverted 0, resent 0, next 1365117, head 3561
+[2026-10-15T13:25:03.611Z] confirmed 469518 (183.1 regs/s), inflight 500, reverted 0, resent 0, next 1370872, head 3576
+[2026-10-15T13:25:33.732Z] confirmed 475284 (183.2 regs/s), inflight 500, reverted 0, resent 0, next 1376638, head 3591
+[2026-10-15T13:26:03.736Z] confirmed 481050 (183.3 regs/s), inflight 500, reverted 0, resent 0, next 1382404, head 3606
+[2026-10-15T13:26:37.457Z] confirmed 486439 (183.0 regs/s), inflight 500, reverted 0, resent 0, next 1387793, head 3622
+[2026-10-15T13:27:08.524Z] confirmed 491740 (182.9 regs/s), inflight 500, reverted 0, resent 0, next 1393094, head 3638
+[2026-10-15T13:27:38.528Z] confirmed 496869 (182.8 regs/s), inflight 500, reverted 0, resent 0, next 1398223, head 3653
+[2026-10-15T13:28:08.585Z] confirmed 502391 (182.8 regs/s), inflight 500, reverted 0, resent 0, next 1403745, head 3668
+[2026-10-15T13:28:39.548Z] confirmed 508263 (182.9 regs/s), inflight 500, reverted 0, resent 0, next 1409617, head 3684
+[2026-10-15T13:29:09.612Z] confirmed 513361 (182.7 regs/s), inflight 500, reverted 0, resent 0, next 1414715, head 3699
+[2026-10-15T13:29:39.683Z] confirmed 519273 (182.9 regs/s), inflight 500, reverted 0, resent 0, next 1420627, head 3714
+[2026-10-15T13:30:09.986Z] confirmed 525063 (182.9 regs/s), inflight 500, reverted 0, resent 0, next 1426417, head 3729
+[2026-10-15T13:30:40.146Z] confirmed 531057 (183.1 regs/s), inflight 500, reverted 0, resent 0, next 1432411, head 3744
+[2026-10-15T13:31:10.281Z] confirmed 536770 (183.2 regs/s), inflight 500, reverted 0, resent 0, next 1438124, head 3759
+[2026-10-15T13:31:40.722Z] confirmed 542414 (183.2 regs/s), inflight 500, reverted 0, resent 0, next 1443768, head 3774
+[2026-10-15T13:32:10.729Z] confirmed 548306 (183.3 regs/s), inflight 500, reverted 0, resent 0, next 1449660, head 3789
+[2026-10-15T13:32:40.738Z] confirmed 554296 (183.5 regs/s), inflight 500, reverted 0, resent 0, next 1455650, head 3804
+[2026-10-15T13:33:10.815Z] confirmed 559240 (183.3 regs/s), inflight 500, reverted 0, resent 0, next 1460594, head 3819
+[2026-10-15T13:33:41.412Z] confirmed 565282 (183.4 regs/s), inflight 500, reverted 0, resent 0, next 1466636, head 3835
+[2026-10-15T13:34:12.099Z] confirmed 570914 (183.4 regs/s), inflight 500, reverted 0, resent 0, next 1472268, head 3850
+[2026-10-15T13:34:42.307Z] confirmed 576386 (183.4 regs/s), inflight 500, reverted 0, resent 0, next 1477740, head 3865
+[2026-10-15T13:35:12.669Z] confirmed 581994 (183.4 regs/s), inflight 500, reverted 0, resent 0, next 1483348, head 3880
+[2026-10-15T13:35:42.707Z] confirmed 586509 (183.1 regs/s), inflight 500, reverted 0, resent 0, next 1487863, head 3895
+[2026-10-15T13:36:13.489Z] confirmed 592635 (183.3 regs/s), inflight 500, reverted 0, resent 0, next 1493989, head 3911
+[2026-10-15T13:36:43.671Z] confirmed 598147 (183.3 regs/s), inflight 500, reverted 0, resent 0, next 1499501, head 3926
+[2026-10-15T13:37:13.764Z] confirmed 603868 (183.3 regs/s), inflight 500, reverted 0, resent 0, next 1505222, head 3941
+[2026-10-15T13:37:43.906Z] confirmed 609894 (183.5 regs/s), inflight 500, reverted 0, resent 0, next 1511248, head 3956
+[2026-10-15T13:38:13.960Z] confirmed 615295 (183.5 regs/s), inflight 500, reverted 0, resent 0, next 1516649, head 3971
+[2026-10-15T13:38:43.995Z] confirmed 620991 (183.5 regs/s), inflight 500, reverted 0, resent 0, next 1522345, head 3986
+[2026-10-15T13:39:14.561Z] confirmed 627065 (183.6 regs/s), inflight 500, reverted 0, resent 0, next 1528419, head 4002
+[2026-10-15T13:39:44.674Z] confirmed 632929 (183.7 regs/s), inflight 500, reverted 0, resent 0, next 1534283, head 4016
+[2026-10-15T13:40:14.706Z] confirmed 638815 (183.8 regs/s), inflight 500, reverted 0, resent 0, next 1540169, head 4031
+[2026-10-15T13:40:44.760Z] confirmed 644881 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1546235, head 4046
+[2026-10-15T13:41:14.815Z] confirmed 650759 (184.1 regs/s), inflight 500, reverted 0, resent 0, next 1552113, head 4061
+[2026-10-15T13:41:45.294Z] confirmed 656605 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 1557959, head 4077
+[2026-10-15T13:42:16.207Z] confirmed 662702 (184.3 regs/s), inflight 500, reverted 0, resent 0, next 1564056, head 4092
+[2026-10-15T13:42:46.816Z] confirmed 668177 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 1569531, head 4107
+[2026-10-15T13:43:17.297Z] confirmed 674020 (184.3 regs/s), inflight 500, reverted 0, resent 0, next 1575374, head 4123
+[2026-10-15T13:43:48.198Z] confirmed 679727 (184.3 regs/s), inflight 500, reverted 0, resent 0, next 1581081, head 4138
+[2026-10-15T13:44:18.270Z] confirmed 684218 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1585572, head 4153
+[2026-10-15T13:44:48.360Z] confirmed 689530 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1590884, head 4168
+[2026-10-15T13:45:18.400Z] confirmed 695049 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1596403, head 4183
+[2026-10-15T13:45:48.519Z] confirmed 700706 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1602060, head 4198
+[2026-10-15T13:46:18.521Z] confirmed 706701 (184.1 regs/s), inflight 500, reverted 0, resent 0, next 1608055, head 4213
+[2026-10-15T13:46:48.696Z] confirmed 711862 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1613216, head 4228
+[2026-10-15T13:47:18.731Z] confirmed 717539 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1618893, head 4243
+[2026-10-15T13:47:49.494Z] confirmed 723611 (184.1 regs/s), inflight 500, reverted 0, resent 0, next 1624965, head 4259
+[2026-10-15T13:48:20.043Z] confirmed 729337 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 1630691, head 4274
+[2026-10-15T13:48:50.049Z] confirmed 734670 (184.1 regs/s), inflight 500, reverted 0, resent 0, next 1636024, head 4289
+[2026-10-15T13:49:20.498Z] confirmed 740273 (184.1 regs/s), inflight 500, reverted 0, resent 0, next 1641627, head 4304
+[2026-10-15T13:49:50.607Z] confirmed 746294 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 1647648, head 4319
+[2026-10-15T13:50:20.713Z] confirmed 751867 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 1653221, head 4334
+[2026-10-15T13:50:50.807Z] confirmed 757519 (184.3 regs/s), inflight 500, reverted 0, resent 0, next 1658873, head 4349
+[2026-10-15T13:51:20.861Z] confirmed 763385 (184.4 regs/s), inflight 500, reverted 0, resent 0, next 1664739, head 4365
+[2026-10-15T13:51:50.936Z] confirmed 769390 (184.5 regs/s), inflight 500, reverted 0, resent 0, next 1670744, head 4380
+[2026-10-15T13:52:21.316Z] confirmed 775255 (184.5 regs/s), inflight 500, reverted 0, resent 0, next 1676609, head 4395
+[2026-10-15T13:52:52.386Z] confirmed 780129 (184.3 regs/s), inflight 500, reverted 0, resent 0, next 1681483, head 4410
+[2026-10-15T13:53:22.482Z] confirmed 785179 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 1686533, head 4425
+[2026-10-15T13:53:52.558Z] confirmed 791078 (184.3 regs/s), inflight 500, reverted 0, resent 0, next 1692432, head 4440
+[2026-10-15T13:54:23.432Z] confirmed 796884 (184.3 regs/s), inflight 500, reverted 0, resent 0, next 1698238, head 4456
+[watcher] block 4464: "missing"
+[2026-10-15T13:54:55.452Z] confirmed 802544 (184.3 regs/s), inflight 500, reverted 0, resent 0, next 1703898, head 4472
+[2026-10-15T13:55:25.543Z] confirmed 807966 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 1709320, head 4487
+[2026-10-15T13:55:56.834Z] confirmed 813783 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 1715137, head 4503
+[2026-10-15T13:56:26.889Z] confirmed 819019 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 1720373, head 4517
+[2026-10-15T13:56:56.925Z] confirmed 824879 (184.3 regs/s), inflight 500, reverted 0, resent 0, next 1726233, head 4532
+[watcher] block 4544: "missing"
+[2026-10-15T13:57:27.976Z] confirmed 830641 (184.3 regs/s), inflight 500, reverted 0, resent 0, next 1731995, head 4548
+[2026-10-15T13:57:58.073Z] confirmed 836642 (184.4 regs/s), inflight 500, reverted 0, resent 0, next 1737996, head 4563
+[2026-10-15T13:58:28.888Z] confirmed 842452 (184.4 regs/s), inflight 500, reverted 0, resent 0, next 1743806, head 4578
+[2026-10-15T13:58:59.330Z] confirmed 848154 (184.4 regs/s), inflight 500, reverted 0, resent 0, next 1749508, head 4594
+[2026-10-15T13:59:29.650Z] confirmed 853822 (184.4 regs/s), inflight 500, reverted 0, resent 0, next 1755176, head 4609
+[2026-10-15T14:00:00.064Z] confirmed 859775 (184.5 regs/s), inflight 500, reverted 0, resent 0, next 1761129, head 4624
+[2026-10-15T14:00:30.408Z] confirmed 865273 (184.5 regs/s), inflight 500, reverted 0, resent 0, next 1766627, head 4639
+[2026-10-15T14:01:02.981Z] confirmed 870932 (184.4 regs/s), inflight 500, reverted 0, resent 0, next 1772286, head 4655
+[watcher] block 4671: "missing"
+[2026-10-15T14:01:33.052Z] confirmed 875422 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 1776776, head 4671
+[2026-10-15T14:02:04.455Z] confirmed 880903 (184.1 regs/s), inflight 500, reverted 0, resent 0, next 1782257, head 4686
+[2026-10-15T14:02:34.504Z] confirmed 886064 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1787418, head 4701
+[2026-10-15T14:03:04.535Z] confirmed 891388 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1792742, head 4716
+[2026-10-15T14:03:34.598Z] confirmed 897182 (184.1 regs/s), inflight 500, reverted 0, resent 0, next 1798536, head 4731
+[2026-10-15T14:04:04.638Z] confirmed 902872 (184.1 regs/s), inflight 500, reverted 0, resent 0, next 1804226, head 4746
+[2026-10-15T14:04:34.733Z] confirmed 908575 (184.1 regs/s), inflight 500, reverted 0, resent 0, next 1809929, head 4761
+[2026-10-15T14:05:05.283Z] confirmed 915030 (184.3 regs/s), inflight 500, reverted 0, resent 0, next 1816384, head 4777
+[2026-10-15T14:05:36.097Z] confirmed 921043 (184.4 regs/s), inflight 500, reverted 0, resent 0, next 1822397, head 4792
+[2026-10-15T14:06:06.146Z] confirmed 926930 (184.4 regs/s), inflight 500, reverted 0, resent 0, next 1828284, head 4807
+[2026-10-15T14:06:36.165Z] confirmed 932860 (184.5 regs/s), inflight 500, reverted 0, resent 0, next 1834214, head 4822
+[2026-10-15T14:07:06.223Z] confirmed 939037 (184.6 regs/s), inflight 500, reverted 0, resent 0, next 1840391, head 4837
+[2026-10-15T14:07:36.298Z] confirmed 944750 (184.7 regs/s), inflight 500, reverted 0, resent 0, next 1846104, head 4852
+[2026-10-15T14:08:06.304Z] confirmed 950558 (184.7 regs/s), inflight 500, reverted 0, resent 0, next 1851912, head 4867
+[2026-10-15T14:08:36.334Z] confirmed 956428 (184.8 regs/s), inflight 500, reverted 0, resent 0, next 1857782, head 4882
+[2026-10-15T14:09:06.411Z] confirmed 961992 (184.8 regs/s), inflight 500, reverted 0, resent 0, next 1863346, head 4897
+[2026-10-15T14:09:36.511Z] confirmed 966609 (184.6 regs/s), inflight 500, reverted 0, resent 0, next 1867963, head 4912
+[2026-10-15T14:10:07.099Z] confirmed 972142 (184.6 regs/s), inflight 500, reverted 0, resent 0, next 1873496, head 4927
+[2026-10-15T14:10:37.551Z] confirmed 977939 (184.6 regs/s), inflight 500, reverted 0, resent 0, next 1879293, head 4943
+[2026-10-15T14:11:09.398Z] confirmed 983023 (184.5 regs/s), inflight 500, reverted 0, resent 0, next 1884377, head 4959
+[2026-10-15T14:11:41.811Z] confirmed 988286 (184.3 regs/s), inflight 500, reverted 0, resent 0, next 1889640, head 4975
+[2026-10-15T14:12:12.644Z] confirmed 993594 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 1894948, head 4990
+[2026-10-15T14:12:42.751Z] confirmed 999067 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 1900421, head 5005
+[2026-10-15T14:13:12.898Z] confirmed 1004338 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 1905692, head 5021
+[2026-10-15T14:13:47.141Z] confirmed 1009762 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1911116, head 5037
+[2026-10-15T14:14:17.583Z] confirmed 1014580 (183.9 regs/s), inflight 500, reverted 0, resent 0, next 1915934, head 5053
+[2026-10-15T14:14:49.204Z] confirmed 1020610 (183.9 regs/s), inflight 500, reverted 0, resent 0, next 1921964, head 5069
+[2026-10-15T14:15:19.751Z] confirmed 1026656 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1928010, head 5084
+[2026-10-15T14:15:49.842Z] confirmed 1031917 (183.9 regs/s), inflight 500, reverted 0, resent 0, next 1933271, head 5099
+[2026-10-15T14:16:20.657Z] confirmed 1037677 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1939031, head 5114
+[2026-10-15T14:16:50.754Z] confirmed 1043276 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1944630, head 5129
+[2026-10-15T14:17:21.222Z] confirmed 1049104 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1950458, head 5145
+[2026-10-15T14:17:51.240Z] confirmed 1054332 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1955686, head 5160
+[2026-10-15T14:18:23.476Z] confirmed 1059482 (183.8 regs/s), inflight 500, reverted 0, resent 0, next 1960836, head 5176
+[2026-10-15T14:18:53.895Z] confirmed 1065186 (183.8 regs/s), inflight 500, reverted 0, resent 0, next 1966540, head 5191
+[2026-10-15T14:19:23.965Z] confirmed 1071034 (183.9 regs/s), inflight 500, reverted 0, resent 0, next 1972388, head 5206
+[2026-10-15T14:19:54.032Z] confirmed 1076436 (183.9 regs/s), inflight 500, reverted 0, resent 0, next 1977790, head 5221
+[2026-10-15T14:20:24.250Z] confirmed 1082463 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1983817, head 5236
+[2026-10-15T14:20:54.326Z] confirmed 1087918 (183.9 regs/s), inflight 500, reverted 0, resent 0, next 1989272, head 5251
+[2026-10-15T14:21:24.426Z] confirmed 1093582 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 1994936, head 5266
+[2026-10-15T14:21:54.493Z] confirmed 1099107 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 2000461, head 5281
+[watcher] block 5293: "missing"
+[2026-10-15T14:22:24.531Z] confirmed 1104920 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 2006274, head 5296
+[2026-10-15T14:22:54.854Z] confirmed 1110581 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 2011935, head 5311
+[2026-10-15T14:23:24.952Z] confirmed 1116195 (184.0 regs/s), inflight 500, reverted 0, resent 0, next 2017549, head 5326
+[2026-10-15T14:23:56.001Z] confirmed 1122321 (184.1 regs/s), inflight 500, reverted 0, resent 0, next 2023675, head 5342
+[2026-10-15T14:24:26.050Z] confirmed 1127766 (184.1 regs/s), inflight 500, reverted 0, resent 0, next 2029120, head 5357
+[2026-10-15T14:24:56.870Z] confirmed 1134426 (184.3 regs/s), inflight 500, reverted 0, resent 0, next 2035780, head 5373
+[2026-10-15T14:25:26.890Z] confirmed 1139608 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 2040962, head 5387
+[2026-10-15T14:25:56.988Z] confirmed 1145248 (184.2 regs/s), inflight 500, reverted 0, resent 0, next 2046602, head 5403
+[2026-10-15T14:26:30.663Z] confirmed 1150869 (184.1 regs/s), inflight 500, reverted 0, resent 0, next 2052223, head 5419
+[2026-10-15T14:27:01.157Z] confirmed 1154952 (183.9 regs/s), inflight 500, reverted 0, resent 0, next 2056306, head 5435
+[2026-10-15T14:27:31.174Z] confirmed 1159149 (183.7 regs/s), inflight 500, reverted 0, resent 0, next 2060503, head 5449
+[watcher] block 5456: "missing"
+[2026-10-15T14:28:01.254Z] confirmed 1164121 (183.6 regs/s), inflight 500, reverted 0, resent 0, next 2065475, head 5465
+[2026-10-15T14:28:32.179Z] confirmed 1169379 (183.5 regs/s), inflight 500, reverted 0, resent 0, next 2070733, head 5480
+[2026-10-15T14:29:02.256Z] confirmed 1174183 (183.4 regs/s), inflight 500, reverted 0, resent 0, next 2075537, head 5495
+[2026-10-15T14:29:33.251Z] confirmed 1178770 (183.2 regs/s), inflight 500, reverted 0, resent 0, next 2080124, head 5511
+[2026-10-15T14:30:03.345Z] confirmed 1182627 (183.0 regs/s), inflight 500, reverted 0, resent 0, next 2083981, head 5526
+[2026-10-15T14:30:34.144Z] confirmed 1188229 (183.0 regs/s), inflight 500, reverted 0, resent 0, next 2089583, head 5541
+[2026-10-15T14:31:06.630Z] confirmed 1193606 (182.9 regs/s), inflight 500, reverted 0, resent 0, next 2094960, head 5557
+[2026-10-15T14:31:38.614Z] confirmed 1198877 (182.8 regs/s), inflight 500, reverted 0, resent 0, next 2100231, head 5573
+[2026-10-15T14:32:09.595Z] confirmed 1204638 (182.8 regs/s), inflight 500, reverted 0, resent 0, next 2105992, head 5588
+[2026-10-15T14:32:39.723Z] confirmed 1209939 (182.8 regs/s), inflight 500, reverted 0, resent 0, next 2111293, head 5603
+[2026-10-15T14:33:09.777Z] confirmed 1215259 (182.8 regs/s), inflight 500, reverted 0, resent 0, next 2116613, head 5618
+[2026-10-15T14:33:39.888Z] confirmed 1220782 (182.8 regs/s), inflight 500, reverted 0, resent 0, next 2122136, head 5633
+[2026-10-15T14:34:09.945Z] confirmed 1226290 (182.8 regs/s), inflight 500, reverted 0, resent 0, next 2127644, head 5648
+[2026-10-15T14:34:41.644Z] confirmed 1232362 (182.8 regs/s), inflight 500, reverted 0, resent 0, next 2133716, head 5664
+[2026-10-15T14:35:11.656Z] confirmed 1237491 (182.7 regs/s), inflight 500, reverted 0, resent 0, next 2138845, head 5679
+[2026-10-15T14:35:41.675Z] confirmed 1242428 (182.7 regs/s), inflight 500, reverted 0, resent 0, next 2143782, head 5694
+[2026-10-15T14:36:11.771Z] confirmed 1246156 (182.4 regs/s), inflight 500, reverted 0, resent 0, next 2147510, head 5709
+[2026-10-15T14:36:42.434Z] confirmed 1250757 (182.3 regs/s), inflight 500, reverted 0, resent 0, next 2152111, head 5725
+[2026-10-15T14:37:13.908Z] confirmed 1255708 (182.1 regs/s), inflight 500, reverted 0, resent 0, next 2157062, head 5740
+[2026-10-15T14:37:45.194Z] confirmed 1260997 (182.1 regs/s), inflight 500, reverted 0, resent 0, next 2162351, head 5756
+[2026-10-15T14:38:15.230Z] confirmed 1266245 (182.1 regs/s), inflight 500, reverted 0, resent 0, next 2167599, head 5771
+[2026-10-15T14:38:45.535Z] confirmed 1271192 (182.0 regs/s), inflight 500, reverted 0, resent 0, next 2172546, head 5786
+[2026-10-15T14:39:15.567Z] confirmed 1276974 (182.0 regs/s), inflight 500, reverted 0, resent 0, next 2178328, head 5801
+[2026-10-15T14:39:45.819Z] confirmed 1282936 (182.1 regs/s), inflight 500, reverted 0, resent 0, next 2184290, head 5817
+[2026-10-15T14:40:15.922Z] confirmed 1287862 (182.0 regs/s), inflight 500, reverted 0, resent 0, next 2189216, head 5831
+[2026-10-15T14:40:45.965Z] confirmed 1292928 (181.9 regs/s), inflight 500, reverted 0, resent 0, next 2194282, head 5847
+[2026-10-15T14:41:16.552Z] confirmed 1298121 (181.9 regs/s), inflight 500, reverted 0, resent 0, next 2199475, head 5862
+[2026-10-15T14:41:47.768Z] confirmed 1303502 (181.9 regs/s), inflight 500, reverted 0, resent 0, next 2204856, head 5877
+[2026-10-15T14:42:17.800Z] confirmed 1309038 (181.9 regs/s), inflight 500, reverted 0, resent 0, next 2210392, head 5892
+[2026-10-15T14:42:47.834Z] confirmed 1314071 (181.8 regs/s), inflight 500, reverted 0, resent 0, next 2215425, head 5907
+[2026-10-15T14:43:17.946Z] confirmed 1319054 (181.7 regs/s), inflight 500, reverted 0, resent 0, next 2220408, head 5923
+[2026-10-15T14:43:49.269Z] confirmed 1324465 (181.7 regs/s), inflight 500, reverted 0, resent 0, next 2225819, head 5938
+[2026-10-15T14:44:19.693Z] confirmed 1330002 (181.7 regs/s), inflight 500, reverted 0, resent 0, next 2231356, head 5953
+[2026-10-15T14:44:57.120Z] confirmed 1334544 (181.4 regs/s), inflight 500, reverted 0, resent 0, next 2235898, head 5972
+[2026-10-15T14:45:27.130Z] confirmed 1337081 (181.0 regs/s), inflight 500, reverted 0, resent 0, next 2238435, head 5984
+[2026-10-15T14:45:59.126Z] confirmed 1340358 (180.7 regs/s), inflight 500, reverted 0, resent 0, next 2241712, head 5999
+[2026-10-15T14:46:34.330Z] confirmed 1344350 (180.3 regs/s), inflight 500, reverted 0, resent 0, next 2245704, head 6017
+[2026-10-15T14:47:04.910Z] confirmed 1347670 (180.1 regs/s), inflight 500, reverted 0, resent 0, next 2249024, head 6031
+[2026-10-15T14:47:36.637Z] confirmed 1350983 (179.7 regs/s), inflight 500, reverted 0, resent 0, next 2252337, head 6046
+[2026-10-15T14:48:07.234Z] confirmed 1354536 (179.5 regs/s), inflight 500, reverted 0, resent 0, next 2255890, head 6061
+[2026-10-15T14:48:37.289Z] confirmed 1358092 (179.2 regs/s), inflight 500, reverted 0, resent 0, next 2259446, head 6076
+[2026-10-15T14:49:07.405Z] confirmed 1361815 (179.0 regs/s), inflight 500, reverted 0, resent 0, next 2263169, head 6091
+[2026-10-15T14:49:37.421Z] confirmed 1365896 (178.8 regs/s), inflight 500, reverted 0, resent 0, next 2267250, head 6106
+[2026-10-15T14:50:07.844Z] confirmed 1369770 (178.6 regs/s), inflight 500, reverted 0, resent 0, next 2271124, head 6121
+[2026-10-15T14:50:37.873Z] confirmed 1373449 (178.4 regs/s), inflight 500, reverted 0, resent 0, next 2274803, head 6135
+[2026-10-15T14:51:14.778Z] confirmed 1377569 (178.1 regs/s), inflight 500, reverted 0, resent 0, next 2278923, head 6154
+[2026-10-15T14:51:47.175Z] confirmed 1381212 (177.8 regs/s), inflight 500, reverted 0, resent 0, next 2282566, head 6170
+[2026-10-15T14:52:17.922Z] confirmed 1384537 (177.6 regs/s), inflight 500, reverted 0, resent 0, next 2285891, head 6184
+[2026-10-15T14:52:50.705Z] confirmed 1388014 (177.3 regs/s), inflight 500, reverted 0, resent 0, next 2289368, head 6200
+[2026-10-15T14:53:24.009Z] confirmed 1391611 (177.0 regs/s), inflight 500, reverted 0, resent 0, next 2292965, head 6216
+[2026-10-15T14:53:56.937Z] confirmed 1395140 (176.7 regs/s), inflight 500, reverted 0, resent 0, next 2296494, head 6232
+[2026-10-15T14:54:28.524Z] confirmed 1398764 (176.4 regs/s), inflight 500, reverted 0, resent 0, next 2300118, head 6247
+[2026-10-15T14:54:59.491Z] confirmed 1402024 (176.1 regs/s), inflight 500, reverted 0, resent 0, next 2303378, head 6260
+[2026-10-15T14:55:31.833Z] confirmed 1405747 (175.9 regs/s), inflight 500, reverted 0, resent 0, next 2307101, head 6276
+[2026-10-15T14:56:01.963Z] confirmed 1408876 (175.6 regs/s), inflight 500, reverted 0, resent 0, next 2310230, head 6290
+[2026-10-15T14:56:35.622Z] confirmed 1413083 (175.4 regs/s), inflight 500, reverted 0, resent 0, next 2314437, head 6307
+[2026-10-15T14:57:05.706Z] confirmed 1416600 (175.2 regs/s), inflight 500, reverted 0, resent 0, next 2317954, head 6322
+[2026-10-15T14:57:43.251Z] confirmed 1420265 (174.8 regs/s), inflight 500, reverted 0, resent 0, next 2321619, head 6340
+[2026-10-15T14:58:23.053Z] confirmed 1423526 (174.4 regs/s), inflight 500, reverted 0, resent 0, next 2324880, head 6358
+[2026-10-15T14:58:58.578Z] confirmed 1427156 (174.1 regs/s), inflight 500, reverted 0, resent 0, next 2328510, head 6375
+[2026-10-15T14:59:31.399Z] confirmed 1430841 (173.8 regs/s), inflight 500, reverted 0, resent 0, next 2332195, head 6391
+[2026-10-15T15:00:05.490Z] confirmed 1434829 (173.6 regs/s), inflight 500, reverted 0, resent 0, next 2336183, head 6408
+[2026-10-15T15:00:35.751Z] confirmed 1438268 (173.4 regs/s), inflight 500, reverted 0, resent 0, next 2339622, head 6423
+[2026-10-15T15:01:07.529Z] confirmed 1442195 (173.2 regs/s), inflight 500, reverted 0, resent 0, next 2343549, head 6438
+[2026-10-15T15:01:37.632Z] confirmed 1445928 (173.0 regs/s), inflight 500, reverted 0, resent 0, next 2347282, head 6452
+[2026-10-15T15:02:07.660Z] confirmed 1449495 (172.8 regs/s), inflight 500, reverted 0, resent 0, next 2350849, head 6468
+[2026-10-15T15:02:37.716Z] confirmed 1452801 (172.6 regs/s), inflight 500, reverted 0, resent 0, next 2354155, head 6482
+[2026-10-15T15:03:07.718Z] confirmed 1456290 (172.4 regs/s), inflight 500, reverted 0, resent 0, next 2357644, head 6496
+[2026-10-15T15:03:37.760Z] confirmed 1459423 (172.1 regs/s), inflight 500, reverted 0, resent 0, next 2360777, head 6510
+[15:03:42] MEMORY validator1 anon 2606MB > 2500MB - graceful restart (P4P_RESTART_STUCK=1)
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[2026-10-15T15:04:07.763Z] confirmed 1459423 (171.5 regs/s), inflight 500, reverted 0, resent 0, next 2360777, head 6510
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[2026-10-15T15:04:37.789Z] confirmed 1459923 (171.0 regs/s), inflight 500, reverted 0, resent 0, next 2361277, head 6511
+[2026-10-15T15:05:16.470Z] confirmed 1460390 (170.3 regs/s), inflight 33, reverted 0, resent 500, next 2361277, head 6550
+[2026-10-15T15:05:46.617Z] confirmed 1462145 (169.9 regs/s), inflight 500, reverted 0, resent 500, next 2363499, head 6561
+[2026-10-15T15:06:21.805Z] confirmed 1465502 (169.6 regs/s), inflight 500, reverted 0, resent 500, next 2366856, head 6576
+[2026-10-15T15:06:52.864Z] confirmed 1468562 (169.3 regs/s), inflight 500, reverted 0, resent 500, next 2369916, head 6590
+[2026-10-15T15:07:32.197Z] confirmed 1473208 (169.1 regs/s), inflight 500, reverted 0, resent 500, next 2374562, head 6610
+[2026-10-15T15:08:07.316Z] confirmed 1477152 (168.9 regs/s), inflight 500, reverted 0, resent 500, next 2378506, head 6627
+[2026-10-15T15:08:41.660Z] confirmed 1480847 (168.6 regs/s), inflight 500, reverted 0, resent 500, next 2382201, head 6644
+[15:08:46] MEMORY validator2 anon 2595MB > 2500MB - graceful restart (P4P_RESTART_STUCK=1)
+[2026-10-15T15:09:13.105Z] confirmed 1483926 (168.4 regs/s), inflight 500, reverted 0, resent 500, next 2385280, head 6655
+[2026-10-15T15:09:54.894Z] confirmed 1486997 (167.9 regs/s), inflight 500, reverted 0, resent 500, next 2388351, head 6672
+[2026-10-15T15:10:27.456Z] confirmed 1490404 (167.7 regs/s), inflight 500, reverted 0, resent 500, next 2391758, head 6687
+[2026-10-15T15:11:00.909Z] confirmed 1494100 (167.5 regs/s), inflight 500, reverted 0, resent 500, next 2395454, head 6703
+[2026-10-15T15:11:32.537Z] confirmed 1497800 (167.3 regs/s), inflight 500, reverted 0, resent 500, next 2399154, head 6719
+[2026-10-15T15:12:02.631Z] confirmed 1501211 (167.1 regs/s), inflight 500, reverted 0, resent 500, next 2402565, head 6733
+[2026-10-15T15:12:37.751Z] confirmed 1505106 (166.9 regs/s), inflight 500, reverted 0, resent 500, next 2406460, head 6750
+[2026-10-15T15:13:12.700Z] confirmed 1508617 (166.6 regs/s), inflight 500, reverted 0, resent 500, next 2409971, head 6768
+[2026-10-15T15:13:45.480Z] confirmed 1511270 (166.3 regs/s), inflight 500, reverted 0, resent 500, next 2412624, head 6781
+[15:13:50] MEMORY validator4 anon 2667MB > 2500MB - graceful restart (P4P_RESTART_STUCK=1)
+[2026-10-15T15:14:22.769Z] confirmed 1514924 (166.1 regs/s), inflight 500, reverted 0, resent 500, next 2416278, head 6794
+[2026-10-15T15:14:52.791Z] confirmed 1517432 (165.8 regs/s), inflight 500, reverted 0, resent 500, next 2418786, head 6803
+[15:15:06] NODE_STUCK validator4 (validator4 at 6784 vs 6807; ) - restarting it (P4P_RESTART_STUCK=1)
+[2026-10-15T15:15:22.855Z] confirmed 1520045 (165.5 regs/s), inflight 500, reverted 0, resent 500, next 2421399, head 6812
+[2026-10-15T15:15:52.980Z] confirmed 1521545 (165.2 regs/s), inflight 500, reverted 0, resent 500, next 2422899, head 6821
+[2026-10-15T15:16:23.068Z] confirmed 1523419 (164.8 regs/s), inflight 500, reverted 0, resent 500, next 2424773, head 6831
+[2026-10-15T15:16:54.620Z] confirmed 1526479 (164.6 regs/s), inflight 500, reverted 0, resent 500, next 2427833, head 6846
+[2026-10-15T15:17:28.347Z] confirmed 1529676 (164.3 regs/s), inflight 500, reverted 0, resent 500, next 2431030, head 6861
+[2026-10-15T15:18:03.318Z] confirmed 1533019 (164.1 regs/s), inflight 500, reverted 0, resent 500, next 2434373, head 6877
+[2026-10-15T15:18:34.496Z] confirmed 1536286 (163.9 regs/s), inflight 500, reverted 0, resent 500, next 2437640, head 6892
+[2026-10-15T15:19:04.796Z] confirmed 1539207 (163.7 regs/s), inflight 500, reverted 0, resent 500, next 2440561, head 6907
+[2026-10-15T15:19:36.602Z] confirmed 1542360 (163.4 regs/s), inflight 500, reverted 0, resent 500, next 2443714, head 6923
+[2026-10-15T15:20:09.574Z] confirmed 1545961 (163.3 regs/s), inflight 500, reverted 0, resent 500, next 2447315, head 6939
+[2026-10-15T15:20:40.531Z] confirmed 1549337 (163.1 regs/s), inflight 500, reverted 0, resent 500, next 2450691, head 6954
+[2026-10-15T15:21:12.621Z] confirmed 1552774 (162.9 regs/s), inflight 500, reverted 0, resent 500, next 2454128, head 6969
+[2026-10-15T15:21:43.460Z] confirmed 1556251 (162.7 regs/s), inflight 500, reverted 0, resent 500, next 2457605, head 6985
+[2026-10-15T15:22:13.473Z] confirmed 1559453 (162.6 regs/s), inflight 500, reverted 0, resent 500, next 2460807, head 7000
+[2026-10-15T15:22:55.821Z] confirmed 1563354 (162.2 regs/s), inflight 500, reverted 0, resent 500, next 2464708, head 7019
+[2026-10-15T15:23:25.896Z] confirmed 1566515 (162.1 regs/s), inflight 500, reverted 0, resent 500, next 2467869, head 7033
+[2026-10-15T15:23:56.711Z] confirmed 1569808 (161.9 regs/s), inflight 500, reverted 0, resent 500, next 2471162, head 7048
+[15:23:58] MEMORY validator3 anon 2671MB > 2500MB - graceful restart (P4P_RESTART_STUCK=1)
+[2026-10-15T15:24:26.735Z] confirmed 1572357 (161.7 regs/s), inflight 500, reverted 0, resent 500, next 2473711, head 7058
+[2026-10-15T15:24:56.744Z] confirmed 1574257 (161.4 regs/s), inflight 500, reverted 0, resent 500, next 2475611, head 7067
+[2026-10-15T15:25:36.132Z] confirmed 1576496 (160.9 regs/s), inflight 500, reverted 0, resent 500, next 2477850, head 7081
+[2026-10-15T15:26:06.187Z] confirmed 1579137 (160.7 regs/s), inflight 500, reverted 0, resent 500, next 2480491, head 7095
+[2026-10-15T15:26:39.604Z] confirmed 1581771 (160.4 regs/s), inflight 500, reverted 0, resent 500, next 2483125, head 7109
+[2026-10-15T15:27:12.217Z] confirmed 1585003 (160.2 regs/s), inflight 500, reverted 0, resent 500, next 2486357, head 7125
+[2026-10-15T15:27:43.124Z] confirmed 1587634 (160.0 regs/s), inflight 500, reverted 0, resent 500, next 2488988, head 7139
+[2026-10-15T15:28:13.419Z] confirmed 1590993 (159.8 regs/s), inflight 500, reverted 0, resent 500, next 2492347, head 7155
+[2026-10-15T15:28:46.026Z] confirmed 1594133 (159.6 regs/s), inflight 500, reverted 0, resent 500, next 2495487, head 7169
+[15:29:06] MEMORY validator4 anon 2520MB > 2500MB - graceful restart (P4P_RESTART_STUCK=1)
+[2026-10-15T15:29:16.060Z] confirmed 1597011 (159.4 regs/s), inflight 500, reverted 0, resent 500, next 2498365, head 7181
+[2026-10-15T15:29:50.061Z] confirmed 1598889 (159.1 regs/s), inflight 500, reverted 0, resent 500, next 2500243, head 7188
+[2026-10-15T15:30:24.728Z] confirmed 1602759 (158.9 regs/s), inflight 500, reverted 0, resent 500, next 2504113, head 7206
+[2026-10-15T15:30:54.813Z] confirmed 1606232 (158.8 regs/s), inflight 500, reverted 0, resent 500, next 2507586, head 7220
+[2026-10-15T15:31:24.844Z] confirmed 1609774 (158.7 regs/s), inflight 500, reverted 0, resent 500, next 2511128, head 7235
+[2026-10-15T15:31:56.344Z] confirmed 1614012 (158.6 regs/s), inflight 500, reverted 0, resent 500, next 2515366, head 7251
+[2026-10-15T15:32:26.408Z] confirmed 1618026 (158.5 regs/s), inflight 500, reverted 0, resent 500, next 2519380, head 7266
+[2026-10-15T15:32:56.489Z] confirmed 1621313 (158.4 regs/s), inflight 500, reverted 0, resent 500, next 2522667, head 7281
+[2026-10-15T15:33:26.578Z] confirmed 1624804 (158.3 regs/s), inflight 500, reverted 0, resent 500, next 2526158, head 7296
+[2026-10-15T15:33:56.633Z] confirmed 1628204 (158.1 regs/s), inflight 500, reverted 0, resent 500, next 2529558, head 7311
+[2026-10-15T15:34:26.767Z] confirmed 1632119 (158.0 regs/s), inflight 500, reverted 0, resent 500, next 2533473, head 7326
+[2026-10-15T15:34:58.954Z] confirmed 1636129 (157.9 regs/s), inflight 500, reverted 0, resent 500, next 2537483, head 7341
+[2026-10-15T15:35:38.725Z] confirmed 1641108 (157.8 regs/s), inflight 500, reverted 0, resent 500, next 2542462, head 7361
+[2026-10-15T15:36:09.432Z] confirmed 1645133 (157.7 regs/s), inflight 500, reverted 0, resent 500, next 2546487, head 7376
+[2026-10-15T15:36:39.626Z] confirmed 1648899 (157.6 regs/s), inflight 500, reverted 0, resent 500, next 2550253, head 7391
+[2026-10-15T15:37:10.117Z] confirmed 1652645 (157.5 regs/s), inflight 500, reverted 0, resent 500, next 2553999, head 7405
+[2026-10-15T15:37:40.285Z] confirmed 1655972 (157.4 regs/s), inflight 500, reverted 0, resent 500, next 2557326, head 7419
+[2026-10-15T15:38:13.605Z] confirmed 1659668 (157.3 regs/s), inflight 500, reverted 0, resent 500, next 2561022, head 7436
+[2026-10-15T15:38:44.877Z] confirmed 1662997 (157.1 regs/s), inflight 500, reverted 0, resent 500, next 2564351, head 7452
+[2026-10-15T15:39:16.281Z] confirmed 1666762 (157.0 regs/s), inflight 500, reverted 0, resent 500, next 2568116, head 7467
+[2026-10-15T15:39:46.350Z] confirmed 1670508 (156.9 regs/s), inflight 500, reverted 0, resent 500, next 2571862, head 7482
+[2026-10-15T15:40:19.129Z] confirmed 1674123 (156.8 regs/s), inflight 500, reverted 0, resent 500, next 2575477, head 7498
+[2026-10-15T15:40:51.858Z] confirmed 1678095 (156.7 regs/s), inflight 500, reverted 0, resent 500, next 2579449, head 7514
+[2026-10-15T15:41:21.951Z] confirmed 1681512 (156.5 regs/s), inflight 500, reverted 0, resent 500, next 2582866, head 7528
+[2026-10-15T15:41:56.387Z] confirmed 1686083 (156.5 regs/s), inflight 500, reverted 0, resent 500, next 2587437, head 7546
+[2026-10-15T15:42:27.491Z] confirmed 1689786 (156.4 regs/s), inflight 500, reverted 0, resent 500, next 2591140, head 7561
+[2026-10-15T15:42:57.495Z] confirmed 1693160 (156.2 regs/s), inflight 500, reverted 0, resent 500, next 2594514, head 7576
+[2026-10-15T15:43:27.802Z] confirmed 1696846 (156.1 regs/s), inflight 500, reverted 0, resent 500, next 2598200, head 7592
+[2026-10-15T15:43:57.855Z] confirmed 1700031 (156.0 regs/s), inflight 500, reverted 0, resent 500, next 2601385, head 7605
+[2026-10-15T15:44:32.964Z] confirmed 1704376 (155.9 regs/s), inflight 500, reverted 0, resent 500, next 2605730, head 7621
+[2026-10-15T15:45:02.993Z] confirmed 1708585 (155.8 regs/s), inflight 500, reverted 0, resent 500, next 2609939, head 7637
+[2026-10-15T15:45:34.486Z] confirmed 1712388 (155.7 regs/s), inflight 500, reverted 0, resent 500, next 2613742, head 7652
+[2026-10-15T15:46:04.782Z] confirmed 1716146 (155.7 regs/s), inflight 500, reverted 0, resent 500, next 2617500, head 7667
+[2026-10-15T15:46:35.705Z] confirmed 1719662 (155.5 regs/s), inflight 500, reverted 0, resent 500, next 2621016, head 7681
+[2026-10-15T15:47:05.767Z] confirmed 1722788 (155.4 regs/s), inflight 500, reverted 0, resent 500, next 2624142, head 7697
+[2026-10-15T15:47:35.814Z] confirmed 1726097 (155.3 regs/s), inflight 500, reverted 0, resent 500, next 2627451, head 7711
+[2026-10-15T15:48:05.846Z] confirmed 1729586 (155.2 regs/s), inflight 500, reverted 0, resent 500, next 2630940, head 7726
+[2026-10-15T15:48:40.023Z] confirmed 1733680 (155.1 regs/s), inflight 500, reverted 0, resent 500, next 2635034, head 7742
+[2026-10-15T15:49:10.055Z] confirmed 1737447 (155.0 regs/s), inflight 500, reverted 0, resent 500, next 2638801, head 7757
+[2026-10-15T15:49:40.839Z] confirmed 1741177 (154.9 regs/s), inflight 500, reverted 0, resent 500, next 2642531, head 7772
+[2026-10-15T15:50:10.886Z] confirmed 1744837 (154.8 regs/s), inflight 500, reverted 0, resent 500, next 2646191, head 7787
+[2026-10-15T15:50:40.956Z] confirmed 1748258 (154.7 regs/s), inflight 500, reverted 0, resent 500, next 2649612, head 7801
+[2026-10-15T15:51:14.951Z] confirmed 1752202 (154.6 regs/s), inflight 500, reverted 0, resent 500, next 2653556, head 7818
+[2026-10-15T15:51:46.248Z] confirmed 1755798 (154.5 regs/s), inflight 500, reverted 0, resent 500, next 2657152, head 7833
+[2026-10-15T15:52:17.928Z] confirmed 1759682 (154.4 regs/s), inflight 500, reverted 0, resent 500, next 2661036, head 7849
+[2026-10-15T15:52:49.512Z] confirmed 1763365 (154.3 regs/s), inflight 500, reverted 0, resent 500, next 2664719, head 7864
+[2026-10-15T15:53:19.930Z] confirmed 1767005 (154.2 regs/s), inflight 500, reverted 0, resent 500, next 2668359, head 7878
+[2026-10-15T15:53:50.784Z] confirmed 1770628 (154.1 regs/s), inflight 500, reverted 0, resent 500, next 2671982, head 7893
+[2026-10-15T15:54:20.887Z] confirmed 1774370 (154.0 regs/s), inflight 500, reverted 0, resent 500, next 2675724, head 7907
+[2026-10-15T15:54:51.653Z] confirmed 1778381 (153.9 regs/s), inflight 500, reverted 0, resent 500, next 2679735, head 7922
+[2026-10-15T15:55:23.183Z] confirmed 1781549 (153.8 regs/s), inflight 500, reverted 0, resent 500, next 2682903, head 7937
+[2026-10-15T15:55:53.548Z] confirmed 1785516 (153.7 regs/s), inflight 500, reverted 0, resent 500, next 2686870, head 7952
+[2026-10-15T15:56:25.327Z] confirmed 1789341 (153.7 regs/s), inflight 500, reverted 0, resent 500, next 2690695, head 7968
+[2026-10-15T15:56:57.708Z] confirmed 1793386 (153.6 regs/s), inflight 500, reverted 0, resent 500, next 2694740, head 7984
+[2026-10-15T15:57:27.721Z] confirmed 1796747 (153.5 regs/s), inflight 500, reverted 0, resent 500, next 2698101, head 7998
+[2026-10-15T15:57:57.953Z] confirmed 1800571 (153.4 regs/s), inflight 500, reverted 0, resent 500, next 2701925, head 8013
+[2026-10-15T15:58:31.138Z] confirmed 1804255 (153.3 regs/s), inflight 500, reverted 0, resent 500, next 2705609, head 8029
+[2026-10-15T15:59:04.032Z] confirmed 1808150 (153.2 regs/s), inflight 500, reverted 0, resent 500, next 2709504, head 8045
+[2026-10-15T15:59:34.361Z] confirmed 1811635 (153.1 regs/s), inflight 500, reverted 0, resent 500, next 2712989, head 8059
+[2026-10-15T16:00:04.376Z] confirmed 1815638 (153.0 regs/s), inflight 500, reverted 0, resent 500, next 2716992, head 8074
+[2026-10-15T16:00:36.209Z] confirmed 1819312 (152.9 regs/s), inflight 500, reverted 0, resent 500, next 2720666, head 8089
+[2026-10-15T16:01:09.825Z] confirmed 1823377 (152.8 regs/s), inflight 500, reverted 0, resent 500, next 2724731, head 8106
+[2026-10-15T16:01:41.422Z] confirmed 1827275 (152.8 regs/s), inflight 500, reverted 0, resent 500, next 2728629, head 8121
+[2026-10-15T16:02:11.687Z] confirmed 1830729 (152.7 regs/s), inflight 500, reverted 0, resent 500, next 2732083, head 8135
+[2026-10-15T16:02:42.347Z] confirmed 1834328 (152.6 regs/s), inflight 500, reverted 0, resent 500, next 2735682, head 8150
+[2026-10-15T16:03:14.019Z] confirmed 1837962 (152.5 regs/s), inflight 500, reverted 0, resent 500, next 2739316, head 8165
+[2026-10-15T16:03:44.542Z] confirmed 1841623 (152.4 regs/s), inflight 500, reverted 0, resent 500, next 2742977, head 8180
+[2026-10-15T16:04:14.640Z] confirmed 1845489 (152.3 regs/s), inflight 500, reverted 0, resent 500, next 2746843, head 8194
+[2026-10-15T16:04:44.905Z] confirmed 1849191 (152.3 regs/s), inflight 500, reverted 0, resent 500, next 2750545, head 8209
+[2026-10-15T16:05:15.675Z] confirmed 1852835 (152.2 regs/s), inflight 500, reverted 0, resent 500, next 2754189, head 8225
+[2026-10-15T16:05:45.681Z] confirmed 1856288 (152.1 regs/s), inflight 500, reverted 0, resent 500, next 2757642, head 8239
+[2026-10-15T16:06:15.739Z] confirmed 1859699 (152.0 regs/s), inflight 500, reverted 0, resent 500, next 2761053, head 8253
+[2026-10-15T16:06:45.846Z] confirmed 1862972 (151.9 regs/s), inflight 500, reverted 0, resent 500, next 2764326, head 8267
+[2026-10-15T16:07:24.247Z] confirmed 1867398 (151.8 regs/s), inflight 500, reverted 0, resent 500, next 2768752, head 8287
+[2026-10-15T16:07:56.877Z] confirmed 1871031 (151.7 regs/s), inflight 500, reverted 0, resent 500, next 2772385, head 8303
+[2026-10-15T16:08:28.924Z] confirmed 1874654 (151.6 regs/s), inflight 500, reverted 0, resent 500, next 2776008, head 8318
+[2026-10-15T16:09:02.751Z] confirmed 1879013 (151.5 regs/s), inflight 500, reverted 0, resent 500, next 2780367, head 8335
+[2026-10-15T16:09:32.835Z] confirmed 1882581 (151.4 regs/s), inflight 500, reverted 0, resent 500, next 2783935, head 8350
+[2026-10-15T16:10:06.573Z] confirmed 1886056 (151.3 regs/s), inflight 500, reverted 0, resent 500, next 2787410, head 8366
+[2026-10-15T16:10:37.051Z] confirmed 1889895 (151.2 regs/s), inflight 500, reverted 0, resent 500, next 2791249, head 8381
+[2026-10-15T16:11:10.220Z] confirmed 1893736 (151.1 regs/s), inflight 500, reverted 0, resent 500, next 2795090, head 8397
+[2026-10-15T16:11:41.736Z] confirmed 1897276 (151.0 regs/s), inflight 500, reverted 0, resent 500, next 2798630, head 8412
+[2026-10-15T16:12:12.742Z] confirmed 1901180 (151.0 regs/s), inflight 500, reverted 0, resent 500, next 2802534, head 8427
+[2026-10-15T16:12:45.736Z] confirmed 1904900 (150.9 regs/s), inflight 500, reverted 0, resent 500, next 2806254, head 8443
+[2026-10-15T16:13:17.904Z] confirmed 1908799 (150.8 regs/s), inflight 500, reverted 0, resent 500, next 2810153, head 8459
+[2026-10-15T16:13:50.313Z] confirmed 1912039 (150.7 regs/s), inflight 500, reverted 0, resent 500, next 2813393, head 8474
+[2026-10-15T16:14:23.506Z] confirmed 1916061 (150.6 regs/s), inflight 500, reverted 0, resent 500, next 2817415, head 8490
+[2026-10-15T16:14:54.926Z] confirmed 1919889 (150.5 regs/s), inflight 500, reverted 0, resent 500, next 2821243, head 8505
+[2026-10-15T16:15:27.230Z] confirmed 1923942 (150.5 regs/s), inflight 500, reverted 0, resent 500, next 2825296, head 8521
+[2026-10-15T16:15:57.784Z] confirmed 1927510 (150.4 regs/s), inflight 500, reverted 0, resent 500, next 2828864, head 8535
+[2026-10-15T16:16:27.785Z] confirmed 1930438 (150.3 regs/s), inflight 500, reverted 0, resent 500, next 2831792, head 8549
+[2026-10-15T16:17:00.538Z] confirmed 1934150 (150.2 regs/s), inflight 500, reverted 0, resent 500, next 2835504, head 8565
+[2026-10-15T16:17:34.021Z] confirmed 1937932 (150.1 regs/s), inflight 500, reverted 0, resent 500, next 2839286, head 8582
+[2026-10-15T16:18:05.099Z] confirmed 1941627 (150.0 regs/s), inflight 500, reverted 0, resent 500, next 2842981, head 8598
+[2026-10-15T16:18:36.410Z] confirmed 1945093 (149.9 regs/s), inflight 500, reverted 0, resent 500, next 2846447, head 8612
+[16:18:40] MEMORY validator2 anon 2552MB > 2500MB - graceful restart (P4P_RESTART_STUCK=1)
+[2026-10-15T16:19:08.921Z] confirmed 1948119 (149.8 regs/s), inflight 500, reverted 0, resent 500, next 2849473, head 8622
+[2026-10-15T16:19:38.990Z] confirmed 1950227 (149.6 regs/s), inflight 500, reverted 0, resent 500, next 2851581, head 8631
+[2026-10-15T16:20:09.096Z] confirmed 1953141 (149.4 regs/s), inflight 500, reverted 0, resent 500, next 2854495, head 8644
+[2026-10-15T16:20:39.176Z] confirmed 1956587 (149.4 regs/s), inflight 500, reverted 0, resent 500, next 2857941, head 8660
+[2026-10-15T16:21:09.214Z] confirmed 1959907 (149.3 regs/s), inflight 500, reverted 0, resent 500, next 2861261, head 8674
+[2026-10-15T16:21:39.216Z] confirmed 1963205 (149.2 regs/s), inflight 500, reverted 0, resent 500, next 2864559, head 8689
+[2026-10-15T16:22:09.241Z] confirmed 1966817 (149.1 regs/s), inflight 500, reverted 0, resent 500, next 2868171, head 8703
+[2026-10-15T16:22:45.218Z] confirmed 1970636 (149.0 regs/s), inflight 500, reverted 0, resent 500, next 2871990, head 8720
+[2026-10-15T16:23:15.274Z] confirmed 1973867 (148.9 regs/s), inflight 500, reverted 0, resent 500, next 2875221, head 8733
+[2026-10-15T16:23:46.462Z] confirmed 1977771 (148.9 regs/s), inflight 500, reverted 0, resent 500, next 2879125, head 8749
+[2026-10-15T16:24:16.522Z] confirmed 1981178 (148.8 regs/s), inflight 500, reverted 0, resent 500, next 2882532, head 8764
+[2026-10-15T16:24:47.432Z] confirmed 1984802 (148.7 regs/s), inflight 500, reverted 0, resent 500, next 2886156, head 8779
+[2026-10-15T16:25:22.886Z] confirmed 1988599 (148.6 regs/s), inflight 500, reverted 0, resent 500, next 2889953, head 8796
+[2026-10-15T16:25:52.967Z] confirmed 1992495 (148.5 regs/s), inflight 500, reverted 0, resent 500, next 2893849, head 8811
+[2026-10-15T16:26:23.759Z] confirmed 1995766 (148.5 regs/s), inflight 500, reverted 0, resent 500, next 2897120, head 8825
+[2026-10-15T16:26:54.133Z] confirmed 1999775 (148.4 regs/s), inflight 500, reverted 0, resent 500, next 2901129, head 8841
+[2026-10-15T16:27:24.331Z] confirmed 2003343 (148.3 regs/s), inflight 500, reverted 0, resent 500, next 2904697, head 8856
+[16:27:45] MEMORY validator1 anon 2553MB > 2500MB - graceful restart (P4P_RESTART_STUCK=1)
+[watcher] fetch failed
+[2026-10-15T16:27:45.499Z] send failed (fetch failed); retrying for up to 10 min
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[watcher] fetch failed
+[2026-10-15T16:28:21.515Z] confirmed 2005825 (147.9 regs/s), inflight 500, reverted 0, resent 500, next 2907179, head 8866
+[2026-10-15T16:28:54.275Z] confirmed 2006818 (147.6 regs/s), inflight 500, reverted 0, resent 700, next 2908172, head 8893
+[2026-10-15T16:29:29.305Z] confirmed 2009644 (147.4 regs/s), inflight 500, reverted 0, resent 700, next 2910998, head 8910
+[2026-10-15T16:30:02.664Z] confirmed 2012675 (147.3 regs/s), inflight 500, reverted 0, resent 700, next 2914029, head 8927
+[2026-10-15T16:30:34.332Z] confirmed 2016198 (147.2 regs/s), inflight 500, reverted 0, resent 700, next 2917552, head 8943
+[2026-10-15T16:31:04.643Z] confirmed 2019706 (147.2 regs/s), inflight 500, reverted 0, resent 700, next 2921060, head 8958
+[2026-10-15T16:31:34.677Z] confirmed 2023280 (147.1 regs/s), inflight 500, reverted 0, resent 700, next 2924634, head 8972
+[2026-10-15T16:32:05.875Z] confirmed 2026212 (147.0 regs/s), inflight 500, reverted 0, resent 700, next 2927566, head 8988
+[2026-10-15T16:32:36.450Z] confirmed 2029303 (146.9 regs/s), inflight 500, reverted 0, resent 700, next 2930657, head 9002
+[2026-10-15T16:33:08.010Z] confirmed 2032395 (146.8 regs/s), inflight 500, reverted 0, resent 700, next 2933749, head 9017
+[2026-10-15T16:33:41.230Z] confirmed 2036055 (146.7 regs/s), inflight 500, reverted 0, resent 700, next 2937409, head 9033
+[2026-10-15T16:34:16.625Z] confirmed 2039821 (146.6 regs/s), inflight 500, reverted 0, resent 700, next 2941175, head 9050
+[2026-10-15T16:34:47.752Z] confirmed 2043380 (146.5 regs/s), inflight 500, reverted 0, resent 700, next 2944734, head 9066
+[2026-10-15T16:35:19.493Z] confirmed 2046962 (146.4 regs/s), inflight 500, reverted 0, resent 700, next 2948316, head 9081
+[16:35:23] MEMORY validator4 anon 2547MB > 2500MB - graceful restart (P4P_RESTART_STUCK=1)
+[2026-10-15T16:35:49.583Z] confirmed 2049256 (146.3 regs/s), inflight 500, reverted 0, resent 700, next 2950610, head 9089
+[2026-10-15T16:36:19.672Z] confirmed 2051086 (146.1 regs/s), inflight 500, reverted 0, resent 700, next 2952440, head 9098
+[2026-10-15T16:36:55.999Z] confirmed 2053831 (145.9 regs/s), inflight 500, reverted 0, resent 700, next 2955185, head 9116
+[2026-10-15T16:37:26.143Z] confirmed 2056851 (145.8 regs/s), inflight 500, reverted 0, resent 700, next 2958205, head 9129
+[2026-10-15T16:38:00.978Z] confirmed 2060409 (145.7 regs/s), inflight 500, reverted 0, resent 700, next 2961763, head 9146
+[2026-10-15T16:38:34.550Z] confirmed 2064326 (145.6 regs/s), inflight 500, reverted 0, resent 700, next 2965680, head 9162
+[2026-10-15T16:39:05.265Z] confirmed 2067749 (145.6 regs/s), inflight 500, reverted 0, resent 700, next 2969103, head 9177
+[2026-10-15T16:39:37.894Z] confirmed 2071601 (145.5 regs/s), inflight 500, reverted 0, resent 700, next 2972955, head 9193
+[2026-10-15T16:40:08.756Z] confirmed 2075223 (145.4 regs/s), inflight 500, reverted 0, resent 700, next 2976577, head 9208
+[2026-10-15T16:40:40.094Z] confirmed 2078653 (145.4 regs/s), inflight 500, reverted 0, resent 700, next 2980007, head 9223
+[2026-10-15T16:41:12.229Z] confirmed 2082315 (145.3 regs/s), inflight 500, reverted 0, resent 700, next 2983669, head 9238
+[2026-10-15T16:41:42.474Z] confirmed 2085893 (145.2 regs/s), inflight 500, reverted 0, resent 700, next 2987247, head 9253
+[2026-10-15T16:42:12.569Z] confirmed 2089079 (145.1 regs/s), inflight 500, reverted 0, resent 700, next 2990433, head 9268
+[2026-10-15T16:42:43.101Z] confirmed 2092742 (145.1 regs/s), inflight 500, reverted 0, resent 700, next 2994096, head 9282
+[2026-10-15T16:43:17.781Z] confirmed 2096844 (145.0 regs/s), inflight 500, reverted 0, resent 700, next 2998198, head 9300
+[2026-10-15T16:43:49.226Z] confirmed 2100436 (145.0 regs/s), inflight 500, reverted 0, resent 700, next 3001790, head 9316
+[2026-10-15T16:44:21.739Z] confirmed 2103991 (144.9 regs/s), inflight 500, reverted 0, resent 700, next 3005345, head 9331
+[2026-10-15T16:44:53.414Z] confirmed 2107910 (144.8 regs/s), inflight 500, reverted 0, resent 700, next 3009264, head 9347
+[2026-10-15T16:45:27.064Z] confirmed 2111706 (144.8 regs/s), inflight 500, reverted 0, resent 700, next 3013060, head 9362
+[2026-10-15T16:46:05.874Z] confirmed 2116138 (144.7 regs/s), inflight 500, reverted 0, resent 700, next 3017492, head 9382
+[2026-10-15T16:46:35.938Z] confirmed 2119614 (144.6 regs/s), inflight 500, reverted 0, resent 700, next 3020968, head 9396
+[2026-10-15T16:47:06.292Z] confirmed 2123252 (144.6 regs/s), inflight 500, reverted 0, resent 700, next 3024606, head 9411
+[2026-10-15T16:47:37.895Z] confirmed 2126204 (144.5 regs/s), inflight 500, reverted 0, resent 700, next 3027558, head 9425
+[2026-10-15T16:48:09.169Z] confirmed 2130070 (144.4 regs/s), inflight 500, reverted 0, resent 700, next 3031424, head 9441
+[2026-10-15T16:48:41.668Z] confirmed 2133352 (144.3 regs/s), inflight 500, reverted 0, resent 700, next 3034706, head 9457
+[16:48:45] MEMORY validator3 anon 2598MB > 2500MB - graceful restart (P4P_RESTART_STUCK=1)
+[2026-10-15T16:49:11.748Z] confirmed 2135985 (144.2 regs/s), inflight 500, reverted 0, resent 700, next 3037339, head 9466
+[2026-10-15T16:49:50.037Z] confirmed 2138787 (144.0 regs/s), inflight 500, reverted 0, resent 700, next 3040141, head 9479
+[2026-10-15T16:50:21.732Z] confirmed 2141380 (143.9 regs/s), inflight 500, reverted 0, resent 700, next 3042734, head 9491
+[2026-10-15T16:50:52.923Z] confirmed 2144580 (143.8 regs/s), inflight 500, reverted 0, resent 700, next 3045934, head 9505
+[2026-10-15T16:51:24.602Z] confirmed 2148185 (143.7 regs/s), inflight 500, reverted 0, resent 700, next 3049539, head 9521
+[2026-10-15T16:51:59.498Z] confirmed 2152305 (143.7 regs/s), inflight 500, reverted 0, resent 700, next 3053659, head 9538
+[2026-10-15T16:52:30.685Z] confirmed 2155751 (143.6 regs/s), inflight 500, reverted 0, resent 700, next 3057105, head 9554
+[2026-10-15T16:53:00.692Z] confirmed 2159075 (143.5 regs/s), inflight 500, reverted 0, resent 700, next 3060429, head 9568
+[2026-10-15T16:53:30.761Z] confirmed 2162362 (143.5 regs/s), inflight 500, reverted 0, resent 700, next 3063716, head 9583
+[2026-10-15T16:54:02.750Z] confirmed 2165975 (143.4 regs/s), inflight 500, reverted 0, resent 700, next 3067329, head 9598
+[2026-10-15T16:54:32.757Z] confirmed 2169586 (143.4 regs/s), inflight 500, reverted 0, resent 700, next 3070940, head 9613
+[2026-10-15T16:55:02.848Z] confirmed 2173002 (143.3 regs/s), inflight 500, reverted 0, resent 700, next 3074356, head 9628
+[2026-10-15T16:55:35.116Z] confirmed 2176581 (143.2 regs/s), inflight 500, reverted 0, resent 700, next 3077935, head 9644
+[2026-10-15T16:56:05.342Z] confirmed 2179934 (143.2 regs/s), inflight 500, reverted 0, resent 700, next 3081288, head 9658
+[2026-10-15T16:56:39.248Z] confirmed 2184375 (143.2 regs/s), inflight 500, reverted 0, resent 700, next 3085729, head 9676
+[2026-10-15T16:57:10.434Z] confirmed 2187955 (143.1 regs/s), inflight 500, reverted 0, resent 700, next 3089309, head 9691
+[2026-10-15T16:57:41.573Z] confirmed 2191526 (143.0 regs/s), inflight 500, reverted 0, resent 700, next 3092880, head 9706
+[2026-10-15T16:58:11.655Z] confirmed 2194784 (143.0 regs/s), inflight 500, reverted 0, resent 700, next 3096138, head 9720
+[2026-10-15T16:58:41.747Z] confirmed 2198211 (142.9 regs/s), inflight 500, reverted 0, resent 700, next 3099565, head 9734
+[2026-10-15T16:59:11.974Z] confirmed 2201868 (142.9 regs/s), inflight 500, reverted 0, resent 700, next 3103222, head 9748
+[2026-10-15T16:59:42.611Z] confirmed 2205647 (142.8 regs/s), inflight 500, reverted 0, resent 700, next 3107001, head 9763
+[2026-10-15T17:00:12.636Z] confirmed 2209237 (142.8 regs/s), inflight 500, reverted 0, resent 700, next 3110591, head 9778
+[2026-10-15T17:00:44.897Z] confirmed 2212435 (142.7 regs/s), inflight 500, reverted 0, resent 700, next 3113789, head 9794
+[2026-10-15T17:01:15.054Z] confirmed 2216266 (142.7 regs/s), inflight 500, reverted 0, resent 700, next 3117620, head 9809
+[2026-10-15T17:01:45.148Z] confirmed 2219568 (142.6 regs/s), inflight 500, reverted 0, resent 700, next 3120922, head 9824
+[2026-10-15T17:02:17.500Z] confirmed 2223222 (142.5 regs/s), inflight 500, reverted 0, resent 700, next 3124576, head 9840
+[2026-10-15T17:02:47.602Z] confirmed 2226417 (142.5 regs/s), inflight 500, reverted 0, resent 700, next 3127771, head 9854
+[2026-10-15T17:03:17.681Z] confirmed 2229616 (142.4 regs/s), inflight 500, reverted 0, resent 700, next 3130970, head 9868
+[2026-10-15T17:03:48.619Z] confirmed 2233522 (142.4 regs/s), inflight 500, reverted 0, resent 700, next 3134876, head 9883
+[2026-10-15T17:04:19.134Z] confirmed 2236542 (142.3 regs/s), inflight 500, reverted 0, resent 700, next 3137896, head 9898
+[2026-10-15T17:04:50.180Z] confirmed 2240070 (142.2 regs/s), inflight 500, reverted 0, resent 700, next 3141424, head 9914
+[2026-10-15T17:05:20.542Z] confirmed 2243630 (142.2 regs/s), inflight 500, reverted 0, resent 700, next 3144984, head 9928
+[2026-10-15T17:05:51.796Z] confirmed 2247706 (142.2 regs/s), inflight 500, reverted 0, resent 700, next 3149060, head 9944
+[2026-10-15T17:06:22.008Z] confirmed 2251422 (142.1 regs/s), inflight 500, reverted 0, resent 700, next 3152776, head 9959
+[2026-10-15T17:06:54.972Z] confirmed 2255479 (142.1 regs/s), inflight 500, reverted 0, resent 700, next 3156833, head 9975
+[2026-10-15T17:07:30.571Z] confirmed 2259357 (142.0 regs/s), inflight 500, reverted 0, resent 700, next 3160711, head 9993
+[2026-10-15T17:08:03.629Z] confirmed 2263003 (141.9 regs/s), inflight 500, reverted 0, resent 700, next 3164357, head 10009
+[2026-10-15T17:08:33.638Z] confirmed 2267205 (141.9 regs/s), inflight 500, reverted 0, resent 700, next 3168559, head 10023
+[2026-10-15T17:09:04.401Z] confirmed 2272813 (142.0 regs/s), inflight 500, reverted 0, resent 700, next 3174167, head 10039
+[2026-10-15T17:09:34.747Z] confirmed 2278507 (142.1 regs/s), inflight 500, reverted 0, resent 700, next 3179861, head 10054
+[2026-10-15T17:10:04.847Z] confirmed 2284618 (142.2 regs/s), inflight 500, reverted 0, resent 700, next 3185972, head 10069
+[2026-10-15T17:10:35.380Z] confirmed 2290391 (142.3 regs/s), inflight 500, reverted 0, resent 700, next 3191745, head 10084
+[2026-10-15T17:11:06.612Z] confirmed 2296172 (142.4 regs/s), inflight 500, reverted 0, resent 700, next 3197526, head 10100
+[2026-10-15T17:11:36.661Z] confirmed 2301638 (142.5 regs/s), inflight 500, reverted 0, resent 700, next 3202992, head 10115
+[2026-10-15T17:12:08.249Z] confirmed 2307370 (142.5 regs/s), inflight 500, reverted 0, resent 700, next 3208724, head 10130
+[2026-10-15T17:12:38.296Z] confirmed 2312752 (142.6 regs/s), inflight 500, reverted 0, resent 700, next 3214106, head 10145
+[2026-10-15T17:13:08.534Z] confirmed 2318590 (142.7 regs/s), inflight 500, reverted 0, resent 700, next 3219944, head 10161
+[2026-10-15T17:13:38.601Z] confirmed 2323922 (142.8 regs/s), inflight 500, reverted 0, resent 700, next 3225276, head 10176
+[2026-10-15T17:14:10.540Z] confirmed 2329414 (142.8 regs/s), inflight 500, reverted 0, resent 700, next 3230768, head 10192
+[2026-10-15T17:14:40.804Z] confirmed 2335119 (142.9 regs/s), inflight 500, reverted 0, resent 700, next 3236473, head 10207
+[2026-10-15T17:15:12.965Z] confirmed 2340959 (143.0 regs/s), inflight 500, reverted 0, resent 700, next 3242313, head 10223
+[2026-10-15T17:15:44.189Z] confirmed 2346425 (143.0 regs/s), inflight 500, reverted 0, resent 700, next 3247779, head 10238
+[2026-10-15T17:16:18.952Z] confirmed 2352961 (143.1 regs/s), inflight 500, reverted 0, resent 700, next 3254315, head 10256
+[2026-10-15T17:16:49.790Z] confirmed 2358277 (143.2 regs/s), inflight 500, reverted 0, resent 700, next 3259631, head 10271
+[2026-10-15T17:17:22.180Z] confirmed 2364275 (143.3 regs/s), inflight 500, reverted 0, resent 700, next 3265629, head 10287
+[2026-10-15T17:17:52.825Z] confirmed 2370106 (143.4 regs/s), inflight 500, reverted 0, resent 700, next 3271460, head 10303
+[2026-10-15T17:18:23.420Z] confirmed 2375713 (143.4 regs/s), inflight 500, reverted 0, resent 700, next 3277067, head 10318
+[2026-10-15T17:18:55.829Z] confirmed 2381786 (143.5 regs/s), inflight 500, reverted 0, resent 700, next 3283140, head 10334
+[2026-10-15T17:19:26.321Z] confirmed 2387578 (143.6 regs/s), inflight 500, reverted 0, resent 700, next 3288932, head 10349
+[2026-10-15T17:19:57.161Z] confirmed 2393117 (143.7 regs/s), inflight 500, reverted 0, resent 700, next 3294471, head 10365
+[2026-10-15T17:20:28.943Z] confirmed 2398735 (143.7 regs/s), inflight 411, reverted 0, resent 700, next 3300000, head 10381
+DONE register [900854, 3300000): confirmed 2399146, reverted 0, resent 700, 16691s, 143.7 regs/s
+[2026-10-15 17:20:31] Seeding done: 16708s (197.5 regs/s over this run), blocks 2291..10383, mean block time 2.064s
+[2026-10-15 17:20:31]   validator1 DB 2869 MB
+[2026-10-15 17:20:31]   validator2 DB 2700 MB
+[2026-10-15 17:20:31]   validator3 DB 2612 MB
+[2026-10-15 17:20:31]   validator4 DB 2796 MB
+{"index":0,"address":"0x4112102B4Cd71D175a991De297Aa4190AbC8a824","registered":true,"state":"NotVoted"}
+{"index":2749999,"address":"0x74Fae2cC80A73Bc07f2D37831e29B8F5B366A375","registered":true,"state":"NotVoted"}
+{"index":5499999,"address":"0xD6d147Ecc340FCCA304905eA38FFba72F041e640","registered":false,"state":"NotVoted"}
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[2026-10-15 17:22:31] Snapshot 'seeded': 11G in 112s; disk free 138GB
+[2026-10-15 17:22:31] RESULT: COMPLETED seeded 3300000 voters in 16708s; snapshot saved

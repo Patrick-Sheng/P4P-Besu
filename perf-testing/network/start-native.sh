@@ -21,6 +21,10 @@
 #                 P4P_SLICE_MEM_MB MemoryMax for the whole p4p-perf.slice
 #                 P4P_TX_POOL_MAX_SIZE  optional --tx-pool-max-size for every
 #                                  validator (unset = Besu default, as in Areas 1-4)
+#                 P4P_METRICS      1 = --metrics-enabled on every validator, port
+#                                  9000 + N*100 + i (round 2 Prometheus scraping)
+#                 P4P_KEEP_DATA    1 = keep existing data-native/ (restart a seeded
+#                                  or snapshot-restored chain instead of a fresh one)
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
@@ -49,9 +53,13 @@ if [ ! -f "${CONFIG_DIR}/genesis.json" ]; then
 fi
 
 DATA_ROOT="${GEN_DIR}/data-native"
-rm -rf "$DATA_ROOT"
+if [ "${P4P_KEEP_DATA:-}" = 1 ]; then
+    echo "P4P_KEEP_DATA=1: reusing existing ${DATA_ROOT} (logs appended)"
+else
+    rm -rf "$DATA_ROOT"
+    for ((i = 1; i <= N; i++)); do : > "${GEN_DIR}/validator${i}.log"; done
+fi
 mkdir -p "$DATA_ROOT"
-for ((i = 1; i <= N; i++)); do : > "${GEN_DIR}/validator${i}.log"; done
 
 mapfile -t ADDRS < <(find "${CONFIG_DIR}/keys" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' | sort)
 if [ "${#ADDRS[@]}" -ne "$N" ]; then
@@ -66,7 +74,7 @@ if [ -n "$TX_POOL_MAX_SIZE" ] && ! [[ "$TX_POOL_MAX_SIZE" =~ ^[0-9]+$ ]]; then
     echo "P4P_TX_POOL_MAX_SIZE must be a positive integer, got '${TX_POOL_MAX_SIZE}'" >&2
     exit 1
 fi
-printf 'HEAP_MB=%s\nNODE_MEM_MB=%s\nTX_POOL_MAX_SIZE=%s\n' "$HEAP_MB" "$NODE_MEM_MB" "$TX_POOL_MAX_SIZE" > "${GEN_DIR}/node-env"
+printf 'HEAP_MB=%s\nNODE_MEM_MB=%s\nTX_POOL_MAX_SIZE=%s\nMETRICS_ENABLED=%s\n' "$HEAP_MB" "$NODE_MEM_MB" "$TX_POOL_MAX_SIZE" "${P4P_METRICS:-}" > "${GEN_DIR}/node-env"
 
 PID_FILE="${GEN_DIR}/native-pids.txt"
 : > "$PID_FILE"

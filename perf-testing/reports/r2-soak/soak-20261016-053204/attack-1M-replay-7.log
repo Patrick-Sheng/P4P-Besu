@@ -1,0 +1,17 @@
+FAIL: ENOENT: no such file or directory, open '/home/patrick/P4P/P4P-Besu/perf-testing/voting-contract/out/VotingSystem.sol/VotingSystem.json'
+Error: ENOENT: no such file or directory, open '/home/patrick/P4P/P4P-Besu/perf-testing/voting-contract/out/VotingSystem.sol/VotingSystem.json'
+    at Object.readFileSync (node:fs:440:20)
+    at loadNetwork (/home/patrick/P4P/P4P-Besu/perf-testing/fault-injection/malicious/lib.js:21:36)
+    at main (/home/patrick/P4P/P4P-Besu/perf-testing/fault-injection/malicious/replay.js:22:51)
+    at Object.<anonymous> (/home/patrick/P4P/P4P-Besu/perf-testing/fault-injection/malicious/replay.js:86:1)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/patrick/P4P/P4P-Besu/perf-testing/voting-contract/out/VotingSystem.sol/VotingSystem.json'
+}

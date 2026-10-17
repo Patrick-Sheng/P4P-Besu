@@ -1,0 +1,23 @@
+[2026-10-16 01:59:56] === Round 2 phase 'soak' (run dir /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-015955) ===
+[2026-10-16 01:59:59] CPU probe: 1.06s (normal ~1.15s)
+[2026-10-16 01:59:59] Starting 4-validator chain (keep): heap 1024MB, MemoryMax 2600MB, --tx-pool-max-size=65536, metrics on, slice 14488MB
+P4P_KEEP_DATA=1: reusing existing generated/n4/data-native (logs appended)
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 1024M, MemoryMax 2600M each, --tx-pool-max-size=65536...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[2026-10-16 02:00:57] Chain up: all validators have 3 peers, height 10399, pool maxSize 65536
+monitoring started for n=4: Prometheus :9090, Grafana :3000, node_exporter :9100
+[2026-10-16 02:01:37] Prometheus targets UP: 5/5; Grafana health: {"database":"ok","version":"11.2.0","commit":"c57667e4481563f5e6cf945b03bc0626caa4dbeb"}
+[2026-10-16 02:01:40] Round 1/14: voters 0..200000 at 120/s (~27 min)
+[soak-r1] castVote voters [0, 200000) at 120 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/r2-soak/soak-20261016-015955/soak-r01.csv
+[soak-r1] t=60s sent 7200 (119.4/s) ok 2422 reverted 0 send_err 0 pending 4778 head 10427
+[soak-r1] t=120s sent 14424 (119.8/s) ok 6017 reverted 0 send_err 0 pending 8407 head 10430
+[soak-r1] t=180s sent 21641 (120.0/s) ok 12914 reverted 0 send_err 0 pending 8727 head 10436
+[soak-r1] t=241s sent 28846 (119.8/s) ok 15654 reverted 0 send_err 0 pending 13192 head 10441
+[soak-r1] t=301s sent 36095 (120.0/s) ok 18033 reverted 0 send_err 0 pending 18062 head 10444
+[2026-10-16 02:06:44] CRASH_REASON=BLOCK_TIME_ABOVE_6S :: 23 blocks in 303s (round 1)
+[2026-10-16 02:06:45] RESULT: ABORTED during 'soak round 1' - BLOCK_TIME_ABOVE_6S :: 23 blocks in 303s (round 1)

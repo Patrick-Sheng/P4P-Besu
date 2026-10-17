@@ -1,0 +1,2 @@
+test,halted,fork,pool_peak,first_block_s,backlog_clear_s,v3_rejoin_s,v4_rejoin_s,sent_during_halt,lost_during_halt,failed_total
+quorum-loss,yes,no,5431,286,454,3,3,5406,0,0

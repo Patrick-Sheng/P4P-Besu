@@ -1,0 +1,2 @@
+[05:03:40] watchdog started (n=7, abort if MemAvailable<1024MB, stall>30s)
+[05:04:53] CRASH_REASON=DRIVER_DIED :: p4p-r2-area1 is no longer active (result=success)

@@ -1,0 +1,11 @@
+Registered voter 0x738846cb8335a748d73eCFa8264777187da382E4
+PASS: first vote confirmed (tx 0x1ea1aef204b1854d2017fec0c0aa11118fce107e7fde2d131d0807a6a8d6b8ca)
+  second vote rejected: CALL_EXCEPTION transaction execution reverted (mined in block 15955, status 0)
+  candidate 0: raw tally delta 391, of which 390 from concurrent legitimate voters -> attacker delta 1
+PASS: double-vote was rejected at the application layer; tally incremented exactly once; voter state remains Voted.
+Cross-node check at block 15959 (tallies for candidates 0):
+  validator1: 385095  0xcd357a42cb7e3569b384a77fdb730f437a1165cfea710a2d8fa6a492600f5d44
+  validator2: 385095  0xcd357a42cb7e3569b384a77fdb730f437a1165cfea710a2d8fa6a492600f5d44
+  validator3: 385095  0xcd357a42cb7e3569b384a77fdb730f437a1165cfea710a2d8fa6a492600f5d44
+  validator4: 385095  0xcd357a42cb7e3569b384a77fdb730f437a1165cfea710a2d8fa6a492600f5d44
+PASS: all 4 validators report identical tallies and block hash at #15959

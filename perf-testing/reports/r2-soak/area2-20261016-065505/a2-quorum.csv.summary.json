@@ -1,0 +1,31 @@
+{
+  "label": "a2-quorum",
+  "from": 2818000,
+  "count": 18000,
+  "skippedAlreadyVoted": 0,
+  "targetRate": 30,
+  "sent": 18000,
+  "ok": 18000,
+  "reverted": 0,
+  "sendErrors": 0,
+  "dropped": 0,
+  "successPct": 100,
+  "sendRate": 29.94,
+  "throughput": 17.3,
+  "latencyMs": {
+    "p50": 564552,
+    "p95": 732482,
+    "p99": 763170,
+    "max": 779908,
+    "mean": 478541
+  },
+  "sendLagMs": {
+    "p50": 40,
+    "p99": 6762,
+    "max": 9828.666748046875
+  },
+  "startMs": 1792134376464,
+  "sendEndMs": 1792134977665,
+  "endMs": 1792135417913,
+  "blocksWatched": 86
+}

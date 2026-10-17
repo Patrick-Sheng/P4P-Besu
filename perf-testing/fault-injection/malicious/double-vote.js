@@ -9,7 +9,7 @@
 //
 // Usage: node double-vote.js <networkConfigFile>
 
-const { loadNetwork, registerFreshVoter, ensureVotingOpen, assertAllNodesAgree, pass, fail } = require('./lib');
+const { loadNetwork, registerFreshVoter, ensureVotingOpen, assertAllNodesAgree, tallyAt, attackerDelta, pass, fail } = require('./lib');
 
 async function main() {
     const networkConfigPath = process.argv[2];
@@ -25,7 +25,7 @@ async function main() {
     console.log(`Registered voter ${voter.address}`);
 
     const candidateId = 0;
-    const tallyBefore = await contract.getTally(candidateId);
+    const tallyBefore = await tallyAt(provider, contract, candidateId);
 
     const voterContract = contract.connect(voter);
     const tx1 = await voterContract.castVote(candidateId, { gasPrice: 0n, gasLimit: 200000n, nonce: 0, type: 0 });
@@ -50,13 +50,14 @@ async function main() {
         console.log(`  second vote rejected: ${err.code || ''} ${(err.shortMessage || err.message).split('\n')[0]}${err.receipt ? ` (mined in block ${err.receipt.blockNumber}, status ${err.receipt.status})` : ''}`);
     }
 
-    const tallyAfter = await contract.getTally(candidateId);
+    const tallyAfter = await tallyAt(provider, contract, candidateId);
+    const delta = await attackerDelta(contract, tallyBefore, tallyAfter, candidateId, voter.address);
     const voterState = await contract.getVoterState(voter.address);
 
-    if (secondVoteRejected && tallyAfter === tallyBefore + 1n && voterState === 2n /* Voted */) {
+    if (secondVoteRejected && delta === 1n && voterState === 2n /* Voted */) {
         pass('double-vote was rejected at the application layer; tally incremented exactly once; voter state remains Voted.');
     } else {
-        fail(`double-vote was NOT correctly rejected. secondVoteRejected=${secondVoteRejected}, tallyBefore=${tallyBefore}, tallyAfter=${tallyAfter}, voterState=${voterState}`);
+        fail(`double-vote was NOT correctly rejected. secondVoteRejected=${secondVoteRejected}, tallyBefore=${tallyBefore.tally}, tallyAfter=${tallyAfter.tally}, attackerDelta=${delta}, voterState=${voterState}`);
     }
 
     await assertAllNodesAgree(config, contract, [candidateId]);

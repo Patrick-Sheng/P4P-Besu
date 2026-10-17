@@ -1,0 +1,2 @@
+time,round,kind,detail,pool,last_cpu_probe_ms
+2026-10-16 04:28:29,3,slow_blocks,"43 blocks in 302s",10874,130

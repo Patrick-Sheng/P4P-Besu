@@ -1,0 +1,3 @@
+[06:55:14] watchdog started (n=4, abort if MemAvailable<1024MB, stall>60s)
+[07:06:15] watchdog started (n=4, abort if MemAvailable<1024MB, stall>100000s)
+[07:23:44] watchdog started (n=4, abort if MemAvailable<1024MB, stall>60s)
