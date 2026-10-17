@@ -1,0 +1,45 @@
+[06:35:09] === Round 3 agreement time n4-r10-20261017-063508: n=4, 100 ms block period, load 10 votes/s, measure 300s ===
+[06:35:12] Per node: heap 1024MB, MemoryMax 1800MB, pool 65536; slice 12488MB; CPU probe 1.08s
+Removing previous generated network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n4
+Generating 4 validator keys + genesis...
+2026-10-17 06:35:15.045+00:00 | main | INFO  | GenerateBlockchainConfig | Generating 4 nodes keys.
+2026-10-17 06:35:15.050+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 0.
+2026-10-17 06:35:15.102+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 1.
+2026-10-17 06:35:15.105+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 2.
+2026-10-17 06:35:15.108+00:00 | main | INFO  | GenerateBlockchainConfig | Generating keypair for node 3.
+2026-10-17 06:35:15.111+00:00 | main | INFO  | GenerateBlockchainConfig | Generating IBFT extra data.
+2026-10-17 06:35:15.114+00:00 | main | INFO  | GenerateBlockchainConfig | Writing genesis file.
+
+Generated 4-validator network at /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n4
+  f (max tolerable simultaneous faults) = 1
+  RPC ports: http://127.0.0.1:20400, http://127.0.0.1:20401, http://127.0.0.1:20402, http://127.0.0.1:20403
+
+Next: docker compose -f /home/patrick/P4P/P4P-Besu/perf-testing/network/generated/n4/docker-compose.yml up -d
+[06:35:15] Genesis ibft2: {"blockperiodseconds":2,"epochlength":30000,"requesttimeoutseconds":4,"xblockperiodmilliseconds":100}
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 1024M, MemoryMax 1800M each, --tx-pool-max-size=65536...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[06:36:07] All 4 validators report 3 peers
+Waiting for 4 validator(s) to come up and start producing blocks...
+Network live. Block heights: 201, 201, 201, 201
+Deploying VotingSystem(numCandidates=3) via 0x4216D9D1aa8FCF3713b098776aB3984ACeFA0A12 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0x32edfcBdC0b79473A9E054c57b4837536DdB7CcD (block 207)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+Voting not open - sending openVoting()
+Registering voters [0, 4200) = 4200; admin 0x4216D9D1aa8FCF3713b098776aB3984ACeFA0A12 nonce 2; window 500
+DONE register [0, 4200): confirmed 4200, reverted 0, resent 0, 28s, 149.1 regs/s
+[06:36:54] Registered 4200 voters; starting 10 votes/s
+[06:36:54] Settling 60s (JIT warm-up, steady state) before measuring
+[06:37:54] Measuring 300s from 2026-10-17 06:37:54.839 (height 573)
+AGREEMENT run=n4-r10-20261017-063508 n=4 load_votes_per_s=10 block_period_ms=100 blocks=2125 intervals=2085 mean_ms=129.7 median_ms=125.0 p95_ms=155.0 max_ms=895.0 round_expiries=0 host_cpu_pct=24.8 besu_cpu_pct=123.1 besu_rss_mb=2160
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[06:43:02] RESULT: COMPLETED

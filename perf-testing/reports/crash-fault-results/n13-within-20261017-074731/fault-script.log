@@ -1,0 +1,30 @@
+[07:51:16] n=13, f=4. Killing the last 4 validators (staggered 5s apart), leaving validator1..9 as survivors.
+[07:51:16] Baseline height on survivor (p4p-besu-n13-v1): 70
+[07:51:16] === Killing 4 node(s), staggered ===
+[07:51:16] crash p4p-besu-n13-v10 (native)
+[07:54:15] crash p4p-besu-n13-v11 (native)
+[07:54:20] crash p4p-besu-n13-v12 (native)
+[07:54:26] crash p4p-besu-n13-v13 (native)
+[07:54:31] === Holding for 60s with n-f=9 nodes live ===
+[07:55:31] Survivor height: 74 -> 81 (+7 blocks in 60s)
+[07:55:31] PASS: network kept producing blocks with n-f nodes online (liveness maintained).
+[07:55:31] === Rebooting 4 node(s), staggered ===
+[07:55:31] restart p4p-besu-n13-v10 (native)
+[07:55:36] restart p4p-besu-n13-v11 (native)
+[07:55:42] restart p4p-besu-n13-v12 (native)
+[07:55:47] restart p4p-besu-n13-v13 (native)
+[07:55:53] === Waiting for rebooted node(s) to resync to height 81 (chain kept advancing while they were down) ===
+[07:55:53] Waiting on p4p-besu-n13-v10 (http://127.0.0.1:21309)...
+[07:55:54]   p4p-besu-n13-v10 caught up in 1s
+[07:55:55]   State check PASS: block #76 hash matches survivor (0x3b6efdf3569fc6299975638919a131a3de97e8049684b301493a2f47948a26c8)
+[07:55:55] Waiting on p4p-besu-n13-v11 (http://127.0.0.1:21310)...
+[07:55:56]   p4p-besu-n13-v11 caught up in 1s
+[07:55:57]   State check PASS: block #76 hash matches survivor (0x3b6efdf3569fc6299975638919a131a3de97e8049684b301493a2f47948a26c8)
+[07:55:57] Waiting on p4p-besu-n13-v12 (http://127.0.0.1:21311)...
+[07:56:06]   p4p-besu-n13-v12 caught up in 9s
+[07:56:06]   State check PASS: block #76 hash matches survivor (0x3b6efdf3569fc6299975638919a131a3de97e8049684b301493a2f47948a26c8)
+[07:56:06] Waiting on p4p-besu-n13-v13 (http://127.0.0.1:21312)...
+[07:56:14]   p4p-besu-n13-v13 caught up in 8s
+[07:56:15]   State check PASS: block #76 hash matches survivor (0x3b6efdf3569fc6299975638919a131a3de97e8049684b301493a2f47948a26c8)
+[07:56:15] === Done. Total reboot-to-full-resync wall time: 44s ===
+[07:56:15] RESULT: PASS

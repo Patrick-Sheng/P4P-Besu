@@ -1,0 +1,20 @@
+[07:31:29] n=7, f=2. Killing the last 2 validators (staggered 5s apart), leaving validator1..5 as survivors.
+[07:31:29] Baseline height on survivor (p4p-besu-n7-v1): 46
+[07:31:29] === Killing 2 node(s), staggered ===
+[07:31:29] crash p4p-besu-n7-v6 (native)
+[07:31:34] crash p4p-besu-n7-v7 (native)
+[07:31:39] === Holding for 60s with n-f=5 nodes live ===
+[07:32:40] Survivor height: 47 -> 62 (+15 blocks in 60s)
+[07:32:40] PASS: network kept producing blocks with n-f nodes online (liveness maintained).
+[07:32:40] === Rebooting 2 node(s), staggered ===
+[07:32:40] restart p4p-besu-n7-v6 (native)
+[07:32:45] restart p4p-besu-n7-v7 (native)
+[07:32:50] === Waiting for rebooted node(s) to resync to height 66 (chain kept advancing while they were down) ===
+[07:32:50] Waiting on p4p-besu-n7-v6 (http://127.0.0.1:20705)...
+[07:32:55]   p4p-besu-n7-v6 caught up in 5s
+[07:32:55]   State check PASS: block #61 hash matches survivor (0xe2ce415b378cc427175d82977429d4826c4a41d1bb6e32211fd27a30a4f0bca0)
+[07:32:55] Waiting on p4p-besu-n7-v7 (http://127.0.0.1:20706)...
+[07:33:00]   p4p-besu-n7-v7 caught up in 5s
+[07:33:00]   State check PASS: block #61 hash matches survivor (0xe2ce415b378cc427175d82977429d4826c4a41d1bb6e32211fd27a30a4f0bca0)
+[07:33:00] === Done. Total reboot-to-full-resync wall time: 20s ===
+[07:33:00] RESULT: PASS

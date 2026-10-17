@@ -1,4 +1,4 @@
-# Area 2 — Crash-fault tolerance results (2026-10-08)
+# Area 2 — Crash-fault tolerance results (rounds 1–3; round 1 run 2026-10-08)
 
 Host: single dev box, 4 cores, 7.7 GB RAM, no swap (same as Area 1). Besu 24.12.0, IBFT 2.0,
 blockperiod 2 s, requesttimeoutseconds 4. Native network (no Docker): validators are memory-capped
@@ -9,7 +9,26 @@ sent only to validators that are never crashed. Driver: `scripts/area2-crash.sh 
 - **within** = crash f = ⌊(n−1)/3⌋ validators, staggered 5 s, hold 60 s, restart. Expect liveness, resync, identical state.
 - **over** = crash f+1. Expect the chain to halt (no fork), then resume once nodes return.
 
-## Results
+## Current findings (all rounds, updated 2026-10-17)
+
+| Round | Scope | Result |
+| --- | --- | --- |
+| 1 (8 Oct) | n = 4 and 7 (n = 10 blocked by memory), 25 TPS, empty chain | f down: live, 0 failed, resync 5–11 s. f+1 down: safe halt, no fork, resume 135–266 s; 31 % of outage votes evicted (4,096 pool) |
+| 2 (16 Oct) | n = 4 on a 1M-vote / 3.3M-voter chain, 30 votes/s, 65,536 pool | f down: live, 0 failed, rejoin 48 s. Quorum loss: safe halt, no fork, **0 of 5,406 votes lost**, recovery 286 s ([R2 report §8](../r2-soak/R2-ELECTION-SCALE-RESULTS.md)) |
+| **3 (17 Oct)** | **n = 4, 7, 10, 13 with f = 1, 2, 3, 4 down for 60 s, 10 votes/s** | See below |
+
+- **The network stays live and loses no votes with f validators down, at every size from 4 to 13.**
+  Every restarted validator caught up within 1–9 s, and every validator ended on an identical chain.
+- **The slowest votes are delayed by the round timer, not the consensus cost.** With the f offline validators next
+  to each other in the proposer order (as here), each dead proposer costs one IBFT round timeout, and the timeout
+  doubles each time: worst gap between blocks **4 s (f = 1), 12 s (f = 2), 28 s (f = 3)**, i.e. 4·(2^f − 1) s.
+- **At n = 13 with f = 4 down the network ran at exactly quorum** (9 of 13) and was much slower than the formula
+  (worst gap 180 s, p95 15 s while down, 72 s while recovering). 281 votes timed out at the client (no receipt within
+  120 s) but **all 2,600 votes were included on chain**; none were lost.
+- **Besu 24.12.0's sync/import deadlock** (seen in rounds 2 and 3) hit two validators at once in the first n = 13
+  attempt, before any fault was injected; the rerun passed.
+
+## Round 1 results (2026-10-08)
 
 | n | scenario | BFT property | Result | Detail |
 |---|---|---|---|---|
@@ -91,3 +110,44 @@ No host-level (kernel) OOM occurred; every OOM stayed inside one validator's cgr
 - `crash-fault-over-tolerance.sh` — recovery timeout configurable (`RECOVERY_TIMEOUT`, driver uses 600 s); the old 60 s was shorter than IBFT's own backoff.
 - `monitoring/fault-timeline.js` — per-phase throughput/latency/block-gap from latency logs + fault events.
 - Watchdog exempts deliberately crashed validators; drivers now report a validator OOM as the root cause instead of the client-side connection error it causes, and stop immediately on a watchdog abort during the fault script.
+
+## Round 3 results (2026-10-17): f validators offline at 4 to 13 validators
+
+Plan: *Round 3 Test Plan: Validator Count Gaps*, Test 3. Round 1 script `scripts/area2-crash.sh <n> within` on
+the round 2 VM (6 vCPU, 15.6 GiB): f = ⌊(n−1)/3⌋ validators SIGKILLed 5 s apart, held 60 s, restarted; 10 votes/s
+Caliper load sent only to validators that stay up; **900 MB cgroup cap and 512 MB heap per validator at every size**,
+`--tx-pool-max-size=65536`, 2 s blocks. Run folders `n<N>-within-20261017-*` beside this file.
+
+**Which validators went down:** always the last f (validators n−f+1 … n). Validators are ordered by address, and
+IBFT rotates the proposer in that order, so **the offline validators were always next to each other in the proposer
+order** — the worst case for delay.
+
+| n | f down | Votes ok | Live while down | Restarted nodes caught up | Identical chain at end |
+| --- | --- | --- | --- | --- | --- |
+| 4 | 1 (v4) | 2,302 / 2,302 | yes | 9 s | yes (#146) |
+| 7 | 2 (v6, v7) | 2,402 / 2,402 | yes | 5 s, 5 s | yes (#131) |
+| 10 | 3 (v8–v10) | 2,502 / 2,502 | yes | 5 s, 9 s, 2 s | yes (#150) |
+| 13 | 4 (v10–v13) | 2,319 confirmed in time, **2,600 / 2,600 on chain** | yes (slowly) | 1 s, 1 s, 9 s, 8 s | yes (#122) |
+
+Latency and gaps between blocks (p50 / p95 in seconds; gap = mean / longest):
+
+| n | Before | While down | Catching up | After |
+| --- | --- | --- | --- | --- |
+| 4 | 1.28 / 2.16; 2.0 / 2 s | 1.58 / 3.98; 2.7 / **4 s** | 1.70 / 4.12; 2.7 / 4 s | 1.16 / 2.06; 2.0 / 2 s |
+| 7 | 1.64 / 3.90; 2.4 / 4 s | 2.69 / 11.92; 3.9 / **12 s** | 2.78 / 11.79; 4.0 / 12 s | 1.38 / 7.10; 2.2 / 12 s |
+| 10 | 1.88 / 3.42; 2.0 / 2 s | 2.34 / 27.46; 3.6 / **28 s** | 10.91 / 29.76; 5.3 / 28 s | 1.64 / 8.71; 2.2 / 12 s |
+| 13 | 2.48 / 5.32; 2.1 / 4 s | 11.92 / 14.92; 19.2 / **180 s** | 68.21 / 71.98; 7.3 / 63 s | (load ended during recovery) |
+
+- **Worst gap = 4·(2^f − 1) s for f = 1–3** (4 → 4 + 8 → 4 + 8 + 16 s): one round timeout per consecutive dead
+  proposer, doubling each time. This is what delays the slowest votes; p50 barely moves.
+- **n = 13, f = 4 is a different regime.** 9 of 13 is exactly the 2f + 1 quorum, so every surviving validator must
+  take part in every block, and the VM was also near its CPU limit at n = 13 (Area 1). Only 11 blocks were produced
+  in the 256 s the validators were down (the fault script's 60 s hold stretched while it waited to see progress),
+  the worst gap was 180 s, and 281 votes exceeded Caliper's 120 s receipt timeout. Counting the transactions in
+  every block (5,252 = deploy + open + 2,650 registrations + **2,600 votes**) shows that **every vote was included**.
+- **After recovery** a few 12 s gaps remained at n = 7 and 10 while restarted validators rejoined the proposer
+  rotation; they cleared within the observed window.
+- **First n = 13 attempt (`n13-within-20261017-074311`) locked up during voter registration**, before any fault:
+  validators 4 and 9 stopped at block 9 with their BFT processors BLOCKED on `MainnetBlockImporter` (thread dumps in
+  that folder), the Besu 24.12.0 deadlock seen in rounds 2 and 3. Rerun once as the plan says; the rerun passed.
+- Peak validator memory stayed within the 900 MB caps (≤ 514 MB at n = 13).

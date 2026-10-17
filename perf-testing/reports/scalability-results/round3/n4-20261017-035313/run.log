@@ -1,0 +1,74 @@
+[03:53:14] === Round 2 Area 1 n4-20261017-035313: n=4, idle 300s, steps 10 25 50 votes/s x 300s ===
+[03:53:14] Fixed per node: heap 1024MB, MemoryMax 1800MB, --tx-pool-max-size=65536; slice 13488MB; loadgen 1536MB
+[03:53:14] Host: 6 vCPU, MemTotal 15988MB, MemAvailable 13570MB, disk free 137GB
+[03:53:17] CPU probe: 1.19s (normal ~1.15s)
+[03:53:18] Starting fresh 4-validator chain...
+Starting 4 native besu validators (RPC ports 20400..20403) as systemd units p4p-besu-n4-v1..4, heap 1024M, MemoryMax 1800M each, --tx-pool-max-size=65536...
+PIDs written to generated/n4/native-pids.txt. Waiting for RPC to come up...
+  validator1 (port 20400): NOT RESPONDING YET
+  validator2 (port 20401): NOT RESPONDING YET
+  validator3 (port 20402): NOT RESPONDING YET
+  validator4 (port 20403): NOT RESPONDING YET
+network-meta written to generated/n4/network-meta.json
+[03:53:26] Waiting for every validator to report 3 peers...
+[03:54:08] All 4 validators report 3 peers; height 15
+[03:54:08] txpool_besuStatistics maxSize=65536
+[03:54:08] Deploying VotingSystem...
+Waiting for 4 validator(s) to come up and start producing blocks...
+Network live. Block heights: 16, 16, 16, 16
+Deploying VotingSystem(numCandidates=3) via 0x11bEBC59aE5B67881046E7807b0D209abE994464 on http://127.0.0.1:20400...
+Deployed VotingSystem at 0xF158Da89fe7814bD930E11264515BCd928ecFB71 (block 17)
+Wrote Caliper network config: /home/patrick/P4P/P4P-Besu/perf-testing/caliper/networks/besu-n4.json
+
+Next: generate + register a voter pool, e.g.
+  node seed/generate-voters.js 50000 seed/generated/n4-voters.json
+  node seed/register-voters.js networks/besu-n4.json seed/generated/n4-voters.json
+[03:54:16] Contract: 0xF158Da89fe7814bD930E11264515BCd928ecFB71
+[03:54:16] Idle baseline: 300s, no load...
+[03:59:37] Idle: blocks 26..176, mean block time 2.000s, round expiries 0; samples=60 cpu_busy=5.4 iowait=0.0 besu_cpu=19.7 rss_end=1675 rss_max=1731 mem_avail_min=12004 swap_max=0 pool_start=0 pool_end=0 pool_max=0 pool_slope=0.000
+[03:59:37] Idle RSS 1675MB total = 418MB/node -> projected at n=19: 7942MB (plan budget ~12288MB)
+[03:59:37] --- Step 0: 10 votes/s --- registering voters 0..3000
+Voting not open - sending openVoting()
+Registering voters [0, 3000) = 3000; admin 0x11bEBC59aE5B67881046E7807b0D209abE994464 nonce 2; window 500
+DONE register [0, 3000): confirmed 3000, reverted 0, resent 3, 29s, 103.4 regs/s
+[04:00:07] Registered 3000 voters in 30s (96 regs/s)
+[n4-10] castVote voters [0, 3000) at 10 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3/n4-20261017-035313/step-10.csv
+[n4-10] t=60s sent 600 (10.0/s) ok 585 reverted 0 send_err 0 pending 15 head 224
+[n4-10] t=120s sent 1200 (10.0/s) ok 1185 reverted 0 send_err 0 pending 15 head 254
+[n4-10] t=180s sent 1800 (10.0/s) ok 1785 reverted 0 send_err 0 pending 15 head 284
+[n4-10] t=240s sent 2400 (10.0/s) ok 2385 reverted 0 send_err 0 pending 15 head 314
+[n4-10] DONE {"label":"n4-10","from":0,"count":3000,"skippedAlreadyVoted":0,"targetRate":10,"sent":3000,"ok":3000,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":10,"throughput":9.98,"latencyMs":{"p50":1291,"p95":2206,"p99":2395,"max":3029,"mean":1294},"sendLagMs":{"p50":105,"p99":244,"max":820},"startMs":1792209608429,"sendEndMs":1792209908450,"endMs":1792209909726,"blocksWatched":151}
+[04:05:15] n=4 10 votes/s: {"sent":3000,"ok":3000,"reverted":0,"dropped":0,"sendErrors":0,"successPct":100,"sendRate":10,"throughput":9.98,"latencyMs":{"p50":1291,"p95":2206,"p99":2395,"max":3029,"mean":1294},"sendLagMs":{"p50":105,"p99":244,"max":820}}
+[04:05:16] Step 10 votes/s: SUSTAINABLE  | success 100% p95 2206ms block 2.000s round-expiries 0 | samples=59 cpu_busy=16.2 iowait=0.0 besu_cpu=78.2 rss_end=2003 rss_max=2003 mem_avail_min=11577 swap_max=0 pool_start=9 pool_end=0 pool_max=21 pool_slope=0.001 | drain 0s
+[04:05:16] --- Step 1: 25 votes/s --- registering voters 3000..10500
+Registering voters [3000, 10500) = 7500; admin 0x11bEBC59aE5B67881046E7807b0D209abE994464 nonce 3002; window 500
+[2026-10-17T04:05:47.696Z] confirmed 4561 (146.7 regs/s), inflight 500, reverted 0, resent 73, next 8061, head 363
+DONE register [3000, 10500): confirmed 7500, reverted 0, resent 73, 47s, 159.6 regs/s
+[04:06:03] Registered 7500 voters in 47s (156 regs/s)
+[n4-25] castVote voters [3000, 10500) at 25 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3/n4-20261017-035313/step-25.csv
+[n4-25] t=60s sent 1500 (25.0/s) ok 1466 reverted 0 send_err 0 pending 34 head 402
+[n4-25] t=120s sent 3000 (25.0/s) ok 2966 reverted 0 send_err 0 pending 34 head 432
+[n4-25] t=180s sent 4500 (25.0/s) ok 4466 reverted 0 send_err 0 pending 34 head 462
+[n4-25] t=240s sent 6000 (25.0/s) ok 5966 reverted 0 send_err 0 pending 34 head 492
+[n4-25] DONE {"label":"n4-25","from":3000,"count":7500,"skippedAlreadyVoted":0,"targetRate":25,"sent":7500,"ok":7500,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":25,"throughput":24.93,"latencyMs":{"p50":1274,"p95":2186,"p99":2363,"max":2798,"mean":1275},"sendLagMs":{"p50":45,"p99":61,"max":202},"startMs":1792209964347,"sendEndMs":1792210264364,"endMs":1792210265446,"blocksWatched":151}
+[04:11:11] n=4 25 votes/s: {"sent":7500,"ok":7500,"reverted":0,"dropped":0,"sendErrors":0,"successPct":100,"sendRate":25,"throughput":24.93,"latencyMs":{"p50":1274,"p95":2186,"p99":2363,"max":2798,"mean":1275},"sendLagMs":{"p50":45,"p99":61,"max":202}}
+[04:11:11] Step 25 votes/s: SUSTAINABLE  | success 100% p95 2186ms block 2.000s round-expiries 0 | samples=59 cpu_busy=15.7 iowait=0.0 besu_cpu=80.0 rss_end=2466 rss_max=2466 mem_avail_min=11165 swap_max=0 pool_start=14 pool_end=0 pool_max=54 pool_slope=-0.036 | drain 0s
+[04:11:11] --- Step 2: 50 votes/s --- registering voters 10500..25500
+Registering voters [10500, 25500) = 15000; admin 0x11bEBC59aE5B67881046E7807b0D209abE994464 nonce 10502; window 500
+[2026-10-17T04:11:42.253Z] confirmed 7410 (244.4 regs/s), inflight 500, reverted 0, resent 51, next 18410, head 541
+[2026-10-17T04:12:12.272Z] confirmed 14859 (246.3 regs/s), inflight 141, reverted 0, resent 51, next 25500, head 556
+DONE register [10500, 25500): confirmed 15000, reverted 0, resent 51, 62s, 243.7 regs/s
+[04:12:13] Registered 15000 voters in 62s (238 regs/s)
+[n4-50] castVote voters [10500, 25500) at 50 votes/s open-loop -> /home/patrick/P4P/P4P-Besu/perf-testing/reports/scalability-results/round3/n4-20261017-035313/step-50.csv
+[n4-50] t=60s sent 3000 (50.0/s) ok 2948 reverted 0 send_err 0 pending 52 head 587
+[n4-50] t=120s sent 6000 (50.0/s) ok 5949 reverted 0 send_err 0 pending 51 head 617
+[n4-50] t=180s sent 9001 (50.0/s) ok 8949 reverted 0 send_err 0 pending 52 head 647
+[n4-50] t=240s sent 12001 (50.0/s) ok 11949 reverted 0 send_err 0 pending 52 head 677
+[n4-50] DONE {"label":"n4-50","from":10500,"count":15000,"skippedAlreadyVoted":0,"targetRate":50,"sent":15000,"ok":15000,"reverted":0,"sendErrors":0,"dropped":0,"successPct":100,"sendRate":50,"throughput":49.8,"latencyMs":{"p50":1304,"p95":2208,"p99":2347,"max":2750,"mean":1304},"sendLagMs":{"p50":25,"p99":39,"max":178},"startMs":1792210334012,"sendEndMs":1792210634030,"endMs":1792210635753,"blocksWatched":151}
+[04:17:21] n=4 50 votes/s: {"sent":15000,"ok":15000,"reverted":0,"dropped":0,"sendErrors":0,"successPct":100,"sendRate":50,"throughput":49.8,"latencyMs":{"p50":1304,"p95":2208,"p99":2347,"max":2750,"mean":1304},"sendLagMs":{"p50":25,"p99":39,"max":178}}
+[04:17:21] Step 50 votes/s: SUSTAINABLE  | success 100% p95 2208ms block 2.000s round-expiries 0 | samples=61 cpu_busy=18.6 iowait=0.0 besu_cpu=95.4 rss_end=3446 rss_max=3446 mem_avail_min=10203 swap_max=0 pool_start=0 pool_end=0 pool_max=108 pool_slope=-0.046 | drain 0s
+[04:17:21] Run min MemAvailable 10203MB, swap peak 0MB
+[04:17:22] Round expiries (all validators, whole run): 0
+Stopped units: p4p-besu-n4-v1.service p4p-besu-n4-v2.service p4p-besu-n4-v3.service p4p-besu-n4-v4.service
+n=4 native network stopped.
+[04:17:22] RESULT: PASSED - max sustainable 50 votes/s
