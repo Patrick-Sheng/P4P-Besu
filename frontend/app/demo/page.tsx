@@ -195,6 +195,27 @@ export default function DemoPage() {
               <p className="text-[11px] text-muted-foreground font-mono break-all text-center">
                 {info?.joinUrl}
               </p>
+              {/* No phone, or the QR/tunnel is down: vote in a new tab on this
+                  machine. Local path, so it works without the public URL. */}
+              {info?.joinUrl && (
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full font-bold border-2 border-navy/80 text-navy"
+                >
+                  {/* One reusable booth tab; the timestamp forces a fresh load
+                      (and so a new voter) on every click, even if it is open. */}
+                  <a
+                    href={boothUrl(info.joinUrl)}
+                    onClick={(e) => {
+                      e.currentTarget.href = boothUrl(info.joinUrl);
+                    }}
+                    target="p4p-voting-booth"
+                  >
+                    No phone? Vote on this computer
+                  </a>
+                </Button>
+              )}
             </div>
           </PosterSection>
 
@@ -274,6 +295,11 @@ export default function DemoPage() {
       <PosterFooter />
     </div>
   );
+}
+
+function boothUrl(joinUrl: string) {
+  const code = new URL(joinUrl).searchParams.get("code") ?? "";
+  return `/vote?${new URLSearchParams({ code, kiosk: "1", t: String(Date.now()) })}`;
 }
 
 function Stat({ label, value }: { label: string; value: number | string | undefined }) {

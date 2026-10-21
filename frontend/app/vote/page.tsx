@@ -5,6 +5,11 @@
 // localStorage, so the same phone always comes back as the same voter. The
 // server registers the address on-chain; the vote itself is signed here and
 // relayed to Besu through /api/rpc.
+//
+// With &kiosk=1 (the "Vote on this computer" button on the projector) the page
+// is a shared voting booth instead: every load starts on a "New voter" screen,
+// each voter gets a fresh in-memory key that is never stored, and "Next voter"
+// reloads the page back to that screen for the next person.
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ethers } from "ethers";
@@ -37,9 +42,10 @@ interface Status {
   voter: { registered: boolean; state: number } | null;
 }
 
-type Phase = "init" | "registering" | "ready" | "no-code" | "error";
+type Phase = "init" | "welcome" | "registering" | "ready" | "no-code" | "error";
 
-function loadWallet(): ethers.Wallet {
+function loadWallet(kiosk: boolean): ethers.Wallet {
+  if (kiosk) return new ethers.Wallet(ethers.Wallet.createRandom().privateKey);
   try {
     const stored = localStorage.getItem(KEY_STORAGE);
     if (stored) return new ethers.Wallet(stored);
@@ -57,6 +63,7 @@ function loadWallet(): ethers.Wallet {
 
 export default function VotePage() {
   const walletRef = useRef<ethers.Wallet | null>(null);
+  const codeRef = useRef("");
   const [address, setAddress] = useState<string | null>(null);
   const [phase, setPhase] = useState<Phase>("init");
   const [status, setStatus] = useState<Status | null>(null);
@@ -66,6 +73,7 @@ export default function VotePage() {
   const [receipt, setReceipt] = useState<VoteReceipt | null>(null);
   // poster step (0-6) currently lit while a vote travels through the network
   const [journey, setJourney] = useState<number | null>(null);
+  const [kiosk, setKiosk] = useState(false);
 
   const fetchStatus = useCallback(async (addr: string) => {
     const res = await fetch(`/api/status?address=${addr}`, { cache: "no-store" });
@@ -75,30 +83,21 @@ export default function VotePage() {
     return data as Status;
   }, []);
 
-  // ─── First load: keypair → status → auto-register ──────────────────────────
-  useEffect(() => {
-    const wallet = loadWallet();
-    walletRef.current = wallet;
-    setAddress(wallet.address);
-    try {
-      const r = localStorage.getItem(RECEIPT_STORAGE);
-      if (r) setReceipt(JSON.parse(r));
-    } catch {
-      /* ignore */
-    }
-
-    const code = new URLSearchParams(window.location.search).get("code") ?? "";
-    (async () => {
+  // ─── Keypair → status → auto-register ──────────────────────────────────────
+  const enrol = useCallback(
+    async (wallet: ethers.Wallet) => {
+      walletRef.current = wallet;
+      setAddress(wallet.address);
       try {
         const s = await fetchStatus(wallet.address);
         if (s.voter?.registered) return setPhase("ready");
-        if (!code) return setPhase("no-code");
+        if (!codeRef.current) return setPhase("no-code");
 
         setPhase("registering");
         const res = await fetch("/api/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ address: wallet.address, code }),
+          body: JSON.stringify({ address: wallet.address, code: codeRef.current }),
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error ?? "Registration failed");
@@ -108,8 +107,31 @@ export default function VotePage() {
         setError(err instanceof Error ? err.message : String(err));
         setPhase("error");
       }
-    })();
-  }, [fetchStatus]);
+    },
+    [fetchStatus]
+  );
+
+  // ─── First load: phones enrol straight away, the shared booth waits ────────
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    codeRef.current = params.get("code") ?? "";
+    if (params.get("kiosk") === "1") {
+      setKiosk(true);
+      setPhase("welcome");
+      // Back/Forward can restore the previous voter's page from the bfcache;
+      // reload so every visit starts as a new voter.
+      const onShow = (e: PageTransitionEvent) => e.persisted && window.location.reload();
+      window.addEventListener("pageshow", onShow);
+      return () => window.removeEventListener("pageshow", onShow);
+    }
+    try {
+      const r = localStorage.getItem(RECEIPT_STORAGE);
+      if (r) setReceipt(JSON.parse(r));
+    } catch {
+      /* ignore */
+    }
+    void enrol(loadWallet(false));
+  }, [enrol]);
 
   // ─── Poll every 2s (one IBFT block) once registered ─────────────────────────
   useEffect(() => {
@@ -161,7 +183,7 @@ export default function VotePage() {
       };
       setReceipt(r);
       try {
-        localStorage.setItem(RECEIPT_STORAGE, JSON.stringify(r));
+        if (!kiosk) localStorage.setItem(RECEIPT_STORAGE, JSON.stringify(r));
       } catch {
         /* ignore */
       }
@@ -179,13 +201,14 @@ export default function VotePage() {
   const candidates = status?.candidates ?? [];
   const totalVotes = (status?.tally ?? []).reduce((a, b) => a + b, 0);
   const showJourney = journey !== null || voted;
+  const device = kiosk ? "computer" : "phone";
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <PosterHeader
         compact
         title="NZ Blockchain Vote"
-        left="Live demo · P4P #68"
+        left={kiosk ? "Shared voting computer · P4P #68" : "Live demo · P4P #68"}
         right={status ? `Block #${status.blockNumber.toLocaleString()}` : undefined}
       >
         {status && (
@@ -209,10 +232,28 @@ export default function VotePage() {
               </p>
               {phase === "registering" && (
                 <p className="text-sm text-muted-foreground">
-                  A fresh digital key was created on this phone. The Electoral Commission is adding
+                  A fresh digital key was created on this {device}. The Electoral Commission is adding
                   you to the voter roll — about one block (2 seconds).
                 </p>
               )}
+            </div>
+          </PosterSection>
+        )}
+
+        {phase === "welcome" && (
+          <PosterSection title="New voter" size="sm">
+            <div className="py-5 text-center space-y-3">
+              <p className="font-bold text-navy text-lg">Welcome to the voting computer</p>
+              <p className="text-sm text-muted-foreground">
+                Press start to get your own digital key. You will be enrolled on the blockchain as a
+                new voter, separate from everyone who used this computer before you.
+              </p>
+              <Button
+                onClick={() => void enrol(loadWallet(true))}
+                className="w-full h-12 text-base font-bold rounded-xl"
+              >
+                Start voting
+              </Button>
             </div>
           </PosterSection>
         )}
@@ -277,7 +318,7 @@ export default function VotePage() {
                 {selected !== null ? `Vote for ${candidates[selected]}` : "Choose a candidate"}
               </Button>
               <p className="text-xs text-muted-foreground">
-                Your ballot is signed with the key on this phone. Once it is recorded it cannot be
+                Your ballot is signed with the key on this {device}. Once it is recorded it cannot be
                 changed.
               </p>
             </div>
@@ -295,7 +336,15 @@ export default function VotePage() {
               </div>
             )}
             {voted && !receipt && (
-              <p className="mt-3 text-sm font-semibold text-[#2e7d32]">This phone has already voted.</p>
+              <p className="mt-3 text-sm font-semibold text-[#2e7d32]">This {device} has already voted.</p>
+            )}
+            {kiosk && voted && (journey === null || journey === 6) && (
+              <Button
+                onClick={() => window.location.reload()}
+                className="mt-3 w-full h-12 text-base font-bold rounded-xl"
+              >
+                Next voter
+              </Button>
             )}
           </PosterSection>
         )}
