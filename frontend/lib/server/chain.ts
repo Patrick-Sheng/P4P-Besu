@@ -19,7 +19,8 @@ export const config = {
   adminToken: process.env.DEMO_ADMIN_TOKEN ?? "",
   joinCode: process.env.DEMO_JOIN_CODE ?? "",
   publicUrl: (process.env.DEMO_PUBLIC_URL ?? "").replace(/\/$/, ""),
-  candidateNames: (process.env.DEMO_CANDIDATES ?? "Party A,Party B,Party C")
+  question: process.env.DEMO_QUESTION ?? "What is your favourite animal?",
+  candidateNames: (process.env.DEMO_CANDIDATES ?? "Cat,Dog")
     .split(",")
     .map((c) => c.trim())
     .filter(Boolean),

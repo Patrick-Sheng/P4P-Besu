@@ -12,7 +12,9 @@
 #                   the QR. Needs phones to reach the VM directly (bridged
 #                   adapter or a VirtualBox port-forward).
 #
-# Env: DEMO_CANDIDATES  comma-separated names (default "Party A,Party B,Party C")
+# Env: DEMO_QUESTION    question shown to voters (default "What is your favourite animal?")
+#      DEMO_CANDIDATES  comma-separated answers (default "Cat,Dog")
+#                       Both are fixed per election: change them with --new-election.
 #      DEMO_PORT        web port (default 3000)
 #      DEMO_MAX_VOTERS  auto-registration cap (default 500)
 #
@@ -27,7 +29,8 @@ DEMO="$ROOT/demo"
 STATE="$DEMO/.state"
 SLICE="p4p-demo.slice"
 PORT="${DEMO_PORT:-3000}"
-CANDIDATES="${DEMO_CANDIDATES:-Party A,Party B,Party C}"
+CANDIDATES="${DEMO_CANDIDATES:-Cat,Dog}"
+QUESTION="${DEMO_QUESTION:-What is your favourite animal?}"
 NEW_ELECTION=0
 MODE=tunnel
 for arg in "$@"; do
@@ -161,6 +164,7 @@ if [ "$NEW_ELECTION" -eq 1 ]; then
         echo "DEMO_CONTRACT_ADDRESS=$addr"
         echo "DEMO_DEPLOY_BLOCK=$blk"
         echo "DEMO_CANDIDATES=\"$CANDIDATES\""
+        printf 'DEMO_QUESTION=%q\n' "$QUESTION"
         echo "DEMO_JOIN_CODE=$(openssl rand -hex 4)"
         echo "DEMO_ADMIN_TOKEN=$(openssl rand -hex 16)"
     } > "$ELECTION"
@@ -230,6 +234,8 @@ WEB_ENV="$STATE/web.env"
     echo "DEMO_CONTRACT_ADDRESS=$DEMO_CONTRACT_ADDRESS"
     echo "DEMO_DEPLOY_BLOCK=$DEMO_DEPLOY_BLOCK"
     echo "DEMO_CANDIDATES=$DEMO_CANDIDATES"
+    # elections saved before the question existed fall back to the default
+    echo "DEMO_QUESTION=${DEMO_QUESTION:-$QUESTION}"
     echo "DEMO_JOIN_CODE=$DEMO_JOIN_CODE"
     echo "DEMO_ADMIN_TOKEN=$DEMO_ADMIN_TOKEN"
     echo "DEMO_ADMIN_PRIVATE_KEY=$ADMIN_KEY"

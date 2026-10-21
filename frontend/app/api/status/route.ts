@@ -32,6 +32,7 @@ export async function GET(request: Request) {
       contractAddress: config.contractAddress,
       blockNumber,
       votingOpen,
+      question: config.question,
       candidates: Array.from({ length: n }, (_, i) => config.candidateNames[i] ?? `Candidate ${i + 1}`),
       tally,
       voter,

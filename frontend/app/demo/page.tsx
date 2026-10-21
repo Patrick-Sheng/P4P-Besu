@@ -41,6 +41,7 @@ interface AdminInfo {
 interface Status {
   blockNumber: number;
   votingOpen: boolean;
+  question: string;
   candidates: string[];
   tally: number[];
 }
@@ -255,7 +256,7 @@ export default function DemoPage() {
                 <Stat label="Turnout" value={turnout} />
               </div>
 
-              <PosterCard title="Vote Tally">
+              <PosterCard title={status?.question ?? "Vote Tally"}>
                 <ResponsiveContainer width="100%" height={230}>
                   <BarChart data={chartData} margin={{ top: 30, right: 8, left: -8, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e9c3a4" vertical={false} />

@@ -137,7 +137,7 @@ interface JourneyStep {
 }
 
 export const JOURNEY: JourneyStep[] = [
-  { title: "Vote cast", text: "You pick a candidate and submit your ballot.", icon: Vote, badge: "#f26b1d", bg: "#fad7b5" },
+  { title: "Vote cast", text: "You make your choice and submit your ballot.", icon: Vote, badge: "#f26b1d", bg: "#fad7b5" },
   { title: "Vote sent", text: "Your ballot is signed with your digital key and sent to the network.", icon: Smartphone, badge: "#f7931e", bg: "#fbddba" },
   { title: "Shared", text: "Copies of the ballot are passed to every trusted computer.", icon: Share2, badge: "#f9a825", bg: "#fce3b0" },
   { title: "Checked", text: "The voting rules confirm you are enrolled, haven't voted yet, and the poll is open.", icon: ClipboardCheck, badge: "#fbc02d", bg: "#fdf0b5" },

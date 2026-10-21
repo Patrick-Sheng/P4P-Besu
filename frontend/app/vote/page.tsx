@@ -37,6 +37,7 @@ interface Status {
   contractAddress: string;
   blockNumber: number;
   votingOpen: boolean;
+  question: string;
   candidates: string[];
   tally: number[];
   voter: { registered: boolean; state: number } | null;
@@ -287,6 +288,7 @@ export default function VotePage() {
         {phase === "ready" && status && !voted && status.votingOpen && journey === null && (
           <PosterSection title="Cast your vote" size="sm">
             <div className="space-y-2.5">
+              <p className="text-xl font-bold text-navy leading-snug pb-1">{status.question}</p>
               {candidates.map((name, i) => (
                 <button
                   key={i}
@@ -315,7 +317,7 @@ export default function VotePage() {
                 disabled={selected === null || submitting}
                 className="w-full h-12 text-base font-bold rounded-xl"
               >
-                {selected !== null ? `Vote for ${candidates[selected]}` : "Choose a candidate"}
+                {selected !== null ? `Vote for ${candidates[selected]}` : "Choose an answer"}
               </Button>
               <p className="text-xs text-muted-foreground">
                 Your ballot is signed with the key on this {device}. Once it is recorded it cannot be

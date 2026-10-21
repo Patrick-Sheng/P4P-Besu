@@ -19,7 +19,10 @@ The script prints two links:
 - **Join link**: `https://<random>.trycloudflare.com/vote?code=<code>`. This
   is what the QR code encodes.
 
-Candidate names: `DEMO_CANDIDATES="Labour,National,Green" demo/start-demo.sh --new-election`.
+The default poll is "What is your favourite animal?" with the answers Cat and
+Dog. To ask something else, start a new election with your own question and
+answers:
+`DEMO_QUESTION="Who should win?" DEMO_CANDIDATES="Labour,National,Green" demo/start-demo.sh --new-election`.
 
 ## Flow
 
