@@ -16,3 +16,7 @@ frontend/.env.local
 voting-contract/out/
 voting-contract/cache/
 voting-contract/lib/
+
+# Live demo (demo/start-demo.sh)
+demo/.state/
+demo/bin/

@@ -55,5 +55,11 @@ forge script script/Deploy.s.sol --rpc-url http://127.0.0.1:8545 --broadcast --l
 forge test -vv
 ```
 
+## Live demo (QR code + phones)
+```bash
+demo/start-demo.sh --new-election
+```
+Starts the network, deploys an election and publishes the site so the audience can scan a QR code and vote from their phones. See [demo/README.md](demo/README.md).
+
 ## Contract
 VotingSystem.sol -- three-state voter registry (NotVoted / Processing / Voted), castVote(), getTally()
